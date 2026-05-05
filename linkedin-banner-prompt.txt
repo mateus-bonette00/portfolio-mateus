@@ -1,0 +1,46 @@
+Crie uma imagem de capa (banner) para perfil no LinkedIn, proporção larga horizontal (1584x396 pixels ou equivalente), estilo portfólio tech moderno, tema ESCURO.
+
+IMPORTANTE — QUALIDADE DO TEXTO:
+- O texto nas imagens deve estar 100% legível, centralizado, sem cortes nas bordas.
+- Português correto, sem letras trocadas, sem caracteres inventados.
+- Não substituir palavras; use EXATAMENTE os textos abaixo.
+
+VISUAL GERAL (TEMA DARK):
+- Fundo principal escuro, próximo de: #0A1020 (azul muito escuro; equivalente a rgb(10, 16, 32)).
+- Leve vignette ou degradê radial muito sutil (um pouco mais escuro nas bordas), sem clarear o centro demais.
+- Muito contraste entre fundo e letras; área central mais “limpa” para o texto.
+
+FUNDO — GRAFOS E TECNOLOGIA (obrigatório, mas elegante):
+- Camada de fundo com estética de grafo / rede: nós (pontos), arestas (linhas finas conectando), lembrando constelação ou grafo direcionado leve.
+- Sobre ou integrado a isso, ELEMENTOS ABSTRATOS de tecnologia (não use logotipos reais nem marcas registradas): por exemplo silhuetas genéricas de chip, nuvem estilizada, chaves { }, símbolos de código, pilhas de “blocos”, linhas de circuito, ícones minimalistas de API/banco (formas geométricas só).
+- Cores desses elementos: azuis e brancos com baixa opacidade (ex.: #3B82F6, #60A5FA, #93C5FD com alpha baixo), para parecer o hero do site, sem competir com o texto.
+- Profundidade: fundo mais desfocado ou mais fino; grafos mais densos nas laterais; centro mais limpo para leitura.
+
+TIPOGRAFIA (MESMA FAMÍLIA EM TUDO):
+- Fonte obrigatória para nome E subtítulo: Space Grotesk (se não renderizar o nome da fonte, use uma alternativa visualmente idêntica: geométrica, sans-serif, espaçamento equilibrado).
+- NÃO misturar outra família no nome ou no subtítulo (tudo Space Grotesk).
+
+HIERARQUIA:
+- Nome bem maior, peso semibold (600), line-height apertado (~0.95), letter-spacing levemente negativo.
+- Subtítulo menor, peso medium (500), line-height confortável, letter-spacing levemente positivo (~0.02em).
+
+TEXTO EXATO — Linha 1 (nome):
+Mateus Bonette
+
+TEXTO EXATO — Linha 2 (subtítulo; pode quebrar em até 2 linhas mantendo a ordem das frases):
+Engenheiro de Software Full Stack | IA Aplicada | Produto | Automação e Soluções Digitais
+
+ESTILO DO NOME (MODO DARK, gradiente claro):
+- Preenchimento em gradiente diagonal ~135° no texto do nome: #FFFFFF → #93C5FD → #3B82F6 → #60A5FA (do branco/azul claro para azul vivo).
+
+ESTILO DO SUBTÍTÍTULO (MODO DARK):
+- Cor sólida legível sobre o fundo escuro: #CBD5E1 (cinza-azulado claro, estilo slate-300).
+
+CHECKLIST FINAL (o modelo deve obedecer):
+1) Fundo dark #0A1020 (ou muito próximo).
+2) Grafos + elementos tech abstratos ao fundo, laterais e profundidade.
+3) Todo o texto em Space Grotesk (nome e subtítulo).
+4) Textos literais sem alteração.
+5) Margens seguras; nada de texto colado na borda da imagem.
+
+Referência de tamanho (LinkedIn): https://www.linkedin.com/help/linkedin/answer/a521871
