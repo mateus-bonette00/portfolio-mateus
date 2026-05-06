@@ -126,7 +126,7 @@ export function Background() {
     }
 
     const drawEdges = (isDark: boolean, maxDistance: number, t: number) => {
-      const baseA = isDark ? 0.48 : 0.32
+      const baseA = isDark ? 0.85 : 0.65
       const breathe = 0.9 + 0.1 * Math.sin(t * 0.00028)
       const buckets = buildBuckets(maxDistance)
 
@@ -185,8 +185,8 @@ export function Background() {
           ctx.moveTo(a.x, a.y)
           ctx.lineTo(mx, my)
           ctx.strokeStyle = isDark
-            ? `rgba(96, 165, 250, ${0.68 * strength * strength})`
-            : `rgba(37, 99, 235, ${0.46 * strength * strength})`
+            ? `rgba(96, 165, 250, ${0.95 * strength * strength})`
+            : `rgba(37, 99, 235, ${0.85 * strength * strength})`
           ctx.lineWidth = 0.8 + strength * 1.15
           ctx.stroke()
         }
@@ -212,11 +212,11 @@ export function Background() {
         ctx.arc(a.x, a.y, r, 0, Math.PI * 2)
         ctx.fillStyle = isDark
           ? cyan
-            ? 'rgba(165, 243, 252, 0.88)'
-            : 'rgba(191, 219, 254, 0.84)'
+            ? 'rgba(165, 243, 252, 1)'
+            : 'rgba(191, 219, 254, 0.95)'
           : cyan
-            ? 'rgba(14, 116, 144, 0.6)'
-            : 'rgba(30, 64, 175, 0.66)'
+            ? 'rgba(14, 116, 144, 0.85)'
+            : 'rgba(30, 64, 175, 0.9)'
         ctx.shadowBlur = isDark ? 18 : 10
         ctx.shadowColor = isDark
           ? cyan
@@ -319,8 +319,8 @@ export function Background() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
-      <div className="absolute inset-0 grid-bg opacity-[0.32] dark:opacity-[0.26]" />
-      <div className="absolute inset-0 bg-radial-fade opacity-70 dark:opacity-95" />
+      <div className="absolute inset-0 grid-bg opacity-50 dark:opacity-[0.4]" />
+      <div className="absolute inset-0 bg-radial-fade opacity-70 dark:opacity-90" />
       <div className="network-vignette absolute inset-0" />
       <canvas
         ref={canvasRef}

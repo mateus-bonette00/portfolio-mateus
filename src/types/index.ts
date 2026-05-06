@@ -18,7 +18,14 @@ export type Skill = {
 export type Experience = {
   role: string
   company: string
+  employmentType: string
   period: string
-  description: string
+  location?: string
+  description?: string[]
   highlights?: string[]
+  skills?: string
+  logoImage?: string
+  logoAlt?: string
+  /** Se true, exibe selo "Atual" e destaque na timeline. Omitido/false na experiência mais recente encerrada. */
+  isCurrentRole?: boolean
 }

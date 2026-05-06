@@ -9,10 +9,10 @@ export const PROFILE = {
   email: 'mateus.bonette00@gmail.com',
   bio: 'Sou Bacharel em Ciência da Computação pela UNIFEI. Gosto de construir produtos completos, com atenção aos detalhes que mudam a experiência de quem usa.',
   social: {
-    github: '#',
-    linkedin: '#',
-    instagram: '#',
-    discord: '#',
+    github: 'https://github.com/mateus-bonette00',
+    linkedin: 'https://www.linkedin.com/in/mateus-bonette/',
+    instagram: 'https://www.instagram.com/mateus_bonette/',
+    discord: 'https://discord.com/users/369971337755623427',
   },
 }
 
@@ -68,23 +68,72 @@ export const PROJECTS: Project[] = [
 
 export const EXPERIENCES: Experience[] = [
   {
-    role: 'Desenvolvedor Full Stack',
-    company: 'Empresa atual (em breve)',
-    period: '2025 até hoje',
-    description:
-      'Substitua este texto pela descrição da sua função atual, principais responsabilidades e conquistas.',
-    highlights: [
-      'Conquista importante 1',
-      'Conquista importante 2',
-      'Conquista importante 3',
+    role: 'Desenvolvedor full stack',
+    company: 'Moontech',
+    employmentType: 'Tempo integral',
+    period: 'mai de 2024 - mai de 2026 · 2 anos',
+    location: 'Remoto',
+    isCurrentRole: false,
+    description: [
+      'Empresa focada no desenvolvimento de soluções tecnológicas inovadoras.',
+      'Passagem encerrada em 1º de maio de 2026. Entreguei com foco em front-end e Angular, em time multidisciplinar.',
     ],
+    highlights: [
+      'Atuei com foco em tecnologias front-end, com ênfase em Angular.',
+      'Desenvolvimento de interfaces de usuário modernas e eficientes.',
+      'Colaboração com equipes multidisciplinares para implementar soluções de alta qualidade.',
+      'Aplicação de melhores práticas de desenvolvimento front-end.',
+      'Uso de frameworks e ferramentas para otimização de desempenho e da experiência do usuário.',
+    ],
+    skills: 'Angular Material, Algoritmos e mais 3 competências',
+    logoImage: '/images/experiences/moontech.jpeg',
+    logoAlt: 'Logo da Moontech',
   },
   {
-    role: 'Desenvolvedor',
-    company: 'Experiência anterior (em breve)',
-    period: '2023 a 2024',
-    description:
-      'Resumo da sua experiência anterior, projetos entregues e tecnologias utilizadas.',
+    role: 'Assistente administrativo',
+    company: 'Pró-Saúde Materiais Odontomédicos',
+    employmentType: 'Meio período',
+    period: 'abr de 2020 - fev de 2022 · 1 ano 11 meses',
+    location: 'Itajubá, Minas Gerais, Brasil · No local',
+    description: ['Loja física de artigos hospitalares localizado na cidade Itajubá - MG.'],
+    highlights: [
+      'Trabalhei com atendimento clientes, vendas, gestão de redes sociais, logísticas e criação das artes dos posts nas redes sociais.',
+      'Trabalhei com software de controle de estoque.',
+    ],
+    skills: 'Marketing, Apoio logístico e mais 3 competências',
+    logoImage: '/images/experiences/prosaude.jpg',
+    logoAlt: 'Logo da Pró-Saúde Materiais Odontomédicos',
+  },
+  {
+    role: 'Gerente de Vendas',
+    company: 'byron.solutions',
+    employmentType: 'Tempo integral',
+    period: 'abr de 2020 - nov de 2021 · 1 ano 8 meses',
+    location: 'Itajubá, Minas Gerais, Brasil · Remoto',
+    description: ['Empresa Júnior focada em desenvolvimento de sites e aplicativos.'],
+    highlights: [
+      'Trabalhei na área de vendas, onde aprendi e ensinei técnicas de cold call, precificação e pós-venda.',
+      'Trabalhei em projetos como Product Owner.',
+      'Trabalhei e ensinei metodologias ágeis para gerenciamento de projetos, como o Scrum.',
+      'Trabalhei em paralelo a vendas como designer de sites utilizando a ferramenta Figma, utilizando técnicas em UX.',
+    ],
+    skills:
+      'Experiência do usuário (UX), Design de experiência do usuário (UX) e mais 10 competências',
+    logoImage: '/images/experiences/byron.jpeg',
+    logoAlt: 'Logo da byron.solutions',
+  },
+  {
+    role: 'Professor',
+    company: 'CAAI - Curso Assistencial Amigos de Itajubá',
+    employmentType: 'Tempo integral',
+    period: 'mar de 2019 - fev de 2021 · 2 anos',
+    location: 'Itajubá, Minas Gerais, Brasil',
+    description: [
+      'O CAAI é um curso assistencial com a missão de transformar vidas por meio da educação.',
+      'Dei aula na área de Interpretação de Texto nesse curso que era preparatório para vestibulares, com uma média de 180 alunos na faixa etária de 18 anos de idade.',
+    ],
+    logoImage: '/images/experiences/caai.jpeg',
+    logoAlt: 'Logo do CAAI',
   },
 ]
 

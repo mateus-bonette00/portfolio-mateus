@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
+import { ArrowUpRight, Github, Instagram, Linkedin, Mail } from 'lucide-react'
 import { PROFILE } from '../data/portfolio'
+import { DiscordIcon } from './icons/DiscordIcon'
 
 export function Contact() {
   return (
@@ -45,20 +46,52 @@ export function Contact() {
                   className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 />
               </a>
-              <a href={PROFILE.social.linkedin} className="btn-ghost group" data-cursor="hover">
+              <a
+                href={PROFILE.social.linkedin}
+                className="btn-ghost group"
+                data-cursor="hover"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Linkedin size={16} />
                 LinkedIn
               </a>
-              <a href={PROFILE.social.github} className="btn-ghost group" data-cursor="hover">
+              <a
+                href={PROFILE.social.github}
+                className="btn-ghost group"
+                data-cursor="hover"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Github size={16} />
                 GitHub
+              </a>
+              <a
+                href={PROFILE.social.instagram}
+                className="btn-ghost group"
+                data-cursor="hover"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Instagram size={16} />
+                Instagram
+              </a>
+              <a
+                href={PROFILE.social.discord}
+                className="btn-ghost group"
+                data-cursor="hover"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <DiscordIcon size={16} />
+                Discord (mateusbonette)
               </a>
             </div>
 
             <div className="mt-10 grid gap-4 border-t border-slate-200 pt-6 dark:border-white/10 sm:grid-cols-3">
               <InfoBlock label="Resposta" value="Em até 24 horas" />
               <InfoBlock label="Localização" value="Brasil, remoto" />
-              <InfoBlock label="Status" value="Aceitando projetos" pulse />
+              <InfoBlock label="Status" value="Online Para Novas Oportunidades" pulse />
             </div>
           </div>
         </motion.div>

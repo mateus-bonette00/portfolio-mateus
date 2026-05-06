@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type CSSProperties } from 'react'
 import { motion } from 'framer-motion'
 import {
   Bot,
@@ -12,6 +12,7 @@ import {
   Rows3,
   SearchCode,
   Workflow,
+  ChevronRight,
   type LucideIcon,
 } from 'lucide-react'
 import {
@@ -73,17 +74,17 @@ type TechGroup = {
 }
 
 const GROUP_ICONS: Record<string, LucideIcon> = {
-  'Frontend e mobile': LayoutTemplate,
-  'Backend, APIs e bancos': Database,
-  'Dados e visualização': ChartNoAxesCombined,
-  'IA, automação e dev tools': Bot,
-  'Design, produto e conteúdo': Presentation,
-  'Gestão, jogos e processo': Workflow,
+  'Frontend e Mobile': LayoutTemplate,
+  'Backend, APIs e Bancos': Database,
+  'Dados e Visualização': ChartNoAxesCombined,
+  'IA, Automação e Dev Tools': Bot,
+  'Design, Produto e Conteúdo': Presentation,
+  'Gestão, Jogos e Processo': Workflow,
 }
 
 const TECH_GROUPS: TechGroup[] = [
   {
-    title: 'Frontend e mobile',
+    title: 'Frontend e Mobile',
     summary: 'Interfaces bem acabadas, responsivas e com atenção forte a experiência visual.',
     items: [
       {
@@ -145,7 +146,7 @@ const TECH_GROUPS: TechGroup[] = [
     ],
   },
   {
-    title: 'Backend, APIs e bancos',
+    title: 'Backend, APIs e Bancos',
     summary: 'Construção de serviços, integração com dados e organização de regras de negócio.',
     items: [
       {
@@ -214,7 +215,7 @@ const TECH_GROUPS: TechGroup[] = [
     ],
   },
   {
-    title: 'Dados e visualização',
+    title: 'Dados e Visualização',
     summary: 'Transformo dados em análise, dashboards simples e visualizações úteis para decisão.',
     items: [
       {
@@ -262,7 +263,7 @@ const TECH_GROUPS: TechGroup[] = [
     ],
   },
   {
-    title: 'IA, automação e dev tools',
+    title: 'IA, Automação e Dev Tools',
     summary: 'Uso ferramentas modernas para acelerar desenvolvimento, revisar código e automatizar tarefas.',
     items: [
       {
@@ -324,7 +325,7 @@ const TECH_GROUPS: TechGroup[] = [
     ],
   },
   {
-    title: 'Design, produto e conteúdo',
+    title: 'Design, Produto e Conteúdo',
     summary: 'Tenho bom senso visual e sei transformar ideia em tela, apresentação e material claro.',
     items: [
       {
@@ -379,7 +380,7 @@ const TECH_GROUPS: TechGroup[] = [
     ],
   },
   {
-    title: 'Gestão, jogos e processo',
+    title: 'Gestão, Jogos e Processo',
     summary: 'Também entendo ferramentas de organização, método de trabalho e criação de experiências interativas.',
     items: [
       {
@@ -450,15 +451,16 @@ export function Skills() {
     <section id="skills" data-codex-id="technologies-section" className="section overflow-hidden">
       <div className="container-1200 relative z-10">
         <SectionTitle
-          eyebrow="Stack"
+          denseMobile
+          eyebrow="Habilidades Técnicas"
           title={
             <>
-              <span className="text-gradient-static">Tecnologias que </span>
-              <span className="text-gradient">uso para entregar</span>
+              <span className="text-gradient-static">Tecnologias Que </span>
+              <span className="text-gradient">Uso Para Entregar</span>
               <span className="text-gradient-static">.</span>
             </>
           }
-          description="Full stack, IA, dados, design e automação. Não é só lista de ferramenta: é o conjunto que uso para transformar problema em produto funcionando."
+          description="Do front ao banco, da automação ao modelo de IA. Não coleciono tecnologias, uso o que resolve o problema certo na hora certa."
           descriptionClassName="max-w-3xl"
         />
 
@@ -469,18 +471,33 @@ export function Skills() {
           transition={{ duration: 0.45 }}
           className="liquid-card rounded-[1.5rem] p-4 sm:p-5"
         >
-          <div className="grid gap-4 lg:grid-cols-[0.78fr_1.22fr]">
-            <div className="rounded-[1.15rem] border border-slate-200 bg-slate-50/80 p-3 dark:border-white/10 dark:bg-white/[0.035]">
-              <div className="mb-3 flex items-center justify-between gap-3 px-1">
-                <span className="font-mono text-[11px] font-black uppercase tracking-[0.18em] text-ink-mute">
-                  Filtrar stack
-                </span>
-                <span className="font-mono text-[11px] font-black text-ink-mute">
-                  {TECH_GROUPS.length} áreas
-                </span>
-              </div>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
+            <div className="relative min-w-0 overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white/60 p-4 backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.09] sm:p-5">
+              <div
+                aria-hidden
+                className="absolute inset-x-0 top-0 z-[2] h-1 bg-gradient-to-r from-accent-neon via-accent-cyan to-white/70 opacity-80"
+              />
+              <div className="relative z-[1]">
+                <div className="mb-3 flex items-center justify-between gap-3 px-1">
+                  <span className="font-mono text-[11px] font-black uppercase tracking-[0.18em] text-ink-mute">
+                    Filtrar stack
+                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="flex items-center lg:hidden font-mono text-[10px] font-bold uppercase tracking-widest text-accent-cyan/90 animate-pulse">
+                      Deslize
+                      <ChevronRight size={14} className="ml-0.5" strokeWidth={3} />
+                    </span>
+                    <span className="font-mono text-[11px] font-black text-ink-mute">
+                      {TECH_GROUPS.length} áreas
+                    </span>
+                  </div>
+                </div>
 
-              <div className="flex gap-2 overflow-x-auto pb-1 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-1">
+                <div className="relative -mx-1 px-1">
+                  {/* Gradiente sutil nas bordas para indicar rolagem */}
+                  <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-8 bg-gradient-to-l from-white/80 to-transparent dark:from-[#0f172a]/80 lg:hidden" />
+                  
+                  <div className="flex overflow-x-auto pb-3 pt-1 gap-2.5 lg:grid lg:grid-cols-1 lg:overflow-visible lg:pb-0 lg:pt-0" style={{ scrollbarWidth: 'none' }}>
                 {TECH_GROUPS.map((group) => {
                   const GroupIcon = GROUP_ICONS[group.title] ?? LayoutTemplate
                   const isActive = group.title === activeGroup.title
@@ -490,31 +507,35 @@ export function Skills() {
                       key={group.title}
                       type="button"
                       onClick={() => setActiveGroupTitle(group.title)}
-                      className={`group flex min-w-[13rem] items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-glow/70 sm:min-w-0 ${
+                      className={`group flex shrink-0 items-center gap-2.5 lg:gap-3 rounded-xl lg:rounded-xl border px-3 py-2.5 lg:px-3 lg:py-2.5 text-left transition-all duration-200 touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-glow/70 ${
                         isActive
                           ? 'border-accent-glow/60 bg-white text-accent-deep shadow-soft dark:bg-white/10 dark:text-white'
-                          : 'border-transparent bg-transparent text-ink-dim hover:border-slate-200 hover:bg-white/70 dark:hover:border-white/10 dark:hover:bg-white/[0.055]'
+                          : 'border-slate-200/50 bg-white/50 text-ink-dim hover:border-slate-200 hover:bg-white/70 dark:border-transparent dark:bg-transparent dark:hover:border-white/10 dark:hover:bg-white/[0.055]'
                       }`}
                       aria-pressed={isActive}
                     >
                       <span
-                        className={`grid h-9 w-9 shrink-0 place-items-center rounded-lg transition-transform duration-300 group-hover:scale-105 ${
+                        className={`shrink-0 transition-transform duration-300 group-hover:scale-105 h-8 w-8 lg:h-9 lg:w-9 ${
                           isActive
-                            ? 'bg-accent-deep text-white dark:bg-accent-neon dark:text-accent-deep'
-                            : 'bg-white text-accent-deep shadow-soft dark:bg-white/10 dark:text-accent-neon'
+                            ? 'icon-tile'
+                            : 'grid place-items-center rounded-lg bg-white text-accent-deep shadow-soft dark:bg-white/10 dark:text-accent-neon'
                         }`}
                       >
-                        <GroupIcon size={18} strokeWidth={2} />
+                        <GroupIcon className="h-4 w-4 lg:h-[18px] lg:w-[18px]" strokeWidth={2} />
                       </span>
                       <span className="min-w-0">
-                        <span className="block truncate font-display text-sm font-bold">{group.title}</span>
-                        <span className="mt-0.5 block font-mono text-[10px] font-black uppercase tracking-[0.16em] opacity-70">
+                        <span className="block font-display text-[12.5px] lg:text-sm font-bold leading-tight sm:truncate">
+                          {group.title}
+                        </span>
+                        <span className="hidden lg:block mt-0.5 font-mono text-[10px] font-black uppercase tracking-[0.16em] opacity-70">
                           {group.items.length} habilidades
                         </span>
                       </span>
                     </button>
                   )
                 })}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -526,12 +547,12 @@ export function Skills() {
               className="min-w-0"
             >
               <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <div className="flex gap-3">
-                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-accent-deep text-white shadow-glow-accent dark:bg-white dark:text-accent-deep">
+                <div className="flex min-w-0 gap-3">
+                  <div className="icon-tile h-12 w-12 shrink-0">
                     <ActiveIcon size={22} strokeWidth={2} />
                   </div>
-                  <div>
-                    <h3 className="font-display text-2xl font-bold leading-tight text-ink">
+                  <div className="min-w-0">
+                    <h3 className="break-words font-display text-xl font-bold leading-tight text-ink sm:text-2xl">
                       {activeGroup.title}
                     </h3>
                     <p className="mt-1 max-w-2xl text-sm leading-relaxed text-ink-dim">
@@ -544,44 +565,54 @@ export function Skills() {
                 </span>
               </div>
 
-              <div className="grid grid-flow-dense gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid grid-flow-dense grid-cols-2 gap-3 sm:grid-cols-3 lg:gap-4 lg:grid-cols-3 xl:grid-cols-4">
                 {activeGroup.items.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.025 * skillIndex }}
-                    className="group flex min-h-[8rem] min-w-0 flex-col rounded-xl border border-slate-200 bg-white/90 p-3.5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-accent-glow/50 hover:bg-white dark:border-white/10 dark:bg-white/[0.045] dark:hover:bg-white/[0.07]"
+                    className="group relative flex min-h-[6.5rem] min-w-0 flex-col overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white/60 p-3.5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-accent-glow/50 hover:bg-white dark:border-white/10 dark:bg-white/[0.09] dark:hover:border-accent-neon/60 dark:hover:bg-white/[0.13] sm:min-h-[8rem] sm:p-5 lg:p-6"
                     data-cursor="hover"
                     title={skill.description}
                   >
-                    <div>
-                      <SkillIcon skill={skill} />
-                      <h4 className="mt-2 break-words font-display text-[0.95rem] font-bold leading-snug text-ink">
-                        {skill.name}
-                      </h4>
-                    </div>
-
-                    <div className="mt-auto pt-3">
-                      <div className="mb-1.5 flex items-center justify-between">
-                        <span className="font-mono text-[10px] font-black uppercase tracking-[0.14em] text-ink-mute">
-                          domínio
-                        </span>
-                        <span
-                          className="font-mono text-[11px] font-black"
-                          style={{ color: skill.color }}
-                        >
-                          {skill.level}%
-                        </span>
+                    <div
+                      aria-hidden
+                      className="absolute inset-x-0 top-0 z-[1] h-1 bg-gradient-to-r from-accent-neon via-accent-cyan to-white/70 opacity-80"
+                    />
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute -left-12 -top-10 z-0 h-[6.5rem] w-[6.5rem] rounded-full bg-gradient-to-br from-accent-glow/14 via-accent-cyan/8 to-transparent opacity-60 blur-[26px] dark:from-accent-cyan/12 dark:via-accent-neon/6 dark:to-transparent dark:opacity-70 dark:blur-[30px]"
+                    />
+                    <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+                      <div>
+                        <SkillIcon skill={skill} />
+                        <h4 className="mt-2 break-words font-display text-[0.85rem] font-bold leading-snug text-ink sm:text-[0.95rem]">
+                          {skill.name}
+                        </h4>
                       </div>
-                      <div className="h-1.5 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.level}%` }}
-                          transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-                          className="h-full rounded-full"
-                          style={{ backgroundColor: skill.color }}
-                        />
+
+                      <div className="mt-auto pt-3">
+                        <div className="mb-1.5 flex items-center justify-between gap-2">
+                          <span className="hidden sm:block font-mono text-[10px] font-black uppercase tracking-[0.14em] text-ink-mute">
+                            domínio
+                          </span>
+                          <span
+                            className="skill-pct-value shrink-0 font-mono text-sm font-black tabular-nums tracking-tight drop-shadow-sm sm:text-[1.0625rem]"
+                            style={{ '--skill-pct': skill.color } as CSSProperties}
+                          >
+                            {skill.level}%
+                          </span>
+                        </div>
+                        <div className="h-1.5 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${skill.level}%` }}
+                            transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+                            className="h-full rounded-full"
+                            style={{ backgroundColor: skill.color }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </motion.div>

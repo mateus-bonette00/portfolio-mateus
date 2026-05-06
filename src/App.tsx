@@ -10,6 +10,7 @@ import { Projects } from './components/Projects'
 import { Education } from './components/Education'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { FloatingWhatsApp } from './components/FloatingWhatsApp'
 import { CodexElementPicker } from './dev/CodexElementPicker'
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
       <div className="relative z-10">
         <Footer />
       </div>
+      <FloatingWhatsApp />
       {import.meta.env.DEV ? <CodexElementPicker /> : null}
     </div>
   )

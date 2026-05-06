@@ -6,21 +6,29 @@ export function SectionTitle({
   description,
   align = 'left',
   descriptionClassName = '',
+  denseMobile = false,
 }: {
   eyebrow: string
   title: React.ReactNode
   description?: string
   align?: 'left' | 'center'
   descriptionClassName?: string
+  denseMobile?: boolean
 }) {
   return (
-    <div className={`mb-10 ${align === 'center' ? 'text-center' : ''}`}>
+    <div
+      className={`${denseMobile ? 'mb-6 sm:mb-10 section-title--dense-mobile' : 'mb-10'} ${
+        align === 'center' ? 'text-center' : ''
+      }`}
+    >
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.5 }}
-        className={`flex items-center gap-4 ${align === 'center' ? 'justify-center' : ''}`}
+        className={`flex items-center ${denseMobile ? 'gap-2 sm:gap-4' : 'gap-4'} ${
+          align === 'center' ? 'justify-center' : ''
+        }`}
       >
         <span className="eyebrow-rule" aria-hidden />
         <span className="heading-eyebrow">{eyebrow}</span>
@@ -30,7 +38,7 @@ export function SectionTitle({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.55, delay: 0.05 }}
-        className="mt-3 section-title-display"
+        className={`section-title-display ${denseMobile ? 'mt-2 sm:mt-3' : 'mt-3'}`}
       >
         {title}
       </motion.h2>
@@ -40,9 +48,9 @@ export function SectionTitle({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5, delay: 0.12 }}
-          className={`mt-4 max-w-2xl text-base leading-relaxed text-ink-dim sm:text-lg ${
-            align === 'center' ? 'mx-auto' : ''
-          } ${descriptionClassName}`}
+          className={`section-title__desc mt-4 max-w-2xl leading-relaxed text-ink-dim ${
+            denseMobile ? 'text-sm sm:text-lg' : 'text-base sm:text-lg'
+          } ${denseMobile ? 'max-sm:mt-3' : ''} ${align === 'center' ? 'mx-auto' : ''} ${descriptionClassName}`}
         >
           {description}
         </motion.p>
