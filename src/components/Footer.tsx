@@ -5,7 +5,7 @@ import { Logo } from './Logo'
 export function Footer() {
   const year = new Date().getFullYear()
   return (
-    <footer className="relative pb-12 pt-12 sm:pb-14">
+    <footer data-codex-id="footer-section" className="relative pb-12 pt-12 sm:pb-14">
       <div className="container-1200">
         <div className="flex flex-col items-center gap-8 border-t border-slate-200 pt-10 dark:border-white/10 sm:flex-row sm:items-end sm:justify-between">
           <a href="#hero" className="flex items-center gap-3" aria-label="Voltar ao topo">

@@ -12,6 +12,7 @@ export const PROFILE = {
     github: '#',
     linkedin: '#',
     instagram: '#',
+    discord: '#',
   },
 }
 

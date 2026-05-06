@@ -126,7 +126,7 @@ export function Background() {
     }
 
     const drawEdges = (isDark: boolean, maxDistance: number, t: number) => {
-      const baseA = isDark ? 0.32 : 0.2
+      const baseA = isDark ? 0.48 : 0.32
       const breathe = 0.9 + 0.1 * Math.sin(t * 0.00028)
       const buckets = buildBuckets(maxDistance)
 
@@ -160,9 +160,9 @@ export function Background() {
                     ? `rgba(34, 211, 238, ${baseA * strength})`
                     : `rgba(147, 197, 253, ${baseA * strength})`
                   : coolEdge
-                    ? `rgba(14, 116, 144, ${baseA * strength * 0.86})`
+                    ? `rgba(14, 116, 144, ${baseA * strength})`
                     : `rgba(30, 64, 175, ${baseA * strength})`
-                ctx.lineWidth = 0.55 + strength * 0.7
+                ctx.lineWidth = 0.75 + strength * 1.05
                 ctx.stroke()
               }
             }
@@ -185,18 +185,18 @@ export function Background() {
           ctx.moveTo(a.x, a.y)
           ctx.lineTo(mx, my)
           ctx.strokeStyle = isDark
-            ? `rgba(96, 165, 250, ${0.5 * strength * strength})`
-            : `rgba(37, 99, 235, ${0.32 * strength * strength})`
-          ctx.lineWidth = 0.55 + strength * 0.95
+            ? `rgba(96, 165, 250, ${0.68 * strength * strength})`
+            : `rgba(37, 99, 235, ${0.46 * strength * strength})`
+          ctx.lineWidth = 0.8 + strength * 1.15
           ctx.stroke()
         }
       }
 
       ctx.beginPath()
       ctx.arc(mx, my, 3.2, 0, Math.PI * 2)
-      ctx.fillStyle = isDark ? 'rgba(191, 219, 254, 0.7)' : 'rgba(30, 64, 175, 0.45)'
-      ctx.shadowBlur = isDark ? 16 : 10
-      ctx.shadowColor = isDark ? 'rgba(96, 165, 250, 0.65)' : 'rgba(59, 130, 246, 0.45)'
+      ctx.fillStyle = isDark ? 'rgba(191, 219, 254, 0.85)' : 'rgba(30, 64, 175, 0.6)'
+      ctx.shadowBlur = isDark ? 18 : 12
+      ctx.shadowColor = isDark ? 'rgba(96, 165, 250, 0.85)' : 'rgba(59, 130, 246, 0.62)'
       ctx.fill()
       ctx.shadowBlur = 0
     }
@@ -212,19 +212,19 @@ export function Background() {
         ctx.arc(a.x, a.y, r, 0, Math.PI * 2)
         ctx.fillStyle = isDark
           ? cyan
-            ? 'rgba(165, 243, 252, 0.74)'
-            : 'rgba(191, 219, 254, 0.72)'
+            ? 'rgba(165, 243, 252, 0.88)'
+            : 'rgba(191, 219, 254, 0.84)'
           : cyan
-            ? 'rgba(14, 116, 144, 0.42)'
-            : 'rgba(30, 64, 175, 0.46)'
-        ctx.shadowBlur = isDark ? 14 : 8
+            ? 'rgba(14, 116, 144, 0.6)'
+            : 'rgba(30, 64, 175, 0.66)'
+        ctx.shadowBlur = isDark ? 18 : 10
         ctx.shadowColor = isDark
           ? cyan
-            ? 'rgba(34, 211, 238, 0.58)'
-            : 'rgba(96, 165, 250, 0.56)'
+            ? 'rgba(34, 211, 238, 0.82)'
+            : 'rgba(96, 165, 250, 0.78)'
           : cyan
-            ? 'rgba(14, 116, 144, 0.32)'
-            : 'rgba(59, 130, 246, 0.34)'
+            ? 'rgba(14, 116, 144, 0.48)'
+            : 'rgba(59, 130, 246, 0.5)'
         ctx.fill()
         ctx.shadowBlur = 0
       }
@@ -253,6 +253,11 @@ export function Background() {
         a.x += a.vx * dt * a.mass
         a.y += a.vy * dt * a.mass
 
+        // Idle drift: mantem movimento mesmo sem mouse, mas sem pesar.
+        const drift = (lowPower ? 0.00075 : 0.00125) * dt
+        a.vx += Math.cos(now * 0.00022 + a.phase) * drift
+        a.vy += Math.sin(now * 0.00022 + a.phase) * drift
+
         if (mouse.active) {
           const dx = mouse.x - a.x
           const dy = mouse.y - a.y
@@ -266,13 +271,16 @@ export function Background() {
 
         const sp = Math.hypot(a.vx, a.vy)
         const maxSp = lowPower ? 0.32 : 0.48
+        const minSp = lowPower ? 0.06 : 0.1
+
         if (sp > maxSp) {
           a.vx = (a.vx / sp) * maxSp
           a.vy = (a.vy / sp) * maxSp
         }
-
-        a.vx *= 0.998
-        a.vy *= 0.998
+        if (sp > 0 && sp < minSp) {
+          a.vx = (a.vx / sp) * minSp
+          a.vy = (a.vy / sp) * minSp
+        }
 
         if (a.x < -24) a.x = width + 24
         if (a.x > width + 24) a.x = -24
@@ -317,10 +325,10 @@ export function Background() {
       <canvas
         ref={canvasRef}
         className="absolute inset-0"
-        style={{ opacity: reduced ? 0 : 0.9 }}
+        style={{ opacity: reduced ? 0 : 0.96 }}
         aria-hidden
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-bg/0 via-bg/8 to-bg/72 dark:via-bg/10 dark:to-bg/76" />
+      <div className="absolute inset-0 bg-gradient-to-b from-bg/0 via-bg/6 to-bg/62 dark:via-bg/8 dark:to-bg/66" />
     </div>
   )
 }

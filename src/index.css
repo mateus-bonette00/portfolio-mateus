@@ -386,10 +386,10 @@
   }
 
   .heading-eyebrow {
-    @apply font-mono font-semibold uppercase text-ink-mute;
-    font-size: 0.7rem;
-    letter-spacing: 0.22em;
-    line-height: 1.25;
+    @apply font-mono font-black uppercase text-ink-mute;
+    font-size: 30px;
+    letter-spacing: 0.24em;
+    line-height: 1.35;
   }
 
   .dark .heading-eyebrow {
@@ -399,8 +399,9 @@
   .eyebrow-rule {
     position: relative;
     flex-shrink: 0;
-    width: 2.75rem;
-    height: 10px;
+    width: clamp(5.5rem, 12vw, 7.5rem);
+    height: 28px;
+    font-weight: 600;
   }
 
   .eyebrow-rule::before {
@@ -409,22 +410,22 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
+    width: 24px;
+    height: 24px;
     border-radius: 9999px;
     background: linear-gradient(145deg, #93c5fd 0%, #3b82f6 55%, #2563eb 100%);
-    box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.5), 0 0 8px rgba(96, 165, 250, 0.7);
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5), 0 0 18px rgba(96, 165, 250, 0.75);
     z-index: 1;
   }
 
   .eyebrow-rule::after {
     content: '';
     position: absolute;
-    left: 6px;
+    left: 18px;
     top: 50%;
     transform: translateY(-50%);
-    height: 2px;
-    width: calc(100% - 6px);
+    height: 5px;
+    width: calc(100% - 18px);
     border-radius: 9999px;
     background: linear-gradient(
       90deg,
@@ -436,7 +437,7 @@
 
   .dark .eyebrow-rule::before {
     background: linear-gradient(145deg, #e0f2fe 0%, #93c5fd 42%, #60a5fa 100%);
-    box-shadow: 0 0 0 1px rgba(147, 197, 253, 0.7), 0 0 10px rgba(147, 197, 253, 0.85);
+    box-shadow: 0 0 0 2px rgba(147, 197, 253, 0.7), 0 0 20px rgba(147, 197, 253, 0.85);
   }
 
   .dark .eyebrow-rule::after {
@@ -521,7 +522,7 @@
 
   .dark .network-vignette {
     mix-blend-mode: screen;
-    opacity: 0.58;
+    opacity: 0.62;
   }
 
   .reveal-mask {

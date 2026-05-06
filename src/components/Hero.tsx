@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { type ReactNode } from 'react'
 import { ArrowDown, Github, Instagram, Linkedin, Mail } from 'lucide-react'
 import { PROFILE } from '../data/portfolio'
+import { DiscordIcon } from './icons/DiscordIcon'
 
 const HERO_NAME = 'Mateus Bonette'
 
@@ -9,6 +10,7 @@ export function Hero() {
   return (
     <section
       id="hero"
+      data-codex-id="home-hero"
       className="relative flex min-h-[100svh] items-center overflow-hidden pt-28 sm:pt-32"
     >
       <div className="container-1200 relative z-10">
@@ -56,6 +58,9 @@ export function Hero() {
             </SocialIcon>
             <SocialIcon href={PROFILE.social.linkedin} label="LinkedIn">
               <Linkedin size={18} />
+            </SocialIcon>
+            <SocialIcon href={PROFILE.social.discord} label="Discord">
+              <DiscordIcon size={18} />
             </SocialIcon>
             <SocialIcon href={PROFILE.social.instagram} label="Instagram">
               <Instagram size={18} />

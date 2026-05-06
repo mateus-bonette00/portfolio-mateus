@@ -5,7 +5,7 @@ import { PROJECTS } from '../data/portfolio'
 
 export function Projects() {
   return (
-    <section id="projects" className="section">
+    <section id="projects" data-codex-id="projects-section" className="section">
       <div className="container-1200 relative z-10">
         <div className="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-end">
           <SectionTitle

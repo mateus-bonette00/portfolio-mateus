@@ -4,7 +4,7 @@ import { PROFILE } from '../data/portfolio'
 
 export function Contact() {
   return (
-    <section id="contact" className="section">
+    <section id="contact" data-codex-id="contact-section" className="section">
       <div className="container-1200 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
@@ -18,7 +18,7 @@ export function Contact() {
           <div className="pointer-events-none absolute inset-0 grid-bg opacity-[0.25] dark:opacity-30" />
 
           <div className="relative">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <span className="eyebrow-rule" aria-hidden />
               <span className="heading-eyebrow">Vamos conversar</span>
             </div>

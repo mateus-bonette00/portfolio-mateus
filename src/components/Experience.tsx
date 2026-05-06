@@ -5,7 +5,7 @@ import { EXPERIENCES } from '../data/portfolio'
 
 export function Experience() {
   return (
-    <section id="experience" className="section">
+    <section id="experience" data-codex-id="experience-section" className="section">
       <div className="container-1200 relative z-10">
         <SectionTitle
           eyebrow="Experiências"

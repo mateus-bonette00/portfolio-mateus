@@ -5,7 +5,7 @@ import { EDUCATION } from '../data/portfolio'
 
 export function Education() {
   return (
-    <section id="education" className="section">
+    <section id="education" data-codex-id="education-section" className="section">
       <div className="container-1200 relative z-10">
         <SectionTitle
           eyebrow="Formação"
