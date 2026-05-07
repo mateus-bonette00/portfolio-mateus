@@ -693,6 +693,789 @@
     border-color: rgb(255 255 255 / 0.08);
   }
 
+  .projects-case-bleed {
+    position: relative;
+    margin-inline: calc(50% - 50vw);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2.35rem max(1.25rem, calc((100vw - 1180px) / 2 + 1.25rem)) 4.5rem;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: max(1.25rem, calc((100vw - 1180px) / 2 + 1.25rem));
+    scrollbar-width: thin;
+    scrollbar-color: rgb(59 130 246 / 0.45) transparent;
+    background:
+      radial-gradient(52rem 30rem at 42% 36%, rgb(59 130 246 / 0.13), transparent 68%),
+      radial-gradient(34rem 22rem at 78% 58%, rgb(14 165 233 / 0.08), transparent 72%),
+      linear-gradient(180deg, rgb(255 255 255 / 0.42), transparent 36%, rgb(15 23 42 / 0.04));
+  }
+
+  .projects-case-bleed::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(to right, rgb(15 23 42 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(15 23 42 / 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    opacity: 0.36;
+  }
+
+  .dark .projects-case-bleed {
+    background:
+      radial-gradient(58rem 32rem at 42% 36%, rgb(59 130 246 / 0.18), transparent 70%),
+      radial-gradient(34rem 22rem at 78% 58%, rgb(14 165 233 / 0.12), transparent 72%),
+      linear-gradient(180deg, rgb(255 255 255 / 0.02), transparent 34%, rgb(255 255 255 / 0.03));
+  }
+
+  .dark .projects-case-bleed::before {
+    background:
+      linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+    opacity: 0.28;
+  }
+
+  .projects-case-bleed::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  .projects-case-bleed::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background: rgb(59 130 246 / 0.38);
+  }
+
+  .projects-case-track {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: max-content;
+    gap: clamp(2.6rem, 5vw, 5.4rem);
+    align-items: center;
+    padding-block: 1.2rem 2.5rem;
+    perspective: 2200px;
+    transform-style: preserve-3d;
+  }
+
+  .project-book-card {
+    --book-rest-y: -12deg;
+    --book-hover-y: -24deg;
+    --book-rest-z: -0.7deg;
+    --book-hover-z: -1.2deg;
+    --cover-open-y: -72deg;
+    position: relative;
+    display: block;
+    flex: 0 0 clamp(29rem, 39vw, 41rem);
+    height: clamp(36rem, 49vw, 49rem);
+    scroll-snap-align: center;
+    cursor: pointer;
+    perspective: 1900px;
+    transform-style: preserve-3d;
+    outline: none;
+    isolation: isolate;
+  }
+
+  .project-book-card:nth-child(even) {
+    --book-rest-y: 10deg;
+    --book-hover-y: 21deg;
+    --book-rest-z: 0.65deg;
+    --book-hover-z: 1.05deg;
+    --cover-open-y: -68deg;
+  }
+
+  .project-book-card__shadow {
+    position: absolute;
+    right: 3%;
+    bottom: 0.2rem;
+    left: 9%;
+    z-index: 0;
+    height: 6.8rem;
+    transform: rotateX(72deg) translateY(2.3rem);
+    transform-origin: center;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(2 6 23 / 0.56), rgb(2 6 23 / 0.18) 58%, transparent 78%);
+    filter: blur(12px);
+    opacity: 0.72;
+    transition:
+      opacity 260ms ease,
+      transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .project-book-card:hover .project-book-card__shadow,
+  .project-book-card:focus-visible .project-book-card__shadow,
+  .project-book-card:active .project-book-card__shadow {
+    transform: rotateX(72deg) translateY(3.1rem) scale(1.12);
+    opacity: 0.95;
+  }
+
+  .project-book {
+    position: absolute;
+    inset: 0.35rem 1.25rem 2.15rem 0.45rem;
+    z-index: 1;
+    transform: translateY(0) rotateY(var(--book-rest-y)) rotateX(2.5deg) rotateZ(var(--book-rest-z));
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    transition:
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 260ms ease;
+    will-change: transform;
+  }
+
+  .project-book-card:hover .project-book,
+  .project-book-card:focus-visible .project-book,
+  .project-book-card:active .project-book {
+    transform: translateY(-1.35rem) rotateY(var(--book-hover-y)) rotateX(5.5deg) rotateZ(var(--book-hover-z)) scale(1.03);
+    filter: saturate(1.1) brightness(1.06);
+  }
+
+  .project-book__back {
+    position: absolute;
+    inset: 0.62rem -1.28rem -1.28rem 2.2rem;
+    border-radius: 0.42rem;
+    background: linear-gradient(145deg, rgb(3 7 18), rgb(15 23 42) 60%, rgb(2 6 23));
+    box-shadow:
+      1.45rem 1.75rem 2.8rem -1.4rem rgb(2 6 23 / 0.88),
+      0 0 0 1px rgb(255 255 255 / 0.04) inset;
+    transform: translateZ(-1.6rem);
+  }
+
+  .project-book__pages {
+    position: absolute;
+    z-index: 1;
+    border: 1px solid rgb(148 163 184 / 0.24);
+    background:
+      repeating-linear-gradient(180deg, rgb(239 246 255 / 0.92) 0 2px, rgb(148 163 184 / 0.36) 2px 3px, rgb(226 232 240 / 0.95) 3px 7px),
+      linear-gradient(90deg, rgb(248 250 252), rgb(191 219 254));
+    box-shadow: 0.8rem 1rem 1.8rem -1.1rem rgb(2 6 23 / 0.74);
+  }
+
+  .project-book__pages--right {
+    top: 0.95rem;
+    right: -1.25rem;
+    bottom: 1.2rem;
+    width: 1.35rem;
+    transform: skewY(2.5deg);
+    transform-origin: left center;
+    border-radius: 0 0.3rem 0.3rem 0;
+  }
+
+  .project-book__pages--bottom {
+    right: -0.65rem;
+    bottom: -1.15rem;
+    left: 3.6rem;
+    height: 1.35rem;
+    transform: skewX(42deg);
+    transform-origin: left top;
+    border-radius: 0 0 0.38rem 0.38rem;
+    background:
+      repeating-linear-gradient(90deg, rgb(239 246 255 / 0.95) 0 5px, rgb(148 163 184 / 0.28) 5px 6px),
+      linear-gradient(180deg, rgb(248 250 252), rgb(191 219 254));
+  }
+
+  .project-book__inside {
+    position: absolute;
+    inset: 0.82rem 0.72rem 0.76rem 3.25rem;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 0.28rem;
+    color: rgb(15 23 42);
+    background:
+      linear-gradient(90deg, rgb(203 213 225 / 0.72) 0 1px, transparent 1px),
+      repeating-linear-gradient(180deg, rgb(15 23 42 / 0.035) 0 1px, transparent 1px 1.05rem),
+      radial-gradient(20rem 16rem at 68% 34%, rgb(59 130 246 / 0.17), transparent 72%),
+      linear-gradient(135deg, rgb(248 250 252), rgb(226 232 240) 48%, rgb(219 234 254));
+    box-shadow:
+      0 0 0 1px rgb(15 23 42 / 0.11) inset,
+      0.8rem 1.1rem 1.6rem -1.25rem rgb(2 6 23 / 0.62);
+    transform: translateZ(0.78rem);
+  }
+
+  .project-book__inside-fold {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2.05rem;
+    background:
+      linear-gradient(90deg, rgb(15 23 42 / 0.24), rgb(15 23 42 / 0.08), transparent),
+      linear-gradient(180deg, rgb(255 255 255 / 0.35), transparent 24%, rgb(15 23 42 / 0.08));
+  }
+
+  .project-book__leaf {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.56rem;
+    bottom: 0.68rem;
+    left: 2.35rem;
+    z-index: 7;
+    border-radius: 0.22rem;
+    background:
+      repeating-linear-gradient(180deg, rgb(15 23 42 / 0.08) 0 1px, transparent 1px 1rem),
+      linear-gradient(135deg, rgb(255 255 255), rgb(219 234 254));
+    box-shadow:
+      0 0 0 1px rgb(15 23 42 / 0.12) inset,
+      0.45rem 0.75rem 1rem -0.76rem rgb(2 6 23 / 0.45);
+    opacity: 0;
+    transform: rotateY(0deg) translateZ(2rem);
+    transform-origin: left center;
+    pointer-events: none;
+  }
+
+  .project-book__leaf--two {
+    inset-block: 0.92rem 0.96rem;
+    left: 2.65rem;
+  }
+
+  .project-book__leaf--three {
+    inset-block: 1.25rem 1.22rem;
+    left: 2.95rem;
+  }
+
+  .project-book-card:hover .project-book__leaf--one,
+  .project-book-card:focus-visible .project-book__leaf--one,
+  .project-book-card:active .project-book__leaf--one {
+    animation: project-page-turn 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .project-book-card:hover .project-book__leaf--two,
+  .project-book-card:focus-visible .project-book__leaf--two,
+  .project-book-card:active .project-book__leaf--two {
+    animation: project-page-turn 760ms 70ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .project-book-card:hover .project-book__leaf--three,
+  .project-book-card:focus-visible .project-book__leaf--three,
+  .project-book-card:active .project-book__leaf--three {
+    animation: project-page-turn 820ms 140ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .project-book__inside-copy {
+    position: absolute;
+    top: 50%;
+    right: clamp(1.45rem, 2.7vw, 2.6rem);
+    z-index: 4;
+    width: min(55%, 18.5rem);
+    transform: translateY(-46%) translateX(1rem);
+    opacity: 0;
+    transition:
+      opacity 220ms 120ms ease,
+      transform 300ms 120ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .project-book-card:hover .project-book__inside-copy,
+  .project-book-card:focus-visible .project-book__inside-copy,
+  .project-book-card:active .project-book__inside-copy {
+    transform: translateY(-50%) translateX(0);
+    opacity: 1;
+  }
+
+  .project-book__inside-kicker {
+    display: inline-flex;
+    border-bottom: 1px solid rgb(37 99 235 / 0.52);
+    padding-bottom: 0.45rem;
+    color: rgb(30 64 175);
+    font-family: theme('fontFamily.mono');
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .project-book__inside-copy h4 {
+    margin-top: 1rem;
+    color: rgb(15 23 42);
+    font-family: theme('fontFamily.display');
+    font-size: clamp(1.45rem, 2.25vw, 2.45rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  .project-book__inside-copy p {
+    margin-top: 0.95rem;
+    max-width: 16.5rem;
+    color: rgb(51 65 85);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .project-book__inside-button {
+    display: inline-flex;
+    min-height: 2.85rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 1.35rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #1E40AF 0%, #2563EB 58%, #3B82F6 100%);
+    padding: 0.78rem 1.05rem;
+    color: white;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.2) inset,
+      0 14px 30px -16px rgb(30 64 175 / 0.84);
+  }
+
+  .project-book__cover {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    overflow: hidden;
+    border: 1px solid rgb(15 23 42 / 0.84);
+    border-radius: 0.42rem;
+    color: rgb(248 250 252);
+    background:
+      linear-gradient(90deg, rgb(2 6 23 / 0.96) 0 3.2rem, rgb(15 23 42 / 0.46) 3.2rem 3.35rem, transparent 3.35rem),
+      radial-gradient(34rem 28rem at 69% 54%, var(--project-wash), transparent 72%),
+      radial-gradient(30rem 22rem at 22% 18%, var(--project-ghost), transparent 70%),
+      linear-gradient(145deg, rgb(30 41 59), rgb(15 23 42) 43%, rgb(4 9 20));
+    box-shadow:
+      0.9rem 1.15rem 0 -0.46rem rgb(2 6 23 / 0.9),
+      1.75rem 2.15rem 2.55rem -1.35rem rgb(2 6 23 / 0.9),
+      0 0 0 1px rgb(255 255 255 / 0.07) inset,
+      -0.52rem 0 1rem -0.75rem rgb(255 255 255 / 0.34) inset;
+    transform-origin: left center;
+    transform: translateZ(2.05rem);
+    transition:
+      border-color 240ms ease,
+      box-shadow 260ms ease,
+      transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 260ms ease;
+    will-change: transform;
+  }
+
+  .project-book-card:hover .project-book__cover,
+  .project-book-card:focus-visible .project-book__cover,
+  .project-book-card:active .project-book__cover {
+    transform: translateZ(3.15rem) rotateY(var(--cover-open-y)) translateX(-0.18rem);
+    filter: brightness(1.08) saturate(1.08);
+    box-shadow:
+      1.7rem 1.35rem 2.4rem -1.45rem rgb(2 6 23 / 0.9),
+      0 0 0 1px rgb(255 255 255 / 0.08) inset,
+      -0.62rem 0 1rem -0.76rem rgb(255 255 255 / 0.38) inset;
+  }
+
+  .project-book-card:focus-visible .project-book__cover {
+    border-color: rgb(147 197 253 / 0.9);
+    box-shadow:
+      0 0 0 3px rgb(59 130 246 / 0.38),
+      0.9rem 1.15rem 0 -0.46rem rgb(2 6 23 / 0.9),
+      1.75rem 2.15rem 2.55rem -1.35rem rgb(2 6 23 / 0.9),
+      0 0 0 1px rgb(255 255 255 / 0.07) inset;
+  }
+
+  .project-book__grain {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+      radial-gradient(circle at 48% 44%, rgb(255 255 255 / 0.06) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 22% 34%, transparent 0 3rem, rgb(255 255 255 / 0.05) 3.05rem 3.12rem, transparent 3.2rem),
+      radial-gradient(circle at 76% 68%, transparent 0 2.6rem, rgb(255 255 255 / 0.045) 2.65rem 2.72rem, transparent 2.8rem);
+    background-size: 44px 44px, 44px 44px, 9px 9px, auto, auto;
+    opacity: 0.46;
+    mix-blend-mode: screen;
+  }
+
+  .project-book__shine {
+    position: absolute;
+    inset: 0;
+    z-index: 9;
+    pointer-events: none;
+    background:
+      linear-gradient(112deg, transparent 0%, transparent 28%, rgb(255 255 255 / 0.17) 38%, transparent 50%),
+      radial-gradient(circle at 50% 105%, rgb(0 0 0 / 0.44), transparent 42%);
+    opacity: 0.28;
+    transform: translateX(-9%);
+    transition:
+      opacity 260ms ease,
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .project-book-card:hover .project-book__shine,
+  .project-book-card:focus-visible .project-book__shine {
+    opacity: 0.48;
+    transform: translateX(8%);
+  }
+
+  .project-book__spine {
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 3;
+    width: 3.25rem;
+    background:
+      linear-gradient(90deg, rgb(0 0 0 / 0.52), transparent 36%, rgb(255 255 255 / 0.05) 62%, rgb(0 0 0 / 0.42)),
+      linear-gradient(180deg, rgb(2 6 23), rgb(15 23 42) 48%, rgb(2 6 23));
+    box-shadow:
+      0.16rem 0 0 rgb(255 255 255 / 0.06) inset,
+      -0.2rem 0 0 rgb(0 0 0 / 0.35) inset,
+      0.4rem 0 1rem -0.7rem rgb(255 255 255 / 0.34);
+  }
+
+  .project-book__spine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgb(255 255 255 / 0.24), transparent);
+  }
+
+  .project-book__spine-ridge {
+    position: absolute;
+    left: 0.86rem;
+    z-index: 4;
+    width: 1.2rem;
+    height: 4.4rem;
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+    background: linear-gradient(90deg, rgb(255 255 255 / 0.045), transparent);
+    opacity: 0.66;
+  }
+
+  .project-book__spine-ridge--top {
+    top: 4.2rem;
+  }
+
+  .project-book__spine-ridge--bottom {
+    bottom: 5.2rem;
+  }
+
+  .project-book__bubble {
+    position: absolute;
+    left: 56%;
+    top: 32%;
+    z-index: 16;
+    display: inline-flex;
+    min-width: 8.9rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translate3d(-50%, 1.15rem, 7rem) rotate(-5deg) scale(0.72);
+    border: 2px solid rgb(15 23 42 / 0.82);
+    border-radius: 9999px;
+    background: rgb(255 255 255);
+    padding: 0.8rem 1.05rem 0.72rem;
+    color: rgb(15 23 42);
+    font-family: theme('fontFamily.display');
+    font-size: 0.72rem;
+    font-weight: 900;
+    line-height: 0.92;
+    text-align: center;
+    text-transform: uppercase;
+    visibility: hidden;
+    opacity: 0;
+    box-shadow:
+      0 1px 0 rgb(255 255 255) inset,
+      0 13px 30px -16px rgb(0 0 0 / 0.78);
+    transition:
+      opacity 170ms ease,
+      visibility 170ms ease,
+      transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .project-book__bubble::after {
+    content: '';
+    position: absolute;
+    left: 25%;
+    bottom: -0.42rem;
+    width: 0.84rem;
+    height: 0.84rem;
+    border-right: 2px solid rgb(15 23 42 / 0.82);
+    border-bottom: 2px solid rgb(15 23 42 / 0.82);
+    transform: rotate(45deg);
+    background: inherit;
+  }
+
+  .project-book__bubble span {
+    display: block;
+  }
+
+  .project-book__pointer {
+    position: absolute;
+    left: 43%;
+    top: 40%;
+    z-index: 15;
+    width: 1.15rem;
+    height: 1.15rem;
+    transform: translate3d(-0.25rem, 0.8rem, 7rem) rotate(-14deg) scale(0.8);
+    background: rgb(255 255 255);
+    clip-path: polygon(0 0, 100% 48%, 55% 57%, 77% 100%, 57% 100%, 36% 61%, 0 82%);
+    filter: drop-shadow(0 5px 4px rgb(0 0 0 / 0.35));
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      opacity 170ms ease,
+      visibility 170ms ease,
+      transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .project-book-card:hover .project-book__bubble,
+  .project-book-card:focus-visible .project-book__bubble,
+  .project-book-card:hover .project-book__pointer,
+  .project-book-card:focus-visible .project-book__pointer {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .project-book-card:hover .project-book__bubble,
+  .project-book-card:focus-visible .project-book__bubble {
+    transform: translate3d(-50%, 0, 7rem) rotate(-5deg) scale(1);
+  }
+
+  .project-book-card:hover .project-book__pointer,
+  .project-book-card:focus-visible .project-book__pointer {
+    transform: translate3d(-0.25rem, 0, 7rem) rotate(-14deg) scale(1);
+  }
+
+  .project-book__heading {
+    position: relative;
+    z-index: 5;
+    padding: clamp(3rem, 4.4vw, 4.35rem) clamp(1.25rem, 3vw, 2.35rem) 0 4.55rem;
+  }
+
+  .project-book__eyebrow {
+    display: flex;
+    max-width: min(100%, 25rem);
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    border-bottom: 1px solid rgb(147 197 253 / 0.28);
+    padding-bottom: 0.58rem;
+  }
+
+  .project-book__eyebrow span {
+    display: inline-flex;
+    color: var(--project-accent);
+    font-family: theme('fontFamily.mono');
+    font-size: 0.6rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .project-book__eyebrow span:last-child {
+    max-width: 12rem;
+    justify-content: flex-end;
+    color: rgb(219 234 254 / 0.76);
+    text-align: right;
+  }
+
+  .project-book__heading h3 {
+    margin-top: 1.15rem;
+    max-width: 10ch;
+    color: rgb(248 250 252);
+    font-family: theme('fontFamily.display');
+    font-size: clamp(3.15rem, 4.1vw, 4.7rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 0.84;
+    text-transform: uppercase;
+    transform: skewX(-8deg);
+    text-shadow:
+      0.06em 0.06em 0 rgb(255 255 255 / 0.08),
+      0 18px 38px rgb(0 0 0 / 0.52);
+  }
+
+  .project-book__heading p {
+    margin-top: 1rem;
+    max-width: 19.5rem;
+    color: rgb(203 213 225 / 0.82);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .project-book__seal {
+    position: absolute;
+    left: 4.55rem;
+    bottom: 5.3rem;
+    z-index: 5;
+    display: inline-grid;
+    width: 5.9rem;
+    height: 5.9rem;
+    place-items: center;
+    border: 1px solid rgb(147 197 253 / 0.26);
+    border-radius: 9999px;
+    background:
+      radial-gradient(circle at 50% 48%, rgb(96 165 250 / 0.16), transparent 64%),
+      rgb(255 255 255 / 0.04);
+    color: rgb(226 232 240);
+    text-align: center;
+    box-shadow:
+      0 0 0 0.45rem rgb(255 255 255 / 0.025),
+      0 0 28px -16px var(--project-accent);
+  }
+
+  .project-book__seal span {
+    font-family: theme('fontFamily.display');
+    font-size: 1.45rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .project-book__seal small {
+    max-width: 4.4rem;
+    color: rgb(203 213 225 / 0.72);
+    font-family: theme('fontFamily.mono');
+    font-size: 0.48rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  .project-device {
+    position: absolute;
+    right: clamp(2.5rem, 4.5vw, 4rem);
+    bottom: clamp(6.2rem, 8vw, 8rem);
+    z-index: 4;
+    width: clamp(9.5rem, 14vw, 13rem);
+    transform: rotateZ(-5deg) rotateY(-18deg) rotateX(7deg);
+    transform-style: preserve-3d;
+    transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .project-book-card:hover .project-device,
+  .project-book-card:focus-visible .project-device {
+    transform: translateY(-0.85rem) translateZ(4rem) rotateZ(-5deg) rotateY(-24deg) rotateX(10deg);
+  }
+
+  .project-device--tablet {
+    width: clamp(13rem, 19vw, 18rem);
+    transform: rotateZ(5deg) rotateY(-16deg) rotateX(8deg);
+  }
+
+  .project-book-card:hover .project-device--tablet,
+  .project-book-card:focus-visible .project-device--tablet {
+    transform: translateY(-0.85rem) translateZ(4rem) rotateZ(5deg) rotateY(-22deg) rotateX(10deg);
+  }
+
+  .project-device__frame {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-radius: 1.35rem;
+    border: 0.42rem solid rgb(15 23 42);
+    background: linear-gradient(145deg, rgb(248 250 252), rgb(191 219 254));
+    box-shadow:
+      0.8rem 0.95rem 0 -0.32rem rgb(2 6 23 / 0.82),
+      1.15rem 1.25rem 1.65rem -1.05rem rgb(0 0 0 / 0.84);
+  }
+
+  .project-device--tablet .project-device__frame {
+    aspect-ratio: 4 / 3;
+    border-radius: 1rem;
+  }
+
+  .project-device__notch {
+    position: absolute;
+    left: 50%;
+    top: 0.35rem;
+    z-index: 2;
+    width: 2.25rem;
+    height: 0.32rem;
+    transform: translateX(-50%);
+    border-radius: 9999px;
+    background: rgb(15 23 42 / 0.72);
+  }
+
+  .project-device--tablet .project-device__notch {
+    left: 0.8rem;
+    top: 0.8rem;
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  .project-device__screen {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    padding: 1rem;
+    color: var(--project-accent);
+    background:
+      radial-gradient(circle at 50% 24%, rgb(255 255 255 / 0.9), transparent 45%),
+      linear-gradient(180deg, rgb(255 255 255), rgb(219 234 254));
+    text-align: center;
+  }
+
+  .project-device__screen span {
+    max-width: 7rem;
+    color: rgb(15 42 92);
+    font-family: theme('fontFamily.display');
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+
+  .project-book__tags {
+    position: absolute;
+    z-index: 5;
+    right: 1.15rem;
+    bottom: 1.2rem;
+    left: 4.15rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .project-book__tags li {
+    border-radius: 9999px;
+    border: 1px solid rgb(147 197 253 / 0.22);
+    background: rgb(255 255 255 / 0.07);
+    padding: 0.42rem 0.62rem;
+    color: rgb(219 234 254);
+    font-family: theme('fontFamily.mono');
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+  }
+
+  .projects-view-all {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.2em] text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    background: linear-gradient(135deg, #1E40AF 0%, #2563EB 55%, #3B82F6 100%);
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.22) inset,
+      0 12px 28px -12px rgb(30 64 175 / 0.72);
+  }
+
+  .projects-view-all:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.3) inset,
+      0 16px 36px -14px rgb(59 130 246 / 0.86);
+  }
+
+  @keyframes project-page-turn {
+    0% {
+      opacity: 0;
+      transform: rotateY(0deg) translateX(0) translateZ(2rem);
+    }
+    18% {
+      opacity: 0.95;
+    }
+    62% {
+      opacity: 0.7;
+      transform: rotateY(-44deg) translateX(-0.24rem) translateZ(2.7rem);
+    }
+    100% {
+      opacity: 0;
+      transform: rotateY(-82deg) translateX(-0.65rem) translateZ(3.05rem);
+    }
+  }
+
   .experience-timeline {
     position: relative;
     max-width: 1080px;
@@ -898,6 +1681,76 @@
     box-shadow: 0 1px 0 0 rgb(255 255 255 / 0.08) inset;
   }
 
+  .floating-whatsapp {
+    @apply fixed bottom-5 right-5 z-50 inline-flex items-center justify-center rounded-full border text-white backdrop-blur-xl transition-transform duration-200 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    width: 4rem;
+    height: 4rem;
+    border-color: rgb(147 197 253 / 0.65);
+    background: linear-gradient(135deg, #1e3a8a80, #1d4ed84d);
+    box-shadow:
+      0 0 0 1px rgb(147 197 253 / 0.28),
+      0 10px 28px -10px rgb(30 64 175 / 0.65);
+    animation: whatsapp-blink 1.15s ease-in-out infinite;
+  }
+
+  .floating-whatsapp__glow {
+    position: absolute;
+    inset: -11px;
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(
+      circle,
+      rgb(96 165 250 / 0.52) 0%,
+      rgb(59 130 246 / 0.28) 42%,
+      transparent 75%
+    );
+    filter: blur(6px);
+    animation: whatsapp-glow-pulse 1.15s ease-in-out infinite;
+  }
+
+  .dark .floating-whatsapp {
+    border-color: rgb(96 165 250 / 0.62);
+    box-shadow:
+      0 0 0 1px rgb(96 165 250 / 0.35),
+      0 0 22px -4px rgb(59 130 246 / 0.8),
+      0 14px 30px -12px rgb(2 6 23 / 0.8);
+  }
+
+  .dark .floating-whatsapp__glow {
+    background: radial-gradient(
+      circle,
+      rgb(125 211 252 / 0.6) 0%,
+      rgb(59 130 246 / 0.34) 42%,
+      transparent 78%
+    );
+  }
+
+  @keyframes whatsapp-blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    45% {
+      opacity: 0.76;
+    }
+    60% {
+      opacity: 0.93;
+    }
+  }
+
+  @keyframes whatsapp-glow-pulse {
+    0%,
+    100% {
+      opacity: 0.65;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.98;
+      transform: scale(1.08);
+    }
+  }
+
   .dark .experience-timeline__content--current {
     border-color: rgb(96 165 250 / 0.45);
     box-shadow:
@@ -908,6 +1761,226 @@
   }
 
   @media (max-width: 767px) {
+    .projects-case-bleed {
+      padding: 1rem 1rem 2.8rem;
+      scroll-padding-inline: 1rem;
+    }
+
+    .projects-case-track {
+      gap: 1.45rem;
+      padding-block: 0.8rem 1.7rem;
+    }
+
+    .project-book-card {
+      --book-rest-y: -8deg;
+      --book-hover-y: -8deg;
+      --cover-open-y: -44deg;
+      flex-basis: min(calc(100vw - 3.25rem), 20.5rem);
+      height: 31.5rem;
+    }
+
+    .project-book-card:nth-child(even) {
+      --book-rest-y: 7deg;
+      --book-hover-y: 7deg;
+      --cover-open-y: -42deg;
+    }
+
+    .project-book {
+      inset: 0.25rem 0.65rem 1.7rem 0.15rem;
+    }
+
+    .project-book-card:hover .project-book,
+    .project-book-card:focus-visible .project-book {
+      transform: translateY(-0.5rem) rotateY(var(--book-hover-y)) rotateX(3deg) rotateZ(var(--book-rest-z)) scale(1.01);
+    }
+
+    .project-book__back {
+      inset: 0.5rem -0.72rem -0.78rem 1.6rem;
+    }
+
+    .project-book__pages--right {
+      right: -0.74rem;
+      width: 0.82rem;
+    }
+
+    .project-book__pages--bottom {
+      right: -0.38rem;
+      bottom: -0.76rem;
+      left: 3.05rem;
+      height: 0.84rem;
+    }
+
+    .project-book__inside {
+      inset: 0.65rem 0.45rem 0.58rem 2.72rem;
+    }
+
+    .project-book__inside-fold {
+      width: 1.32rem;
+    }
+
+    .project-book__leaf {
+      top: 0.55rem;
+      right: 0.38rem;
+      bottom: 0.55rem;
+      left: 1.55rem;
+    }
+
+    .project-book__inside-copy {
+      right: 0.7rem;
+      width: min(58%, 10.6rem);
+    }
+
+    .project-book__inside-kicker {
+      font-size: 0.52rem;
+      letter-spacing: 0.14em;
+      padding-bottom: 0.34rem;
+    }
+
+    .project-book__inside-copy h4 {
+      margin-top: 0.72rem;
+      font-size: 1.08rem;
+      line-height: 0.94;
+    }
+
+    .project-book__inside-copy p {
+      margin-top: 0.72rem;
+      font-size: 0.67rem;
+      line-height: 1.42;
+    }
+
+    .project-book__inside-button {
+      min-height: 2.35rem;
+      margin-top: 0.9rem;
+      padding: 0.62rem 0.78rem;
+      font-size: 0.52rem;
+      letter-spacing: 0.08em;
+    }
+
+    .project-book__cover {
+      border-radius: 0.34rem;
+      background:
+        linear-gradient(90deg, rgb(2 6 23 / 0.96) 0 2.72rem, rgb(15 23 42 / 0.5) 2.72rem 2.84rem, transparent 2.84rem),
+        radial-gradient(22rem 20rem at 70% 56%, var(--project-wash), transparent 72%),
+        radial-gradient(19rem 16rem at 22% 18%, var(--project-ghost), transparent 70%),
+        linear-gradient(145deg, rgb(30 41 59), rgb(15 23 42) 43%, rgb(4 9 20));
+      box-shadow:
+        0.62rem 0.78rem 0 -0.34rem rgb(2 6 23 / 0.86),
+        1rem 1.2rem 1.55rem -0.95rem rgb(2 6 23 / 0.88),
+        0 0 0 1px rgb(255 255 255 / 0.06) inset;
+    }
+
+    .project-book__spine {
+      width: 2.72rem;
+    }
+
+    .project-book__spine-ridge {
+      left: 0.66rem;
+      width: 1rem;
+      height: 3.25rem;
+    }
+
+    .project-book__spine-ridge--top {
+      top: 3.2rem;
+    }
+
+    .project-book__spine-ridge--bottom {
+      bottom: 4.3rem;
+    }
+
+    .project-book__bubble {
+      left: 60%;
+      top: 34.5%;
+      min-width: 7.25rem;
+      visibility: visible;
+      opacity: 1;
+      transform: translate3d(-50%, 0, 7rem) rotate(-5deg) scale(0.92);
+      font-size: 0.59rem;
+      padding: 0.6rem 0.72rem 0.55rem;
+    }
+
+    .project-book__pointer {
+      left: 45%;
+      top: 42%;
+      visibility: visible;
+      opacity: 1;
+      transform: translate3d(-0.25rem, 0, 7rem) rotate(-14deg) scale(0.86);
+    }
+
+    .project-book__heading {
+      padding: 2.65rem 1rem 0 3.5rem;
+    }
+
+    .project-book__eyebrow {
+      max-width: 13.8rem;
+      gap: 0.45rem;
+      padding-bottom: 0.45rem;
+    }
+
+    .project-book__eyebrow span {
+      font-size: 0.55rem;
+      letter-spacing: 0.13em;
+    }
+
+    .project-book__eyebrow span:last-child {
+      max-width: 7.8rem;
+    }
+
+    .project-book__heading h3 {
+      max-width: 8.8ch;
+      font-size: clamp(1.78rem, 8vw, 2.05rem);
+      line-height: 0.88;
+    }
+
+    .project-book__heading p {
+      max-width: 12.2rem;
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
+
+    .project-book__seal {
+      left: 3.45rem;
+      bottom: 4.85rem;
+      width: 4.45rem;
+      height: 4.45rem;
+    }
+
+    .project-book__seal span {
+      font-size: 1.05rem;
+    }
+
+    .project-book__seal small {
+      max-width: 3.2rem;
+      font-size: 0.4rem;
+    }
+
+    .project-device {
+      right: 0.55rem;
+      bottom: 4.35rem;
+      width: 7.05rem;
+    }
+
+    .project-device--tablet {
+      width: 8.85rem;
+    }
+
+    .project-book__tags {
+      right: 0.75rem;
+      bottom: 0.78rem;
+      left: 3.45rem;
+      gap: 0.35rem;
+    }
+
+    .project-book__tags li {
+      padding: 0.34rem 0.48rem;
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+    }
+
+    .projects-view-all {
+      width: min(100%, 16rem);
+      padding-inline: 1.25rem;
+    }
+
     .experience-timeline {
       max-width: 42rem;
     }

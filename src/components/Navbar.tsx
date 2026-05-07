@@ -29,6 +29,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState<string>('#hero')
+  const isHomePage = typeof window === 'undefined' || window.location.pathname === '/'
+  const homeHref = (href: string) => (isHomePage ? href : `/${href}`)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -101,7 +103,7 @@ export function Navbar() {
             {NAV_LINKS.slice(0, 3).map((l) => (
               <NavLink
                 key={l.href}
-                href={l.href}
+                href={homeHref(l.href)}
                 active={active === l.href}
                 label={l.label}
                 onClick={() => setActive(l.href)}
@@ -110,7 +112,7 @@ export function Navbar() {
           </ul>
 
           <a
-            href="#hero"
+            href={homeHref('#hero')}
             className="relative col-span-3 flex items-center justify-center lg:col-span-1"
             aria-label="Mateus Bonette - Início"
           >
@@ -144,7 +146,7 @@ export function Navbar() {
             {NAV_LINKS.slice(3).map((l) => (
               <NavLink
                 key={l.href}
-                href={l.href}
+                href={homeHref(l.href)}
                 active={active === l.href}
                 label={l.label}
                 onClick={() => setActive(l.href)}
@@ -179,7 +181,7 @@ export function Navbar() {
                 {NAV_LINKS.map((l) => (
                   <li key={l.href}>
                     <MobileNavLink
-                      href={l.href}
+                      href={homeHref(l.href)}
                       label={l.label}
                       active={active === l.href}
                       onClick={() => {
