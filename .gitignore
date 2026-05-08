@@ -48,8 +48,9 @@ Desktop.ini
 .parcel-cache
 .turbo
 
-# Cursor / automação local (snapshots de browser, etc.)
+# Ferramentas de desenvolvimento local (não vai ao GitHub)
 .playwright-mcp/
+src/dev/
 
 # Certificados locais
 *.pem
