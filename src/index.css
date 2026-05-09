@@ -2158,15 +2158,44 @@
     }
   }
 
-  @media (max-width: 639px) {
+  @media (max-width: 767px) {
+    .projects-archive-wrap {
+      padding-inline: 1rem;
+    }
+
     .projects-archive-grid {
       grid-template-columns: minmax(0, 1fr);
-      gap: 3.5rem 0;
+      gap: 2.5rem 0;
+      padding-block: 2rem 1rem;
     }
 
     .project-book-card--archive {
-      max-width: 22rem;
-      aspect-ratio: 29 / 36;
+      max-width: min(calc(100vw - 3.25rem), 20.5rem);
+      aspect-ratio: auto;
+      height: 31.5rem;
+    }
+
+    .project-book-card--archive .project-book__heading {
+      padding: 2.65rem 1rem 0 3.5rem;
+    }
+
+    .project-book-card--archive .project-book__heading h3 {
+      display: block;
+      margin-top: 1.15rem;
+      max-width: 8.8ch;
+      overflow: visible;
+      font-size: clamp(1.78rem, 8vw, 2.05rem);
+      line-height: 0.88;
+      overflow-wrap: normal;
+      hyphens: none;
+      word-break: normal;
+      -webkit-line-clamp: unset;
+    }
+
+    .project-book-card--archive .project-book__heading p {
+      margin-top: 1rem;
+      max-width: 12.2rem;
+      font-size: 0.72rem;
     }
   }
 
