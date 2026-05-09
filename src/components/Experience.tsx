@@ -1,8 +1,58 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { ChevronRight, Cloud, Database, Download } from 'lucide-react'
+import {
+  siAngular,
+  siDbeaver,
+  siDocker,
+  siGraphql,
+  siHubspot,
+  siNextdotjs,
+  siPostgresql,
+  siPython,
+  siRedmine,
+  siStreamlit,
+} from 'simple-icons'
 import { SectionTitle } from './SectionTitle'
 import { EXPERIENCES } from '../data/portfolio'
 import type { Experience as ExperienceItem } from '../types'
+
+const TECH_ICONS: Record<string, any> = {
+  'Angular': { type: 'brand', icon: siAngular, color: '#c3002f' },
+  'Next.js': { type: 'brand', icon: siNextdotjs, color: '' }, // Uses currentColor
+  'GraphQL': { type: 'brand', icon: siGraphql, color: '#e10098' },
+  'PostgreSQL': { type: 'brand', icon: siPostgresql, color: '#4169e1' },
+  'Python': { type: 'brand', icon: siPython, color: '#3776ab' },
+  'Docker': { type: 'brand', icon: siDocker, color: '#2496ed' },
+  'AWS': { type: 'line', icon: Cloud, color: '#FF9900' },
+  'Streamlit': { type: 'brand', icon: siStreamlit, color: '#ff4b4b' },
+  'HubSpot': { type: 'brand', icon: siHubspot, color: '#ff7a59' },
+  'Redmine': { type: 'brand', icon: siRedmine, color: '#b32024' },
+  'DBeaver': { type: 'brand', icon: siDbeaver, color: '#382923' },
+  'PgAdmin': { type: 'line', icon: Database, color: '#336791' },
+}
+
+function ExperienceTechTag({ name }: { name: string }) {
+  const iconData = TECH_ICONS[name]
+  if (!iconData) return null
+
+  return (
+    <div className="flex flex-col items-center justify-start gap-2">
+      <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-200/80 bg-white/60 shadow-sm dark:border-white/10 dark:bg-white/5">
+        {iconData.type === 'brand' ? (
+          <svg aria-hidden className={`h-5 w-5 ${iconData.color ? '' : 'fill-ink'}`} viewBox="0 0 24 24" fill={iconData.color || 'currentColor'}>
+            <path d={iconData.icon.path} />
+          </svg>
+        ) : (
+          <iconData.icon aria-hidden className="h-5 w-5" color={iconData.color} strokeWidth={2.5} />
+        )}
+      </div>
+      <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-ink-dim">
+        {name}
+      </span>
+    </div>
+  )
+}
 
 export function Experience() {
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({})
@@ -84,6 +134,28 @@ export function Experience() {
                   <span className="mt-4 inline-flex rounded-full border border-accent/25 bg-accent/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-accent dark:border-accent-neon/25 dark:bg-accent-neon/10 dark:text-accent-neon">
                     {stepBadge}
                   </span>
+                  
+                  {exp.company === 'Moontech' && (
+                    <div className="mt-7 hidden md:block">
+                      <a
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative inline-flex w-fit items-center justify-center gap-2 rounded-full border border-blue-400/60 bg-[linear-gradient(135deg,#1e3a8a80,#1d4ed84d)] px-4 py-2 text-[11px] font-bold tracking-widest text-white shadow-[0_0_0_1px_rgb(147_197_253/0.28),0_10px_28px_-10px_rgb(30_64_175/0.65)] backdrop-blur-xl transition-transform duration-200 hover:scale-[1.02] focus:outline-none dark:border-blue-400/60"
+                        style={{ animation: 'whatsapp-blink 1.15s ease-in-out infinite' }}
+                        title="Baixar PDF da Carta de Recomendação"
+                      >
+                        {/* TODO: substituir pelo link do PDF da carta de recomendação */}
+                        <span
+                          aria-hidden
+                          className="absolute inset-[-9px] -z-10 rounded-full bg-[radial-gradient(circle,rgb(96_165_250/_0.52)_0%,rgb(59_130_246/_0.28)_42%,transparent_75%)] blur-[5px]"
+                          style={{ animation: 'whatsapp-glow-pulse 1.15s ease-in-out infinite' }}
+                        />
+                        <Download size={14} className="relative z-10 shrink-0" strokeWidth={2.5} />
+                        <span className="relative z-10 font-medium">Carta De Recomendação</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
 
                 <div className="experience-timeline__rail" aria-hidden>
@@ -96,18 +168,40 @@ export function Experience() {
                   }`}
                   data-cursor="hover"
                 >
-                  <div className="mb-5 flex items-start justify-between gap-4 md:hidden">
-                    <div>
-                      <p className="font-display text-base font-bold leading-tight text-ink">
-                        {exp.company}
-                      </p>
-                      <p className="mt-1 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-dim dark:text-slate-300">
-                        {exp.period}
-                      </p>
+                  <div className="mb-5 flex flex-col items-start gap-4 md:hidden">
+                    <div className="flex w-full items-start justify-between gap-4">
+                      <div>
+                        <p className="font-display text-base font-bold leading-tight text-ink">
+                          {exp.company}
+                        </p>
+                        <p className="mt-1 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-dim dark:text-slate-300">
+                          {exp.period}
+                        </p>
+                      </div>
+                      <span className="pill shrink-0 font-mono text-[10px] uppercase tracking-[0.16em]">
+                        {stepBadge}
+                      </span>
                     </div>
-                    <span className="pill shrink-0 font-mono text-[10px] uppercase tracking-[0.16em]">
-                      {stepBadge}
-                    </span>
+
+                    {exp.company === 'Moontech' && (
+                      <a
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative mt-1 inline-flex w-fit items-center justify-center gap-2 rounded-full border border-blue-400/60 bg-[linear-gradient(135deg,#1e3a8a80,#1d4ed84d)] px-4 py-2 text-[11px] font-bold tracking-widest text-white shadow-[0_0_0_1px_rgb(147_197_253/0.28),0_10px_28px_-10px_rgb(30_64_175/0.65)] backdrop-blur-xl transition-transform duration-200 hover:scale-[1.02] focus:outline-none dark:border-blue-400/60"
+                        style={{ animation: 'whatsapp-blink 1.15s ease-in-out infinite' }}
+                        title="Baixar PDF da Carta de Recomendação"
+                      >
+                        {/* TODO: substituir pelo link do PDF da carta de recomendação */}
+                        <span
+                          aria-hidden
+                          className="absolute inset-[-9px] -z-10 rounded-full bg-[radial-gradient(circle,rgb(96_165_250/_0.52)_0%,rgb(59_130_246/_0.28)_42%,transparent_75%)] blur-[5px]"
+                          style={{ animation: 'whatsapp-glow-pulse 1.15s ease-in-out infinite' }}
+                        />
+                        <Download size={14} className="relative z-10 shrink-0" strokeWidth={2.5} />
+                        <span className="relative z-10 font-medium">Carta De Recomendação</span>
+                      </a>
+                    )}
                   </div>
 
                   <div
@@ -152,7 +246,7 @@ export function Experience() {
                             key={h}
                             className="flex gap-3 rounded-xl border border-slate-200/80 bg-white/55 px-4 py-3 leading-relaxed transition-colors duration-200 group-hover:border-accent/25 group-hover:bg-white/80 dark:border-white/[0.06] dark:bg-white/[0.03] dark:group-hover:border-white/15 dark:group-hover:bg-white/[0.06]"
                           >
-                            <span className="shrink-0 font-mono text-accent dark:text-accent-neon">-</span>
+                            <ChevronRight size={16} className="mt-[2px] shrink-0 text-accent dark:text-accent-neon" />
                             <span>{h}</span>
                           </li>
                         ))}
@@ -163,6 +257,14 @@ export function Experience() {
                       <p className="mt-4 rounded-xl border border-accent/20 bg-accent/5 px-4 py-3 text-sm font-semibold leading-relaxed text-ink dark:border-accent-neon/15 dark:bg-accent-neon/5 dark:text-ink">
                         {exp.skills}
                       </p>
+                    )}
+
+                    {exp.techTags && exp.techTags.length > 0 && (
+                      <div className="mt-5 flex flex-wrap gap-x-5 gap-y-4 rounded-xl border border-line/60 bg-white/30 p-5 dark:border-white/10 dark:bg-white/[0.02]">
+                        {exp.techTags.map((tag) => (
+                          <ExperienceTechTag key={tag} name={tag} />
+                        ))}
+                      </div>
                     )}
                   </div>
 

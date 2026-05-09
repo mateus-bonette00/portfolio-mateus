@@ -7,4 +7,18 @@ export default defineConfig({
     host: true,
     port: 5434,
   },
+  build: {
+    target: 'esnext',
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'framer-motion': ['framer-motion'],
+          'lucide': ['lucide-react'],
+          'simple-icons': ['simple-icons']
+        }
+      }
+    }
+  }
 })

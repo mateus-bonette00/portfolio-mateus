@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Award, Calendar, GraduationCap, MapPin } from 'lucide-react'
+import { Award, Calendar, Download, GraduationCap, MapPin } from 'lucide-react'
 import { SectionTitle } from './SectionTitle'
 import { EDUCATION } from '../data/portfolio'
 
@@ -132,6 +132,27 @@ export function Education() {
             </ul>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10 flex justify-center"
+        >
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="projects-view-all"
+            data-cursor="hover"
+            title="Ver Diploma — Bacharelado em Ciência da Computação · UNIFEI"
+          >
+            <span aria-hidden className="projects-view-all__glow" />
+            <Download size={22} className="relative z-[2] shrink-0" aria-hidden />
+            <span className="projects-view-all__text">Ver Diploma</span>
+          </a>
+        </motion.div>
       </div>
     </section>
   )

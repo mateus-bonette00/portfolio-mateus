@@ -23,9 +23,7 @@ const ProjectDetailPage = lazy(() =>
 const ProjectsArchivePage = lazy(() =>
   import('./components/ProjectPages').then((module) => ({ default: module.ProjectsArchivePage })),
 )
-const CodexElementPicker = import.meta.env.DEV
-  ? lazy(() => import('./dev/CodexElementPicker').then((module) => ({ default: module.CodexElementPicker })))
-  : null
+
 
 function LazyFallback() {
   return <div className="min-h-24" aria-hidden="true" />
@@ -69,11 +67,7 @@ export default function App() {
         </Suspense>
       </div>
       <FloatingWhatsApp />
-      {CodexElementPicker ? (
-        <Suspense fallback={null}>
-          <CodexElementPicker />
-        </Suspense>
-      ) : null}
+
     </div>
   )
 }

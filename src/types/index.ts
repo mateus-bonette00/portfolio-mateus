@@ -27,6 +27,7 @@ export type Experience = {
   description?: string[]
   highlights?: string[]
   skills?: string
+  techTags?: string[]
   logoImage?: string
   logoAlt?: string
   /** Se true, exibe selo "Atual" e destaque na timeline. Omitido/false na experiência mais recente encerrada. */
