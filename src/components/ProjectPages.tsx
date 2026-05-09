@@ -120,7 +120,9 @@ export function ProjectsArchivePage() {
               </p>
             </div>
           </motion.div>
+        </div>
 
+        <div className="projects-archive-wrap relative z-10">
           <div className="projects-archive-grid">
             {PROJECTS.map((project, index) => (
               <ArchiveBookCard key={project.id} project={project} index={index} />

@@ -780,10 +780,17 @@
     pointer-events: auto;
   }
 
+  .projects-archive-wrap {
+    width: 100%;
+    max-width: min(112rem, 100vw);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, 3rem);
+  }
+
   .projects-archive-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5rem 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(3rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem);
     justify-items: center;
     padding-block: 3.5rem 2rem;
     perspective: 2200px;
@@ -812,23 +819,30 @@
   .project-book-card--archive {
     flex: none;
     width: 100%;
-    max-width: none;
-    height: clamp(34rem, 38vw, 46rem);
+    max-width: 34rem;
+    aspect-ratio: 35 / 44;
+    height: auto;
     scroll-snap-align: unset;
   }
 
   .project-book-card--archive .project-book__heading {
-    padding: clamp(2rem, 3vw, 3.25rem) clamp(0.75rem, 1.5vw, 1.5rem) 0 3rem;
+    padding: clamp(2.6rem, 3.4vw, 3.8rem) clamp(1.25rem, 1.8vw, 2rem) 0 3.6rem;
   }
 
   .project-book-card--archive .project-book__heading h3 {
-    font-size: clamp(1.35rem, 1.7vw, 2rem);
-    max-width: 100%;
-    line-height: 0.9;
+    margin-top: 0.95rem;
+    max-width: 9ch;
+    font-size: clamp(2.2rem, 2.8vw, 3.4rem);
+    line-height: 0.86;
     overflow-wrap: normal;
     hyphens: none;
     word-break: normal;
-    white-space: nowrap;
+  }
+
+  .project-book-card--archive .project-book__heading p {
+    margin-top: 0.85rem;
+    max-width: 16rem;
+    font-size: 0.78rem;
   }
 
 
@@ -2137,29 +2151,22 @@
       0 14px 42px -14px rgb(0 0 0 / 0.62);
   }
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1199px) {
     .projects-archive-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 4rem 1.5rem;
-    }
-
-    .project-book-card--archive .project-book__heading h3 {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4rem 2.5rem;
     }
   }
 
-  @media (max-width: 599px) {
+  @media (max-width: 639px) {
     .projects-archive-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 3.5rem 0;
     }
 
     .project-book-card--archive {
-      height: 34rem;
-    }
-
-    .project-book-card--archive .project-book__heading h3 {
-      font-size: clamp(1.6rem, 5vw, 2rem);
+      max-width: 22rem;
+      aspect-ratio: 29 / 36;
     }
   }
 
