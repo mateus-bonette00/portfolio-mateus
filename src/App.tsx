@@ -1,18 +1,35 @@
+import { lazy, Suspense } from 'react'
 import { Background } from './components/Background'
 import { ScrollProgress } from './components/ScrollProgress'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
-import { ValueDashboard } from './components/ValueDashboard'
-import { About } from './components/About'
-import { Skills } from './components/Skills'
-import { Experience } from './components/Experience'
-import { Projects } from './components/Projects'
-import { Education } from './components/Education'
-import { Contact } from './components/Contact'
-import { Footer } from './components/Footer'
 import { FloatingWhatsApp } from './components/FloatingWhatsApp'
-import { ProjectDetailPage, ProjectsArchivePage } from './components/ProjectPages'
-import { CodexElementPicker } from './dev/CodexElementPicker'
+
+const About = lazy(() => import('./components/About').then((module) => ({ default: module.About })))
+const ValueDashboard = lazy(() =>
+  import('./components/ValueDashboard').then((module) => ({ default: module.ValueDashboard })),
+)
+const Skills = lazy(() => import('./components/Skills').then((module) => ({ default: module.Skills })))
+const Experience = lazy(() =>
+  import('./components/Experience').then((module) => ({ default: module.Experience })),
+)
+const Projects = lazy(() => import('./components/Projects').then((module) => ({ default: module.Projects })))
+const Education = lazy(() => import('./components/Education').then((module) => ({ default: module.Education })))
+const Contact = lazy(() => import('./components/Contact').then((module) => ({ default: module.Contact })))
+const Footer = lazy(() => import('./components/Footer').then((module) => ({ default: module.Footer })))
+const ProjectDetailPage = lazy(() =>
+  import('./components/ProjectPages').then((module) => ({ default: module.ProjectDetailPage })),
+)
+const ProjectsArchivePage = lazy(() =>
+  import('./components/ProjectPages').then((module) => ({ default: module.ProjectsArchivePage })),
+)
+const CodexElementPicker = import.meta.env.DEV
+  ? lazy(() => import('./dev/CodexElementPicker').then((module) => ({ default: module.CodexElementPicker })))
+  : null
+
+function LazyFallback() {
+  return <div className="min-h-24" aria-hidden="true" />
+}
 
 export default function App() {
   const pathname = typeof window === 'undefined' ? '/' : window.location.pathname
@@ -25,26 +42,38 @@ export default function App() {
       <ScrollProgress />
       <Navbar />
       {projectId ? (
-        <ProjectDetailPage projectId={decodeURIComponent(projectId)} />
+        <Suspense fallback={<LazyFallback />}>
+          <ProjectDetailPage projectId={decodeURIComponent(projectId)} />
+        </Suspense>
       ) : isProjectsArchive ? (
-        <ProjectsArchivePage />
+        <Suspense fallback={<LazyFallback />}>
+          <ProjectsArchivePage />
+        </Suspense>
       ) : (
         <main className="relative z-10 w-full max-w-full overflow-x-hidden">
           <Hero />
-          <About />
-          <ValueDashboard />
-          <Skills />
-          <Experience />
-          <Projects />
-          <Education />
-          <Contact />
+          <Suspense fallback={<LazyFallback />}>
+            <About />
+            <ValueDashboard />
+            <Skills />
+            <Experience />
+            <Projects />
+            <Education />
+            <Contact />
+          </Suspense>
         </main>
       )}
       <div className="relative z-10">
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </div>
       <FloatingWhatsApp />
-      {import.meta.env.DEV ? <CodexElementPicker /> : null}
+      {CodexElementPicker ? (
+        <Suspense fallback={null}>
+          <CodexElementPicker />
+        </Suspense>
+      ) : null}
     </div>
   )
 }

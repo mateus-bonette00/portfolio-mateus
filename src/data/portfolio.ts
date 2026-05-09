@@ -64,6 +64,14 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'Tailwind', 'Framer'],
     year: '2024',
   },
+  {
+    id: 'p5',
+    title: 'Em breve: Projeto 05',
+    description:
+      'Espaço reservado para o Projeto 05. Caso completo será adicionado em breve.',
+    tags: ['TypeScript', 'React', 'Node.js'],
+    year: '2024',
+  },
 ]
 
 export const EXPERIENCES: Experience[] = [

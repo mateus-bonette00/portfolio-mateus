@@ -26,12 +26,12 @@ export function Experience() {
           eyebrow="Experiências"
           title={
             <>
-              <span className="text-gradient-static">Papéis em que </span>
-              <span className="text-gradient">entreguei valor</span>
+              <span className="text-gradient-static">Experiências Que </span>
+              <span className="text-gradient">Me Formaram</span>
               <span className="text-gradient-static">.</span>
             </>
           }
-          description="Contexto, responsabilidades e aprendizados em cada etapa da carreira."
+          description="Cada empresa, cada projeto e cada venda me ensinou algo que eu carrego até hoje no código, na comunicação e na forma de resolver problemas."
           denseMobile
         />
 

@@ -1,4 +1,4 @@
-import { type CSSProperties } from 'react'
+import { type CSSProperties, type MouseEvent, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { SectionTitle } from './SectionTitle'
@@ -56,30 +56,34 @@ export function Projects() {
         </div>
       </div>
 
-      <div className="projects-case-bleed" aria-label="Carrossel horizontal de projetos">
-        <div className="projects-case-track">
-          {PROJECTS.map((project, index) => (
-            <ProjectCaseCard key={project.id} project={project} index={index} />
-          ))}
+      <div className="projects-case-bleed">
+        <div className="projects-case-scroll" aria-label="Carrossel horizontal de projetos">
+          <div className="projects-case-track">
+            {PROJECTS.map((project, index) => (
+              <ProjectCaseCard key={project.id} project={project} index={index} />
+            ))}
+          </div>
         </div>
-      </div>
-
-      <div className="container-1200 relative z-10 mt-8 flex justify-center sm:mt-10">
-        <a href="/projetos" className="projects-view-all" data-cursor="hover">
-          VER TODOS
-          <ArrowUpRight size={16} />
-        </a>
+        <div className="projects-case-view-all-wrap">
+          <a href="/projetos" className="projects-view-all" data-cursor="hover">
+            <span aria-hidden className="projects-view-all__glow" />
+            <span className="projects-view-all__text">Ver todos os projetos</span>
+            <ArrowUpRight size={30} className="projects-view-all__icon relative z-[2] shrink-0" aria-hidden />
+          </a>
+        </div>
       </div>
     </section>
   )
 }
 
 function ProjectCaseCard({ project, index }: { project: Project; index: number }) {
+  const [isMobileOpen, setIsMobileOpen] = useState(false)
   const visual = PROJECT_VISUALS[index % PROJECT_VISUALS.length]
   const href = project.link ?? `/projetos/${project.id}`
   const title = project.title.replace(/^Em breve:\s*/i, '')
   const projectNumber = String(index + 1).padStart(2, '0')
   const stackLine = project.tags.slice(0, 2).join(' + ')
+  const platform = getProjectPlatform(project)
   const isPlaceholder = /espaço reservado|em breve|conteúdo será adicionado/i.test(project.description)
   const coverSummary = isPlaceholder
     ? 'Case em preparação para mostrar problema, solução, processo e resultado.'
@@ -88,6 +92,14 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
     ? 'Página reservada para o case completo, com contexto, decisões técnicas e resultado final.'
     : project.description
   const isExternal = /^https?:\/\//i.test(href)
+  const handleCardClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    const isTouchNavigation = window.matchMedia('(hover: none), (pointer: coarse)').matches
+
+    if (!isTouchNavigation || isMobileOpen) return
+
+    event.preventDefault()
+    setIsMobileOpen(true)
+  }
 
   return (
     <motion.a
@@ -107,7 +119,10 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
         } as CSSProperties
       }
       data-cursor="hover"
+      data-mobile-open={isMobileOpen ? 'true' : undefined}
+      aria-expanded={isMobileOpen}
       aria-label={`Acessar projeto ${title}`}
+      onClick={handleCardClick}
     >
       <span className="project-book-card__shadow" aria-hidden />
 
@@ -116,19 +131,29 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
         <span className="project-book__pages project-book__pages--right" aria-hidden />
         <span className="project-book__pages project-book__pages--bottom" aria-hidden />
 
-        <div className="project-book__inside" aria-hidden>
+        <div className="project-book__inside">
           <span className="project-book__inside-fold" />
           <span className="project-book__leaf project-book__leaf--one" />
           <span className="project-book__leaf project-book__leaf--two" />
           <span className="project-book__leaf project-book__leaf--three" />
 
           <div className="project-book__inside-copy">
-            <span className="project-book__inside-kicker">Case {projectNumber}</span>
-            <h4>{title}</h4>
+            <div className="project-book__inside-meta">
+              <span className="project-book__inside-kicker">Case {projectNumber}</span>
+              <span className="project-book__inside-stack">{stackLine || 'Projeto em destaque'}</span>
+            </div>
+            <h4 title={title}>{title}</h4>
             <p>{insideSummary}</p>
+            <ul className="project-book__inside-points" aria-label={`Resumo do case ${title}`}>
+              <li>Contexto</li>
+              <li>Processo</li>
+              <li>Resultado</li>
+            </ul>
             <span className="project-book__inside-button">
-              Conhecer projeto
-              <ArrowUpRight size={16} />
+              <span>Ver detalhes</span>
+              <span className="project-book__inside-button-icon">
+                <ArrowUpRight size={16} />
+              </span>
             </span>
           </div>
         </div>
@@ -138,6 +163,7 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
           <span className="project-book__spine" aria-hidden />
           <span className="project-book__spine-ridge project-book__spine-ridge--top" aria-hidden />
           <span className="project-book__spine-ridge project-book__spine-ridge--bottom" aria-hidden />
+          <span className="project-book__cover-liner" aria-hidden />
           <span className="project-book__shine" aria-hidden />
 
           <div className="project-book__heading">
@@ -145,16 +171,21 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
               <span>{project.year ?? '2025'}</span>
               <span>{stackLine}</span>
             </div>
-            <h3>{title}</h3>
+            <h3 title={title}>{title}</h3>
             <p>{coverSummary}</p>
           </div>
 
           <div className="project-book__seal" aria-hidden>
-            <span>MB</span>
+            <img
+              src="/images/logo-branca-mateus.png"
+              alt=""
+              className="project-book__seal-logo"
+              draggable={false}
+            />
             <small>Portfolio case</small>
           </div>
 
-          <ProjectDevice index={index} title={title} />
+          <ProjectDeviceShowcase project={project} index={index} title={title} platform={platform} />
 
           <ul className="project-book__tags" aria-label={`Tecnologias do projeto ${title}`}>
             {project.tags.map((tag) => (
@@ -167,18 +198,68 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
   )
 }
 
-function ProjectDevice({ index, title }: { index: number; title: string }) {
-  const isTablet = index % 3 === 2
+function getProjectPlatform(project: Project): NonNullable<Project['platform']> {
+  if (project.platform) return project.platform
+
+  const mobileOnlyTags = /react native|flutter|swift|kotlin|android|ios|mobile/i
+  return project.tags.some((tag) => mobileOnlyTags.test(tag)) ? 'mobile' : 'responsive'
+}
+
+function ProjectDeviceShowcase({
+  project,
+  index,
+  title,
+  platform,
+}: {
+  project: Project
+  index: number
+  title: string
+  platform: NonNullable<Project['platform']>
+}) {
+  const isMobileOnly = platform === 'mobile'
+  const desktopImage = project.desktopImage ?? project.image
+  const mobileImage = project.mobileImage ?? project.image
 
   return (
-    <div className={`project-device ${isTablet ? 'project-device--tablet' : ''}`} aria-hidden>
-      <div className="project-device__frame">
-        <span className="project-device__notch" />
-        <div className="project-device__screen">
-          <ProjectGlyph index={index} />
-          <span>{title}</span>
+    <div className={`project-device project-device--${platform}`} aria-hidden>
+      {!isMobileOnly && (
+        <div className="project-device__monitor">
+          <div className="project-device__monitor-frame">
+            <div className="project-device__desktop-screen">
+              {desktopImage ? (
+                <img src={desktopImage} alt="" draggable={false} />
+              ) : (
+                <>
+                  <span className="project-device__window-bar" />
+                  <ProjectGlyph index={index} />
+                  <span title={title}>{title}</span>
+                </>
+              )}
+            </div>
+          </div>
+          <span className="project-device__monitor-stand" />
+        </div>
+      )}
+
+      <div className="project-device__phone">
+        <div className="project-device__phone-frame">
+          <span className="project-device__notch" />
+          <div className="project-device__screen">
+            {mobileImage ? (
+              <img src={mobileImage} alt="" draggable={false} />
+            ) : (
+              <>
+                <ProjectGlyph index={index} />
+                <span title={title}>{title}</span>
+              </>
+            )}
+          </div>
         </div>
       </div>
+
+      <span className="project-device__badge">
+        {isMobileOnly ? 'Mobile app' : 'Desktop + mobile'}
+      </span>
     </div>
   )
 }

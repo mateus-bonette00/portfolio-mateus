@@ -4,6 +4,9 @@ export type Project = {
   description: string
   tags: string[]
   image?: string
+  desktopImage?: string
+  mobileImage?: string
+  platform?: 'responsive' | 'mobile'
   link?: string
   repo?: string
   year?: string

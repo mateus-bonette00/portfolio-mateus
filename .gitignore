@@ -54,3 +54,8 @@ src/dev/
 
 # Certificados locais
 *.pem
+
+# Arquivos locais do usuário
+*.sh
+*Untitled*
+verificacoes-projetos/

@@ -12,8 +12,12 @@ type Point = {
   mass: number
 }
 
-type NavigatorWithMemory = Navigator & {
+type NavigatorWithPerformanceHints = Navigator & {
   deviceMemory?: number
+  connection?: {
+    effectiveType?: string
+    saveData?: boolean
+  }
 }
 
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value))
@@ -29,9 +33,14 @@ export function Background() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const nav = window.navigator as NavigatorWithMemory
+    const nav = window.navigator as NavigatorWithPerformanceHints
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches
-    const lowPower = isCoarsePointer || (nav.deviceMemory ?? 8) <= 4
+    const slowConnection = ['slow-2g', '2g'].includes(nav.connection?.effectiveType ?? '')
+    const shouldSkipCanvas = isCoarsePointer || nav.connection?.saveData === true || slowConnection
+
+    if (shouldSkipCanvas) return
+
+    const lowPower = (nav.deviceMemory ?? 8) <= 4
     const mouse = { x: 0, y: 0, active: false }
 
     const onPointer = (clientX: number, clientY: number) => {
