@@ -17,6 +17,89 @@ import { SectionTitle } from './SectionTitle'
 import { EXPERIENCES } from '../data/portfolio'
 import type { Experience as ExperienceItem } from '../types'
 
+const MOONTECH_CARTA_PT = '/2026-04-26_Carta_de_Recomendacao_assinado.pdf'
+const MOONTECH_CARTA_EN = '/2026-04-26_Carta_de_Recomendacao_en_assinado.pdf'
+
+const MOONTECH_REC_BTN_SKIN =
+  'group relative inline-flex touch-manipulation items-center justify-center rounded-full border border-blue-400/60 bg-[linear-gradient(135deg,#1e3a8a80,#1d4ed84d)] font-bold text-white shadow-[0_0_0_1px_rgb(147_197_253/0.28),0_10px_28px_-10px_rgb(30_64_175/0.65)] backdrop-blur-xl transition-transform duration-200 hover:scale-[1.02] focus:outline-none dark:border-blue-400/60'
+
+const MOONTECH_REC_DESKTOP_SIZES = 'gap-2.5 px-6 py-3.5 text-xs tracking-widest sm:px-7 sm:py-4 sm:text-sm'
+
+function MoontechRecommendationLetterLinks({
+  variant,
+  timelineMetaFlipped = false,
+}: {
+  variant: 'desktop' | 'mobile'
+  timelineMetaFlipped?: boolean
+}) {
+  const wrapClass =
+    variant === 'desktop'
+      ? timelineMetaFlipped
+        ? 'mt-7 mr-auto hidden w-max max-w-full flex-col items-start gap-2.5 md:flex'
+        : 'mt-7 ml-auto hidden w-max max-w-full flex-col items-end gap-2.5 md:flex'
+      : 'mt-2 flex w-full min-w-0 max-w-full flex-col gap-2.5 self-stretch md:hidden'
+
+  const link = (
+    href: string,
+    label: string,
+    title: string,
+    opts?: { englishDesktopSingleLine?: boolean; downloadAs?: string },
+  ) => {
+    const englishDesktopSingleLine = Boolean(opts?.englishDesktopSingleLine)
+    return (
+    <a
+      href={href}
+      download={opts?.downloadAs ?? true}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={
+        variant === 'desktop'
+          ? englishDesktopSingleLine
+            ? `${MOONTECH_REC_BTN_SKIN} ${MOONTECH_REC_DESKTOP_SIZES} w-fit min-w-[416px] max-w-[calc(100vw-2rem)] whitespace-nowrap`
+            : `${MOONTECH_REC_BTN_SKIN} ${MOONTECH_REC_DESKTOP_SIZES} w-fit min-w-0 max-w-[min(22rem,calc(100vw-3rem))]`
+          : `${MOONTECH_REC_BTN_SKIN} w-full min-w-0 max-w-full gap-2 px-4 py-3.5 text-[10px] leading-snug tracking-[0.08em] sm:gap-2.5 sm:px-5 sm:py-4 sm:text-[11px] sm:tracking-[0.12em]`
+      }
+      style={{ animation: 'whatsapp-blink 1.15s ease-in-out infinite' }}
+      title={title}
+    >
+      <span
+        aria-hidden
+        className="absolute inset-[-5px] -z-10 rounded-full bg-[radial-gradient(circle,rgb(96_165_250/_0.52)_0%,rgb(59_130_246/_0.28)_42%,transparent_75%)] blur-[5px]"
+        style={{ animation: 'whatsapp-glow-pulse 1.15s ease-in-out infinite' }}
+      />
+      <Download
+        size={variant === 'mobile' ? 16 : 18}
+        className="relative z-10 shrink-0"
+        strokeWidth={2.5}
+      />
+      <span
+        className={`relative z-10 min-w-0 font-medium leading-snug ${
+          variant === 'mobile'
+            ? 'flex-1 text-center break-words [overflow-wrap:anywhere]'
+            : variant === 'desktop' && englishDesktopSingleLine
+              ? 'whitespace-nowrap'
+              : 'text-center'
+        }`}
+      >
+        {label}
+      </span>
+    </a>
+    )
+  }
+
+  return (
+    <div className={wrapClass}>
+      {link(MOONTECH_CARTA_PT, 'CARTA DE RECOMENDAÇÃO PT/BR', 'Baixar carta de recomendação em português (PDF)', {
+        downloadAs: '2026-04-26_Carta_de_Recomendacao_assinado.pdf',
+      })}
+      {link(MOONTECH_CARTA_EN, 'CARTA DE RECOMENDAÇÃO EM INGLÊS', 'Baixar carta de recomendação em inglês (PDF)', {
+        englishDesktopSingleLine: true,
+        downloadAs: '2026-04-26_Carta_de_Recomendacao_en_assinado.pdf',
+      })}
+    </div>
+  )
+}
+
 const TECH_ICONS: Record<string, any> = {
   'Angular': { type: 'brand', icon: siAngular, color: '#c3002f' },
   'Next.js': { type: 'brand', icon: siNextdotjs, color: '' }, // Uses currentColor
@@ -136,25 +219,7 @@ export function Experience() {
                   </span>
                   
                   {exp.company === 'Moontech' && (
-                    <div className="mt-7 hidden md:block">
-                      <a
-                        href="#"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative inline-flex w-fit items-center justify-center gap-2 rounded-full border border-blue-400/60 bg-[linear-gradient(135deg,#1e3a8a80,#1d4ed84d)] px-4 py-2 text-[11px] font-bold tracking-widest text-white shadow-[0_0_0_1px_rgb(147_197_253/0.28),0_10px_28px_-10px_rgb(30_64_175/0.65)] backdrop-blur-xl transition-transform duration-200 hover:scale-[1.02] focus:outline-none dark:border-blue-400/60"
-                        style={{ animation: 'whatsapp-blink 1.15s ease-in-out infinite' }}
-                        title="Baixar PDF da Carta de Recomendação"
-                      >
-                        {/* TODO: substituir pelo link do PDF da carta de recomendação */}
-                        <span
-                          aria-hidden
-                          className="absolute inset-[-9px] -z-10 rounded-full bg-[radial-gradient(circle,rgb(96_165_250/_0.52)_0%,rgb(59_130_246/_0.28)_42%,transparent_75%)] blur-[5px]"
-                          style={{ animation: 'whatsapp-glow-pulse 1.15s ease-in-out infinite' }}
-                        />
-                        <Download size={14} className="relative z-10 shrink-0" strokeWidth={2.5} />
-                        <span className="relative z-10 font-medium">Carta De Recomendação</span>
-                      </a>
-                    </div>
+                    <MoontechRecommendationLetterLinks variant="desktop" timelineMetaFlipped={i % 2 === 1} />
                   )}
                 </div>
 
@@ -168,7 +233,7 @@ export function Experience() {
                   }`}
                   data-cursor="hover"
                 >
-                  <div className="mb-5 flex flex-col items-start gap-4 md:hidden">
+                  <div className="mb-5 flex w-full min-w-0 flex-col items-stretch gap-4 md:hidden">
                     <div className="flex w-full items-start justify-between gap-4">
                       <div>
                         <p className="font-display text-base font-bold leading-tight text-ink">
@@ -183,25 +248,7 @@ export function Experience() {
                       </span>
                     </div>
 
-                    {exp.company === 'Moontech' && (
-                      <a
-                        href="#"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative mt-1 inline-flex w-fit items-center justify-center gap-2 rounded-full border border-blue-400/60 bg-[linear-gradient(135deg,#1e3a8a80,#1d4ed84d)] px-4 py-2 text-[11px] font-bold tracking-widest text-white shadow-[0_0_0_1px_rgb(147_197_253/0.28),0_10px_28px_-10px_rgb(30_64_175/0.65)] backdrop-blur-xl transition-transform duration-200 hover:scale-[1.02] focus:outline-none dark:border-blue-400/60"
-                        style={{ animation: 'whatsapp-blink 1.15s ease-in-out infinite' }}
-                        title="Baixar PDF da Carta de Recomendação"
-                      >
-                        {/* TODO: substituir pelo link do PDF da carta de recomendação */}
-                        <span
-                          aria-hidden
-                          className="absolute inset-[-9px] -z-10 rounded-full bg-[radial-gradient(circle,rgb(96_165_250/_0.52)_0%,rgb(59_130_246/_0.28)_42%,transparent_75%)] blur-[5px]"
-                          style={{ animation: 'whatsapp-glow-pulse 1.15s ease-in-out infinite' }}
-                        />
-                        <Download size={14} className="relative z-10 shrink-0" strokeWidth={2.5} />
-                        <span className="relative z-10 font-medium">Carta De Recomendação</span>
-                      </a>
-                    )}
+                    {exp.company === 'Moontech' && <MoontechRecommendationLetterLinks variant="mobile" />}
                   </div>
 
                   <div
@@ -232,7 +279,7 @@ export function Experience() {
                     </div>
 
                     {exp.description && exp.description.length > 0 && (
-                      <div className="mt-5 max-w-2xl space-y-3 text-[0.92rem] leading-relaxed text-ink-dim">
+                      <div className="experience-timeline__copy mt-5 max-w-2xl space-y-3">
                         {exp.description.map((paragraph) => (
                           <p key={paragraph}>{paragraph}</p>
                         ))}
@@ -240,13 +287,13 @@ export function Experience() {
                     )}
 
                     {exp.highlights && exp.highlights.length > 0 && (
-                      <ul className="mt-5 grid gap-2 border-t border-line/60 pt-5 text-sm text-ink-dim dark:border-white/10">
+                      <ul className="experience-timeline__highlights mt-5 grid gap-2 border-t border-line/60 pt-5 dark:border-white/10">
                         {exp.highlights.map((h) => (
                           <li
                             key={h}
                             className="flex gap-3 rounded-xl border border-slate-200/80 bg-white/55 px-4 py-3 leading-relaxed transition-colors duration-200 group-hover:border-accent/25 group-hover:bg-white/80 dark:border-white/[0.06] dark:bg-white/[0.03] dark:group-hover:border-white/15 dark:group-hover:bg-white/[0.06]"
                           >
-                            <ChevronRight size={16} className="mt-[2px] shrink-0 text-accent dark:text-accent-neon" />
+                            <ChevronRight size={18} className="mt-0.5 shrink-0 text-accent dark:text-accent-neon" />
                             <span>{h}</span>
                           </li>
                         ))}
@@ -254,7 +301,7 @@ export function Experience() {
                     )}
 
                     {exp.skills && (
-                      <p className="mt-4 rounded-xl border border-accent/20 bg-accent/5 px-4 py-3 text-sm font-semibold leading-relaxed text-ink dark:border-accent-neon/15 dark:bg-accent-neon/5 dark:text-ink">
+                      <p className="experience-timeline__skills mt-4 rounded-xl border border-accent/20 bg-accent/5 px-4 py-3 font-semibold text-ink dark:border-accent-neon/15 dark:bg-accent-neon/5 dark:text-white">
                         {exp.skills}
                       </p>
                     )}

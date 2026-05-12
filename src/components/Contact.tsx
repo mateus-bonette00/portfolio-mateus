@@ -29,7 +29,7 @@ export function Contact() {
               <span className="text-gradient">Vamos colocar de pé.</span>
             </h2>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-dim sm:text-lg">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-dim sm:text-xl">
               Estou aberto a vagas full-time, freelances e projetos colaborativos. Respondo rápido, normalmente no mesmo dia.
             </p>
 

@@ -37,12 +37,12 @@ export function Projects() {
             eyebrow="Projetos"
             title={
               <>
-                <span className="text-gradient-static">Trabalhos que </span>
-                <span className="text-gradient">construí</span>
+                <span className="text-gradient-static">Projetos Que Me Fizeram </span>
+                <span className="text-gradient">Crescer</span>
                 <span className="text-gradient-static">.</span>
               </>
             }
-            description="Seleção em construção. Em breve, casos completos com problema, processo e resultado."
+            description="Da primeira linha de código na faculdade até sistemas entregues, vendidos e em produção. Aqui está o que construí em cada fase, com contexto, tecnologia e propósito."
           />
 
           <div className="hidden max-w-[14rem] border-l border-accent/30 pl-4 pb-10 lg:block">
@@ -59,7 +59,7 @@ export function Projects() {
       <div className="projects-case-bleed">
         <div className="projects-case-scroll" aria-label="Carrossel horizontal de projetos">
           <div className="projects-case-track">
-            {PROJECTS.map((project, index) => (
+            {PROJECTS.slice(0, 6).map((project, index) => (
               <ProjectCaseCard key={project.id} project={project} index={index} />
             ))}
           </div>
@@ -83,7 +83,7 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
   const title = project.title.replace(/^Em breve:\s*/i, '')
   const projectNumber = String(index + 1).padStart(2, '0')
   const stackLine = project.tags.slice(0, 2).join(' + ')
-  const platform = getProjectPlatform(project)
+  const deviceType = getDeviceType(project)
   const isPlaceholder = /espaço reservado|em breve|conteúdo será adicionado/i.test(project.description)
   const coverSummary = isPlaceholder
     ? 'Case em preparação para mostrar problema, solução, processo e resultado.'
@@ -171,21 +171,11 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
               <span>{project.year ?? '2025'}</span>
               <span>{stackLine}</span>
             </div>
-            <h3 title={title}>{title}</h3>
+            <h3 title={title} style={getTitleFontStyle(title)}>{title}</h3>
             <p>{coverSummary}</p>
           </div>
 
-          <div className="project-book__seal" aria-hidden>
-            <img
-              src="/images/logo-branca-mateus.png"
-              alt=""
-              className="project-book__seal-logo"
-              draggable={false}
-            />
-            <small>Portfolio case</small>
-          </div>
-
-          <ProjectDeviceShowcase project={project} index={index} title={title} platform={platform} />
+          <ProjectDeviceShowcase project={project} index={index} title={title} deviceType={deviceType} />
 
           <ul className="project-book__tags" aria-label={`Tecnologias do projeto ${title}`}>
             {project.tags.map((tag) => (
@@ -198,36 +188,60 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
   )
 }
 
-function getProjectPlatform(project: Project): NonNullable<Project['platform']> {
-  if (project.platform) return project.platform
-
+export function getDeviceType(project: Project): 'desktop' | 'mobile' {
+  if (project.deviceType) return project.deviceType
   const mobileOnlyTags = /react native|flutter|swift|kotlin|android|ios|mobile/i
-  return project.tags.some((tag) => mobileOnlyTags.test(tag)) ? 'mobile' : 'responsive'
+  return project.tags.some((tag) => mobileOnlyTags.test(tag)) ? 'mobile' : 'desktop'
 }
 
-function ProjectDeviceShowcase({
+export function getTitleFontStyle(title: string): CSSProperties {
+  const longest = Math.max(...title.split(/\s+/).map(w => w.length))
+  if (longest <= 5) return { fontSize: 'clamp(1.35rem, 1.8vw, 2.1rem)' }
+  if (longest <= 7) return { fontSize: 'clamp(1.2rem, 1.6vw, 1.9rem)' }
+  if (longest <= 9) return {}
+  return { fontSize: 'clamp(0.95rem, 1.25vw, 1.5rem)' }
+}
+
+export function getArchiveTitleFontStyle(title: string): CSSProperties {
+  const longest = Math.max(...title.split(/\s+/).map(w => w.length))
+  if (longest <= 5) return { fontSize: 'clamp(1.25rem, 1.65vw, 1.95rem)' }
+  if (longest <= 7) return { fontSize: 'clamp(1.1rem, 1.45vw, 1.72rem)' }
+  if (longest <= 9) return {}
+  return { fontSize: 'clamp(0.9rem, 1.15vw, 1.38rem)' }
+}
+
+export function ProjectDeviceShowcase({
   project,
   index,
   title,
-  platform,
+  deviceType,
 }: {
   project: Project
   index: number
   title: string
-  platform: NonNullable<Project['platform']>
+  deviceType: 'desktop' | 'mobile'
 }) {
-  const isMobileOnly = platform === 'mobile'
-  const desktopImage = project.desktopImage ?? project.image
-  const mobileImage = project.mobileImage ?? project.image
+  const isDesktop = deviceType === 'desktop'
+  const previewImage = isDesktop
+    ? (project.desktopImage ?? project.image)
+    : (project.mobileImage ?? project.image)
+  const previewStyle = previewImage
+    ? ({ '--project-preview-image': `url("${previewImage}")` } as CSSProperties)
+    : undefined
 
   return (
-    <div className={`project-device project-device--${platform}`} aria-hidden>
-      {!isMobileOnly && (
+    <div
+      className={`project-device project-device--${deviceType}`}
+      style={previewStyle}
+      data-has-preview={previewImage ? 'true' : undefined}
+      aria-hidden
+    >
+      {isDesktop ? (
         <div className="project-device__monitor">
           <div className="project-device__monitor-frame">
             <div className="project-device__desktop-screen">
-              {desktopImage ? (
-                <img src={desktopImage} alt="" draggable={false} />
+              {previewImage ? (
+                <img src={previewImage} alt="" draggable={false} />
               ) : (
                 <>
                   <span className="project-device__window-bar" />
@@ -239,32 +253,32 @@ function ProjectDeviceShowcase({
           </div>
           <span className="project-device__monitor-stand" />
         </div>
-      )}
-
-      <div className="project-device__phone">
-        <div className="project-device__phone-frame">
-          <span className="project-device__notch" />
-          <div className="project-device__screen">
-            {mobileImage ? (
-              <img src={mobileImage} alt="" draggable={false} />
-            ) : (
-              <>
-                <ProjectGlyph index={index} />
-                <span title={title}>{title}</span>
-              </>
-            )}
+      ) : (
+        <div className="project-device__phone">
+          <div className="project-device__phone-frame">
+            <span className="project-device__notch" />
+            <div className="project-device__screen">
+              {previewImage ? (
+                <img src={previewImage} alt="" draggable={false} />
+              ) : (
+                <>
+                  <ProjectGlyph index={index} />
+                  <span title={title}>{title}</span>
+                </>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <span className="project-device__badge">
-        {isMobileOnly ? 'Mobile app' : 'Desktop + mobile'}
+        {isDesktop ? 'Web app' : 'Mobile app'}
       </span>
     </div>
   )
 }
 
-function ProjectGlyph({ index }: { index: number }) {
+export function ProjectGlyph({ index }: { index: number }) {
   const variants = [
     <svg key="0" width="112" height="112" viewBox="0 0 120 120" aria-hidden>
       <circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" strokeWidth="1.2" />

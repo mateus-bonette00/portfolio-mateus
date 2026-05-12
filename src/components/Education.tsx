@@ -138,10 +138,11 @@ export function Education() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 flex justify-center"
+          className="mt-10 flex w-full justify-center px-3 sm:px-4 md:px-0"
         >
           <a
-            href="#"
+            href="/Diploma_Graduacao_2020001519.pdf"
+            download="Diploma_Graduacao_2020001519.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="projects-view-all"

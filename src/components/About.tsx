@@ -63,7 +63,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="-mt-4 max-w-[72ch] space-y-4 text-pretty text-[1rem] leading-8 text-ink-dim sm:text-[1.08rem] sm:leading-8"
+              className="-mt-4 max-w-[72ch] space-y-4 text-pretty text-[1.125rem] leading-8 text-ink-dim sm:text-[1.25rem] sm:leading-8"
             >
               {ABOUT_PARAGRAPHS.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
@@ -115,7 +115,7 @@ export function About() {
                 <h3 className="mt-4 font-display text-base font-bold text-ink sm:text-lg">
                   {p.title}
                 </h3>
-                <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-dim sm:text-base">
+                <p className="mt-2 text-[1.07rem] leading-relaxed text-ink-dim sm:text-lg">
                   {p.text}
                 </p>
               </motion.div>

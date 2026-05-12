@@ -23,7 +23,9 @@ const ProjectDetailPage = lazy(() =>
 const ProjectsArchivePage = lazy(() =>
   import('./components/ProjectPages').then((module) => ({ default: module.ProjectsArchivePage })),
 )
-
+const LinksPage = lazy(() =>
+  import('./components/LinksPage').then((module) => ({ default: module.LinksPage })),
+)
 
 function LazyFallback() {
   return <div className="min-h-24" aria-hidden="true" />
@@ -33,6 +35,15 @@ export default function App() {
   const pathname = typeof window === 'undefined' ? '/' : window.location.pathname
   const projectId = pathname.match(/^\/projetos\/([^/]+)$/)?.[1]
   const isProjectsArchive = pathname === '/projetos'
+  const isLinksPage = pathname === '/links-contatos'
+
+  if (isLinksPage) {
+    return (
+      <Suspense fallback={<LazyFallback />}>
+        <LinksPage />
+      </Suspense>
+    )
+  }
 
   return (
     <div className="relative isolate min-h-screen overflow-x-hidden bg-bg text-ink">

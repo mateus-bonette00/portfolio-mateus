@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { PROJECTS } from '../data/portfolio'
 import type { Project } from '../types'
+import { ProjectDeviceShowcase, getDeviceType, getArchiveTitleFontStyle } from './Projects'
 
 const PROJECT_VISUALS = [
   { accent: '#60A5FA', wash: 'rgba(96,165,250,0.22)', ghost: 'rgba(34,211,238,0.08)' },
@@ -111,12 +112,12 @@ export function ProjectsArchivePage() {
                 Todos os projetos
               </p>
               <h1 className="mt-4 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl lg:text-6xl">
-                <span className="text-gradient-static">Trabalhos que </span>
-                <span className="text-gradient">construí</span>
+                <span className="text-gradient-static">Projetos Que Me Fizeram </span>
+                <span className="text-gradient">Crescer</span>
                 <span className="text-gradient-static">.</span>
               </h1>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-dim sm:text-lg">
-                Cada livro abre uma página com o detalhamento completo do projeto.
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-dim sm:text-xl">
+                Da primeira linha de código na faculdade até sistemas entregues, vendidos e em produção. Aqui está o que construí em cada fase, com contexto, tecnologia e propósito.
               </p>
             </div>
           </motion.div>
@@ -226,19 +227,11 @@ function ArchiveBookCard({ project, index }: { project: Project; index: number }
               <span>{project.year ?? '2025'}</span>
               <span>{stackLine}</span>
             </div>
-            <h3 title={title}>{title}</h3>
+            <h3 title={title} style={getArchiveTitleFontStyle(title)}>{title}</h3>
             <p>{coverSummary}</p>
           </div>
 
-          <div className="project-book__seal" aria-hidden>
-            <img
-              src="/images/logo-branca-mateus.png"
-              alt=""
-              className="project-book__seal-logo"
-              draggable={false}
-            />
-            <small>Portfolio case</small>
-          </div>
+          <ProjectDeviceShowcase project={project} index={index} title={title} deviceType={getDeviceType(project)} />
 
           <ul className="project-book__tags" aria-label={`Tecnologias do projeto ${title}`}>
             {project.tags.map((tag) => (

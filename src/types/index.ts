@@ -7,6 +7,7 @@ export type Project = {
   desktopImage?: string
   mobileImage?: string
   platform?: 'responsive' | 'mobile'
+  deviceType?: 'desktop' | 'mobile'
   link?: string
   repo?: string
   year?: string

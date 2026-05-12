@@ -58,7 +58,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 max-w-2xl text-base font-medium leading-relaxed text-ink-dim sm:text-lg"
+            className="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-ink-dim sm:text-xl"
           >
             {PROFILE.tagline}
           </motion.p>
