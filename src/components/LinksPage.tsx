@@ -19,16 +19,12 @@ const LINKS = [
     description: 'Veja meus projetos e experiências',
     href: '/',
     icon: Globe,
-    accent: 'from-blue-500/20 to-blue-600/10',
-    iconColor: 'text-blue-500 dark:text-blue-400',
   },
   {
     label: 'LinkedIn',
     description: 'Conecte-se comigo profissionalmente',
     href: PROFILE.social.linkedin,
     icon: Linkedin,
-    accent: 'from-sky-500/20 to-sky-600/10',
-    iconColor: 'text-sky-500 dark:text-sky-400',
     external: true,
   },
   {
@@ -36,8 +32,6 @@ const LINKS = [
     description: 'Confira meus repositórios e código',
     href: PROFILE.social.github,
     icon: Github,
-    accent: 'from-slate-500/20 to-slate-600/10',
-    iconColor: 'text-ink dark:text-ink',
     external: true,
   },
   {
@@ -45,8 +39,6 @@ const LINKS = [
     description: 'Me siga nas redes sociais',
     href: PROFILE.social.instagram,
     icon: Instagram,
-    accent: 'from-pink-500/20 to-purple-600/10',
-    iconColor: 'text-pink-500 dark:text-pink-400',
     external: true,
   },
   {
@@ -54,8 +46,6 @@ const LINKS = [
     description: 'Fale comigo diretamente',
     href: 'https://wa.me/5535988120174',
     icon: MessageCircle,
-    accent: 'from-green-500/20 to-green-600/10',
-    iconColor: 'text-green-500 dark:text-green-400',
     external: true,
   },
   {
@@ -63,8 +53,6 @@ const LINKS = [
     description: 'Me encontre no Discord',
     href: PROFILE.social.discord,
     icon: DiscordIcon,
-    accent: 'from-indigo-500/20 to-indigo-600/10',
-    iconColor: 'text-indigo-500 dark:text-indigo-400',
     external: true,
   },
   {
@@ -72,8 +60,6 @@ const LINKS = [
     description: PROFILE.email,
     href: `mailto:${PROFILE.email}`,
     icon: Mail,
-    accent: 'from-orange-500/20 to-orange-600/10',
-    iconColor: 'text-orange-500 dark:text-orange-400',
   },
 ]
 
@@ -142,27 +128,22 @@ export function LinksPage() {
                   href={link.href}
                   target={link.external ? '_blank' : undefined}
                   rel={link.external ? 'noopener noreferrer' : undefined}
-                  className="group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/70 px-5 py-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-300/60 hover:shadow-[0_8px_24px_-6px_rgba(59,130,246,0.18)] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-blue-400/30 dark:hover:bg-white/[0.07]"
+                  className="links-page-action group"
                 >
-                  <span
-                    aria-hidden
-                    className={`absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${link.accent}`}
-                  />
-
-                  <span
-                    className={`relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200/80 bg-white/80 shadow-sm dark:border-white/10 dark:bg-white/[0.06] ${link.iconColor}`}
-                  >
+                  <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-blue-300/45 bg-white/55 text-blue-700 shadow-sm dark:border-blue-400/30 dark:bg-white/[0.08] dark:text-blue-200">
                     <Icon size={20} />
                   </span>
 
-                  <span className="relative flex flex-col gap-0.5">
-                    <span className="text-sm font-semibold text-ink leading-tight">
+                  <span className="relative flex min-w-0 flex-1 flex-col gap-0.5">
+                    <span className="text-sm font-semibold leading-tight text-blue-900 dark:text-blue-100">
                       {link.label}
                     </span>
-                    <span className="text-xs text-ink-mute">{link.description}</span>
+                    <span className="text-xs text-blue-800/70 dark:text-blue-100/65">
+                      {link.description}
+                    </span>
                   </span>
 
-                  <span className="relative ml-auto text-ink-mute opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-60 -translate-x-1">
+                  <span className="relative shrink-0 text-blue-800/50 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-70 dark:text-blue-100/50 -translate-x-1">
                     <ArrowLeft size={16} className="rotate-180" />
                   </span>
                 </a>
