@@ -313,8 +313,9 @@
     border-color: rgb(96 165 250 / 0.5);
   }
 
-  .btn-hero-contact {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-glow/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+  .btn-hero-contact,
+  .links-page-action {
+    @apply text-sm font-semibold transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-glow/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
     color: rgb(29 78 216);
     border: 1px solid rgb(96 165 250 / 0.42);
     background: linear-gradient(
@@ -327,7 +328,8 @@
       0 2px 12px -4px rgb(59 130 246 / 0.25);
   }
 
-  .btn-hero-contact:hover {
+  .btn-hero-contact:hover,
+  .links-page-action:hover {
     color: rgb(30 64 175);
     border-color: rgb(59 130 246 / 0.55);
     background: linear-gradient(
@@ -341,7 +343,8 @@
     transform: translateY(-1px);
   }
 
-  .dark .btn-hero-contact {
+  .dark .btn-hero-contact,
+  .dark .links-page-action {
     color: rgb(191 219 254);
     border-color: rgb(96 165 250 / 0.38);
     background: linear-gradient(
@@ -354,7 +357,8 @@
       0 0 20px -6px rgb(59 130 246 / 0.4);
   }
 
-  .dark .btn-hero-contact:hover {
+  .dark .btn-hero-contact:hover,
+  .dark .links-page-action:hover {
     color: rgb(224 242 254);
     border-color: rgb(96 165 250 / 0.55);
     background: linear-gradient(
@@ -365,6 +369,14 @@
     box-shadow:
       0 0 0 1px rgb(147 197 253 / 0.3),
       0 0 28px -4px rgb(59 130 246 / 0.55);
+  }
+
+  .btn-hero-contact {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5;
+  }
+
+  .links-page-action {
+    @apply relative flex w-full items-center gap-4 overflow-hidden rounded-full px-5 py-4 text-left;
   }
 
   .pill {
