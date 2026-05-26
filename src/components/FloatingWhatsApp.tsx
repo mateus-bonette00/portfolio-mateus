@@ -1,17 +1,28 @@
+import { PROFILE, UI } from '../data/portfolio'
 import { WhatsAppIcon } from './icons/WhatsAppIcon'
 
-const WHATSAPP_NUMBER = '5535998183459'
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`
+type FloatingWhatsAppProps = {
+  variant?: 'default' | 'static' | 'inline'
+}
 
-export function FloatingWhatsApp() {
+export function FloatingWhatsApp({ variant = 'default' }: FloatingWhatsAppProps) {
+  const isInline = variant === 'inline'
+  const isStatic = variant === 'static' || isInline
+  const className = [
+    'floating-whatsapp',
+    isStatic ? 'floating-whatsapp--static' : '',
+    isInline ? 'floating-whatsapp--inline' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
   return (
     <a
-      href={WHATSAPP_URL}
+      href={PROFILE.social.whatsapp}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Abrir conversa no WhatsApp"
+      aria-label={UI.floatingWhatsApp.aria}
       data-cursor="hover"
-      className="floating-whatsapp"
+      className={className}
     >
       <span aria-hidden className="floating-whatsapp__glow" />
       <WhatsAppIcon size={24} className="relative z-[2]" />

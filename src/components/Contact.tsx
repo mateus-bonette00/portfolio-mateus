@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Github, Instagram, Linkedin, Mail } from 'lucide-react'
-import { PROFILE } from '../data/portfolio'
+import { PROFILE, UI } from '../data/portfolio'
 import { DiscordIcon } from './icons/DiscordIcon'
+import { WhatsAppIcon } from './icons/WhatsAppIcon'
 
 export function Contact() {
   return (
@@ -21,19 +22,20 @@ export function Contact() {
           <div className="relative">
             <div className="flex items-center gap-4">
               <span className="eyebrow-rule" aria-hidden />
-              <span className="heading-eyebrow">Vamos conversar</span>
+              <span className="heading-eyebrow">{UI.contact.eyebrow}</span>
             </div>
 
             <h2 className="mt-4 section-title-display max-w-3xl">
-              <span className="text-ink">Tem uma ideia?</span>{' '}
-              <span className="text-gradient">Vamos colocar de pé.</span>
+              <span className="text-gradient">{UI.contact.title}</span>
             </h2>
 
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-dim sm:text-xl">
-              Estou aberto a vagas full-time, freelances e projetos colaborativos. Respondo rápido, normalmente no mesmo dia.
-            </p>
+            <div className="mt-5 min-w-0 space-y-4 text-lg leading-relaxed text-ink-dim sm:max-w-xl sm:text-xl">
+              {UI.contact.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a
                 href={`mailto:${PROFILE.email}`}
                 className="btn-primary group"
@@ -45,6 +47,16 @@ export function Contact() {
                   size={16}
                   className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 />
+              </a>
+              <a
+                href={PROFILE.social.whatsapp}
+                className="btn-ghost group"
+                data-cursor="hover"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhatsAppIcon size={16} />
+                WhatsApp
               </a>
               <a
                 href={PROFILE.social.linkedin}
@@ -88,10 +100,9 @@ export function Contact() {
               </a>
             </div>
 
-            <div className="mt-10 grid gap-4 border-t border-slate-200 pt-6 dark:border-white/10 sm:grid-cols-3">
-              <InfoBlock label="Resposta" value="Em até 24 horas" />
-              <InfoBlock label="Localização" value="Brasil, remoto" />
-              <InfoBlock label="Status" value="Online Para Novas Oportunidades" pulse />
+            <div className="mt-10 grid gap-4 border-t border-slate-200 pt-6 dark:border-white/10 sm:grid-cols-2">
+              <InfoBlock label={UI.contact.responseLabel} value={UI.contact.responseValue} />
+              <InfoBlock label={UI.contact.locationLabel} value={UI.contact.locationValue} />
             </div>
           </div>
         </motion.div>

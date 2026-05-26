@@ -1,45 +1,9 @@
 import { motion } from 'framer-motion'
 import { BrainCircuit, BriefcaseBusiness, GraduationCap, Layers, Rocket, Sparkles } from 'lucide-react'
 import { SectionTitle } from './SectionTitle'
+import { UI } from '../data/portfolio'
 
-const PILLARS = [
-  {
-    icon: GraduationCap,
-    title: 'Base Acadêmica',
-    text: 'Formado em Ciência da Computação pela UNIFEI, com base sólida para aprender, construir e evoluir com consistência.',
-  },
-  {
-    icon: BrainCircuit,
-    title: 'Direção em IA',
-    text: 'Atuo com inteligência artificial aplicada, agentes com LLMs, automações inteligentes e visão computacional.',
-  },
-  {
-    icon: BriefcaseBusiness,
-    title: 'Visão Comercial',
-    text: 'Minha experiência com vendas e marketing me ajuda a pensar em tecnologia conectada com cliente, produto e resultado.',
-  },
-  {
-    icon: Layers,
-    title: 'Full Stack',
-    text: 'Gosto de entender o produto inteiro: interface, backend, dados, usuário, processo e impacto final.',
-  },
-  {
-    icon: Rocket,
-    title: 'Empreendedorismo',
-    text: 'Penso como dono: olho para problema, oportunidade, custo, execução e retorno antes de escolher o caminho.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Comunicação Prática',
-    text: 'Minha experiência como professor me ajuda a explicar ideias difíceis de forma simples e alinhar pessoas diferentes.',
-  },
-]
-
-const ABOUT_PARAGRAPHS = [
-  'Sou desenvolvedor full stack e Engenheiro de IA há 3 anos e meio, formado em Ciência da Computação pela UNIFEI (Universidade Federal de Itajubá). Construo sistemas web, mobile e produtos de inteligência artificial na prática, como agentes com LLMs, automações inteligentes e visão computacional aplicada à indústria.',
-  'O que me diferencia é o caminho até aqui. Antes de programar profissionalmente, atuei dois anos como professor de cursinho e passei pela área comercial em fábricas de software, com vendas e marketing. Aprendi cedo a explicar coisa difícil de forma simples, ouvir o cliente antes de propor solução e pensar produto, não só código.',
-  'Hoje uno três coisas que raramente andam juntas: domínio técnico, leitura de negócio e mentalidade de dono. Gosto de problemas difíceis, entrego com foco em resultado e penso cada projeto como se fosse meu.',
-]
+const PILLAR_ICONS = [GraduationCap, BrainCircuit, BriefcaseBusiness, Layers, Rocket, Sparkles]
 
 export function About() {
   return (
@@ -48,12 +12,12 @@ export function About() {
         <div className="grid items-stretch gap-8 lg:gap-10 xl:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]">
           <div className="grid h-full grid-rows-[auto_auto_1fr] gap-6 2xl:sticky 2xl:top-28">
             <SectionTitle
-              eyebrow="Sobre mim"
+              eyebrow={UI.about.eyebrow}
               title={
                 <>
-                  <span className="text-gradient-static">Tecnologia, Negócio e </span>
-                  <span className="text-gradient">Evolução</span>
-                  <span className="text-gradient-static">.</span>
+                  <span className="text-gradient-static">{UI.about.titleStart}</span>
+                  <span className="text-gradient">{UI.about.titleAccent}</span>
+                  <span className="text-gradient-static">{UI.about.titleEnd}</span>
                 </>
               }
             />
@@ -65,7 +29,7 @@ export function About() {
               transition={{ duration: 0.5, delay: 0.08 }}
               className="-mt-4 max-w-[72ch] space-y-4 text-pretty text-[1.125rem] leading-8 text-ink-dim sm:text-[1.25rem] sm:leading-8"
             >
-              {ABOUT_PARAGRAPHS.map((paragraph) => (
+              {UI.about.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </motion.div>
@@ -81,17 +45,17 @@ export function About() {
               <div className="relative z-10 h-full min-h-[clamp(20rem,42vw,41rem)] overflow-hidden rounded-xl xl:min-h-0">
                 <img
                   src="/images/formatura-unifei2.jpeg"
-                  alt="Mateus Bonette na cerimônia de formatura da UNIFEI"
+                  alt={UI.about.graduationImageAlt}
                   className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                   loading="lazy"
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <figcaption className="absolute bottom-4 left-4 right-4">
                   <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-accent-glow">
-                    Formação
+                    {UI.about.graduationLabel}
                   </div>
                   <div className="mt-1 font-display text-base font-bold text-white">
-                    Ciência da Computação · UNIFEI · 2025
+                    {UI.about.graduationCaption}
                   </div>
                 </figcaption>
               </div>
@@ -99,7 +63,9 @@ export function About() {
           </div>
 
           <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 xl:pt-20">
-            {PILLARS.map((p, i) => (
+            {UI.about.pillars.map((p, i) => {
+              const Icon = PILLAR_ICONS[i] ?? Sparkles
+              return (
               <motion.div
                 key={p.title}
                 initial={{ opacity: 0, y: 16 }}
@@ -110,7 +76,7 @@ export function About() {
                 data-cursor="hover"
               >
                 <div className="icon-tile h-10 w-10">
-                  <p.icon size={18} strokeWidth={2} />
+                  <Icon size={18} strokeWidth={2} />
                 </div>
                 <h3 className="mt-4 font-display text-base font-bold text-ink sm:text-lg">
                   {p.title}
@@ -119,7 +85,7 @@ export function About() {
                   {p.text}
                 </p>
               </motion.div>
-            ))}
+            )})}
           </div>
         </div>
       </div>

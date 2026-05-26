@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
+import { UI } from '../data/portfolio'
 
 type Props = {
   className?: string
@@ -14,8 +15,8 @@ export function ThemeToggle({ className = '' }: Props) {
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={isDark ? 'Ativar modo claro' : 'Ativar modo escuro'}
-      title={isDark ? 'Modo claro' : 'Modo escuro'}
+      aria-label={isDark ? UI.theme.enableLight : UI.theme.enableDark}
+      title={isDark ? UI.theme.lightTitle : UI.theme.darkTitle}
       className={`relative inline-flex shrink-0 basis-9 items-center justify-center overflow-hidden rounded-full glass text-ink transition-colors duration-300 hover:border-accent/40 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 ${className}`}
       style={{ width: '2.25rem', height: '2.25rem' }}
     >

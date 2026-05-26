@@ -1,22 +1,22 @@
 import { motion } from 'framer-motion'
 import { Award, Calendar, Download, GraduationCap, MapPin } from 'lucide-react'
 import { SectionTitle } from './SectionTitle'
-import { EDUCATION } from '../data/portfolio'
+import { EDUCATION, UI } from '../data/portfolio'
 
 export function Education() {
   return (
     <section id="education" data-codex-id="education-section" className="section">
       <div className="container-1200 relative z-10">
         <SectionTitle
-          eyebrow="Formação"
+          eyebrow={UI.education.eyebrow}
           title={
             <>
-              <span className="text-gradient-static">Bacharelado em </span>
-              <span className="text-gradient">Ciência da Computação</span>
-              <span className="text-gradient-static">.</span>
+              <span className="text-gradient-static">{UI.education.titleStart}</span>
+              <span className="text-gradient">{UI.education.titleAccent}</span>
+              <span className="text-gradient-static">{UI.education.titleEnd}</span>
             </>
           }
-          description="Formação concluída na Universidade Federal de Itajubá (UNIFEI), uma das principais instituições de engenharia e tecnologia do país."
+          description={UI.education.description}
         />
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
@@ -31,7 +31,7 @@ export function Education() {
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
                   src="/images/formatura-unifei2.jpeg"
-                  alt="Mateus Bonette na cerimônia de formatura da UNIFEI"
+                  alt={UI.education.mainImageAlt}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
@@ -39,7 +39,7 @@ export function Education() {
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
                   <div>
                     <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent-glow">
-                      Cerimônia de Colação de Grau
+                      {UI.education.ceremony}
                     </div>
                     <div className="mt-1 font-display text-lg font-semibold text-white drop-shadow">
                       UNIFEI · 2025
@@ -47,7 +47,7 @@ export function Education() {
                   </div>
                   <span className="pill">
                     <GraduationCap size={12} />
-                    Diplomado
+                    {UI.education.graduated}
                   </span>
                 </div>
               </div>
@@ -57,17 +57,17 @@ export function Education() {
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
                   src="/images/todos-formandos.jpg"
-                  alt="Turma de formandos da UNIFEI"
+                  alt={UI.education.classImageAlt}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3">
                   <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/80 drop-shadow">
-                    Turma 2025
+                    {UI.education.classYear}
                   </div>
                   <div className="font-display text-sm font-semibold text-white drop-shadow">
-                    Ciência da Computação
+                    {UI.education.degreeShort}
                   </div>
                 </div>
               </div>
@@ -75,16 +75,16 @@ export function Education() {
 
             <div className="card p-6">
               <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-mute">
-                Em números
+                {UI.education.numbers}
               </div>
               <div className="mt-4 grid grid-cols-2 gap-4">
                 <div>
                   <div className="font-display text-3xl font-bold text-ink">5</div>
-                  <div className="mt-1 text-xs text-ink-dim">anos de formação</div>
+                  <div className="mt-1 text-xs text-ink-dim">{UI.education.yearsFormation}</div>
                 </div>
                 <div>
                   <div className="font-display text-3xl font-bold text-ink">∞</div>
-                  <div className="mt-1 text-xs text-ink-dim">linhas escritas</div>
+                  <div className="mt-1 text-xs text-ink-dim">{UI.education.linesWritten}</div>
                 </div>
               </div>
             </div>
@@ -113,7 +113,7 @@ export function Education() {
               </span>
               <span className="inline-flex items-center gap-2">
                 <MapPin size={14} className="text-ink-mute" />
-                Itajubá, MG
+                {UI.education.location}
               </span>
             </div>
 
@@ -147,11 +147,11 @@ export function Education() {
             rel="noopener noreferrer"
             className="projects-view-all"
             data-cursor="hover"
-            title="Ver Diploma — Bacharelado em Ciência da Computação · UNIFEI"
+            title={UI.education.diplomaTitle}
           >
             <span aria-hidden className="projects-view-all__glow" />
             <Download size={22} className="relative z-[2] shrink-0" aria-hidden />
-            <span className="projects-view-all__text">Ver Diploma</span>
+            <span className="projects-view-all__text">{UI.education.viewDiploma}</span>
           </a>
         </motion.div>
       </div>

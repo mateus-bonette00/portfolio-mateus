@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   BriefcaseBusiness,
@@ -13,24 +13,57 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { NAV_LINKS } from '../data/portfolio'
+import { getCurrentLocale, getLocalizedHref, getLocalizedPath, stripLocaleFromPath } from '../i18n/routes'
 import { ThemeToggle } from './ThemeToggle'
 import { Logo } from './Logo'
+import { LanguageToggle } from './LanguageToggle'
 
 const NAV_ICONS: Record<string, LucideIcon> = {
   '#hero': Home,
   '#about': UserRound,
-  '#projects': BriefcaseBusiness,
+  '/projetos': BriefcaseBusiness,
   '#skills': Code2,
   '#experience': History,
   '#contact': Mail,
 }
 
+function isProjectsPath(pathname: string) {
+  const internalPath = stripLocaleFromPath(pathname)
+  return internalPath === '/projetos' || internalPath.startsWith('/projetos/')
+}
+
+function resolveNavHref(href: string, isHomePage: boolean) {
+  const locale = getCurrentLocale()
+  if (href.startsWith('/')) return getLocalizedHref(href, locale)
+  return isHomePage ? href : `${getLocalizedPath('/', locale)}${href}`
+}
+
+function resolveInitialActive(): string {
+  if (typeof window === 'undefined') return '#hero'
+  if (isProjectsPath(window.location.pathname)) return '/projetos'
+  const hash = window.location.hash
+  if (hash && NAV_LINKS.some((link) => link.href === hash)) return hash
+  return '#hero'
+}
+
 export function Navbar() {
+  const locale = getCurrentLocale()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [active, setActive] = useState<string>('#hero')
-  const isHomePage = typeof window === 'undefined' || window.location.pathname === '/'
-  const homeHref = (href: string) => (isHomePage ? href : `/${href}`)
+  const [active, setActive] = useState<string>(resolveInitialActive)
+  const scrollLockRef = useRef(false)
+  const internalPath = typeof window === 'undefined' ? '/' : stripLocaleFromPath(window.location.pathname)
+  const isHomePage = internalPath === '/'
+  const openMenuLabel = locale === 'en' ? 'Open menu' : 'Abrir menu'
+  const closeMenuLabel = locale === 'en' ? 'Close menu' : 'Fechar menu'
+  const homeAriaLabel = locale === 'en' ? 'Mateus Bonette - Home' : 'Mateus Bonette - Início'
+
+  const handleNavClick = (href: string) => {
+    setActive(href)
+    if (!href.startsWith('#')) return
+    scrollLockRef.current = true
+    setTimeout(() => { scrollLockRef.current = false }, 1200)
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -40,15 +73,18 @@ export function Navbar() {
   }, [])
 
   useEffect(() => {
-    const sections = NAV_LINKS.map((link) => {
-      const id = link.href.replace('#', '')
-      const element = document.getElementById(id)
-      return element ? { href: link.href, element } : null
-    }).filter((section): section is { href: string; element: HTMLElement } => !!section)
+    const sections = NAV_LINKS.filter((link) => link.href.startsWith('#'))
+      .map((link) => {
+        const id = link.href.replace('#', '')
+        const element = document.getElementById(id)
+        return element ? { href: link.href, element } : null
+      })
+      .filter((section): section is { href: string; element: HTMLElement } => !!section)
 
     if (sections.length === 0) return
 
     const syncActiveSection = () => {
+      if (scrollLockRef.current) return
       const scrollY = window.scrollY
       const viewportProbe = scrollY + window.innerHeight * 0.35
       let current = sections[0].href
@@ -103,56 +139,67 @@ export function Navbar() {
             {NAV_LINKS.slice(0, 3).map((l) => (
               <NavLink
                 key={l.href}
-                href={homeHref(l.href)}
+                href={resolveNavHref(l.href, isHomePage)}
                 active={active === l.href}
                 label={l.label}
-                onClick={() => setActive(l.href)}
+                iconKey={l.href}
+                onClick={() => handleNavClick(l.href)}
               />
             ))}
           </ul>
 
-          <a
-            href={homeHref('#hero')}
-            className="relative col-span-3 flex items-center justify-center lg:col-span-1"
-            aria-label="Mateus Bonette - Início"
-          >
-            <span
-              aria-hidden
-              className={`pointer-events-none absolute inset-0 mx-auto my-auto h-24 w-24 rounded-full blur-2xl transition-opacity duration-500 sm:h-28 sm:w-28 lg:h-32 lg:w-32 ${
-                scrolled ? 'opacity-70' : 'opacity-90'
-              }`}
-              style={{
-                background:
-                  'radial-gradient(circle, rgba(96,165,250,0.45) 0%, rgba(59,130,246,0.22) 45%, transparent 72%)',
-              }}
-            />
-            <motion.span
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
-              className="relative"
+          <div className="relative col-span-3 flex flex-col items-center justify-center lg:col-span-1">
+            <a
+              href={resolveNavHref('#hero', isHomePage)}
+              className="relative flex items-center justify-center"
+              aria-label={homeAriaLabel}
             >
-              <Logo
-                className={`logo-adaptive mx-auto h-16 w-auto select-none object-contain transition-all duration-500 sm:h-20 lg:h-24 ${
-                  scrolled
-                    ? 'drop-shadow-[0_4px_18px_rgba(59,130,246,0.45)]'
-                    : 'drop-shadow-[0_8px_32px_rgba(59,130,246,0.55)]'
+              <span
+                aria-hidden
+                className={`pointer-events-none absolute inset-0 mx-auto my-auto h-24 w-24 rounded-full blur-2xl transition-opacity duration-500 sm:h-28 sm:w-28 lg:h-32 lg:w-32 ${
+                  scrolled ? 'opacity-70' : 'opacity-90'
                 }`}
+                style={{
+                  background:
+                    'radial-gradient(circle, rgba(96,165,250,0.45) 0%, rgba(59,130,246,0.22) 45%, transparent 72%)',
+                }}
               />
-            </motion.span>
-          </a>
+              <motion.span
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+                className="relative"
+              >
+                <Logo
+                  className={`logo-adaptive mx-auto h-16 w-auto select-none object-contain transition-all duration-500 sm:h-20 lg:h-24 ${
+                    scrolled
+                      ? 'drop-shadow-[0_4px_18px_rgba(59,130,246,0.45)]'
+                      : 'drop-shadow-[0_8px_32px_rgba(59,130,246,0.55)]'
+                  }`}
+                />
+              </motion.span>
+            </a>
+            <div className="hidden lg:flex mt-1.5">
+              <LanguageToggle navbarCenter />
+            </div>
+          </div>
 
           <div className="hidden items-center justify-start gap-2 pl-4 lg:flex xl:pl-6">
             {NAV_LINKS.slice(3).map((l) => (
               <NavLink
                 key={l.href}
-                href={homeHref(l.href)}
+                href={resolveNavHref(l.href, isHomePage)}
                 active={active === l.href}
                 label={l.label}
-                onClick={() => setActive(l.href)}
+                iconKey={l.href}
+                onClick={() => handleNavClick(l.href)}
               />
             ))}
             <ThemeToggle className="ml-1" />
+          </div>
+
+          <div className="absolute left-4 top-1/2 flex -translate-y-1/2 items-center lg:hidden">
+            <LanguageToggle navbarCenter className="scale-[0.85] origin-left" />
           </div>
 
           <div className="absolute right-4 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:hidden">
@@ -161,7 +208,7 @@ export function Navbar() {
               type="button"
               onClick={() => setOpen((v) => !v)}
               className="rounded-full glass p-2 cursor-pointer"
-              aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+              aria-label={open ? closeMenuLabel : openMenuLabel}
             >
               {open ? <X size={18} /> : <Menu size={18} />}
             </button>
@@ -177,21 +224,24 @@ export function Navbar() {
               transition={{ duration: 0.3 }}
               className="overflow-hidden lg:hidden"
             >
-              <ul className="flex flex-col gap-1 border-t border-slate-200/70 px-4 py-4 dark:border-white/10">
-                {NAV_LINKS.map((l) => (
-                  <li key={l.href}>
-                    <MobileNavLink
-                      href={homeHref(l.href)}
-                      label={l.label}
-                      active={active === l.href}
-                      onClick={() => {
-                        setActive(l.href)
-                        setOpen(false)
-                      }}
-                    />
-                  </li>
-                ))}
-              </ul>
+              <div className="border-t border-slate-200/70 px-4 py-4 dark:border-white/10">
+                <ul className="flex flex-col gap-1">
+                  {NAV_LINKS.map((l) => (
+                    <li key={l.href}>
+                      <MobileNavLink
+                        href={resolveNavHref(l.href, isHomePage)}
+                        label={l.label}
+                        active={active === l.href}
+                        iconKey={l.href}
+                        onClick={() => {
+                          handleNavClick(l.href)
+                          setOpen(false)
+                        }}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -203,15 +253,17 @@ export function Navbar() {
 function NavLink({
   href,
   label,
+  iconKey,
   active,
   onClick,
 }: {
   href: string
   label: string
+  iconKey: string
   active: boolean
   onClick: () => void
 }) {
-  const Icon = NAV_ICONS[href] ?? Home
+  const Icon = NAV_ICONS[iconKey] ?? Home
 
   return (
     <a
@@ -237,15 +289,17 @@ function NavLink({
 function MobileNavLink({
   href,
   label,
+  iconKey,
   active,
   onClick,
 }: {
   href: string
   label: string
+  iconKey: string
   active: boolean
   onClick: () => void
 }) {
-  const Icon = NAV_ICONS[href] ?? Home
+  const Icon = NAV_ICONS[iconKey] ?? Home
 
   return (
     <a

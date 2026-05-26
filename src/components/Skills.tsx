@@ -48,6 +48,7 @@ import {
   type SimpleIcon,
 } from 'simple-icons'
 import { SectionTitle } from './SectionTitle'
+import { UI } from '../data/portfolio'
 
 type BrandIcon = {
   type: 'brand'
@@ -90,56 +91,56 @@ const TECH_GROUPS: TechGroup[] = [
       {
         name: 'React',
         description: 'Componentes, estados, hooks e interfaces modernas.',
-        level: 92,
+        level: 100,
         color: '#149eca',
         icon: { type: 'brand', icon: siReact },
       },
       {
         name: 'TypeScript',
         description: 'Tipagem para reduzir erro e deixar o código mais claro.',
-        level: 90,
+        level: 100,
         color: '#3178c6',
         icon: { type: 'brand', icon: siTypescript },
       },
       {
         name: 'JavaScript',
         description: 'Base sólida para front, backend e automações.',
-        level: 90,
+        level: 100,
         color: '#c9a227',
         icon: { type: 'brand', icon: siJavascript },
       },
       {
         name: 'HTML',
         description: 'Estrutura semântica, acessível e bem organizada.',
-        level: 94,
+        level: 100,
         color: '#e34f26',
         icon: { type: 'brand', icon: siHtml5 },
       },
       {
         name: 'CSS',
         description: 'Layouts responsivos, animações e acabamento visual.',
-        level: 92,
+        level: 100,
         color: '#1572b6',
         icon: { type: 'brand', icon: siCss },
       },
       {
         name: 'Angular',
         description: 'Aplicações front com estrutura e componentes reutilizáveis.',
-        level: 78,
+        level: 100,
         color: '#c3002f',
         icon: { type: 'brand', icon: siAngular },
       },
       {
         name: 'Flutter',
         description: 'Desenvolvimento mobile com telas nativas e consistentes.',
-        level: 72,
+        level: 100,
         color: '#02569b',
         icon: { type: 'brand', icon: siFlutter },
       },
       {
         name: 'Dart',
         description: 'Base para criar aplicações mobile com Flutter.',
-        level: 70,
+        level: 100,
         color: '#0175c2',
         icon: { type: 'brand', icon: siDart },
       },
@@ -152,63 +153,63 @@ const TECH_GROUPS: TechGroup[] = [
       {
         name: 'Node.js',
         description: 'APIs, serviços e integrações do lado do servidor.',
-        level: 88,
+        level: 100,
         color: '#5fa04e',
         icon: { type: 'brand', icon: siNodedotjs },
       },
       {
         name: 'Express',
         description: 'Rotas, middlewares e APIs simples de manter.',
-        level: 86,
+        level: 100,
         color: '#64748b',
         icon: { type: 'brand', icon: siExpress },
       },
       {
         name: 'Python',
         description: 'Backend, automação, dados e scripts de produtividade.',
-        level: 86,
+        level: 100,
         color: '#3776ab',
         icon: { type: 'brand', icon: siPython },
       },
       {
         name: 'Django',
         description: 'Python para aplicações web com estrutura completa.',
-        level: 82,
+        level: 100,
         color: '#0c4b33',
         icon: { type: 'brand', icon: siDjango },
       },
       {
         name: 'PostgreSQL',
         description: 'Modelagem, consultas e persistência relacional.',
-        level: 85,
+        level: 100,
         color: '#4169e1',
         icon: { type: 'brand', icon: siPostgresql },
       },
       {
         name: 'MySQL',
         description: 'Banco relacional para sistemas web e aplicações internas.',
-        level: 80,
+        level: 100,
         color: '#4479a1',
         icon: { type: 'brand', icon: siMysql },
       },
       {
         name: 'APIs públicas',
         description: 'Consumo, tratamento de retorno e integração entre sistemas.',
-        level: 86,
+        level: 100,
         color: '#0f766e',
         icon: { type: 'line', icon: Globe2 },
       },
       {
         name: 'Modelagem de dados',
         description: 'Organização de entidades, relações e fluxo de informação.',
-        level: 80,
+        level: 100,
         color: '#475569',
         icon: { type: 'line', icon: Database },
       },
       {
         name: 'Web scraping',
         description: 'Coleta, limpeza e estruturação de dados da web.',
-        level: 82,
+        level: 100,
         color: '#2563eb',
         icon: { type: 'line', icon: SearchCode },
       },
@@ -221,42 +222,42 @@ const TECH_GROUPS: TechGroup[] = [
       {
         name: 'Python para dados',
         description: 'Limpeza, análise e automações com dados reais.',
-        level: 84,
+        level: 100,
         color: '#3776ab',
         icon: { type: 'brand', icon: siPython },
       },
       {
         name: 'Pandas',
         description: 'Tratamento de tabelas, filtros, agrupamentos e indicadores.',
-        level: 82,
+        level: 100,
         color: '#150458',
         icon: { type: 'brand', icon: siPandas },
       },
       {
         name: 'Streamlit',
         description: 'Apps de dados, protótipos e painéis interativos.',
-        level: 84,
+        level: 100,
         color: '#ff4b4b',
         icon: { type: 'brand', icon: siStreamlit },
       },
       {
         name: 'Visualização com Streamlit',
         description: 'Interfaces para explorar dados sem complicar o uso.',
-        level: 86,
+        level: 100,
         color: '#ef4444',
         icon: { type: 'line', icon: ChartNoAxesCombined },
       },
       {
         name: 'Matplotlib',
         description: 'Gráficos para análise exploratória e relatórios técnicos.',
-        level: 78,
+        level: 100,
         color: '#11557c',
         icon: { type: 'brand', icon: siPython },
       },
       {
         name: 'Seaborn',
         description: 'Visualizações estatísticas com leitura mais clara.',
-        level: 76,
+        level: 100,
         color: '#4f46e5',
         icon: { type: 'line', icon: Rows3 },
       },
@@ -269,56 +270,56 @@ const TECH_GROUPS: TechGroup[] = [
       {
         name: 'Cursor',
         description: 'Desenvolvimento assistido por IA dentro do editor.',
-        level: 90,
+        level: 100,
         color: '#6d5dfc',
         icon: { type: 'brand', icon: siCursor },
       },
       {
         name: 'Claude Code',
         description: 'Análise de código, refatoração e apoio em implementação.',
-        level: 88,
+        level: 100,
         color: '#b35a3a',
         icon: { type: 'brand', icon: siClaude },
       },
       {
         name: 'Codex',
         description: 'Agentes de código para criar, corrigir e validar projetos.',
-        level: 90,
+        level: 100,
         color: '#10a37f',
         icon: { type: 'line', icon: Code2 },
       },
       {
         name: 'Docker',
         description: 'Ambientes isolados para rodar aplicações com mais previsibilidade.',
-        level: 80,
+        level: 100,
         color: '#2496ed',
         icon: { type: 'brand', icon: siDocker },
       },
       {
         name: 'Git',
         description: 'Versionamento, histórico e organização do trabalho.',
-        level: 92,
+        level: 100,
         color: '#f05032',
         icon: { type: 'brand', icon: siGit },
       },
       {
         name: 'GitHub',
         description: 'Repositórios, colaboração, issues e entrega de código.',
-        level: 90,
+        level: 100,
         color: '#475569',
         icon: { type: 'brand', icon: siGithub },
       },
       {
         name: 'GitLab',
         description: 'Fluxo de repositórios, pipelines e organização de projeto.',
-        level: 78,
+        level: 100,
         color: '#fc6d26',
         icon: { type: 'brand', icon: siGitlab },
       },
       {
         name: 'Automação com IA',
         description: 'Redução de trabalho repetitivo usando scripts, agentes e integrações.',
-        level: 86,
+        level: 100,
         color: '#0f766e',
         icon: { type: 'line', icon: Bot },
       },
@@ -331,49 +332,49 @@ const TECH_GROUPS: TechGroup[] = [
       {
         name: 'Figma',
         description: 'Wireframes, layout visual, protótipos e organização de interface.',
-        level: 86,
+        level: 100,
         color: '#f24e1e',
         icon: { type: 'brand', icon: siFigma },
       },
       {
         name: 'Design UX/UI',
         description: 'Fluxos, hierarquia visual, legibilidade e experiência de uso.',
-        level: 88,
+        level: 100,
         color: '#7c3aed',
         icon: { type: 'line', icon: LayoutTemplate },
       },
       {
         name: 'Canva',
         description: 'Peças visuais rápidas para comunicação e apresentação.',
-        level: 84,
+        level: 100,
         color: '#00c4cc',
         icon: { type: 'line', icon: Presentation },
       },
       {
         name: 'OBS Studio',
         description: 'Gravação, transmissão e produção de conteúdo visual.',
-        level: 74,
+        level: 100,
         color: '#475569',
         icon: { type: 'brand', icon: siObsstudio },
       },
       {
         name: 'Google Planilhas / Excel',
         description: 'Organização de dados, fórmulas e controles operacionais.',
-        level: 82,
+        level: 100,
         color: '#0f9d58',
         icon: { type: 'brand', icon: siGooglesheets },
       },
       {
         name: 'Google Docs / Word',
         description: 'Documentação, propostas, textos e estruturação de informação.',
-        level: 84,
+        level: 100,
         color: '#4285f4',
         icon: { type: 'brand', icon: siGoogledocs },
       },
       {
         name: 'Google Apresentações',
         description: 'Slides claros para vender ideias e explicar soluções.',
-        level: 82,
+        level: 100,
         color: '#fbbc04',
         icon: { type: 'brand', icon: siGoogleslides },
       },
@@ -386,28 +387,28 @@ const TECH_GROUPS: TechGroup[] = [
       {
         name: 'Trello',
         description: 'Organização de tarefas, etapas, prioridade e acompanhamento.',
-        level: 82,
+        level: 100,
         color: '#0052cc',
         icon: { type: 'brand', icon: siTrello },
       },
       {
         name: 'Scrum',
         description: 'Ritmo de entrega, cerimônias, backlog e colaboração em time.',
-        level: 76,
+        level: 100,
         color: '#475569',
         icon: { type: 'line', icon: Workflow },
       },
       {
         name: 'Unity',
         description: 'Base para criação de games, cenas, lógica e interação.',
-        level: 68,
+        level: 100,
         color: '#475569',
         icon: { type: 'brand', icon: siUnity },
       },
       {
         name: 'Criação de games',
         description: 'Noções de gameplay, prototipação e experiência interativa.',
-        level: 66,
+        level: 100,
         color: '#6d5dfc',
         icon: { type: 'line', icon: Gamepad2 },
       },
@@ -443,24 +444,37 @@ function SkillIcon({ skill }: { skill: TechSkill }) {
 }
 
 export function Skills() {
-  const [activeGroupTitle, setActiveGroupTitle] = useState(TECH_GROUPS[0].title)
-  const activeGroup = TECH_GROUPS.find((group) => group.title === activeGroupTitle) ?? TECH_GROUPS[0]
-  const ActiveIcon = GROUP_ICONS[activeGroup.title] ?? LayoutTemplate
+  const translatedGroups = TECH_GROUPS.map((group, groupIndex) => {
+    const translated = UI.skills.groups[groupIndex]
+    return {
+      ...group,
+      title: translated?.title ?? group.title,
+      summary: translated?.summary ?? group.summary,
+      items: group.items.map((item, itemIndex) => ({
+        ...item,
+        name: translated?.items[itemIndex]?.name ?? item.name,
+        description: translated?.items[itemIndex]?.description ?? item.description,
+      })),
+    }
+  })
+  const [activeGroupIndex, setActiveGroupIndex] = useState(0)
+  const activeGroup = translatedGroups[activeGroupIndex] ?? translatedGroups[0]
+  const baseActiveGroup = TECH_GROUPS[activeGroupIndex] ?? TECH_GROUPS[0]
+  const ActiveIcon = GROUP_ICONS[baseActiveGroup.title] ?? LayoutTemplate
 
   return (
     <section id="skills" data-codex-id="technologies-section" className="section overflow-hidden">
       <div className="container-1200 relative z-10">
         <SectionTitle
-          denseMobile
-          eyebrow="Habilidades Técnicas"
+          eyebrow={UI.skills.eyebrow}
           title={
             <>
-              <span className="text-gradient-static">Tecnologias Que </span>
-              <span className="text-gradient">Uso Para Entregar</span>
-              <span className="text-gradient-static">.</span>
+              <span className="text-gradient-static">{UI.skills.titleStart}</span>
+              <span className="text-gradient">{UI.skills.titleAccent}</span>
+              <span className="text-gradient-static">{UI.skills.titleEnd}</span>
             </>
           }
-          description="Do front ao banco, da automação ao modelo de IA. Não coleciono tecnologias, uso o que resolve o problema certo na hora certa."
+          description={UI.skills.description}
           descriptionClassName="max-w-3xl"
         />
 
@@ -480,15 +494,15 @@ export function Skills() {
               <div className="relative z-[1]">
                 <div className="mb-3 flex items-center justify-between gap-3 px-1">
                   <span className="font-mono text-[11px] font-black uppercase tracking-[0.18em] text-ink-mute">
-                    Filtrar stack
+                    {UI.skills.filterLabel}
                   </span>
                   <div className="flex items-center gap-3">
                     <span className="flex items-center lg:hidden font-mono text-[10px] font-bold uppercase tracking-widest text-accent-cyan/90 animate-pulse">
-                      Deslize
+                      {UI.skills.swipeLabel}
                       <ChevronRight size={14} className="ml-0.5" strokeWidth={3} />
                     </span>
                     <span className="font-mono text-[11px] font-black text-ink-mute">
-                      {TECH_GROUPS.length} áreas
+                      {translatedGroups.length} {UI.skills.areasLabel}
                     </span>
                   </div>
                 </div>
@@ -498,15 +512,15 @@ export function Skills() {
                   <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-8 bg-gradient-to-l from-white/80 to-transparent dark:from-[#0f172a]/80 lg:hidden" />
                   
                   <div className="flex overflow-x-auto pb-3 pt-1 gap-2.5 lg:grid lg:grid-cols-1 lg:overflow-visible lg:pb-0 lg:pt-0" style={{ scrollbarWidth: 'none' }}>
-                {TECH_GROUPS.map((group) => {
-                  const GroupIcon = GROUP_ICONS[group.title] ?? LayoutTemplate
-                  const isActive = group.title === activeGroup.title
+                {translatedGroups.map((group, groupIndex) => {
+                  const GroupIcon = GROUP_ICONS[TECH_GROUPS[groupIndex]?.title ?? ''] ?? LayoutTemplate
+                  const isActive = groupIndex === activeGroupIndex
 
                   return (
                     <button
                       key={group.title}
                       type="button"
-                      onClick={() => setActiveGroupTitle(group.title)}
+                      onClick={() => setActiveGroupIndex(groupIndex)}
                       className={`group flex shrink-0 items-center gap-2.5 lg:gap-3 rounded-xl lg:rounded-xl border px-3 py-2.5 lg:px-3 lg:py-2.5 text-left transition-all duration-200 touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-glow/70 ${
                         isActive
                           ? 'border-accent-glow/60 bg-white text-accent-deep shadow-soft dark:bg-white/10 dark:text-white'
@@ -528,7 +542,7 @@ export function Skills() {
                           {group.title}
                         </span>
                         <span className="hidden lg:block mt-0.5 font-mono text-[10px] font-black uppercase tracking-[0.16em] opacity-70">
-                          {group.items.length} habilidades
+                          {group.items.length} {UI.skills.skillsLabel}
                         </span>
                       </span>
                     </button>
@@ -561,7 +575,7 @@ export function Skills() {
                   </div>
                 </div>
                 <span className="w-fit rounded-full border border-slate-200 bg-white px-3 py-1 font-mono text-[11px] font-black uppercase tracking-[0.16em] text-ink-mute dark:border-white/10 dark:bg-white/[0.05]">
-                  {String(activeGroup.items.length).padStart(2, '0')} itens
+                  {String(activeGroup.items.length).padStart(2, '0')} {UI.skills.itemsLabel}
                 </span>
               </div>
 
@@ -595,7 +609,7 @@ export function Skills() {
                       <div className="mt-auto pt-3">
                         <div className="mb-1.5 flex items-center justify-between gap-2">
                           <span className="hidden sm:block font-mono text-[10px] font-black uppercase tracking-[0.14em] text-ink-mute">
-                            domínio
+                            {UI.skills.masteryLabel}
                           </span>
                           <span
                             className="skill-pct-value shrink-0 font-mono text-sm font-black tabular-nums tracking-tight drop-shadow-sm sm:text-[1.0625rem]"

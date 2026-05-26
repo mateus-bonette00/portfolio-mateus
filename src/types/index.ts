@@ -6,11 +6,16 @@ export type Project = {
   image?: string
   desktopImage?: string
   mobileImage?: string
+  gallery?: string[]
   platform?: 'responsive' | 'mobile'
   deviceType?: 'desktop' | 'mobile'
   link?: string
   repo?: string
   year?: string
+  descriptionFull?: string
+  highlights?: string[]
+  techFull?: string[]
+  recruiterText?: string
 }
 
 export type Skill = {

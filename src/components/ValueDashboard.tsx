@@ -9,54 +9,17 @@ import {
   Workflow,
   type LucideIcon,
 } from 'lucide-react'
+import { UI } from '../data/portfolio'
 
-type SkillCard = {
-  icon: LucideIcon
-  title: string
-  text: string
-  tag: string
-}
-
-const SOFT_SKILLS: SkillCard[] = [
-  {
-    icon: Rocket,
-    title: 'Produtividade Com Direção',
-    text: 'Pego problema bagunçado e transformo em entrega. Já desenvolvi sistemas de agendamento, plataformas de cursos com pagamento integrado e e-commerce do começo ao fim.',
-    tag: 'Produtivo',
-  },
-  {
-    icon: Megaphone,
-    title: 'Comunicação Comercial',
-    text: 'Sei explicar ideia técnica para quem decide. Já trabalhei com vendas, marketing e tráfego pago, e vendi sistemas e sites para clínicas, imobiliárias e e-commerce.',
-    tag: 'Comercial',
-  },
-  {
-    icon: HeartHandshake,
-    title: 'Cabeça De Dono',
-    text: 'Penso como dono do problema, não como executor de tarefa. Entendo a dor, mensuro o impacto e busco a solução mais útil para o cliente, o time e o negócio.',
-    tag: 'Dono',
-  },
-  {
-    icon: Workflow,
-    title: 'Automação No Dia A Dia',
-    text: 'Quando vejo tarefa repetitiva, eu automatizo. Trabalho com APIs, web scraping, robôs e agentes de IA, e tenho bot rodando em servidor próprio que coloquei em produção.',
-    tag: 'Automação',
-  },
-]
-
-const VALUE_POINTS = [
-  'Resolver Problemas Reais',
-  'Vender A Solução Certa',
-  'Automatizar Com IA',
-  'Entregar Com Clareza',
-]
+const SOFT_SKILL_ICONS: LucideIcon[] = [Rocket, Megaphone, HeartHandshake, Workflow]
 
 export function ValueDashboard() {
   const [mobileActiveIndex, setMobileActiveIndex] = useState(0)
   const [mobileExpandedSkill, setMobileExpandedSkill] = useState(false)
   const [mobileExpandedSummary, setMobileExpandedSummary] = useState(false)
 
-  const activeSkill = SOFT_SKILLS[mobileActiveIndex]
+  const activeSkill = UI.value.cards[mobileActiveIndex]
+  const ActiveSkillIcon = SOFT_SKILL_ICONS[mobileActiveIndex] ?? Rocket
   const activeSkillLong = activeSkill.text.length > 165
   const activeSkillText = mobileExpandedSkill || !activeSkillLong
     ? activeSkill.text
@@ -64,12 +27,12 @@ export function ValueDashboard() {
 
   const goToPrevSkill = () => {
     setMobileExpandedSkill(false)
-    setMobileActiveIndex((current) => (current === 0 ? SOFT_SKILLS.length - 1 : current - 1))
+    setMobileActiveIndex((current) => (current === 0 ? UI.value.cards.length - 1 : current - 1))
   }
 
   const goToNextSkill = () => {
     setMobileExpandedSkill(false)
-    setMobileActiveIndex((current) => (current === SOFT_SKILLS.length - 1 ? 0 : current + 1))
+    setMobileActiveIndex((current) => (current === UI.value.cards.length - 1 ? 0 : current + 1))
   }
 
   return (
@@ -101,23 +64,23 @@ export function ValueDashboard() {
               <div className="flex items-center gap-2 sm:gap-3">
                 <span className="h-2.5 w-2.5 rounded-full bg-accent-neon shadow-[0_0_24px_rgba(96,165,250,0.9)]" />
                 <p className="font-mono text-[10px] font-black uppercase tracking-[0.21em] text-ink-mute dark:text-blue-100 sm:text-[19px]">
-                  Como Eu Trabalho
+                  {UI.value.eyebrow}
                 </p>
               </div>
 
               <div className="mt-3 flex flex-col items-center sm:mt-5">
                 <h2 className="section-title-display max-w-5xl break-words font-display text-[clamp(1.58rem,9.2vw,4.65rem)] font-bold leading-[1.03] tracking-tight sm:leading-[0.98]">
-                  <span className="text-gradient-static">Resolvo Problemas, </span>
-                  <span className="text-gradient">Comunico Valor</span>
-                  <span className="text-gradient-static"> E Automatizo Rotinas.</span>
+                  <span className="text-gradient-static">{UI.value.titleStart}</span>
+                  <span className="text-gradient">{UI.value.titleAccent}</span>
+                  <span className="text-gradient-static">{UI.value.titleEnd}</span>
                 </h2>
                 <p className="mx-auto mt-3 max-w-[640px] text-[13px] leading-relaxed text-ink-dim dark:text-blue-100 sm:mt-5 sm:text-lg">
-                  Quero entrar em um time para entregar de verdade: produzir com foco, comunicar com clareza, pensar no lado de negócio e transformar tarefa manual em processo inteligente.
+                  {UI.value.intro}
                 </p>
               </div>
 
               <div className="mt-3 flex flex-wrap justify-center gap-1.5 sm:gap-2">
-                {VALUE_POINTS.map((point) => (
+                {UI.value.points.map((point) => (
                   <div
                     key={point}
                     className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-medium text-ink-dim shadow-soft dark:border-white/50 dark:bg-white/[0.12] dark:text-white dark:shadow-none sm:px-4 sm:py-2 sm:text-sm"
@@ -134,7 +97,7 @@ export function ValueDashboard() {
                   type="button"
                   onClick={goToPrevSkill}
                   className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-ink transition-colors hover:border-accent/40 hover:text-accent dark:border-white/10 dark:bg-white/[0.08] dark:text-blue-100"
-                  aria-label="Ver card anterior"
+                  aria-label={UI.value.previousAria}
                 >
                   <ChevronLeft size={18} strokeWidth={2.2} />
                 </button>
@@ -144,7 +107,7 @@ export function ValueDashboard() {
                     {activeSkill.tag}
                   </p>
                   <p className="mt-1 text-xs font-semibold text-ink-dim dark:text-blue-100/85">
-                    {mobileActiveIndex + 1} / {SOFT_SKILLS.length}
+                    {mobileActiveIndex + 1} / {UI.value.cards.length}
                   </p>
                 </div>
 
@@ -152,7 +115,7 @@ export function ValueDashboard() {
                   type="button"
                   onClick={goToNextSkill}
                   className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-ink transition-colors hover:border-accent/40 hover:text-accent dark:border-white/10 dark:bg-white/[0.08] dark:text-blue-100"
-                  aria-label="Ver próximo card"
+                  aria-label={UI.value.nextAria}
                 >
                   <ChevronRight size={18} strokeWidth={2.2} />
                 </button>
@@ -172,7 +135,7 @@ export function ValueDashboard() {
                 />
                 <div className="flex items-start justify-between gap-3">
                   <div className="icon-tile h-10 w-10 shrink-0">
-                    <activeSkill.icon size={19} strokeWidth={2.2} />
+                    <ActiveSkillIcon size={19} strokeWidth={2.2} />
                   </div>
                   <span className="rounded-full border border-slate-200 bg-white/50 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-ink-mute dark:border-white/5 dark:bg-white/[0.04] dark:text-blue-100/70">
                     {activeSkill.tag}
@@ -190,13 +153,13 @@ export function ValueDashboard() {
                     onClick={() => setMobileExpandedSkill((current) => !current)}
                     className="mt-3 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-accent dark:border-accent-neon/30 dark:bg-accent-neon/10 dark:text-accent-neon"
                   >
-                    {mobileExpandedSkill ? 'Ver menos' : 'Ver mais'}
+                    {mobileExpandedSkill ? UI.common.readLess : UI.common.readMore}
                   </button>
                 )}
               </motion.article>
 
               <div className="mt-3 flex justify-center gap-1.5">
-                {SOFT_SKILLS.map((skill, i) => (
+                {UI.value.cards.map((skill, i) => (
                   <span
                     key={skill.title}
                     className={`h-1.5 rounded-full transition-all ${
@@ -211,7 +174,9 @@ export function ValueDashboard() {
             </div>
 
             <div className="mt-4 hidden grid-flow-dense gap-4 md:grid md:grid-cols-2 lg:grid-cols-4">
-              {SOFT_SKILLS.map((skill, i) => (
+              {UI.value.cards.map((skill, i) => {
+                const Icon = SOFT_SKILL_ICONS[i] ?? Rocket
+                return (
                 <motion.article
                   key={skill.title}
                   initial={{ opacity: 0, y: 18 }}
@@ -227,7 +192,7 @@ export function ValueDashboard() {
                   />
                   <div className="flex items-start justify-between gap-4">
                     <div className="icon-tile h-12 w-12 shrink-0 transition-transform duration-500 group-hover:scale-110">
-                      <skill.icon size={22} strokeWidth={2.2} />
+                      <Icon size={22} strokeWidth={2.2} />
                     </div>
                     <span className="rounded-full border border-slate-200 bg-white/50 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink-mute dark:border-white/5 dark:bg-white/[0.04] dark:text-blue-100/70">
                       {skill.tag}
@@ -241,28 +206,28 @@ export function ValueDashboard() {
                     {skill.text}
                   </p>
                 </motion.article>
-              ))}
+              )})}
             </div>
           </div>
 
           <div className="relative mt-4 rounded-[1.1rem] border border-slate-200 bg-white/80 px-4 py-3 backdrop-blur-xl dark:border-white/5 dark:bg-white/[0.04] sm:mt-5 sm:rounded-[1.35rem] sm:px-6 sm:py-4">
             <p className="hidden font-display text-xl font-medium leading-snug text-ink-dim italic dark:text-white/90 sm:block">
-              Em resumo, gosto de pegar uma dor real, entender o lado humano e comercial, criar uma solução simples e usar IA e automação para eliminar o que toma tempo das pessoas.
+              {UI.value.desktopSummary}
             </p>
             <div className="sm:hidden">
               <p className="font-display text-[0.97rem] font-medium leading-snug text-ink-dim italic dark:text-white/90">
-                Em resumo, transformo dor real em solução útil com clareza e automação.
+                {UI.value.mobileSummary}
               </p>
               <button
                 type="button"
                 onClick={() => setMobileExpandedSummary((current) => !current)}
                 className="mt-2 rounded-full border border-accent/25 bg-accent/10 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-accent dark:border-accent-neon/30 dark:bg-accent-neon/10 dark:text-accent-neon"
               >
-                {mobileExpandedSummary ? 'Esconder resumo' : 'Ler resumo'}
+                {mobileExpandedSummary ? UI.value.hideSummary : UI.value.readSummary}
               </button>
               {mobileExpandedSummary && (
                 <p className="mt-2 text-sm leading-relaxed text-ink-dim dark:text-blue-100">
-                  Trabalho para transformar problema real em entrega útil, com clareza comercial e automação inteligente para reduzir trabalho repetitivo.
+                  {UI.value.mobileSummaryExpanded}
                 </p>
               )}
             </div>

@@ -21,4 +21,3 @@ export function WhatsAppIcon({ size = 22, className }: WhatsAppIconProps) {
     </svg>
   )
 }
-

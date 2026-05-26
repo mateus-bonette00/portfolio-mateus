@@ -14,11 +14,12 @@ import {
   siStreamlit,
 } from 'simple-icons'
 import { SectionTitle } from './SectionTitle'
-import { EXPERIENCES } from '../data/portfolio'
+import { EXPERIENCES, UI } from '../data/portfolio'
 import type { Experience as ExperienceItem } from '../types'
 
 const MOONTECH_CARTA_PT = '/2026-04-26_Carta_de_Recomendacao_assinado.pdf'
 const MOONTECH_CARTA_EN = '/2026-04-26_Carta_de_Recomendacao_en_assinado.pdf'
+const SHOW_MOONTECH_RECOMMENDATION_LETTERS = false
 
 const MOONTECH_REC_BTN_SKIN =
   'group relative inline-flex touch-manipulation items-center justify-center rounded-full border border-blue-400/60 bg-[linear-gradient(135deg,#1e3a8a80,#1d4ed84d)] font-bold text-white shadow-[0_0_0_1px_rgb(147_197_253/0.28),0_10px_28px_-10px_rgb(30_64_175/0.65)] backdrop-blur-xl transition-transform duration-200 hover:scale-[1.02] focus:outline-none dark:border-blue-400/60'
@@ -32,6 +33,8 @@ function MoontechRecommendationLetterLinks({
   variant: 'desktop' | 'mobile'
   timelineMetaFlipped?: boolean
 }) {
+  if (!SHOW_MOONTECH_RECOMMENDATION_LETTERS) return null
+
   const wrapClass =
     variant === 'desktop'
       ? timelineMetaFlipped
@@ -89,10 +92,10 @@ function MoontechRecommendationLetterLinks({
 
   return (
     <div className={wrapClass}>
-      {link(MOONTECH_CARTA_PT, 'CARTA DE RECOMENDAÇÃO PT/BR', 'Baixar carta de recomendação em português (PDF)', {
+      {link(MOONTECH_CARTA_PT, UI.experience.moontechLetterPt, UI.experience.moontechLetterPtTitle, {
         downloadAs: '2026-04-26_Carta_de_Recomendacao_assinado.pdf',
       })}
-      {link(MOONTECH_CARTA_EN, 'CARTA DE RECOMENDAÇÃO EM INGLÊS', 'Baixar carta de recomendação em inglês (PDF)', {
+      {link(MOONTECH_CARTA_EN, UI.experience.moontechLetterEn, UI.experience.moontechLetterEnTitle, {
         englishDesktopSingleLine: true,
         downloadAs: '2026-04-26_Carta_de_Recomendacao_en_assinado.pdf',
       })}
@@ -152,45 +155,23 @@ export function Experience() {
       id="experience"
       data-codex-id="experience-section"
       className="section"
-      aria-label="Linha do tempo de experiências profissionais"
+      aria-label={UI.experience.aria}
     >
       <div className="container-1200 relative z-10">
         <SectionTitle
-          eyebrow="Experiências"
+          eyebrow={UI.experience.eyebrow}
           title={
             <>
-              <span className="text-gradient-static">Experiências Que </span>
-              <span className="text-gradient">Me Formaram</span>
-              <span className="text-gradient-static">.</span>
+              <span className="text-gradient-static">{UI.experience.titleStart}</span>
+              <span className="text-gradient">{UI.experience.titleAccent}</span>
+              <span className="text-gradient-static">{UI.experience.titleEnd}</span>
             </>
           }
-          description="Cada empresa, cada projeto e cada venda me ensinou algo que eu carrego até hoje no código, na comunicação e na forma de resolver problemas."
-          denseMobile
+          description={UI.experience.description}
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8 flex items-center justify-center py-2 sm:mb-10 sm:py-3"
-          aria-label="Disponibilidade profissional"
-        >
-          <div
-            className="rounded-full border border-slate-200/85 bg-white/80 px-3 py-1.5 text-[10px] font-semibold tracking-wide text-ink shadow-soft backdrop-blur-xl dark:border-white/12 dark:bg-white/[0.06] dark:text-slate-100 sm:text-[11px]"
-            aria-label="Status: Online Para Novas Oportunidades"
-          >
-            <span className="inline-flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-80" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-              </span>
-              Status • Online Para Novas Oportunidades
-            </span>
-          </div>
-        </motion.div>
 
-        <div className="experience-timeline" aria-label="Trajetória profissional">
+        <div className="experience-timeline" aria-label={UI.experience.timelineAria}>
           {EXPERIENCES.map((exp, i) => {
             const itemKey = `${exp.company}-${exp.period}`
             const isExpanded = Boolean(expandedItems[itemKey])
@@ -323,7 +304,7 @@ export function Experience() {
                       aria-controls={`experience-content-${i}`}
                       onClick={() => toggleExpanded(itemKey)}
                     >
-                      {isExpanded ? 'Ver menos' : 'Ver mais'}
+                      {isExpanded ? UI.common.readLess : UI.common.readMore}
                     </button>
                   )}
                 </article>
@@ -350,7 +331,7 @@ function TimelineLogo({
       {experience.logoImage ? (
         <img
           src={experience.logoImage}
-          alt={experience.logoAlt ?? `Logo da ${experience.company}`}
+          alt={experience.logoAlt ?? `${experience.company} logo`}
           className="h-full w-full rounded-full object-contain"
           loading="lazy"
         />
@@ -377,10 +358,10 @@ function getLogoFallback(company: string) {
 }
 
 function experienceStepBadge(exp: ExperienceItem, index: number, total: number): string {
-  if (exp.isCurrentRole === true) return 'Atual'
-  if (total > 1 && index === total - 1) return 'Início'
-  if (index === 0) return 'Mais recente'
-  return 'Etapa'
+  if (exp.isCurrentRole === true) return UI.experience.current
+  if (total > 1 && index === total - 1) return UI.experience.start
+  if (index === 0) return UI.experience.latest
+  return UI.experience.step
 }
 
 function shouldCollapseExperience(experience: ExperienceItem) {

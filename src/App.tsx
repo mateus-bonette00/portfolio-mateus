@@ -4,6 +4,7 @@ import { ScrollProgress } from './components/ScrollProgress'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { FloatingWhatsApp } from './components/FloatingWhatsApp'
+import { getLocalizedPath, getRouteInfo, setStoredLocale } from './i18n/routes'
 
 const About = lazy(() => import('./components/About').then((module) => ({ default: module.About })))
 const ValueDashboard = lazy(() =>
@@ -33,15 +34,30 @@ function LazyFallback() {
 
 export default function App() {
   const pathname = typeof window === 'undefined' ? '/' : window.location.pathname
-  const projectId = pathname.match(/^\/projetos\/([^/]+)$/)?.[1]
-  const isProjectsArchive = pathname === '/projetos'
-  const isLinksPage = pathname === '/links-contatos'
+  const { locale, explicitLocale, internalPath } = getRouteInfo(pathname)
+
+  if (typeof window !== 'undefined') {
+    setStoredLocale(locale)
+    if (!explicitLocale) {
+      const localizedPath = `${getLocalizedPath(pathname, locale)}${window.location.hash}`
+      window.history.replaceState(null, '', localizedPath)
+    }
+  }
+
+  const projectId = internalPath.match(/^\/projetos\/([^/]+)$/)?.[1]
+  const isProjectsArchive = internalPath === '/projetos'
+  const isLinksPage = internalPath === '/links-contatos'
 
   if (isLinksPage) {
     return (
-      <Suspense fallback={<LazyFallback />}>
-        <LinksPage />
-      </Suspense>
+      <div className="relative isolate min-h-screen overflow-x-hidden bg-bg text-ink">
+        <Background />
+        <ScrollProgress />
+        <Suspense fallback={<LazyFallback />}>
+          <LinksPage />
+        </Suspense>
+        <FloatingWhatsApp variant="static" />
+      </div>
     )
   }
 
@@ -62,11 +78,11 @@ export default function App() {
         <main className="relative z-10 w-full max-w-full overflow-x-hidden">
           <Hero />
           <Suspense fallback={<LazyFallback />}>
-            <About />
-            <ValueDashboard />
+            <Projects />
             <Skills />
             <Experience />
-            <Projects />
+            <About />
+            <ValueDashboard />
             <Education />
             <Contact />
           </Suspense>

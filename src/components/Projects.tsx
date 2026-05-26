@@ -2,8 +2,9 @@ import { type CSSProperties, type MouseEvent, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { SectionTitle } from './SectionTitle'
-import { PROJECTS } from '../data/portfolio'
+import { PROJECTS, UI } from '../data/portfolio'
 import type { Project } from '../types'
+import { getLocalizedHref } from '../i18n/routes'
 
 const PROJECT_VISUALS = [
   {
@@ -34,30 +35,30 @@ export function Projects() {
       <div className="container-1200 relative z-10">
         <div className="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-end">
           <SectionTitle
-            eyebrow="Projetos"
+            eyebrow={UI.projects.eyebrow}
             title={
               <>
-                <span className="text-gradient-static">Projetos Que Me Fizeram </span>
-                <span className="text-gradient">Crescer</span>
-                <span className="text-gradient-static">.</span>
+                <span className="text-gradient-static">{UI.projects.titleStart}</span>
+                <span className="text-gradient">{UI.projects.titleAccent}</span>
+                <span className="text-gradient-static">{UI.projects.titleEnd}</span>
               </>
             }
-            description="Da primeira linha de código na faculdade até sistemas entregues, vendidos e em produção. Aqui está o que construí em cada fase, com contexto, tecnologia e propósito."
+            description={UI.projects.description}
           />
 
           <div className="hidden max-w-[14rem] border-l border-accent/30 pl-4 pb-10 lg:block">
             <p className="font-mono text-[10px] font-black uppercase tracking-[0.24em] text-ink-mute">
-              Cases em destaque
+              {UI.projects.featuredCases}
             </p>
             <p className="mt-2 text-sm leading-relaxed text-ink-dim">
-              Cada capa abre uma página própria com detalhes do projeto.
+              {UI.projects.featuredCasesDescription}
             </p>
           </div>
         </div>
       </div>
 
       <div className="projects-case-bleed">
-        <div className="projects-case-scroll" aria-label="Carrossel horizontal de projetos">
+        <div className="projects-case-scroll" aria-label={UI.projects.carouselAria}>
           <div className="projects-case-track">
             {PROJECTS.slice(0, 6).map((project, index) => (
               <ProjectCaseCard key={project.id} project={project} index={index} />
@@ -65,9 +66,9 @@ export function Projects() {
           </div>
         </div>
         <div className="projects-case-view-all-wrap">
-          <a href="/projetos" className="projects-view-all" data-cursor="hover">
+          <a href={getLocalizedHref('/projetos')} className="projects-view-all" data-cursor="hover">
             <span aria-hidden className="projects-view-all__glow" />
-            <span className="projects-view-all__text">Ver todos os projetos</span>
+            <span className="projects-view-all__text">{UI.projects.viewAll}</span>
             <ArrowUpRight size={30} className="projects-view-all__icon relative z-[2] shrink-0" aria-hidden />
           </a>
         </div>
@@ -79,19 +80,20 @@ export function Projects() {
 function ProjectCaseCard({ project, index }: { project: Project; index: number }) {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const visual = PROJECT_VISUALS[index % PROJECT_VISUALS.length]
-  const href = project.link ?? `/projetos/${project.id}`
+  const href = project.link ?? getLocalizedHref(`/projetos/${project.id}`)
   const title = project.title.replace(/^Em breve:\s*/i, '')
   const projectNumber = String(index + 1).padStart(2, '0')
   const stackLine = project.tags.slice(0, 2).join(' + ')
   const deviceType = getDeviceType(project)
   const isPlaceholder = /espaço reservado|em breve|conteúdo será adicionado/i.test(project.description)
   const coverSummary = isPlaceholder
-    ? 'Case em preparação para mostrar problema, solução, processo e resultado.'
+    ? UI.projects.placeholderCover
     : project.description
   const insideSummary = isPlaceholder
-    ? 'Página reservada para o case completo, com contexto, decisões técnicas e resultado final.'
+    ? UI.projects.placeholderInside
     : project.description
   const isExternal = /^https?:\/\//i.test(href)
+  const coverImage = project.mobileImage ?? project.desktopImage ?? project.image
   const handleCardClick = (event: MouseEvent<HTMLAnchorElement>) => {
     const isTouchNavigation = window.matchMedia('(hover: none), (pointer: coarse)').matches
 
@@ -116,12 +118,15 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
           '--project-accent': visual.accent,
           '--project-wash': visual.wash,
           '--project-ghost': visual.ghost,
+          ...(coverImage ? { '--project-cover-image': `url("${coverImage}")` } : {}),
         } as CSSProperties
       }
+      data-has-cover={coverImage ? 'true' : undefined}
       data-cursor="hover"
+      data-project-id={project.id}
       data-mobile-open={isMobileOpen ? 'true' : undefined}
       aria-expanded={isMobileOpen}
-      aria-label={`Acessar projeto ${title}`}
+      aria-label={UI.common.accessProjectAria(title)}
       onClick={handleCardClick}
     >
       <span className="project-book-card__shadow" aria-hidden />
@@ -139,18 +144,18 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
 
           <div className="project-book__inside-copy">
             <div className="project-book__inside-meta">
-              <span className="project-book__inside-kicker">Case {projectNumber}</span>
-              <span className="project-book__inside-stack">{stackLine || 'Projeto em destaque'}</span>
+              <span className="project-book__inside-kicker">{UI.common.caseLabel} {projectNumber}</span>
+              <span className="project-book__inside-stack">{stackLine || UI.common.featuredProject}</span>
             </div>
             <h4 title={title}>{title}</h4>
             <p>{insideSummary}</p>
-            <ul className="project-book__inside-points" aria-label={`Resumo do case ${title}`}>
-              <li>Contexto</li>
-              <li>Processo</li>
-              <li>Resultado</li>
+            <ul className="project-book__inside-points" aria-label={UI.common.projectSummaryAria(title)}>
+              <li>{UI.common.context}</li>
+              <li>{UI.common.process}</li>
+              <li>{UI.common.result}</li>
             </ul>
             <span className="project-book__inside-button">
-              <span>Ver detalhes</span>
+              <span>{UI.common.viewDetails}</span>
               <span className="project-book__inside-button-icon">
                 <ArrowUpRight size={16} />
               </span>
@@ -169,19 +174,20 @@ function ProjectCaseCard({ project, index }: { project: Project; index: number }
           <div className="project-book__heading">
             <div className="project-book__eyebrow">
               <span>{project.year ?? '2025'}</span>
-              <span>{stackLine}</span>
+              <span>{UI.common.caseLabel} {projectNumber}</span>
             </div>
+            <ul className="project-book__tags" aria-label={UI.common.projectTechAria(title)}>
+              {project.tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
             <h3 title={title} style={getTitleFontStyle(title)}>{title}</h3>
             <p>{coverSummary}</p>
           </div>
 
-          <ProjectDeviceShowcase project={project} index={index} title={title} deviceType={deviceType} />
-
-          <ul className="project-book__tags" aria-label={`Tecnologias do projeto ${title}`}>
-            {project.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
+          <div className="project-book__cover-bottom">
+            <ProjectDeviceShowcase project={project} index={index} title={title} deviceType={deviceType} />
+          </div>
         </div>
       </div>
     </motion.a>
@@ -195,19 +201,29 @@ export function getDeviceType(project: Project): 'desktop' | 'mobile' {
 }
 
 export function getTitleFontStyle(title: string): CSSProperties {
-  const longest = Math.max(...title.split(/\s+/).map(w => w.length))
-  if (longest <= 5) return { fontSize: 'clamp(1.35rem, 1.8vw, 2.1rem)' }
-  if (longest <= 7) return { fontSize: 'clamp(1.2rem, 1.6vw, 1.9rem)' }
-  if (longest <= 9) return {}
-  return { fontSize: 'clamp(0.95rem, 1.25vw, 1.5rem)' }
+  const words = title.split(/\s+/)
+  const longest = Math.max(...words.map(w => w.length))
+  const wordCount = words.length
+  const totalLen = title.replace(/\s+/g, '').length
+
+  if (longest <= 5 && wordCount <= 2) return { fontSize: 'clamp(1.25rem, 1.7vw, 2.0rem)' }
+  if (longest <= 6 && wordCount <= 3) return { fontSize: 'clamp(1.1rem, 1.5vw, 1.8rem)' }
+  if (longest <= 8 && totalLen <= 18) return { fontSize: 'clamp(1.0rem, 1.3vw, 1.6rem)' }
+  if (longest <= 10 && wordCount <= 3) return { fontSize: 'clamp(0.88rem, 1.15vw, 1.4rem)' }
+  return { fontSize: 'clamp(0.78rem, 1.0vw, 1.25rem)' }
 }
 
 export function getArchiveTitleFontStyle(title: string): CSSProperties {
-  const longest = Math.max(...title.split(/\s+/).map(w => w.length))
-  if (longest <= 5) return { fontSize: 'clamp(1.25rem, 1.65vw, 1.95rem)' }
-  if (longest <= 7) return { fontSize: 'clamp(1.1rem, 1.45vw, 1.72rem)' }
-  if (longest <= 9) return {}
-  return { fontSize: 'clamp(0.9rem, 1.15vw, 1.38rem)' }
+  const words = title.split(/\s+/)
+  const longest = Math.max(...words.map(w => w.length))
+  const wordCount = words.length
+  const totalLen = title.replace(/\s+/g, '').length
+
+  if (longest <= 5 && wordCount <= 2) return { fontSize: 'clamp(1.15rem, 1.55vw, 1.88rem)' }
+  if (longest <= 6 && wordCount <= 3) return { fontSize: 'clamp(1.0rem, 1.38vw, 1.68rem)' }
+  if (longest <= 8 && totalLen <= 18) return { fontSize: 'clamp(0.92rem, 1.2vw, 1.5rem)' }
+  if (longest <= 10 && wordCount <= 3) return { fontSize: 'clamp(0.82rem, 1.05vw, 1.3rem)' }
+  return { fontSize: 'clamp(0.72rem, 0.92vw, 1.15rem)' }
 }
 
 export function ProjectDeviceShowcase({
@@ -241,7 +257,14 @@ export function ProjectDeviceShowcase({
           <div className="project-device__monitor-frame">
             <div className="project-device__desktop-screen">
               {previewImage ? (
-                <img src={previewImage} alt="" draggable={false} />
+                <img
+                  className="project-device__preview-img"
+                  src={previewImage}
+                  alt={`Preview do projeto ${title}`}
+                  loading="eager"
+                  decoding="async"
+                  draggable={false}
+                />
               ) : (
                 <>
                   <span className="project-device__window-bar" />
@@ -259,7 +282,14 @@ export function ProjectDeviceShowcase({
             <span className="project-device__notch" />
             <div className="project-device__screen">
               {previewImage ? (
-                <img src={previewImage} alt="" draggable={false} />
+                <img
+                  className="project-device__preview-img project-device__preview-img--phone"
+                  src={previewImage}
+                  alt={`Preview do projeto ${title}`}
+                  loading="eager"
+                  decoding="async"
+                  draggable={false}
+                />
               ) : (
                 <>
                   <ProjectGlyph index={index} />
