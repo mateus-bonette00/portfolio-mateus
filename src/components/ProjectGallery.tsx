@@ -3,12 +3,49 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { UI } from '../data/portfolio'
 
 type Props = {
-  images: string[]
+  images?: string[]
   title: string
   autoplayMs?: number
+  video?: string
+  videoPoster?: string
 }
 
-export function ProjectGallery({ images, title, autoplayMs = 2000 }: Props) {
+export function ProjectGallery({ images = [], title, autoplayMs = 2000, video, videoPoster }: Props) {
+  if (video) {
+    return <ProjectVideoGallery title={title} video={video} videoPoster={videoPoster} />
+  }
+
+  return <ProjectImageGallery images={images} title={title} autoplayMs={autoplayMs} />
+}
+
+function ProjectVideoGallery({
+  title,
+  video,
+  videoPoster,
+}: {
+  title: string
+  video: string
+  videoPoster?: string
+}) {
+  return (
+    <div className="project-gallery" role="region" aria-label={UI.gallery.videoAria(title)}>
+      <div className="project-gallery__stage project-gallery__stage--video">
+        <video
+          className="project-gallery__video"
+          controls
+          playsInline
+          preload="metadata"
+          poster={videoPoster}
+        >
+          <source src={video} type="video/mp4" />
+          {UI.gallery.videoFallback}
+        </video>
+      </div>
+    </div>
+  )
+}
+
+function ProjectImageGallery({ images, title, autoplayMs }: { images: string[]; title: string; autoplayMs: number }) {
   const [index, setIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const total = images.length

@@ -1,7 +1,9 @@
 import type { LucideIcon } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { Github, Instagram, Linkedin, Globe, Mail, ArrowLeft, FileText } from 'lucide-react'
+import { Github, Instagram, Linkedin, Globe, ArrowLeft, FileText } from 'lucide-react'
+import { CopyEmailControl } from './CopyEmailControl'
 import { DiscordIcon } from './icons/DiscordIcon'
+import { WhatsAppIcon } from './icons/WhatsAppIcon'
 import { Logo } from './Logo'
 import { SocialIcon } from './SocialIcon'
 import { ThemeToggle } from './ThemeToggle'
@@ -64,6 +66,8 @@ const item = {
 }
 
 export function LinksPage() {
+  const whatsappCtaUrl = `${PROFILE.social.whatsapp}?text=${encodeURIComponent(UI.linksPage.whatsappCta.message)}`
+
   return (
     <>
       <div className="absolute right-3 top-3 z-50 flex items-center gap-2 sm:right-6 sm:top-6">
@@ -97,7 +101,7 @@ export function LinksPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="links-page-name text-[22px] leading-[0.98] tracking-tight text-gradient sm:text-2xl md:text-[28px]"
+              className="links-page-name text-center text-[22px] leading-[0.98] tracking-tight text-gradient sm:text-2xl md:text-[28px]"
             >
               {PROFILE.name}
             </motion.h1>
@@ -110,23 +114,24 @@ export function LinksPage() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-1 flex max-w-full flex-wrap items-center justify-center gap-1.5 sm:mt-1 sm:gap-2"
+            className="mt-1 flex w-full max-w-full flex-col items-center gap-3 sm:mt-1"
           >
-            <SocialIcon href={PROFILE.social.github} label="GitHub">
-              <Github size={16} />
-            </SocialIcon>
-            <SocialIcon href={PROFILE.social.linkedin} label="LinkedIn">
-              <Linkedin size={16} />
-            </SocialIcon>
-            <SocialIcon href={PROFILE.social.discord} label="Discord (mateusbonette)">
-              <DiscordIcon size={16} />
-            </SocialIcon>
-            <SocialIcon href={PROFILE.social.instagram} label="Instagram">
-              <Instagram size={16} />
-            </SocialIcon>
-            <SocialIcon href={`mailto:${PROFILE.email}`} label="E-mail">
-              <Mail size={16} />
-            </SocialIcon>
+            <div className="flex max-w-full flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+              <SocialIcon href={PROFILE.social.github} label="GitHub">
+                <Github size={16} />
+              </SocialIcon>
+              <SocialIcon href={PROFILE.social.linkedin} label="LinkedIn">
+                <Linkedin size={16} />
+              </SocialIcon>
+              <SocialIcon href={PROFILE.social.discord} label="Discord (mateusbonette)">
+                <DiscordIcon size={16} />
+              </SocialIcon>
+              <SocialIcon href={PROFILE.social.instagram} label="Instagram">
+                <Instagram size={16} />
+              </SocialIcon>
+            </div>
+
+            <CopyEmailControl variant="hero" />
           </motion.div>
 
           <motion.div
@@ -149,6 +154,33 @@ export function LinksPage() {
           animate="show"
           className="mx-auto mt-3 w-full max-w-[min(100%,19rem)] space-y-3 px-0 sm:mt-4 sm:max-w-[20rem] sm:space-y-3.5 md:max-w-[21rem]"
         >
+          <motion.li variants={item} className="relative">
+            <a
+              href={whatsappCtaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={UI.linksPage.whatsappCta.aria}
+              className="links-page-action group min-h-[2.75rem] touch-manipulation sm:min-h-0"
+            >
+              <span aria-hidden className="links-page-action__glow" />
+              <span className="links-page-action__row">
+                <span className="relative grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#25d366]/45 bg-white/55 text-[#25d366] shadow-sm dark:border-[#25d366]/30 dark:bg-white/[0.08]">
+                  <WhatsAppIcon size={17} className="block shrink-0" />
+                </span>
+
+                <span className="relative flex min-w-0 flex-1 flex-col gap-0">
+                  <span className="text-xs font-semibold leading-tight text-blue-900 dark:text-blue-100 sm:text-[0.8125rem]">
+                    {UI.linksPage.whatsappCta.label}
+                  </span>
+                </span>
+
+                <span className="relative shrink-0 text-blue-800/60 opacity-70 transition-opacity duration-200 group-hover:opacity-100 dark:text-blue-100/60">
+                  <ArrowLeft size={14} className="rotate-180" />
+                </span>
+              </span>
+            </a>
+          </motion.li>
+
           {LINKS.map((link) => {
             const Icon = link.icon
             return (

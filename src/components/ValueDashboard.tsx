@@ -38,7 +38,6 @@ export function ValueDashboard() {
   return (
     <section
       id="value"
-      data-codex-id="value-section"
       className="section scroll-mt-36 overflow-hidden"
     >
       <div className="container-1200 relative z-10">

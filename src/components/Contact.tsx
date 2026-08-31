@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Github, Instagram, Linkedin, Mail } from 'lucide-react'
+import { ArrowUpRight, Github, Instagram, Linkedin } from 'lucide-react'
 import { PROFILE, UI } from '../data/portfolio'
+import { CopyEmailControl } from './CopyEmailControl'
 import { DiscordIcon } from './icons/DiscordIcon'
 import { WhatsAppIcon } from './icons/WhatsAppIcon'
 
 export function Contact() {
   return (
-    <section id="contact" data-codex-id="contact-section" className="section">
+    <section id="contact" className="section">
       <div className="container-1200 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
@@ -36,18 +37,7 @@ export function Contact() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <a
-                href={`mailto:${PROFILE.email}`}
-                className="btn-primary group"
-                data-cursor="hover"
-              >
-                <Mail size={16} />
-                {PROFILE.email}
-                <ArrowUpRight
-                  size={16}
-                  className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                />
-              </a>
+              <CopyEmailControl variant="contact" />
               <a
                 href={PROFILE.social.whatsapp}
                 className="btn-ghost group"

@@ -1,17 +1,51 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronRight, Cloud, Database, Download } from 'lucide-react'
+import {
+  Bot,
+  ChevronRight,
+  Cloud,
+  Database,
+  Download,
+  Layers,
+  LayoutTemplate,
+  Sparkles,
+  Workflow,
+  type LucideIcon,
+} from 'lucide-react'
 import {
   siAngular,
+  siAnthropic,
   siDbeaver,
+  siDeepseek,
   siDocker,
+  siFigma,
+  siGit,
+  siGithub,
+  siGithubcopilot,
+  siGooglecloud,
+  siGooglegemini,
+  siGooglesheets,
   siGraphql,
   siHubspot,
+  siHuggingface,
+  siJavascript,
+  siLangchain,
+  siMeta,
+  siMistralai,
+  siN8n,
   siNextdotjs,
+  siNodedotjs,
+  siOllama,
+  siPerplexity,
   siPostgresql,
   siPython,
+  siReact,
   siRedmine,
   siStreamlit,
+  siTrello,
+  siTypescript,
+  siWhatsapp,
+  type SimpleIcon,
 } from 'simple-icons'
 import { SectionTitle } from './SectionTitle'
 import { EXPERIENCES, UI } from '../data/portfolio'
@@ -103,37 +137,85 @@ function MoontechRecommendationLetterLinks({
   )
 }
 
-const TECH_ICONS: Record<string, any> = {
-  'Angular': { type: 'brand', icon: siAngular, color: '#c3002f' },
-  'Next.js': { type: 'brand', icon: siNextdotjs, color: '' }, // Uses currentColor
-  'GraphQL': { type: 'brand', icon: siGraphql, color: '#e10098' },
-  'PostgreSQL': { type: 'brand', icon: siPostgresql, color: '#4169e1' },
-  'Python': { type: 'brand', icon: siPython, color: '#3776ab' },
-  'Docker': { type: 'brand', icon: siDocker, color: '#2496ed' },
-  'AWS': { type: 'line', icon: Cloud, color: '#FF9900' },
-  'Streamlit': { type: 'brand', icon: siStreamlit, color: '#ff4b4b' },
-  'HubSpot': { type: 'brand', icon: siHubspot, color: '#ff7a59' },
-  'Redmine': { type: 'brand', icon: siRedmine, color: '#b32024' },
-  'DBeaver': { type: 'brand', icon: siDbeaver, color: '#382923' },
-  'PgAdmin': { type: 'line', icon: Database, color: '#336791' },
+type BrandTechIcon = { type: 'brand'; icon: SimpleIcon; color: string }
+type LineTechIcon = { type: 'line'; icon: LucideIcon; color: string }
+type TechIconEntry = BrandTechIcon | LineTechIcon
+
+const DEFAULT_TECH_ICON: LineTechIcon = { type: 'line', icon: Sparkles, color: '#6366f1' }
+
+const TECH_ICONS: Record<string, TechIconEntry> = {
+  Angular: { type: 'brand', icon: siAngular, color: '#c3002f' },
+  'Next.js': { type: 'brand', icon: siNextdotjs, color: '' },
+  GraphQL: { type: 'brand', icon: siGraphql, color: '#e10098' },
+  PostgreSQL: { type: 'brand', icon: siPostgresql, color: '#4169e1' },
+  Python: { type: 'brand', icon: siPython, color: '#3776ab' },
+  JavaScript: { type: 'brand', icon: siJavascript, color: '#c9a227' },
+  TypeScript: { type: 'brand', icon: siTypescript, color: '#3178c6' },
+  React: { type: 'brand', icon: siReact, color: '#149eca' },
+  'Node.js': { type: 'brand', icon: siNodedotjs, color: '#339933' },
+  Docker: { type: 'brand', icon: siDocker, color: '#2496ed' },
+  AWS: { type: 'line', icon: Cloud, color: '#FF9900' },
+  Cloud: { type: 'brand', icon: siGooglecloud, color: '#4285f4' },
+  Streamlit: { type: 'brand', icon: siStreamlit, color: '#ff4b4b' },
+  HubSpot: { type: 'brand', icon: siHubspot, color: '#ff7a59' },
+  Redmine: { type: 'brand', icon: siRedmine, color: '#b32024' },
+  DBeaver: { type: 'brand', icon: siDbeaver, color: '#382923' },
+  PgAdmin: { type: 'line', icon: Database, color: '#336791' },
+  'Google Sheets': { type: 'brand', icon: siGooglesheets, color: '#34a853' },
+  Git: { type: 'brand', icon: siGit, color: '#f05032' },
+  GitHub: { type: 'brand', icon: siGithub, color: '' },
+  Figma: { type: 'brand', icon: siFigma, color: '#f24e1e' },
+  Trello: { type: 'brand', icon: siTrello, color: '#0052cc' },
+  WhatsApp: { type: 'brand', icon: siWhatsapp, color: '#25d366' },
+  'WhatsApp Bot': { type: 'brand', icon: siWhatsapp, color: '#25d366' },
+  n8n: { type: 'brand', icon: siN8n, color: '#ea4b71' },
+  ChatGPT: { type: 'line', icon: Bot, color: '#10a37f' },
+  GPT: { type: 'line', icon: Bot, color: '#10a37f' },
+  'UX/UI': { type: 'line', icon: LayoutTemplate, color: '#ec4899' },
+  UX: { type: 'line', icon: LayoutTemplate, color: '#ec4899' },
+  Claude: { type: 'brand', icon: siAnthropic, color: '#d4a574' },
+  Gemini: { type: 'brand', icon: siGooglegemini, color: '#8e75ff' },
+  Llama: { type: 'brand', icon: siMeta, color: '#0467df' },
+  LangChain: { type: 'brand', icon: siLangchain, color: '#1c3c3c' },
+  'Hugging Face': { type: 'brand', icon: siHuggingface, color: '#ffd21e' },
+  Ollama: { type: 'brand', icon: siOllama, color: '' },
+  DeepSeek: { type: 'brand', icon: siDeepseek, color: '#4d6bfe' },
+  Mistral: { type: 'brand', icon: siMistralai, color: '#fa520a' },
+  Perplexity: { type: 'brand', icon: siPerplexity, color: '#20b8cd' },
+  Copilot: { type: 'brand', icon: siGithubcopilot, color: '' },
+  'IA Generativa': { type: 'line', icon: Sparkles, color: '#a855f7' },
+  'IA Aplicada': { type: 'line', icon: Bot, color: '#6366f1' },
+  LLMs: { type: 'line', icon: Bot, color: '#6366f1' },
+  'Engenharia de IA': { type: 'line', icon: Bot, color: '#6366f1' },
+  'Agentes de IA': { type: 'line', icon: Bot, color: '#6366f1' },
+  OpenClaw: { type: 'line', icon: Bot, color: '#0ea5e9' },
+  Automação: { type: 'line', icon: Workflow, color: '#0ea5e9' },
+  'Full Stack': { type: 'line', icon: Layers, color: '#2563eb' },
+  APIs: { type: 'line', icon: Layers, color: '#2563eb' },
+  'APIs REST': { type: 'line', icon: Layers, color: '#2563eb' },
 }
 
 function ExperienceTechTag({ name }: { name: string }) {
-  const iconData = TECH_ICONS[name]
-  if (!iconData) return null
+  const iconData = TECH_ICONS[name] ?? DEFAULT_TECH_ICON
+  const LineIcon = iconData.type === 'line' ? iconData.icon : null
 
   return (
-    <div className="flex flex-col items-center justify-start gap-2">
+    <div className="flex min-w-[4.5rem] max-w-[5.75rem] flex-col items-center justify-start gap-2">
       <div className="grid h-10 w-10 place-items-center rounded-full border border-slate-200/80 bg-white/60 shadow-sm dark:border-white/10 dark:bg-white/5">
         {iconData.type === 'brand' ? (
-          <svg aria-hidden className={`h-5 w-5 ${iconData.color ? '' : 'fill-ink'}`} viewBox="0 0 24 24" fill={iconData.color || 'currentColor'}>
+          <svg
+            aria-hidden
+            className={`h-5 w-5 ${iconData.color ? '' : 'fill-ink'}`}
+            viewBox="0 0 24 24"
+            fill={iconData.color || 'currentColor'}
+          >
             <path d={iconData.icon.path} />
           </svg>
-        ) : (
-          <iconData.icon aria-hidden className="h-5 w-5" color={iconData.color} strokeWidth={2.5} />
-        )}
+        ) : LineIcon ? (
+          <LineIcon aria-hidden className="h-5 w-5" color={iconData.color} strokeWidth={2.5} />
+        ) : null}
       </div>
-      <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-ink-dim">
+      <span className="w-full text-center font-mono text-[9px] font-bold uppercase leading-tight tracking-widest text-ink-dim">
         {name}
       </span>
     </div>
@@ -153,7 +235,6 @@ export function Experience() {
   return (
     <section
       id="experience"
-      data-codex-id="experience-section"
       className="section"
       aria-label={UI.experience.aria}
     >
@@ -168,6 +249,7 @@ export function Experience() {
             </>
           }
           description={UI.experience.description}
+          descriptionClassName="max-w-4xl lg:max-w-5xl"
         />
 
 
@@ -260,7 +342,7 @@ export function Experience() {
                     </div>
 
                     {exp.description && exp.description.length > 0 && (
-                      <div className="experience-timeline__copy mt-5 max-w-2xl space-y-3">
+                      <div className="experience-timeline__copy mt-5 space-y-3">
                         {exp.description.map((paragraph) => (
                           <p key={paragraph}>{paragraph}</p>
                         ))}

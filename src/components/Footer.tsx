@@ -6,7 +6,7 @@ import { getLocalizedHref } from '../i18n/routes'
 export function Footer() {
   const year = new Date().getFullYear()
   return (
-    <footer data-codex-id="footer-section" className="footer relative pb-12 pt-12 sm:pb-14">
+    <footer className="footer relative pb-12 pt-12 sm:pb-14">
       <div className="container-1200">
         <div className="flex flex-col items-center gap-10 border-t border-slate-200 pt-10 dark:border-white/10">
           <a

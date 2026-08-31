@@ -7,7 +7,7 @@ const PILLAR_ICONS = [GraduationCap, BrainCircuit, BriefcaseBusiness, Layers, Ro
 
 export function About() {
   return (
-    <section id="about" data-codex-id="about-section" className="section">
+    <section id="about" className="section">
       <div className="container-1200 relative z-10">
         <div className="grid items-stretch gap-8 lg:gap-10 xl:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]">
           <div className="grid h-full grid-rows-[auto_auto_1fr] gap-6 2xl:sticky 2xl:top-28">

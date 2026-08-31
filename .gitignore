@@ -59,3 +59,10 @@ src/dev/
 *.sh
 *Untitled*
 verificacoes-projetos/
+
+# Config de ferramentas de IA locais
+.claude/
+.codex/
+.cursor/
+.agent/
+graphify-out/

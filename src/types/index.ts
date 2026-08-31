@@ -7,6 +7,8 @@ export type Project = {
   desktopImage?: string
   mobileImage?: string
   gallery?: string[]
+  video?: string
+  videoPoster?: string
   platform?: 'responsive' | 'mobile'
   deviceType?: 'desktop' | 'mobile'
   link?: string

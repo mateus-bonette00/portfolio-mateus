@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/images/logo-mateus-bonette.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a1020" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
+    <meta
+      name="description"
+      content="Engenheiro de IA Aplicada e Full Stack. Python, RAG, LLMs, LangChain e Angular. Sistemas com IA Generativa, agentes autônomos e automações em produção."
+    />
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.mateusbonette.com.br/pt-br" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Mateus Bonette — Engenheiro de IA Aplicada | RAG, LLMs &amp; LangChain" />
+    <meta property="og:description" content="Engenheiro de IA Aplicada e Full Stack. Python, RAG, LLMs, LangChain e Angular. Crio sistemas com IA Generativa, agentes autônomos e automações em produção. Veja projetos e cases." />
+    <meta property="og:image" content="https://www.mateusbonette.com.br/images/logo-mateus-bonette.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Mateus Bonette — Engenheiro de IA Aplicada e Desenvolvedor Full Stack" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Mateus Bonette — Engenheiro de IA Aplicada | RAG, LLMs &amp; LangChain" />
+    <meta name="twitter:description" content="Engenheiro de IA Aplicada e Full Stack. Python, RAG, LLMs, LangChain e Angular. Crio sistemas com IA Generativa, agentes autônomos e automações em produção. Veja projetos e cases." />
+    <meta name="twitter:image" content="https://www.mateusbonette.com.br/images/logo-mateus-bonette.png" />
+    
+    <!-- Preload LCP Image -->
+    <link rel="preload" href="/images/profile-2.jpg" as="image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Mateus Bonette — Engenheiro de IA Aplicada | RAG, LLMs &amp; LangChain</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

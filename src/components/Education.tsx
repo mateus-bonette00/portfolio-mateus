@@ -5,13 +5,14 @@ import { EDUCATION, UI } from '../data/portfolio'
 
 export function Education() {
   return (
-    <section id="education" data-codex-id="education-section" className="section">
+    <section id="education" className="section">
       <div className="container-1200 relative z-10">
         <SectionTitle
           eyebrow={UI.education.eyebrow}
           title={
             <>
               <span className="text-gradient-static">{UI.education.titleStart}</span>
+              <br />
               <span className="text-gradient">{UI.education.titleAccent}</span>
               <span className="text-gradient-static">{UI.education.titleEnd}</span>
             </>

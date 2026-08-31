@@ -36,11 +36,11 @@ export function Background() {
     const nav = window.navigator as NavigatorWithPerformanceHints
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches
     const slowConnection = ['slow-2g', '2g'].includes(nav.connection?.effectiveType ?? '')
-    const shouldSkipCanvas = isCoarsePointer || nav.connection?.saveData === true || slowConnection
+    const shouldSkipCanvas = nav.connection?.saveData === true || slowConnection
 
     if (shouldSkipCanvas) return
 
-    const lowPower = (nav.deviceMemory ?? 8) <= 4
+    const lowPower = (nav.deviceMemory ?? 8) <= 4 || isCoarsePointer
     const mouse = { x: 0, y: 0, active: false }
 
     const onPointer = (clientX: number, clientY: number) => {

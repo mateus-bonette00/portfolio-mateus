@@ -123,18 +123,18 @@ export function Navbar() {
   }, [])
 
   return (
-    <header data-codex-id="site-navbar" className="fixed left-0 right-0 top-0 z-50 flex justify-center px-4 pt-4 sm:pt-5">
+    <header className="fixed left-0 right-0 top-0 z-50 flex justify-center px-4 pt-4 sm:pt-5">
       <motion.nav
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`w-full max-w-[1200px] rounded-2xl border transition-all duration-500 ${
+        className={`max-w-site w-full rounded-2xl border transition-all duration-500 ${
           scrolled
-            ? 'border-slate-200/80 bg-white/80 backdrop-blur-2xl shadow-soft dark:border-white/10 dark:bg-bg/70'
-            : 'border-slate-200/60 bg-white/60 backdrop-blur-xl dark:border-white/[0.06] dark:bg-white/[0.02]'
+            ? 'border-slate-200/70 bg-white/65 backdrop-blur-2xl shadow-soft dark:border-white/10 dark:bg-bg/55'
+            : 'border-slate-200/50 bg-white/45 backdrop-blur-xl dark:border-white/[0.06] dark:bg-white/[0.02]'
         }`}
       >
-        <div className="grid grid-cols-3 items-center px-5 py-3 sm:px-6 lg:grid-cols-[1fr_auto_1fr]">
+        <div className="relative grid grid-cols-3 items-center px-5 py-3 sm:px-6 lg:grid-cols-[1fr_auto_1fr]">
           <ul className="hidden items-center justify-end gap-2 pr-4 lg:flex xl:pr-6">
             {NAV_LINKS.slice(0, 3).map((l) => (
               <NavLink

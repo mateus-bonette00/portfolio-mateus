@@ -48,9 +48,11 @@ export function SectionTitle({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5, delay: 0.12 }}
-          className={`section-title__desc mt-4 max-w-2xl leading-relaxed text-ink-dim ${
-            denseMobile ? 'text-base sm:text-xl' : 'text-lg sm:text-xl'
-          } ${denseMobile ? 'max-sm:mt-3' : ''} ${align === 'center' ? 'mx-auto' : ''} ${descriptionClassName}`}
+          className={`section-title__desc mt-4 leading-relaxed text-ink-dim ${
+            descriptionClassName || 'max-w-2xl'
+          } ${denseMobile ? 'text-base sm:text-xl' : 'text-lg sm:text-xl'} ${
+            denseMobile ? 'max-sm:mt-3' : ''
+          } ${align === 'center' ? 'mx-auto' : ''}`}
         >
           {description}
         </motion.p>

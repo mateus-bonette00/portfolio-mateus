@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
-import { ArrowDown, Download, Github, Instagram, Linkedin, Mail, MessageSquare } from 'lucide-react'
+import { ArrowDown, Download, Github, Instagram, Linkedin, MessageSquare } from 'lucide-react'
 import { PROFILE, UI } from '../data/portfolio'
 import { PROFILE_IMAGE_PATH, RESUME_DOWNLOAD_FILENAME, RESUME_PDF_PATH } from '../constants/assets'
 import { getLocalizedHref } from '../i18n/routes'
+import { CopyEmailControl } from './CopyEmailControl'
 import { DiscordIcon } from './icons/DiscordIcon'
 import { SocialIcon } from './SocialIcon'
 
@@ -12,16 +13,15 @@ export function Hero() {
   return (
     <section
       id="hero"
-      data-codex-id="home-hero"
-      className="relative flex min-h-[100svh] flex-col items-center overflow-hidden pt-28 sm:pt-32"
+      className="relative flex min-h-[100svh] flex-col items-center overflow-hidden pt-[var(--navbar-offset)]"
     >
       <div className="container-1200 relative z-10 flex w-full flex-1 flex-col">
-        <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center text-center">
+        <div className="mx-auto my-auto flex w-full max-w-3xl flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 16, scale: 0.94 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="hero-avatar-shell hero-photo-stage relative h-[179px] w-[179px] overflow-hidden rounded-full sm:h-[211px] sm:w-[211px]"
+            className="hero-avatar-shell hero-photo-stage relative mt-6 h-[179px] w-[179px] overflow-hidden rounded-full sm:mt-8 sm:h-[211px] sm:w-[211px] lg:mt-10"
           >
             <img
               src={PROFILE_IMAGE_PATH}
@@ -36,16 +36,27 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-7 font-display text-[2.75rem] font-bold leading-[0.98] tracking-tight text-gradient sm:text-6xl lg:text-[5rem]"
+            className="mt-7 text-center font-display text-[2.75rem] font-bold leading-[0.98] tracking-tight text-gradient sm:text-6xl lg:text-[5rem]"
           >
-            {HERO_NAME}
+            <span className="block sm:hidden">Mateus</span>
+            <span className="block sm:hidden">Bonette</span>
+            <span className="hidden sm:inline">{HERO_NAME}</span>
           </motion.h1>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-5 text-center font-display text-xl font-semibold leading-[0.98] tracking-tight text-gradient sm:text-2xl lg:text-3xl"
+          >
+            {PROFILE.role}
+          </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-ink-dim sm:text-xl"
+            transition={{ duration: 0.6, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-3 max-w-2xl text-base font-medium leading-relaxed text-ink-dim sm:text-lg"
           >
             {PROFILE.tagline}
           </motion.p>
@@ -54,23 +65,24 @@ export function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 flex items-center justify-center gap-3"
+            className="mt-8 flex w-full flex-col items-center gap-4"
           >
-            <SocialIcon href={PROFILE.social.github} label="GitHub">
-              <Github size={18} />
-            </SocialIcon>
-            <SocialIcon href={PROFILE.social.linkedin} label="LinkedIn">
-              <Linkedin size={18} />
-            </SocialIcon>
-            <SocialIcon href={PROFILE.social.discord} label="Discord (mateusbonette)">
-              <DiscordIcon size={18} />
-            </SocialIcon>
-            <SocialIcon href={PROFILE.social.instagram} label="Instagram">
-              <Instagram size={18} />
-            </SocialIcon>
-            <SocialIcon href={`mailto:${PROFILE.email}`} label="E-mail">
-              <Mail size={18} />
-            </SocialIcon>
+            <div className="flex items-center justify-center gap-3">
+              <SocialIcon href={PROFILE.social.github} label="GitHub">
+                <Github size={18} />
+              </SocialIcon>
+              <SocialIcon href={PROFILE.social.linkedin} label="LinkedIn">
+                <Linkedin size={18} />
+              </SocialIcon>
+              <SocialIcon href={PROFILE.social.discord} label="Discord (mateusbonette)">
+                <DiscordIcon size={18} />
+              </SocialIcon>
+              <SocialIcon href={PROFILE.social.instagram} label="Instagram">
+                <Instagram size={18} />
+              </SocialIcon>
+            </div>
+
+            <CopyEmailControl variant="hero" />
           </motion.div>
 
           <motion.div
