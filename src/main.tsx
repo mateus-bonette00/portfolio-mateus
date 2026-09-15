@@ -9,8 +9,24 @@ import { getCurrentLocale, getRouteInfo } from './i18n/routes'
 const locale = getCurrentLocale()
 document.documentElement.lang = locale === 'en' ? 'en' : 'pt-BR'
 
+const nativeReplaceState = window.history.replaceState.bind(window.history)
+window.history.replaceState = (data, unused, url) => {
+  if (typeof url === 'string') {
+    url = url.replace(/^\/(?:pt-br|pt|en)(\/proposta\/)/, '$1')
+  }
+  return nativeReplaceState(data, unused, url)
+}
+
 const proposalSlug = getRouteInfo().internalPath.match(/^\/proposta\/([^/]+)$/)?.[1]
 const isProposal = Boolean(proposalSlug)
+
+if (proposalSlug) {
+  const canonical = `/proposta/${decodeURIComponent(proposalSlug)}`
+  const current = window.location.pathname.replace(/\/$/, '') || '/'
+  if (current !== canonical) {
+    window.history.replaceState(null, '', `${canonical}${window.location.hash}`)
+  }
+}
 
 if (!isProposal) {
   document.title = UI.metadata.title
