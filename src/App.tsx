@@ -27,6 +27,9 @@ const ProjectsArchivePage = lazy(() =>
 const LinksPage = lazy(() =>
   import('./components/LinksPage').then((module) => ({ default: module.LinksPage })),
 )
+const ProposalPage = lazy(() =>
+  import('./components/proposal/ProposalPage').then((module) => ({ default: module.ProposalPage })),
+)
 
 function LazyFallback() {
   return <div className="min-h-24" aria-hidden="true" />
@@ -47,10 +50,11 @@ export default function App() {
   const projectId = internalPath.match(/^\/projetos\/([^/]+)$/)?.[1]
   const isProjectsArchive = internalPath === '/projetos'
   const isLinksPage = internalPath === '/links-contatos'
+  const proposalSlug = internalPath.match(/^\/proposta\/([^/]+)$/)?.[1]
 
   if (isLinksPage) {
     return (
-      <div className="relative isolate min-h-screen overflow-x-hidden bg-bg text-ink">
+      <div className="relative isolate min-h-screen overflow-x-clip bg-bg text-ink">
         <Background />
         <ScrollProgress />
         <Suspense fallback={<LazyFallback />}>
@@ -61,8 +65,21 @@ export default function App() {
     )
   }
 
+  if (proposalSlug) {
+    return (
+      <div className="relative isolate min-h-screen overflow-x-clip bg-bg text-ink">
+        <Background />
+        <ScrollProgress />
+        <Suspense fallback={<LazyFallback />}>
+          <ProposalPage slug={decodeURIComponent(proposalSlug)} />
+        </Suspense>
+        <FloatingWhatsApp />
+      </div>
+    )
+  }
+
   return (
-    <div className="relative isolate min-h-screen overflow-x-hidden bg-bg text-ink">
+    <div className="relative isolate min-h-screen overflow-x-clip bg-bg text-ink">
       <Background />
       <ScrollProgress />
       <Navbar />
@@ -75,7 +92,7 @@ export default function App() {
           <ProjectsArchivePage />
         </Suspense>
       ) : (
-        <main className="relative z-10 w-full max-w-full overflow-x-hidden">
+        <main className="relative z-10 w-full max-w-full overflow-x-clip">
           <Hero />
           <Suspense fallback={<LazyFallback />}>
             <Projects />

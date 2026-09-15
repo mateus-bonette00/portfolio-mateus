@@ -38,7 +38,9 @@ export function SectionTitle({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.55, delay: 0.05 }}
-        className={`section-title-display ${denseMobile ? 'mt-2 sm:mt-3' : 'mt-3'}`}
+        className={`section-title-display ${denseMobile ? 'mt-5 sm:mt-5' : 'mt-6 sm:mt-6'} ${
+          align === 'center' ? '!text-center' : ''
+        }`}
       >
         {title}
       </motion.h2>

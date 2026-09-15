@@ -30,16 +30,11 @@ export function Background() {
     if (reduced) return
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { alpha: true })
     if (!ctx) return
 
     const nav = window.navigator as NavigatorWithPerformanceHints
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches
-    const slowConnection = ['slow-2g', '2g'].includes(nav.connection?.effectiveType ?? '')
-    const shouldSkipCanvas = nav.connection?.saveData === true || slowConnection
-
-    if (shouldSkipCanvas) return
-
     const lowPower = (nav.deviceMemory ?? 8) <= 4 || isCoarsePointer
     const mouse = { x: 0, y: 0, active: false }
 
@@ -91,25 +86,56 @@ export function Background() {
       return clamp(base + wideBonus, lowPower ? 38 : 58, lowPower ? 62 : 96)
     }
 
-    const setup = () => {
-      width = window.innerWidth
-      height = window.innerHeight
+    const readSize = () => {
+      const rect = canvas.getBoundingClientRect()
+      return {
+        w: Math.max(1, Math.round(rect.width)),
+        h: Math.max(1, Math.round(rect.height)),
+      }
+    }
+
+    const setup = (forcePoints = false) => {
+      const { w: nextW, h: nextH } = readSize()
+      const widthDelta = Math.abs(nextW - width)
+      const heightDelta = Math.abs(nextH - height)
+
+      // iOS URL bar jumps ~40-80px and used to wipe the graph every time.
+      if (!forcePoints && points.length && widthDelta < 2 && heightDelta < 90) {
+        return
+      }
+
+      const sx = width > 0 ? nextW / width : 1
+      const sy = height > 0 ? nextH / height : 1
+      width = nextW
+      height = nextH
       canvas.width = width * dpr
       canvas.height = height * dpr
-      canvas.style.width = width + 'px'
-      canvas.style.height = height + 'px'
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      points = Array.from({ length: getPointCount() }, makePoint)
+      const count = getPointCount()
+      if (forcePoints || points.length === 0) {
+        points = Array.from({ length: count }, makePoint)
+        return
+      }
+
+      for (const p of points) {
+        p.x *= sx
+        p.y *= sy
+      }
+      while (points.length < count) points.push(makePoint())
+      if (points.length > count) points.length = count
     }
 
     const scheduleSetup = () => {
       window.clearTimeout(resizeTimer)
-      resizeTimer = window.setTimeout(setup, 120)
+      resizeTimer = window.setTimeout(() => setup(), 120)
     }
 
     const onVisibilityChange = () => {
       lastFrame = 0
+      if (document.visibilityState === 'visible') {
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      }
     }
 
     const bucketKey = (x: number, y: number) => `${x}:${y}`
@@ -135,9 +161,11 @@ export function Background() {
     }
 
     const drawEdges = (isDark: boolean, maxDistance: number, t: number) => {
-      const baseA = isDark ? 0.85 : 0.65
+      const baseA = isDark ? 0.68 : 0.52
       const breathe = 0.9 + 0.1 * Math.sin(t * 0.00028)
       const buckets = buildBuckets(maxDistance)
+      const minWidth = lowPower ? 1.05 : 0.75
+      const extraWidth = 1.05
 
       for (let i = 0; i < points.length; i++) {
         const a = points[i]
@@ -171,7 +199,7 @@ export function Background() {
                   : coolEdge
                     ? `rgba(14, 116, 144, ${baseA * strength})`
                     : `rgba(30, 64, 175, ${baseA * strength})`
-                ctx.lineWidth = 0.75 + strength * 1.05
+                ctx.lineWidth = minWidth + strength * extraWidth
                 ctx.stroke()
               }
             }
@@ -226,7 +254,7 @@ export function Background() {
           : cyan
             ? 'rgba(14, 116, 144, 0.85)'
             : 'rgba(30, 64, 175, 0.9)'
-        ctx.shadowBlur = isDark ? 18 : 10
+        ctx.shadowBlur = isDark ? 14 : 8
         ctx.shadowColor = isDark
           ? cyan
             ? 'rgba(34, 211, 238, 0.82)'
@@ -308,15 +336,17 @@ export function Background() {
       raf = requestAnimationFrame(tick)
     }
 
-    setup()
+    setup(true)
     raf = requestAnimationFrame(tick)
     window.addEventListener('resize', scheduleSetup)
+    window.visualViewport?.addEventListener('resize', scheduleSetup)
     document.addEventListener('visibilitychange', onVisibilityChange)
 
     return () => {
       cancelAnimationFrame(raf)
       window.clearTimeout(resizeTimer)
       window.removeEventListener('resize', scheduleSetup)
+      window.visualViewport?.removeEventListener('resize', scheduleSetup)
       document.removeEventListener('visibilitychange', onVisibilityChange)
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('touchstart', onTouch)
@@ -333,8 +363,8 @@ export function Background() {
       <div className="network-vignette absolute inset-0" />
       <canvas
         ref={canvasRef}
-        className="absolute inset-0"
-        style={{ opacity: reduced ? 0 : 0.96 }}
+        className="absolute inset-0 h-full w-full [transform:translateZ(0)]"
+        style={{ opacity: reduced ? 0 : 0.88, colorScheme: 'light' }}
         aria-hidden
       />
       <div className="absolute inset-0 bg-gradient-to-b from-bg/0 via-bg/6 to-bg/62 dark:via-bg/8 dark:to-bg/66" />

@@ -188,7 +188,7 @@ export function ProjectDetailPage({ projectId }: { projectId: string }) {
 
 export function ProjectsArchivePage() {
   return (
-    <main className="relative z-10 min-h-[100svh] overflow-x-hidden pt-32 sm:pt-36">
+    <main className="relative z-10 min-h-[100svh] overflow-x-clip pt-32 sm:pt-36">
       <section className="section">
         <div className="container-1200 relative z-10">
           <motion.div

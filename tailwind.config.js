@@ -43,11 +43,16 @@ export default {
       },
       animation: {
         'gradient-x': 'gradient-x 12s ease infinite',
+        marquee: 'marquee 32s linear infinite',
       },
       keyframes: {
         'gradient-x': {
           '0%, 100%': { 'background-position': '0% 50%' },
           '50%': { 'background-position': '100% 50%' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
       },
       boxShadow: {
