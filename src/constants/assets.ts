@@ -2,12 +2,12 @@ import { getCurrentLocale } from '../i18n/routes'
 
 const RESUME_ASSETS = {
   'pt-BR': {
-    path: '/Currículo-Mateus-Bonette-V2-PTBR.pdf',
-    filename: 'Currículo-Mateus-Bonette-V2-PTBR.pdf',
+    path: '/Mateus_Bonette_Curriculo.pdf',
+    filename: 'Mateus_Bonette_Curriculo.pdf',
   },
   en: {
-    path: '/CV-Mateus-Bonette-EN.pdf',
-    filename: 'CV-Mateus-Bonette-EN.pdf',
+    path: '/Mateus_Bonette_Resume_EN.pdf',
+    filename: 'Mateus_Bonette_Resume_EN.pdf',
   },
 } as const
 
