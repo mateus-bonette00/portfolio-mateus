@@ -2217,18 +2217,78 @@ const UI_PT: PortfolioUiContent = {
     groups: [
       {
         id: "ai-engineering",
-        title: "AI Engineering: LLMs, RAG e Agentes",
-        summary: "Modelos de linguagem, recuperação semântica, sistemas multiagente, servidores MCP e processamento multimodal.",
+        title: "AI Engineering: Modelos, Agentes & Coding",
+        summary: "Modelos de fronteira, agentes de código, multiagentes, treinamento, otimização e orquestração em produção.",
         items: [
           {
-            id: "llms",
-            name: "LLMs & IA Generativa",
-            description: "Integração de modelos de linguagem para extração estruturada, classificação e síntese em produção.",
+            id: "applied-ai",
+            name: "Applied AI Engineering",
+            description: "Arquitetura e entrega de sistemas de IA aplicados a problemas reais de produto e operação.",
           },
           {
-            id: "rag",
-            name: "RAG & Agentic RAG",
-            description: "Chunking, busca semântica, busca híbrida e recuperação iterativa fundamentada em dados reais.",
+            id: "llms",
+            name: "Generative AI Engineering",
+            description: "Engenharia de modelos generativos para extração estruturada, classificação e síntese em produção.",
+          },
+          {
+            id: "anthropic",
+            name: "Claude",
+            description: "Integração de modelos Claude em fluxos de análise técnica, código e raciocínio complexo.",
+          },
+          {
+            id: "claude-code",
+            name: "Claude Code",
+            description: "Desenvolvimento assistido em terminal com agentes autônomos, hooks, skills e servidores MCP.",
+          },
+          {
+            id: "openai",
+            name: "GPT (OpenAI)",
+            description: "Uso de modelos GPT, embeddings e chamadas de função em fluxos de produção.",
+          },
+          {
+            id: "codex",
+            name: "Codex",
+            description: "Automação de engenharia de software, refatoração e revisões técnicas com OpenAI Codex.",
+          },
+          {
+            id: "gemini",
+            name: "Gemini",
+            description: "Processamento multimodal de documentos, código, OCR e extração estruturada com Google Gemini.",
+          },
+          {
+            id: "antigravity",
+            name: "Google Antigravity",
+            description: "Fluxos agênticos de desenvolvimento, orquestração de skills e automação de engenharia com Antigravity.",
+          },
+          {
+            id: "cursor",
+            name: "Cursor",
+            description: "Desenvolvimento acelerado por IA com regras de projeto, agentes de edição e contexto de codebase.",
+          },
+          {
+            id: "grok",
+            name: "Grok",
+            description: "Uso de modelos Grok (xAI) para análise técnica, síntese e avaliação comparativa de LLMs.",
+          },
+          {
+            id: "openrouter",
+            name: "OpenRouter",
+            description: "Gateway unificado para roteamento multi-provedor, fallback automático e comparação de modelos.",
+          },
+          {
+            id: "ollama",
+            name: "Ollama",
+            description: "Execução local de modelos open-weight para testes, prototipagem e ambientes privados.",
+          },
+          {
+            id: "vertex-ai",
+            name: "Vertex AI",
+            description: "Execução gerenciada de modelos no Google Cloud com controle de cota e segurança.",
+          },
+          {
+            id: "huggingface",
+            name: "Hugging Face",
+            description: "Modelos, tokenizers e datasets abertos para NLP, embeddings e fine-tuning.",
           },
           {
             id: "ai-agents",
@@ -2236,9 +2296,9 @@ const UI_PT: PortfolioUiContent = {
             description: "Agentes autônomos e sistemas cooperativos com roteamento, memória e execução de tarefas.",
           },
           {
-            id: "mcp",
-            name: "MCP (Model Context Protocol)",
-            description: "Servidores MCP conectados a APIs, bancos de dados, Google Cloud e Cloudflare.",
+            id: "browser-agents",
+            name: "Browser Agents",
+            description: "Agentes autônomos de navegação web para coleta, automação de tarefas e validação visual.",
           },
           {
             id: "langchain",
@@ -2256,71 +2316,153 @@ const UI_PT: PortfolioUiContent = {
             description: "Orquestração de agentes especializados por papéis e fluxos coordenados.",
           },
           {
-            id: "embeddings",
-            name: "Embeddings & Vector DBs",
-            description: "Vetorização de documentos e busca por similaridade com filtros em pgvector e bancos vetoriais.",
-          },
-          {
-            id: "prompt-engineering",
-            name: "Prompt Engineering & JSON",
-            description: "Prompts versionados com saída estrita em JSON Schema e consistência entre execuções.",
-          },
-          {
-            id: "openai",
-            name: "OpenAI API (GPT)",
-            description: "Uso de modelos GPT, embeddings e chamadas de função em fluxos de produção.",
-          },
-          {
-            id: "anthropic",
-            name: "Anthropic Claude",
-            description: "Integração de modelos Claude em fluxos de análise técnica, código e raciocínio.",
-          },
-          {
-            id: "gemini",
-            name: "Google Gemini",
-            description: "Processamento multimodal de documentos, OCR e extração estruturada.",
-          },
-          {
-            id: "vertex-ai",
-            name: "Vertex AI",
-            description: "Execução gerenciada de modelos no Google Cloud com controle de cota e segurança.",
-          },
-          {
-            id: "ollama",
-            name: "Ollama (Local LLMs)",
-            description: "Execução local de modelos open-weight para testes e ambientes privados.",
-          },
-          {
-            id: "huggingface",
-            name: "Hugging Face",
-            description: "Modelos, tokenizers e datasets abertos para NLP e embeddings.",
-          },
-          {
             id: "finetuning-lora",
-            name: "Fine-Tuning (LoRA & PEFT)",
-            description: "Adaptação eficiente de modelos para domínios específicos com baixo custo de treino.",
+            name: "Model Training & Fine-Tuning",
+            description: "Treinamento e adaptação eficiente de modelos (LoRA & PEFT) para domínios específicos.",
           },
           {
-            id: "multimodal-ocr",
-            name: "Multimodal AI & Document OCR",
-            description: "Leitura automatizada de faturas, extratos e PDFs com validação estruturada.",
+            id: "model-optimization",
+            name: "Model Optimization",
+            description: "Otimização de latência, throughput, custo por inferência e qualidade de resposta em produção.",
           },
           {
             id: "model-routing",
             name: "Model Routing & Semantic Cache",
-            description: "Seleção dinâmica de modelos por complexidade e cache para reduzir latência e custo.",
+            description: "Seleção dinâmica de modelos por complexidade e cache semântico para reduzir latência e custo.",
+          },
+        ],
+      },
+      {
+        id: "rag-prompting",
+        title: "RAG, Busca, Prompting & Contexto",
+        summary: "Recuperação híbrida e contextual, chunking, embeddings, OCR, otimização de prompts e gestão de tokens.",
+        items: [
+          {
+            id: "rag",
+            name: "Retrieval-Augmented Generation (RAG)",
+            description: "Pipelines de recuperação semântica, busca híbrida e Agentic RAG fundamentados em dados reais.",
+          },
+          {
+            id: "contextual-retrieval",
+            name: "Contextual Retrieval",
+            description: "Enriquecimento contextual de trechos antes da indexação para elevar a precisão da busca.",
+          },
+          {
+            id: "bm25",
+            name: "BM25",
+            description: "Busca lexical por relevância combinada com vetores para recuperação híbrida de alta precisão.",
+          },
+          {
+            id: "reranking",
+            name: "Re-ranking",
+            description: "Reordenação semântica dos resultados recuperados para priorizar os trechos mais relevantes ao LLM.",
+          },
+          {
+            id: "text-chunking",
+            name: "Text Chunking",
+            description: "Estratégias de chunking semântico, estrutural e com sobreposição para documentos longos.",
+          },
+          {
+            id: "embeddings",
+            name: "Embeddings",
+            description: "Vetorização semântica de documentos, consultas e metadados para busca por similaridade.",
+          },
+          {
+            id: "vector-databases",
+            name: "Vector Databases",
+            description: "Indexação vetorial, filtros híbridos e busca aproximada em escala com pgvector e stores vetoriais.",
+          },
+          {
+            id: "multimodal-ocr",
+            name: "Optical Character Recognition (OCR)",
+            description: "Leitura automatizada de PDFs, faturas, extratos e imagens com extração estruturada.",
+          },
+          {
+            id: "firecrawl",
+            name: "Firecrawl",
+            description: "Crawling e extração de páginas web em Markdown limpo pronto para pipelines de RAG e agentes.",
+          },
+          {
+            id: "prompt-engineering",
+            name: "Prompt Engineering",
+            description: "Prompts versionados com saída estrita em JSON Schema e consistência entre execuções.",
+          },
+          {
+            id: "system-prompt-design",
+            name: "System Prompt Design",
+            description: "Especificação clara de papel, limites, políticas de uso de ferramentas e formato de resposta.",
+          },
+          {
+            id: "prompt-optimization",
+            name: "Prompt Optimization",
+            description: "Iteração orientada a métricas e evals para reduzir falhas, alucinações e consumo de tokens.",
+          },
+          {
+            id: "textgrad",
+            name: "TextGrad",
+            description: "Otimização automática de prompts e pipelines de IA usando feedback textual estruturado.",
+          },
+          {
+            id: "token-management",
+            name: "Tokenization & Token Management",
+            description: "Análise de tokenização, orçamento de tokens e controle de custo por requisição e sessão.",
+          },
+          {
+            id: "context-window",
+            name: "Context Window & Context Length",
+            description: "Gestão de janelas longas, compactação de histórico e controle de perda de atenção no contexto.",
           },
         ],
       },
       {
         id: "harness-engineering",
         title: "Harness Engineering: Confiabilidade e Controle",
-        summary: "Contratos de ferramentas, regras determinísticas, guardrails, observabilidade, evals e controle de custos.",
+        summary: "Contratos de ferramentas, MCP, skills, hooks, guardrails, supervisão humana, evals e controle de custos.",
         items: [
           {
             id: "harness-arch",
             name: "Harness Engineering",
             description: "Arquitetura de controle de contexto, ferramentas e comportamento para evitar respostas não verificadas.",
+          },
+          {
+            id: "agent-harness",
+            name: "Agent Harness Engineering",
+            description: "Infraestrutura de execução, isolamento, verificação e recuperação para agentes autônomos em produção.",
+          },
+          {
+            id: "mcp",
+            name: "MCP (Model Context Protocol)",
+            description: "Servidores MCP conectados a APIs, bancos de dados, Google Cloud e Cloudflare.",
+          },
+          {
+            id: "skills",
+            name: "Skills",
+            description: "Empacotamento modular de instruções, scripts e fluxos reutilizáveis para agentes de engenharia.",
+          },
+          {
+            id: "hooks",
+            name: "Hooks",
+            description: "Gatilhos determinísticos no ciclo de vida de agentes para validação, auditoria e automação.",
+          },
+          {
+            id: "guardrails",
+            name: "Guardrails",
+            description: "Camadas de proteção (guard), schemas JSON, normalização e bloqueio de saídas fora de política.",
+          },
+          {
+            id: "context-engineering",
+            name: "Context Engineering",
+            description: "Seleção, compactação e injeção controlada de contexto e memória de longo prazo.",
+          },
+          {
+            id: "hitl",
+            name: "Human-in-the-Loop (HITL)",
+            description: "Fluxos de aprovação e revisão humana em decisões críticas com rastreabilidade completa.",
+          },
+          {
+            id: "hotl",
+            name: "Human-on-the-Loop (HOTL)",
+            description: "Supervisão contínua de agentes autônomos com alertas, telemetria e intervenção sob exceção.",
           },
           {
             id: "tool-calling",
@@ -2333,16 +2475,6 @@ const UI_PT: PortfolioUiContent = {
             description: "Separação clara entre interpretação em linguagem natural e cálculos exatos em código.",
           },
           {
-            id: "guardrails",
-            name: "Guardrails & Validação",
-            description: "Schemas JSON, normalização, deduplicação e bloqueio de saídas fora de política antes do banco.",
-          },
-          {
-            id: "hitl",
-            name: "Human-in-the-Loop (HITL)",
-            description: "Fluxos de revisão humana para tratar divergências e manter rastreabilidade das decisões.",
-          },
-          {
             id: "langfuse",
             name: "Langfuse & Observabilidade",
             description: "Tracing de prompts, tokens, latência e erros por execução em produção.",
@@ -2351,11 +2483,6 @@ const UI_PT: PortfolioUiContent = {
             id: "cost-fallback",
             name: "FinOps de IA, Fallback & Limites",
             description: "Fallback automático entre provedores, cache de documentos e tetos mensais de gasto.",
-          },
-          {
-            id: "context-engineering",
-            name: "Context Engineering & Memória",
-            description: "Seleção, compactação e injeção controlada de contexto e memória de longo prazo.",
           },
           {
             id: "ai-evals",
@@ -2555,8 +2682,13 @@ const UI_PT: PortfolioUiContent = {
           },
           {
             id: "linux",
-            name: "Linux & systemd",
-            description: "Administração de servidores, serviços contínuos e diagnóstico em produção.",
+            name: "Linux",
+            description: "Administração de servidores, shell, systemd e diagnóstico de ambientes em produção.",
+          },
+          {
+            id: "ubuntu",
+            name: "Ubuntu",
+            description: "Configuração, operação e deploy de serviços backend, containers e agentes em servidores Ubuntu.",
           },
           {
             id: "git",
@@ -2973,18 +3105,78 @@ const UI_EN: PortfolioUiContent = {
     groups: [
       {
         id: "ai-engineering",
-        title: "AI Engineering: LLMs, RAG & Agents",
-        summary: "Language models, semantic retrieval, multi-agent systems, MCP servers, and multimodal processing.",
+        title: "AI Engineering: Models, Agents & Coding",
+        summary: "Frontier models, coding agents, multi-agent systems, model training, optimization, and production orchestration.",
         items: [
           {
-            id: "llms",
-            name: "LLMs & Generative AI",
-            description: "Integrating language models for structured extraction, classification, and synthesis in production.",
+            id: "applied-ai",
+            name: "Applied AI Engineering",
+            description: "Designing and shipping production AI systems tied to real product and operational workflows.",
           },
           {
-            id: "rag",
-            name: "RAG & Agentic RAG",
-            description: "Chunking, semantic search, hybrid retrieval, and iterative grounding over real data.",
+            id: "llms",
+            name: "Generative AI Engineering",
+            description: "Engineering generative models for structured extraction, classification, and synthesis in production.",
+          },
+          {
+            id: "anthropic",
+            name: "Claude",
+            description: "Integrating Claude models for technical analysis, software engineering, and complex reasoning.",
+          },
+          {
+            id: "claude-code",
+            name: "Claude Code",
+            description: "Terminal-native agentic development using autonomous coding loops, hooks, skills, and MCP servers.",
+          },
+          {
+            id: "openai",
+            name: "GPT (OpenAI)",
+            description: "GPT models, embeddings, and function calling across production workloads.",
+          },
+          {
+            id: "codex",
+            name: "Codex",
+            description: "Automated software engineering, refactoring, and code review workflows with OpenAI Codex.",
+          },
+          {
+            id: "gemini",
+            name: "Gemini",
+            description: "Multimodal document processing, code workflows, OCR, and structured extraction with Google Gemini.",
+          },
+          {
+            id: "antigravity",
+            name: "Google Antigravity",
+            description: "Agentic engineering workflows, skill orchestration, and development automation with Antigravity.",
+          },
+          {
+            id: "cursor",
+            name: "Cursor",
+            description: "AI-native development with project rules, editing agents, and codebase-aware context.",
+          },
+          {
+            id: "grok",
+            name: "Grok",
+            description: "Working with Grok (xAI) models for technical analysis, synthesis, and cross-model evaluation.",
+          },
+          {
+            id: "openrouter",
+            name: "OpenRouter",
+            description: "Unified multi-provider gateway for model routing, automatic fallback, and benchmarking.",
+          },
+          {
+            id: "ollama",
+            name: "Ollama",
+            description: "Local execution of open-weight models for testing, prototyping, and private deployments.",
+          },
+          {
+            id: "vertex-ai",
+            name: "Vertex AI",
+            description: "Managed model execution on Google Cloud with quota and security controls.",
+          },
+          {
+            id: "huggingface",
+            name: "Hugging Face",
+            description: "Open models, tokenizers, and datasets for NLP, embeddings, and fine-tuning.",
           },
           {
             id: "ai-agents",
@@ -2992,9 +3184,9 @@ const UI_EN: PortfolioUiContent = {
             description: "Autonomous and cooperative agents with routing, memory, and task execution.",
           },
           {
-            id: "mcp",
-            name: "MCP (Model Context Protocol)",
-            description: "MCP servers wired to APIs, databases, Google Cloud, and Cloudflare.",
+            id: "browser-agents",
+            name: "Browser Agents",
+            description: "Autonomous web-browsing agents for structured extraction, task automation, and UI verification.",
           },
           {
             id: "langchain",
@@ -3012,71 +3204,153 @@ const UI_EN: PortfolioUiContent = {
             description: "Role-based agent orchestration and coordinated multi-agent execution.",
           },
           {
-            id: "embeddings",
-            name: "Embeddings & Vector DBs",
-            description: "Document vectorization and filtered similarity search in pgvector and vector stores.",
-          },
-          {
-            id: "prompt-engineering",
-            name: "Prompt Engineering & JSON",
-            description: "Versioned prompts with strict JSON Schema outputs and cross-run consistency.",
-          },
-          {
-            id: "openai",
-            name: "OpenAI API (GPT)",
-            description: "GPT models, embeddings, and function calling in production workloads.",
-          },
-          {
-            id: "anthropic",
-            name: "Anthropic Claude",
-            description: "Claude integration for technical analysis, code workflows, and reasoning tasks.",
-          },
-          {
-            id: "gemini",
-            name: "Google Gemini",
-            description: "Multimodal document processing, OCR, and structured extraction.",
-          },
-          {
-            id: "vertex-ai",
-            name: "Vertex AI",
-            description: "Managed model execution on Google Cloud with quota and security controls.",
-          },
-          {
-            id: "ollama",
-            name: "Ollama (Local LLMs)",
-            description: "Local execution of open-weight models for testing and private setups.",
-          },
-          {
-            id: "huggingface",
-            name: "Hugging Face",
-            description: "Open models, tokenizers, and datasets for NLP and embeddings.",
-          },
-          {
             id: "finetuning-lora",
-            name: "Fine-Tuning (LoRA & PEFT)",
-            description: "Parameter-efficient domain adaptation of language models at lower training cost.",
+            name: "Model Training & Fine-Tuning",
+            description: "Training and parameter-efficient domain adaptation (LoRA & PEFT) for specialized workloads.",
           },
           {
-            id: "multimodal-ocr",
-            name: "Multimodal AI & Document OCR",
-            description: "Automated parsing of bills, bank statements, and PDFs with structured validation.",
+            id: "model-optimization",
+            name: "Model Optimization",
+            description: "Optimizing latency, throughput, inference cost, and output quality in production.",
           },
           {
             id: "model-routing",
             name: "Model Routing & Semantic Cache",
-            description: "Dynamic model selection by task complexity and caching to cut latency and cost.",
+            description: "Dynamic model selection by task complexity and semantic caching to cut latency and cost.",
+          },
+        ],
+      },
+      {
+        id: "rag-prompting",
+        title: "RAG, Search, Prompting & Context",
+        summary: "Hybrid and contextual retrieval, chunking, embeddings, OCR, prompt optimization, and token budgeting.",
+        items: [
+          {
+            id: "rag",
+            name: "Retrieval-Augmented Generation (RAG)",
+            description: "Semantic retrieval, hybrid search, and Agentic RAG grounded in live domain data.",
+          },
+          {
+            id: "contextual-retrieval",
+            name: "Contextual Retrieval",
+            description: "Enriching chunks with document context before indexing to improve retrieval precision.",
+          },
+          {
+            id: "bm25",
+            name: "BM25",
+            description: "Lexical relevance ranking paired with dense vectors for high-precision hybrid search.",
+          },
+          {
+            id: "reranking",
+            name: "Re-ranking",
+            description: "Semantic re-scoring of retrieved candidates to surface the strongest evidence for the LLM.",
+          },
+          {
+            id: "text-chunking",
+            name: "Text Chunking",
+            description: "Semantic, structural, and overlap-aware chunking strategies for long documents.",
+          },
+          {
+            id: "embeddings",
+            name: "Embeddings",
+            description: "Semantic vectorization of documents, queries, and metadata for similarity search.",
+          },
+          {
+            id: "vector-databases",
+            name: "Vector Databases",
+            description: "Vector indexing, metadata filtering, and similarity search with pgvector and vector stores.",
+          },
+          {
+            id: "multimodal-ocr",
+            name: "Optical Character Recognition (OCR)",
+            description: "Automated parsing of PDFs, bills, bank statements, and images into structured records.",
+          },
+          {
+            id: "firecrawl",
+            name: "Firecrawl",
+            description: "Web crawling and clean Markdown extraction tailored for RAG pipelines and AI agents.",
+          },
+          {
+            id: "prompt-engineering",
+            name: "Prompt Engineering",
+            description: "Versioned prompts with strict JSON Schema outputs and cross-run consistency.",
+          },
+          {
+            id: "system-prompt-design",
+            name: "System Prompt Design",
+            description: "Clear role boundaries, tool-use policies, failure handling, and output contracts.",
+          },
+          {
+            id: "prompt-optimization",
+            name: "Prompt Optimization",
+            description: "Eval-driven iteration to cut failure modes, hallucinations, and token overhead.",
+          },
+          {
+            id: "textgrad",
+            name: "TextGrad",
+            description: "Automatic optimization of prompts and AI pipelines via structured textual feedback.",
+          },
+          {
+            id: "token-management",
+            name: "Tokenization & Token Management",
+            description: "Tokenization analysis, token budgeting, and cost governance per request and session.",
+          },
+          {
+            id: "context-window",
+            name: "Context Window & Context Length",
+            description: "Managing long context windows, history compaction, and mitigating context degradation.",
           },
         ],
       },
       {
         id: "harness-engineering",
         title: "Harness Engineering: Reliability & Control",
-        summary: "Tool contracts, deterministic rules, guardrails, observability, evals, and cost governance.",
+        summary: "Tool contracts, MCP, skills, hooks, guardrails, human oversight, evals, and cost governance.",
         items: [
           {
             id: "harness-arch",
             name: "Harness Engineering",
             description: "Context, tool, and behavior control architecture to prevent unverified responses.",
+          },
+          {
+            id: "agent-harness",
+            name: "Agent Harness Engineering",
+            description: "Execution harnesses, sandboxing, verification, and recovery loops for autonomous agents.",
+          },
+          {
+            id: "mcp",
+            name: "MCP (Model Context Protocol)",
+            description: "MCP servers wired to APIs, databases, Google Cloud, and Cloudflare.",
+          },
+          {
+            id: "skills",
+            name: "Skills",
+            description: "Modular packaging of instructions, scripts, and reusable workflows for engineering agents.",
+          },
+          {
+            id: "hooks",
+            name: "Hooks",
+            description: "Deterministic agent lifecycle hooks for validation, audit trails, and workflow enforcement.",
+          },
+          {
+            id: "guardrails",
+            name: "Guardrails",
+            description: "Guard layers, JSON schemas, normalization, and policy checks before writes or replies.",
+          },
+          {
+            id: "context-engineering",
+            name: "Context Engineering",
+            description: "Curated selection, compaction, and controlled injection of context and memory.",
+          },
+          {
+            id: "hitl",
+            name: "Human-in-the-Loop (HITL)",
+            description: "Human approval and review gates for high-stakes actions with full decision traceability.",
+          },
+          {
+            id: "hotl",
+            name: "Human-on-the-Loop (HOTL)",
+            description: "Continuous oversight of autonomous agents via telemetry, alerts, and exception handling.",
           },
           {
             id: "tool-calling",
@@ -3089,16 +3363,6 @@ const UI_EN: PortfolioUiContent = {
             description: "Clear boundary between natural-language parsing and code-enforced calculations.",
           },
           {
-            id: "guardrails",
-            name: "Guardrails & Validation",
-            description: "JSON schemas, normalization, deduplication, and policy checks before database writes.",
-          },
-          {
-            id: "hitl",
-            name: "Human-in-the-Loop (HITL)",
-            description: "Human review workflows for edge cases and full decision traceability.",
-          },
-          {
             id: "langfuse",
             name: "Langfuse & Observability",
             description: "Tracing prompts, tokens, latency, and per-run errors in production.",
@@ -3107,11 +3371,6 @@ const UI_EN: PortfolioUiContent = {
             id: "cost-fallback",
             name: "AI FinOps, Fallback & Caps",
             description: "Automatic cross-provider fallback, document caching, and monthly spending caps.",
-          },
-          {
-            id: "context-engineering",
-            name: "Context Engineering & Memory",
-            description: "Curated selection, compaction, and controlled injection of context and memory.",
           },
           {
             id: "ai-evals",
@@ -3311,8 +3570,13 @@ const UI_EN: PortfolioUiContent = {
           },
           {
             id: "linux",
-            name: "Linux & systemd",
-            description: "Server administration, persistent daemons, and production troubleshooting.",
+            name: "Linux",
+            description: "Server administration, shell scripting, systemd services, and production troubleshooting.",
+          },
+          {
+            id: "ubuntu",
+            name: "Ubuntu",
+            description: "Configuring, hardening, and operating backend services, containers, and agents on Ubuntu servers.",
           },
           {
             id: "git",
