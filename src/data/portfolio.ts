@@ -1068,6 +1068,9 @@ export type PortfolioUiContent = {
     titleEnd: string;
     description: string;
     filterLabel: string;
+    featuredAreasLabel: string;
+    otherAreasLabel: string;
+    featuredBadge: string;
     allLabel: string;
     swipeLabel: string;
     areasLabel: string;
@@ -2010,10 +2013,10 @@ const NAV_LINKS_EN: NavLink[] = [
 
 const UI_PT: PortfolioUiContent = {
   metadata: {
-    title: "Mateus Bonette | AI Engineer & Software Engineer (LLMs, RAG, MCP)",
+    title: "Mateus Bonette | AI Engineer & Software Engineer — AI Engineering, Harness Engineering, LLMs & RAG",
     description:
-      "AI Engineer e Software Engineer. Sistemas em produção com LLMs, RAG, agentes de IA, MCP, Python, FastAPI, TypeScript, React, Next.js e PostgreSQL.",
-    ogTitle: "Mateus Bonette | AI Engineer & Software Engineer (LLMs, RAG, MCP)",
+      "Mateus Bonette — AI Engineer e Software Engineer especialista em AI Engineering, Harness Engineering, LLMs, RAG, AI Agents, MCP, Python, FastAPI, TypeScript, React e PostgreSQL.",
+    ogTitle: "Mateus Bonette | AI Engineer & Software Engineer — AI Engineering, Harness Engineering, LLMs & RAG",
     imageAlt: "Mateus Bonette — AI Engineer e Software Engineer",
   },
   language: {
@@ -2049,24 +2052,24 @@ const UI_PT: PortfolioUiContent = {
   },
   about: {
     eyebrow: "Sobre mim",
-    titleStart: "Engenharia de IA e ",
-    titleAccent: "software em produção",
-    titleEnd: ".",
+    titleStart: "AI Engineering, ",
+    titleAccent: "Harness Engineering",
+    titleEnd: " e software em produção.",
     graduationLabel: "Formação",
     graduationCaption: "Ciência da Computação · UNIFEI · 2025",
     graduationImageAlt: "Mateus Bonette na cerimônia de formatura da UNIFEI",
     pillars: [
       {
-        title: "IA aplicada em produção",
-        text: "Experiência com LLMs, RAG, agentes de IA, Tool Calling, OCR e servidores MCP conectados a APIs, PostgreSQL e pgvector.",
+        title: "AI Engineering em produção",
+        text: "Sistemas com LLMs, RAG, Agentic RAG, AI Agents e servidores Model Context Protocol (MCP) integrados a APIs, PostgreSQL e pgvector.",
       },
       {
-        title: "Confiabilidade e controle",
-        text: "Combino modelos de linguagem com validações determinísticas, revisão humana (HITL), guardrails, cache de documentos, fallback e controle de custos.",
+        title: "Harness Engineering",
+        text: "Controles de ferramentas, regras determinísticas, guardrails, Human-in-the-Loop (HITL), Langfuse e limites de custo para respostas verificáveis.",
       },
       {
         title: "Full stack ponta a ponta",
-        text: "Desenvolvo do banco de dados e APIs REST/GraphQL em Python e Node.js até interfaces em React, Next.js, Angular e TypeScript.",
+        text: "Do banco de dados e APIs REST/GraphQL em Python, FastAPI e Node.js até interfaces em React, Next.js, Angular e TypeScript.",
       },
       {
         title: "Infraestrutura e entrega",
@@ -2082,65 +2085,67 @@ const UI_PT: PortfolioUiContent = {
       },
     ],
     paragraphs: [
-      "Sou AI Engineer (Engenheiro de IA Aplicada) e Software Engineer, bacharel em Ciência da Computação pela UNIFEI e pós-graduando em Engenharia de IA Aplicada pela UNIPDS. Projeto sistemas que usam LLMs, RAG, agentes de IA e servidores MCP integrados a APIs e bancos de dados, com atenção a confiabilidade, testes e custos de operação.",
-      "Sou cofundador da Junta Já, um SaaS de gestão financeira com IA usado por mais de 100 pessoas, onde construí o pipeline de leitura de faturas com OCR, Gemini e Vertex AI, a assistente Ari no WhatsApp via Tool Calling e servidores MCP para Google Cloud e Cloudflare.",
-      "Antes da Junta Já, atuei por mais de dois anos na Moontech liderando plataformas de dados, sistemas auditados para ISO 9001 e pipelines RAG com LangChain, LangGraph, pgvector e Langfuse, além da experiência anterior na empresa júnior byron.solutions. Busco posições remotas, híbridas ou presenciais no Brasil e no exterior como AI Engineer, Applied AI Engineer, LLM Engineer, AI Agent Engineer, Python Backend ou Full Stack Software Engineer.",
+      "Mateus Bonette é AI Engineer (Applied AI Engineer) e Software Engineer graduado em Ciência da Computação pela Universidade Federal de Itajubá (UNIFEI) e pós-graduando em Engenharia de IA Aplicada pela UNIPDS. Especializado em AI Engineering e Harness Engineering, projeta e coloca em produção aplicações com Generative AI, LLMs, RAG, AI Agents, Tool Calling e servidores MCP integrados a APIs em Python, FastAPI, TypeScript, React e bancos PostgreSQL/pgvector. É cofundador da Junta Já Brasil, SaaS financeiro com mais de 100 usuários, onde construiu pipeline com OCR, Gemini e Vertex AI com mais de 1.000 faturas processadas e precisão acima de 90%, assistente Ari no WhatsApp e servidores MCP com cerca de 80 ferramentas. Na Moontech, liderou plataforma de dados reduzindo relatórios de 3–4 horas para 1 minuto e digitalizou sistema aprovado em auditoria ISO 9001 com agente RAG e Langfuse.",
+      "Está aberto a posições remotas, híbridas ou presenciais no Brasil e no exterior como AI Engineer, Applied AI Engineer, Generative AI Engineer, LLM Engineer, AI Agent Engineer, Python Backend Engineer ou Full Stack Software Engineer.",
     ],
   },
   value: {
     eyebrow: "Como trabalho",
-    titleStart: "Engenharia de IA ",
-    titleAccent: "previsível, testada",
-    titleEnd: " e orientada a produto.",
+    titleStart: "AI Engineering e ",
+    titleAccent: "Harness Engineering",
+    titleEnd: " orientados a produto.",
     intro:
-      "IA em produção exige mais do que chamadas de prompt: exige validação determinística, observabilidade de custos, boa arquitetura de dados e clareza para quem usa.",
+      "Aplicar IA em produção vai além de prompts: combina AI Engineering com Harness Engineering para garantir validação determinística, observabilidade de custos e confiabilidade operacional.",
     previousAria: "Ver card anterior",
     nextAria: "Ver próximo card",
     points: [
-      "Confiabilidade em IA",
-      "Engenharia ponta a ponta",
-      "Visão de produto",
-      "Comunicação direta",
+      "AI Engineering",
+      "Harness Engineering",
+      "Engenharia Full Stack",
+      "Comunicação técnica",
     ],
     cards: [
       {
-        title: "IA com controle determinístico",
-        text: "Separo o que depende de interpretação de LLM do que precisa de regra exata em código. Uso schemas JSON, normalização, deduplicação, guardrails e revisão humana (HITL) antes de gravar no banco.",
-        tag: "Confiabilidade",
+        title: "AI Engineering aplicado",
+        text: "Arquiteturas com LLMs, RAG, embeddings em pgvector, LangChain, LangGraph e servidores MCP conectando modelos a APIs e bancos de dados reais.",
+        tag: "AI Engineering",
       },
       {
-        title: "Observabilidade e custo",
-        text: "Acompanho tokens, latência, taxa de erro, cache de documentos, fallback entre modelos e limites mensais de gasto com ferramentas como Langfuse e telemetria própria.",
-        tag: "Operação",
+        title: "Harness Engineering e HITL",
+        text: "Separo o que é interpretação de LLM do que exige regra determinística em código, usando schemas JSON, guardrails, Tool Calling estrito e revisão humana (HITL).",
+        tag: "Harness",
       },
       {
-        title: "Do banco ao deploy",
-        text: "Construo APIs tipadas em Python/FastAPI ou Node.js, consultas PostgreSQL/pgvector, interfaces em React, Next.js e Angular, e pipelines Docker + CI/CD em nuvem.",
+        title: "Observabilidade e FinOps",
+        text: "Acompanho tokens, latência, taxa de erro, cache de documentos, fallback entre modelos e limites mensais de gasto com Langfuse e telemetria própria.",
+        tag: "Observabilidade",
+      },
+      {
+        title: "Software ponta a ponta",
+        text: "APIs tipadas em Python/FastAPI e Node.js, frontends em React, Next.js e Angular, testes automatizados e deploy contínuo com Docker, Google Cloud e AWS.",
         tag: "Full Stack",
-      },
-      {
-        title: "Produto e clareza técnica",
-        text: "A experiência como cofundador e em fábrica de software me ajuda a priorizar escopo, evitar complexidade desnecessária e explicar decisões técnicas sem ruído para lideranças e clientes.",
-        tag: "Produto",
       },
     ],
     desktopSummary:
-      "Em cada projeto, priorizo código testado, regras de negócio verificáveis e uso racional de LLMs para entregar sistemas que funcionam bem fora do ambiente de demonstração.",
+      "Em cada sistema, AI Engineering entrega capacidade de interpretação e síntese, enquanto Harness Engineering garante previsibilidade, testes, auditabilidade e custo controlado.",
     mobileSummary:
-      "Priorizo código testado, regras verificáveis e uso racional de LLMs em produção.",
+      "Combino AI Engineering com Harness Engineering para entregar IA previsível e auditável.",
     readSummary: "Ler resumo",
     hideSummary: "Esconder resumo",
     mobileSummaryExpanded:
-      "Em cada projeto, priorizo código testado, regras de negócio verificáveis e uso racional de LLMs para entregar sistemas confiáveis em produção.",
+      "Em cada sistema, AI Engineering entrega interpretação e síntese, enquanto Harness Engineering garante previsibilidade, testes e custo controlado em produção.",
   },
   skills: {
     eyebrow: "Stack técnica",
-    titleStart: "Tecnologias que ",
-    titleAccent: "uso em produção",
-    titleEnd: ".",
+    titleStart: "AI Engineering, ",
+    titleAccent: "Harness Engineering",
+    titleEnd: " e full stack.",
     description:
-      "Ferramentas, frameworks e serviços que aplico no dia a dia para construir aplicações web, APIs, pipelines de dados e sistemas com IA.",
+      "Stack organizada com foco em AI Engineering e Harness Engineering em produção, sustentada por backend Python/Node.js, frontend moderno e infraestrutura em nuvem.",
     filterLabel: "Filtrar por área",
+    featuredAreasLabel: "Especialidades principais",
+    otherAreasLabel: "Engenharia, nuvem e produto",
+    featuredBadge: "Foco",
     allLabel: "Todas as tecnologias",
     swipeLabel: "Deslize",
     areasLabel: "áreas",
@@ -2149,24 +2154,24 @@ const UI_PT: PortfolioUiContent = {
     masteryLabel: "uso",
     groups: [
       {
-        id: "ai",
-        title: "IA Aplicada, LLMs e Agentes",
-        summary: "Orquestração de modelos, recuperação de contexto, protocolos de agentes e confiabilidade.",
+        id: "ai-engineering",
+        title: "AI Engineering: LLMs, RAG e Agentes",
+        summary: "Modelos de linguagem, recuperação semântica, sistemas multiagente, servidores MCP e processamento multimodal.",
         items: [
           {
             id: "llms",
             name: "LLMs & IA Generativa",
-            description: "Integração de modelos de linguagem para extração estruturada, classificação e síntese.",
+            description: "Integração de modelos de linguagem para extração estruturada, classificação e síntese em produção.",
           },
           {
             id: "rag",
-            name: "RAG (Retrieval-Augmented Generation)",
-            description: "Chunking, busca semântica e híbrida para fundamentar respostas em dados reais.",
+            name: "RAG & Agentic RAG",
+            description: "Chunking, busca semântica, busca híbrida e recuperação iterativa fundamentada em dados reais.",
           },
           {
             id: "ai-agents",
-            name: "AI Agents",
-            description: "Agentes com roteamento, memória, etapas condicionais e execução de tarefas.",
+            name: "AI Agents & Multi-Agent",
+            description: "Agentes autônomos e sistemas cooperativos com roteamento, memória e execução de tarefas.",
           },
           {
             id: "mcp",
@@ -2184,34 +2189,29 @@ const UI_PT: PortfolioUiContent = {
             description: "Grafos com estado e transições explícitas para fluxos multiagente auditáveis.",
           },
           {
-            id: "tool-calling",
-            name: "Tool Calling",
-            description: "Execução controlada de funções e consultas parametrizadas a APIs e bancos.",
+            id: "crewai-adk",
+            name: "CrewAI & Agent ADK",
+            description: "Orquestração de agentes especializados por papéis e fluxos coordenados.",
           },
           {
             id: "embeddings",
-            name: "Embeddings & Vector Search",
-            description: "Vetorização de documentos e recuperação por similaridade com filtros.",
-          },
-          {
-            id: "harness-engineering",
-            name: "Harness Engineering",
-            description: "Controles de contexto, ferramentas e comportamento para evitar respostas não verificadas.",
+            name: "Embeddings & Vector DBs",
+            description: "Vetorização de documentos e busca por similaridade com filtros em pgvector e bancos vetoriais.",
           },
           {
             id: "prompt-engineering",
-            name: "Prompt Engineering",
-            description: "Prompts versionados, saída em JSON estruturado e avaliação de consistência.",
+            name: "Prompt Engineering & JSON",
+            description: "Prompts versionados com saída estrita em JSON Schema e consistência entre execuções.",
           },
           {
             id: "openai",
-            name: "OpenAI API",
-            description: "Uso de modelos GPT, embeddings e chamadas de função em produção.",
+            name: "OpenAI API (GPT)",
+            description: "Uso de modelos GPT, embeddings e chamadas de função em fluxos de produção.",
           },
           {
             id: "anthropic",
             name: "Anthropic Claude",
-            description: "Integração de modelos Claude em fluxos de análise, código e raciocínio.",
+            description: "Integração de modelos Claude em fluxos de análise técnica, código e raciocínio.",
           },
           {
             id: "gemini",
@@ -2225,23 +2225,95 @@ const UI_PT: PortfolioUiContent = {
           },
           {
             id: "ollama",
-            name: "Ollama",
+            name: "Ollama (Local LLMs)",
             description: "Execução local de modelos open-weight para testes e ambientes privados.",
           },
           {
             id: "huggingface",
             name: "Hugging Face",
-            description: "Uso de modelos, tokenizers e datasets abertos para NLP e embeddings.",
+            description: "Modelos, tokenizers e datasets abertos para NLP e embeddings.",
+          },
+          {
+            id: "finetuning-lora",
+            name: "Fine-Tuning (LoRA & PEFT)",
+            description: "Adaptação eficiente de modelos para domínios específicos com baixo custo de treino.",
+          },
+          {
+            id: "multimodal-ocr",
+            name: "Multimodal AI & Document OCR",
+            description: "Leitura automatizada de faturas, extratos e PDFs com validação estruturada.",
+          },
+          {
+            id: "model-routing",
+            name: "Model Routing & Semantic Cache",
+            description: "Seleção dinâmica de modelos por complexidade e cache para reduzir latência e custo.",
+          },
+        ],
+      },
+      {
+        id: "harness-engineering",
+        title: "Harness Engineering: Confiabilidade e Controle",
+        summary: "Contratos de ferramentas, regras determinísticas, guardrails, observabilidade, evals e controle de custos.",
+        items: [
+          {
+            id: "harness-arch",
+            name: "Harness Engineering",
+            description: "Arquitetura de controle de contexto, ferramentas e comportamento para evitar respostas não verificadas.",
+          },
+          {
+            id: "tool-calling",
+            name: "Tool Calling & Contratos",
+            description: "Execução tipada de ferramentas com validação de entrada/saída antes de responder ao usuário.",
+          },
+          {
+            id: "deterministic-rules",
+            name: "Regras Determinísticas vs. LLM",
+            description: "Separação clara entre interpretação em linguagem natural e cálculos exatos em código.",
+          },
+          {
+            id: "guardrails",
+            name: "Guardrails & Validação",
+            description: "Schemas JSON, normalização, deduplicação e bloqueio de saídas fora de política antes do banco.",
+          },
+          {
+            id: "hitl",
+            name: "Human-in-the-Loop (HITL)",
+            description: "Fluxos de revisão humana para tratar divergências e manter rastreabilidade das decisões.",
           },
           {
             id: "langfuse",
-            name: "Langfuse",
-            description: "Rastreamento de prompts, tokens, latência e custos de execução em produção.",
+            name: "Langfuse & Observabilidade",
+            description: "Tracing de prompts, tokens, latência e erros por execução em produção.",
           },
           {
-            id: "guardrails-hitl",
-            name: "Guardrails & HITL",
-            description: "Validações determinísticas, limites de gasto e revisão humana para divergências.",
+            id: "cost-fallback",
+            name: "FinOps de IA, Fallback & Limites",
+            description: "Fallback automático entre provedores, cache de documentos e tetos mensais de gasto.",
+          },
+          {
+            id: "context-engineering",
+            name: "Context Engineering & Memória",
+            description: "Seleção, compactação e injeção controlada de contexto e memória de longo prazo.",
+          },
+          {
+            id: "ai-evals",
+            name: "Evals & Testes de Agentes",
+            description: "Conjuntos de avaliação para medir precisão de extração, aderência a ferramentas e regressões.",
+          },
+          {
+            id: "parameterized-sql-ai",
+            name: "SQL Parametrizado & Auditoria",
+            description: "Consultas seguras a bancos relacionais com parâmetros validados e trilha auditável.",
+          },
+          {
+            id: "sdd-ai",
+            name: "Spec-Driven Development (SDD)",
+            description: "Especificação formal de comportamento e critérios de aceite antes da implementação.",
+          },
+          {
+            id: "responsible-ai",
+            name: "Segurança & Governança de IA",
+            description: "Proteção contra prompt injection, isolamento de segredos e conformidade operacional.",
           },
         ],
       },
@@ -2443,8 +2515,8 @@ const UI_PT: PortfolioUiContent = {
       },
       {
         id: "data",
-        title: "Dados, OCR e Visualização",
-        summary: "Extração de documentos, transformação de tabelas e painéis operacionais.",
+        title: "Dados e Visualização",
+        summary: "Transformação de tabelas, modelagem analítica e painéis operacionais.",
         items: [
           {
             id: "pandas",
@@ -2455,11 +2527,6 @@ const UI_PT: PortfolioUiContent = {
             id: "streamlit",
             name: "Streamlit",
             description: "Dashboards interativos conectados a APIs e bancos de dados.",
-          },
-          {
-            id: "ocr-extraction",
-            name: "OCR & Extração Estruturada",
-            description: "Leitura automatizada de faturas e extratos com validação em JSON.",
           },
           {
             id: "data-modeling",
@@ -2481,7 +2548,7 @@ const UI_PT: PortfolioUiContent = {
       {
         id: "product",
         title: "Produto, Integrações e Processo",
-        summary: "Especificação, design de interface, pagamentos e fluxos de trabalho.",
+        summary: "Design de interface, pagamentos, automações e fluxos de trabalho.",
         items: [
           {
             id: "figma",
@@ -2492,11 +2559,6 @@ const UI_PT: PortfolioUiContent = {
             id: "ux-ui",
             name: "Design UX/UI",
             description: "Hierarquia visual, responsividade, acessibilidade e clareza de uso.",
-          },
-          {
-            id: "sdd",
-            name: "Spec-Driven Development",
-            description: "Desenvolvimento guiado por especificação antes da implementação e testes.",
           },
           {
             id: "whatsapp-api",
@@ -2707,10 +2769,10 @@ const UI_PT: PortfolioUiContent = {
 const UI_EN: PortfolioUiContent = {
   ...UI_PT,
   metadata: {
-    title: "Mateus Bonette | AI Engineer & Software Engineer (LLMs, RAG, MCP)",
+    title: "Mateus Bonette | AI Engineer & Software Engineer — AI Engineering, Harness Engineering, LLMs & RAG",
     description:
-      "Applied AI Engineer and Software Engineer. Production systems with LLMs, RAG, AI Agents, MCP, Python, FastAPI, TypeScript, React, Next.js, and PostgreSQL.",
-    ogTitle: "Mateus Bonette | AI Engineer & Software Engineer (LLMs, RAG, MCP)",
+      "Mateus Bonette — Applied AI Engineer and Software Engineer specializing in AI Engineering, Harness Engineering, LLMs, RAG, AI Agents, MCP, Python, FastAPI, TypeScript, React, and PostgreSQL.",
+    ogTitle: "Mateus Bonette | AI Engineer & Software Engineer — AI Engineering, Harness Engineering, LLMs & RAG",
     imageAlt: "Mateus Bonette — AI Engineer and Software Engineer",
   },
   language: {
@@ -2746,24 +2808,24 @@ const UI_EN: PortfolioUiContent = {
   },
   about: {
     eyebrow: "About me",
-    titleStart: "AI engineering and ",
-    titleAccent: "production software",
-    titleEnd: ".",
+    titleStart: "AI Engineering, ",
+    titleAccent: "Harness Engineering",
+    titleEnd: " and production software.",
     graduationLabel: "Education",
     graduationCaption: "Computer Science · UNIFEI · 2025",
     graduationImageAlt: "Mateus Bonette at the UNIFEI graduation ceremony",
     pillars: [
       {
-        title: "Applied AI in production",
-        text: "Hands-on experience with LLMs, RAG, AI agents, Tool Calling, OCR, and MCP servers connected to APIs, PostgreSQL, and pgvector.",
+        title: "Production AI Engineering",
+        text: "Systems built with LLMs, RAG, Agentic RAG, AI Agents, and Model Context Protocol (MCP) servers connected to APIs, PostgreSQL, and pgvector.",
       },
       {
-        title: "Reliability and controls",
-        text: "I pair language models with deterministic rules, Human-in-the-Loop (HITL) review, guardrails, document caching, fallback, and cost limits.",
+        title: "Harness Engineering",
+        text: "Tool contracts, deterministic rules, guardrails, Human-in-the-Loop (HITL) review, Langfuse tracing, and cost controls for verifiable outputs.",
       },
       {
         title: "End-to-end full stack",
-        text: "From PostgreSQL schemas and REST/GraphQL APIs in Python and Node.js to interfaces in React, Next.js, Angular, and TypeScript.",
+        text: "From PostgreSQL schemas and REST/GraphQL APIs in Python, FastAPI, and Node.js to React, Next.js, Angular, and TypeScript frontends.",
       },
       {
         title: "Cloud and delivery",
@@ -2779,65 +2841,67 @@ const UI_EN: PortfolioUiContent = {
       },
     ],
     paragraphs: [
-      "I am an AI Engineer (Applied AI Engineer) and Software Engineer with a Bachelor's degree in Computer Science from UNIFEI, currently pursuing a postgraduate specialization in Applied AI Engineering at UNIPDS. I build systems powered by LLMs, RAG, AI agents, and MCP servers integrated with APIs and databases, with focus on reliability, automated testing, and operating cost.",
-      "I co-founded Junta Já, an AI personal finance SaaS with over 100 active users, where I built the OCR, Gemini, and Vertex AI statement pipeline, the Ari WhatsApp assistant using Tool Calling, and Model Context Protocol (MCP) servers for Google Cloud and Cloudflare.",
-      "Previously, I spent over two years at Moontech leading data platforms, ISO 9001-audited quality systems, and RAG pipelines with LangChain, LangGraph, pgvector, and Langfuse, following earlier client work at the UNIFEI junior enterprise byron.solutions. I am open to remote, hybrid, or on-site roles in Brazil and abroad as an AI Engineer, Applied AI Engineer, LLM Engineer, AI Agent Engineer, Python Backend Engineer, or Full Stack Software Engineer.",
+      "Mateus Bonette is an Applied AI Engineer and Software Engineer with a Bachelor's degree in Computer Science from the Federal University of Itajubá (UNIFEI), currently pursuing a postgraduate specialization in Applied AI Engineering at UNIPDS. Focusing on AI Engineering and Harness Engineering, he designs and ships production systems using Generative AI, LLMs, RAG, AI Agents, Tool Calling, and MCP servers integrated with Python, FastAPI, TypeScript, React, and PostgreSQL/pgvector. He co-founded Junta Já Brasil, a personal finance SaaS with 100+ users, where he built an OCR, Gemini, and Vertex AI pipeline processing over 1,000 statements at >90% accuracy, the Ari WhatsApp assistant, and MCP servers with ~80 tools. Previously at Moontech, he led a data platform cutting reports from 3–4 hours to ~1 minute and digitized an ISO 9001-audited system with a RAG agent and Langfuse.",
+      "He is open to remote, hybrid, or on-site roles in Brazil and internationally as an AI Engineer, Applied AI Engineer, Generative AI Engineer, LLM Engineer, AI Agent Engineer, Python Backend Engineer, or Full Stack Software Engineer.",
     ],
   },
   value: {
     eyebrow: "How I work",
-    titleStart: "Predictable, tested ",
-    titleAccent: "AI and software",
-    titleEnd: " engineering.",
+    titleStart: "Product-driven ",
+    titleAccent: "AI & Harness Engineering",
+    titleEnd: ".",
     intro:
-      "Production AI takes more than prompt calls: it requires deterministic validation, cost observability, clean data modeling, and interfaces people trust.",
+      "Shipping AI in production takes more than prompt calls: it pairs AI Engineering with Harness Engineering for deterministic validation, cost observability, and operational reliability.",
     previousAria: "View previous card",
     nextAria: "View next card",
     points: [
-      "Reliable AI systems",
-      "End-to-end engineering",
-      "Product judgment",
-      "Direct communication",
+      "AI Engineering",
+      "Harness Engineering",
+      "Full Stack Engineering",
+      "Clear communication",
     ],
     cards: [
       {
-        title: "Deterministic AI controls",
-        text: "I separate LLM interpretation from code-enforced business logic. JSON schemas, normalization, deduplication, guardrails, and HITL review run before database writes.",
-        tag: "Reliability",
+        title: "Applied AI Engineering",
+        text: "Production architectures with LLMs, RAG, pgvector embeddings, LangChain, LangGraph, and MCP servers wired to live APIs and databases.",
+        tag: "AI Engineering",
       },
       {
-        title: "Observability and cost",
-        text: "I track token usage, latency, execution errors, document caching, model fallback, and monthly spending limits with Langfuse and custom telemetry.",
-        tag: "Operations",
+        title: "Harness Engineering & HITL",
+        text: "I separate LLM interpretation from code-enforced business logic using JSON schemas, guardrails, strict Tool Calling, and Human-in-the-Loop review.",
+        tag: "Harness",
       },
       {
-        title: "Database to deployment",
-        text: "I build typed Python/FastAPI and Node.js APIs, PostgreSQL/pgvector queries, React, Next.js, and Angular frontends, and Docker + CI/CD cloud pipelines.",
+        title: "Observability & AI FinOps",
+        text: "I track tokens, latency, error rates, document caching, model fallback, and monthly spend caps with Langfuse and custom telemetry.",
+        tag: "Observability",
+      },
+      {
+        title: "End-to-end software",
+        text: "Typed APIs in Python/FastAPI and Node.js, React, Next.js, and Angular frontends, automated tests, and CI/CD on Docker, Google Cloud, and AWS.",
         tag: "Full Stack",
-      },
-      {
-        title: "Product and clarity",
-        text: "Experience as a co-founder and in a software factory helps me scope pragmatically, avoid unnecessary complexity, and communicate trade-offs clearly.",
-        tag: "Product",
       },
     ],
     desktopSummary:
-      "Across every project, I prioritize tested code, verifiable business rules, and disciplined LLM usage so systems hold up beyond demos.",
+      "Across every system, AI Engineering delivers interpretation and synthesis while Harness Engineering enforces predictability, testing, auditability, and controlled cost.",
     mobileSummary:
-      "I prioritize tested code, verifiable rules, and disciplined LLM usage in production.",
+      "I pair AI Engineering with Harness Engineering for predictable, auditable production AI.",
     readSummary: "Read summary",
     hideSummary: "Hide summary",
     mobileSummaryExpanded:
-      "Across every project, I prioritize tested code, verifiable business rules, and disciplined LLM usage so systems hold up in production.",
+      "Across every system, AI Engineering delivers interpretation and synthesis while Harness Engineering enforces predictability, testing, and controlled cost.",
   },
   skills: {
     eyebrow: "Technical stack",
-    titleStart: "Technologies I ",
-    titleAccent: "ship in production",
-    titleEnd: ".",
+    titleStart: "AI Engineering, ",
+    titleAccent: "Harness Engineering",
+    titleEnd: " and full stack.",
     description:
-      "Frameworks, databases, cloud services, and AI tooling I use to build web applications, APIs, data pipelines, and agent systems.",
+      "Technical stack structured around production AI Engineering and Harness Engineering, backed by Python/Node.js backends, modern frontends, and cloud infrastructure.",
     filterLabel: "Filter by area",
+    featuredAreasLabel: "Core specialties",
+    otherAreasLabel: "Engineering, cloud & product",
+    featuredBadge: "Core",
     allLabel: "All technologies",
     swipeLabel: "Swipe",
     areasLabel: "areas",
@@ -2846,24 +2910,24 @@ const UI_EN: PortfolioUiContent = {
     masteryLabel: "use",
     groups: [
       {
-        id: "ai",
-        title: "Applied AI, LLMs & Agents",
-        summary: "Model orchestration, context retrieval, agent protocols, and production reliability.",
+        id: "ai-engineering",
+        title: "AI Engineering: LLMs, RAG & Agents",
+        summary: "Language models, semantic retrieval, multi-agent systems, MCP servers, and multimodal processing.",
         items: [
           {
             id: "llms",
             name: "LLMs & Generative AI",
-            description: "Integrating language models for structured extraction, classification, and synthesis.",
+            description: "Integrating language models for structured extraction, classification, and synthesis in production.",
           },
           {
             id: "rag",
-            name: "RAG (Retrieval-Augmented Generation)",
-            description: "Chunking, semantic search, and hybrid retrieval grounded in live data.",
+            name: "RAG & Agentic RAG",
+            description: "Chunking, semantic search, hybrid retrieval, and iterative grounding over real data.",
           },
           {
             id: "ai-agents",
-            name: "AI Agents",
-            description: "Agents with routing, state, conditional branches, and task execution.",
+            name: "AI Agents & Multi-Agent",
+            description: "Autonomous and cooperative agents with routing, memory, and task execution.",
           },
           {
             id: "mcp",
@@ -2873,7 +2937,7 @@ const UI_EN: PortfolioUiContent = {
           {
             id: "langchain",
             name: "LangChain",
-            description: "Ingestion, indexing, contextual retrieval, and tool-enabled chains.",
+            description: "Ingestion, indexing, contextual retrieval, and tool-enabled pipelines.",
           },
           {
             id: "langgraph",
@@ -2881,34 +2945,29 @@ const UI_EN: PortfolioUiContent = {
             description: "Stateful graphs with explicit transitions for auditable multi-agent workflows.",
           },
           {
-            id: "tool-calling",
-            name: "Tool Calling",
-            description: "Controlled function execution and parameterized queries against APIs and databases.",
+            id: "crewai-adk",
+            name: "CrewAI & Agent ADK",
+            description: "Role-based agent orchestration and coordinated multi-agent execution.",
           },
           {
             id: "embeddings",
-            name: "Embeddings & Vector Search",
-            description: "Document vectorization and filtered similarity retrieval.",
-          },
-          {
-            id: "harness-engineering",
-            name: "Harness Engineering",
-            description: "Tool, context, and behavior constraints to prevent unverified responses.",
+            name: "Embeddings & Vector DBs",
+            description: "Document vectorization and filtered similarity search in pgvector and vector stores.",
           },
           {
             id: "prompt-engineering",
-            name: "Prompt Engineering",
-            description: "Versioned prompts, strict JSON outputs, and consistency checks.",
+            name: "Prompt Engineering & JSON",
+            description: "Versioned prompts with strict JSON Schema outputs and cross-run consistency.",
           },
           {
             id: "openai",
-            name: "OpenAI API",
+            name: "OpenAI API (GPT)",
             description: "GPT models, embeddings, and function calling in production workloads.",
           },
           {
             id: "anthropic",
             name: "Anthropic Claude",
-            description: "Claude integration for analysis, code workflows, and reasoning tasks.",
+            description: "Claude integration for technical analysis, code workflows, and reasoning tasks.",
           },
           {
             id: "gemini",
@@ -2922,7 +2981,7 @@ const UI_EN: PortfolioUiContent = {
           },
           {
             id: "ollama",
-            name: "Ollama",
+            name: "Ollama (Local LLMs)",
             description: "Local execution of open-weight models for testing and private setups.",
           },
           {
@@ -2931,14 +2990,86 @@ const UI_EN: PortfolioUiContent = {
             description: "Open models, tokenizers, and datasets for NLP and embeddings.",
           },
           {
-            id: "langfuse",
-            name: "Langfuse",
-            description: "Tracing prompts, tokens, latency, and operating costs in production.",
+            id: "finetuning-lora",
+            name: "Fine-Tuning (LoRA & PEFT)",
+            description: "Parameter-efficient domain adaptation of language models at lower training cost.",
           },
           {
-            id: "guardrails-hitl",
-            name: "Guardrails & HITL",
-            description: "Deterministic checks, spend caps, and Human-in-the-Loop review for edge cases.",
+            id: "multimodal-ocr",
+            name: "Multimodal AI & Document OCR",
+            description: "Automated parsing of bills, bank statements, and PDFs with structured validation.",
+          },
+          {
+            id: "model-routing",
+            name: "Model Routing & Semantic Cache",
+            description: "Dynamic model selection by task complexity and caching to cut latency and cost.",
+          },
+        ],
+      },
+      {
+        id: "harness-engineering",
+        title: "Harness Engineering: Reliability & Control",
+        summary: "Tool contracts, deterministic rules, guardrails, observability, evals, and cost governance.",
+        items: [
+          {
+            id: "harness-arch",
+            name: "Harness Engineering",
+            description: "Context, tool, and behavior control architecture to prevent unverified responses.",
+          },
+          {
+            id: "tool-calling",
+            name: "Tool Calling & Contracts",
+            description: "Typed tool execution with input/output validation before replying to users.",
+          },
+          {
+            id: "deterministic-rules",
+            name: "Deterministic Rules vs. LLM",
+            description: "Clear boundary between natural-language parsing and code-enforced calculations.",
+          },
+          {
+            id: "guardrails",
+            name: "Guardrails & Validation",
+            description: "JSON schemas, normalization, deduplication, and policy checks before database writes.",
+          },
+          {
+            id: "hitl",
+            name: "Human-in-the-Loop (HITL)",
+            description: "Human review workflows for edge cases and full decision traceability.",
+          },
+          {
+            id: "langfuse",
+            name: "Langfuse & Observability",
+            description: "Tracing prompts, tokens, latency, and per-run errors in production.",
+          },
+          {
+            id: "cost-fallback",
+            name: "AI FinOps, Fallback & Caps",
+            description: "Automatic cross-provider fallback, document caching, and monthly spending caps.",
+          },
+          {
+            id: "context-engineering",
+            name: "Context Engineering & Memory",
+            description: "Curated selection, compaction, and controlled injection of context and memory.",
+          },
+          {
+            id: "ai-evals",
+            name: "Agent Evals & Testing",
+            description: "Evaluation suites measuring extraction accuracy, tool adherence, and regressions.",
+          },
+          {
+            id: "parameterized-sql-ai",
+            name: "Parameterized SQL & Audits",
+            description: "Safe relational database querying with validated parameters and audit trails.",
+          },
+          {
+            id: "sdd-ai",
+            name: "Spec-Driven Development (SDD)",
+            description: "Formal behavior specification and acceptance criteria before implementation.",
+          },
+          {
+            id: "responsible-ai",
+            name: "AI Security & Governance",
+            description: "Prompt-injection defenses, secret isolation, and operational compliance.",
           },
         ],
       },
@@ -3140,8 +3271,8 @@ const UI_EN: PortfolioUiContent = {
       },
       {
         id: "data",
-        title: "Data, OCR & Visualization",
-        summary: "Document extraction, tabular transformations, and operational dashboards.",
+        title: "Data & Visualization",
+        summary: "Tabular transformations, analytical modeling, and operational dashboards.",
         items: [
           {
             id: "pandas",
@@ -3152,11 +3283,6 @@ const UI_EN: PortfolioUiContent = {
             id: "streamlit",
             name: "Streamlit",
             description: "Interactive dashboards connected to live APIs and databases.",
-          },
-          {
-            id: "ocr-extraction",
-            name: "OCR & Structured Extraction",
-            description: "Automated bill and statement parsing with JSON schema validation.",
           },
           {
             id: "data-modeling",
@@ -3178,7 +3304,7 @@ const UI_EN: PortfolioUiContent = {
       {
         id: "product",
         title: "Product, Integrations & Process",
-        summary: "Specification, interface design, payments, and delivery workflows.",
+        summary: "Interface design, online payments, automations, and delivery workflows.",
         items: [
           {
             id: "figma",
@@ -3189,11 +3315,6 @@ const UI_EN: PortfolioUiContent = {
             id: "ux-ui",
             name: "UX/UI Design",
             description: "Visual hierarchy, responsiveness, accessibility, and clear flows.",
-          },
-          {
-            id: "sdd",
-            name: "Spec-Driven Development",
-            description: "Written specification before implementation and verification.",
           },
           {
             id: "whatsapp-api",
