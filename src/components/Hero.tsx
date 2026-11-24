@@ -80,9 +80,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-3 inline-flex items-center justify-center gap-1.5 text-xs font-medium text-ink-mute sm:text-sm"
+            className="mt-3 inline-flex max-w-full flex-wrap items-center justify-center gap-1.5 text-balance text-[0.915rem] font-medium leading-[1.22rem] text-ink-mute sm:text-[1.0675rem] sm:leading-[1.525rem]"
           >
-            <MapPin size={14} className="shrink-0 text-accent dark:text-accent-neon" aria-hidden />
+            <MapPin size={17} className="shrink-0 text-accent dark:text-accent-neon" aria-hidden />
             <span>{UI.hero.availability}</span>
           </motion.p>
 

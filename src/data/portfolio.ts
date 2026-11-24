@@ -2108,7 +2108,7 @@ const UI_PT: PortfolioUiContent = {
   hero: {
     downloadResume: "Baixar currículo",
     contact: "Entrar em contato",
-    availability: "São Paulo, Brasil · Remoto, híbrido ou presencial · Brasil e exterior",
+    availability: "Remoto, híbrido ou presencial em qualquer lugar do Brasil e no exterior",
     scrollDown: "Role para baixo",
     scrollDownAria: "Rolar para baixo",
   },
@@ -2777,7 +2777,7 @@ const UI_PT: PortfolioUiContent = {
     title: "Tem uma vaga ou projeto em mente?",
     paragraphs: [
       "Estou disponível para posições como AI Engineer, Applied AI Engineer, LLM Engineer, Python Backend Engineer e Full Stack Software Engineer.",
-      "Aberto a oportunidades remotas, híbridas ou presenciais no Brasil e no exterior, além de projetos pontuais.",
+      "Aberto a oportunidades remotas, híbridas ou presenciais em qualquer lugar do Brasil e no exterior, além de projetos pontuais.",
     ],
     copyEmailAria: "Copiar e-mail",
     emailCopiedAria: "E-mail copiado",
@@ -2786,7 +2786,7 @@ const UI_PT: PortfolioUiContent = {
     responseValue: "Em até 24 horas",
     locationLabel: "Localização e atuação",
     locationValue:
-      "São Paulo, Brasil · Remoto, híbrido ou presencial · Brasil e exterior",
+      "Remoto, híbrido ou presencial em qualquer lugar do Brasil e no exterior",
   },
   footer: {
     backToTop: "Voltar ao topo",
@@ -2864,7 +2864,7 @@ const UI_EN: PortfolioUiContent = {
   hero: {
     downloadResume: "Download resume",
     contact: "Contact me",
-    availability: "São Paulo, Brazil · Remote, hybrid or on-site · Brazil & international",
+    availability: "Remote, hybrid or on-site anywhere in Brazil and internationally",
     scrollDown: "Scroll down",
     scrollDownAria: "Scroll down",
   },
@@ -3533,7 +3533,7 @@ const UI_EN: PortfolioUiContent = {
     title: "Have a role or project in mind?",
     paragraphs: [
       "Open to AI Engineer, Applied AI Engineer, LLM Engineer, Python Backend Engineer, and Full Stack Software Engineer roles.",
-      "Available for remote, hybrid, or on-site positions in Brazil and internationally, as well as select consulting work.",
+      "Available for remote, hybrid, or on-site roles anywhere in Brazil and internationally, as well as select consulting work.",
     ],
     copyEmailAria: "Copy email",
     emailCopiedAria: "Email copied",
@@ -3541,7 +3541,7 @@ const UI_EN: PortfolioUiContent = {
     responseLabel: "Response time",
     responseValue: "Within 24 hours",
     locationLabel: "Location & availability",
-    locationValue: "São Paulo, Brazil · Remote, hybrid or on-site · Brazil & international",
+    locationValue: "Remote, hybrid or on-site anywhere in Brazil and internationally",
   },
   footer: {
     backToTop: "Back to top",
