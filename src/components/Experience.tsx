@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
+  Activity,
   Bot,
   ChevronRight,
   Cloud,
@@ -8,30 +9,45 @@ import {
   Download,
   Layers,
   LayoutTemplate,
+  SearchCode,
   Sparkles,
+  Users,
   Workflow,
+  Wrench,
   type LucideIcon,
 } from 'lucide-react'
 import {
   siAngular,
   siAnthropic,
+  siCelery,
+  siCloudflare,
+  siCss,
+  siDart,
   siDbeaver,
   siDeepseek,
   siDocker,
+  siExpress,
+  siFastapi,
   siFigma,
+  siFlutter,
   siGit,
   siGithub,
+  siGithubactions,
   siGithubcopilot,
   siGooglecloud,
   siGooglegemini,
   siGooglesheets,
   siGraphql,
+  siHtml5,
   siHubspot,
   siHuggingface,
   siJavascript,
   siLangchain,
+  siLanggraph,
+  siMercadopago,
   siMeta,
   siMistralai,
+  siModelcontextprotocol,
   siN8n,
   siNextdotjs,
   siNodedotjs,
@@ -41,7 +57,9 @@ import {
   siPython,
   siReact,
   siRedmine,
+  siSqlalchemy,
   siStreamlit,
+  siTailwindcss,
   siTrello,
   siTypescript,
   siWhatsapp,
@@ -149,18 +167,31 @@ const TECH_ICONS: Record<string, TechIconEntry> = {
   GraphQL: { type: 'brand', icon: siGraphql, color: '#e10098' },
   PostgreSQL: { type: 'brand', icon: siPostgresql, color: '#4169e1' },
   Python: { type: 'brand', icon: siPython, color: '#3776ab' },
+  FastAPI: { type: 'brand', icon: siFastapi, color: '#009688' },
+  SQLAlchemy: { type: 'brand', icon: siSqlalchemy, color: '#d71f00' },
+  Celery: { type: 'brand', icon: siCelery, color: '#37814a' },
   JavaScript: { type: 'brand', icon: siJavascript, color: '#c9a227' },
   TypeScript: { type: 'brand', icon: siTypescript, color: '#3178c6' },
   React: { type: 'brand', icon: siReact, color: '#149eca' },
+  'Tailwind CSS': { type: 'brand', icon: siTailwindcss, color: '#06b6d4' },
   'Node.js': { type: 'brand', icon: siNodedotjs, color: '#339933' },
+  Express: { type: 'brand', icon: siExpress, color: '#475569' },
+  Flutter: { type: 'brand', icon: siFlutter, color: '#02569b' },
+  Dart: { type: 'brand', icon: siDart, color: '#0175c2' },
+  HTML: { type: 'brand', icon: siHtml5, color: '#e34f26' },
+  CSS: { type: 'brand', icon: siCss, color: '#1572b6' },
   Docker: { type: 'brand', icon: siDocker, color: '#2496ed' },
   AWS: { type: 'line', icon: Cloud, color: '#FF9900' },
+  'Google Cloud': { type: 'brand', icon: siGooglecloud, color: '#4285f4' },
   Cloud: { type: 'brand', icon: siGooglecloud, color: '#4285f4' },
+  Cloudflare: { type: 'brand', icon: siCloudflare, color: '#f38020' },
+  'GitHub Actions': { type: 'brand', icon: siGithubactions, color: '#2088ff' },
   Streamlit: { type: 'brand', icon: siStreamlit, color: '#ff4b4b' },
   HubSpot: { type: 'brand', icon: siHubspot, color: '#ff7a59' },
   Redmine: { type: 'brand', icon: siRedmine, color: '#b32024' },
   DBeaver: { type: 'brand', icon: siDbeaver, color: '#382923' },
   PgAdmin: { type: 'line', icon: Database, color: '#336791' },
+  pgvector: { type: 'line', icon: Database, color: '#2563eb' },
   'Google Sheets': { type: 'brand', icon: siGooglesheets, color: '#34a853' },
   Git: { type: 'brand', icon: siGit, color: '#f05032' },
   GitHub: { type: 'brand', icon: siGithub, color: '' },
@@ -168,21 +199,30 @@ const TECH_ICONS: Record<string, TechIconEntry> = {
   Trello: { type: 'brand', icon: siTrello, color: '#0052cc' },
   WhatsApp: { type: 'brand', icon: siWhatsapp, color: '#25d366' },
   'WhatsApp Bot': { type: 'brand', icon: siWhatsapp, color: '#25d366' },
+  'Mercado Pago': { type: 'brand', icon: siMercadopago, color: '#00b1ea' },
   n8n: { type: 'brand', icon: siN8n, color: '#ea4b71' },
+  OpenAI: { type: 'line', icon: Bot, color: '#10a37f' },
   ChatGPT: { type: 'line', icon: Bot, color: '#10a37f' },
   GPT: { type: 'line', icon: Bot, color: '#10a37f' },
   'UX/UI': { type: 'line', icon: LayoutTemplate, color: '#ec4899' },
   UX: { type: 'line', icon: LayoutTemplate, color: '#ec4899' },
+  SEO: { type: 'line', icon: SearchCode, color: '#0ea5e9' },
   Claude: { type: 'brand', icon: siAnthropic, color: '#d4a574' },
   Gemini: { type: 'brand', icon: siGooglegemini, color: '#8e75ff' },
+  'Vertex AI': { type: 'brand', icon: siGooglecloud, color: '#4285f4' },
   Llama: { type: 'brand', icon: siMeta, color: '#0467df' },
   LangChain: { type: 'brand', icon: siLangchain, color: '#1c3c3c' },
+  LangGraph: { type: 'brand', icon: siLanggraph, color: '#1c3c3c' },
+  Langfuse: { type: 'line', icon: Activity, color: '#2563eb' },
+  MCP: { type: 'brand', icon: siModelcontextprotocol, color: '' },
+  'Tool Calling': { type: 'line', icon: Wrench, color: '#0284c7' },
   'Hugging Face': { type: 'brand', icon: siHuggingface, color: '#ffd21e' },
   Ollama: { type: 'brand', icon: siOllama, color: '' },
   DeepSeek: { type: 'brand', icon: siDeepseek, color: '#4d6bfe' },
   Mistral: { type: 'brand', icon: siMistralai, color: '#fa520a' },
   Perplexity: { type: 'brand', icon: siPerplexity, color: '#20b8cd' },
   Copilot: { type: 'brand', icon: siGithubcopilot, color: '' },
+  RAG: { type: 'line', icon: SearchCode, color: '#0891b2' },
   'IA Generativa': { type: 'line', icon: Sparkles, color: '#a855f7' },
   'IA Aplicada': { type: 'line', icon: Bot, color: '#6366f1' },
   LLMs: { type: 'line', icon: Bot, color: '#6366f1' },
@@ -193,6 +233,15 @@ const TECH_ICONS: Record<string, TechIconEntry> = {
   'Full Stack': { type: 'line', icon: Layers, color: '#2563eb' },
   APIs: { type: 'line', icon: Layers, color: '#2563eb' },
   'APIs REST': { type: 'line', icon: Layers, color: '#2563eb' },
+  'REST APIs': { type: 'line', icon: Layers, color: '#2563eb' },
+  Ensino: { type: 'line', icon: Users, color: '#2563eb' },
+  Teaching: { type: 'line', icon: Users, color: '#2563eb' },
+  Mentoria: { type: 'line', icon: Users, color: '#0f766e' },
+  Mentoring: { type: 'line', icon: Users, color: '#0f766e' },
+  Comunicação: { type: 'line', icon: Users, color: '#0284c7' },
+  Communication: { type: 'line', icon: Users, color: '#0284c7' },
+  Liderança: { type: 'line', icon: Users, color: '#4f46e5' },
+  Leadership: { type: 'line', icon: Users, color: '#4f46e5' },
 }
 
 function ExperienceTechTag({ name }: { name: string }) {
@@ -241,13 +290,7 @@ export function Experience() {
       <div className="container-1200 relative z-10">
         <SectionTitle
           eyebrow={UI.experience.eyebrow}
-          title={
-            <>
-              <span className="text-gradient-static">{UI.experience.titleStart}</span>
-              <span className="text-gradient">{UI.experience.titleAccent}</span>
-              <span className="text-gradient-static">{UI.experience.titleEnd}</span>
-            </>
-          }
+          title={`${UI.experience.titleStart}${UI.experience.titleAccent}${UI.experience.titleEnd}`}
           description={UI.experience.description}
           descriptionClassName="max-w-4xl lg:max-w-5xl"
         />
@@ -320,9 +363,8 @@ export function Experience() {
                     }`}
                     id={`experience-content-${i}`}
                   >
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="flex flex-col gap-2">
                       <div>
-                        <div className="mb-3 h-0.5 w-12 rounded-full bg-accent/40 dark:bg-accent-neon/50" />
                         <h3 className="font-display text-lg font-bold leading-tight text-ink transition-colors duration-200 group-hover:text-accent sm:text-xl">
                           {exp.role}
                         </h3>
@@ -336,9 +378,6 @@ export function Experience() {
                           <p className="mt-1 text-xs font-medium text-ink-mute">{exp.location}</p>
                         )}
                       </div>
-                      <span className="hidden w-fit shrink-0 rounded-full border border-accent/25 bg-accent/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-accent dark:border-accent-neon/25 dark:bg-accent-neon/10 dark:text-accent-neon sm:inline-flex">
-                        {stepBadge}
-                      </span>
                     </div>
 
                     {exp.description && exp.description.length > 0 && (
@@ -407,14 +446,21 @@ function TimelineLogo({
   isCurrent: boolean
 }) {
   const fallback = getLogoFallback(experience.company)
+  const isContain = experience.logoFit === 'contain'
 
   return (
-    <span className={`experience-timeline__node ${isCurrent ? 'experience-timeline__node--current' : ''}`}>
+    <span
+      className={`experience-timeline__node overflow-hidden ${
+        isCurrent ? 'experience-timeline__node--current' : ''
+      } ${isContain ? '!bg-white p-1.5' : ''}`}
+    >
       {experience.logoImage ? (
         <img
           src={experience.logoImage}
           alt={experience.logoAlt ?? `${experience.company} logo`}
-          className="h-full w-full rounded-full object-contain"
+          className={`h-full w-full rounded-full ${
+            isContain ? 'object-contain' : 'object-cover'
+          }`}
           loading="lazy"
         />
       ) : (

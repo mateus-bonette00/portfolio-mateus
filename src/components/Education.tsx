@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Award, Calendar, Download, GraduationCap, MapPin } from 'lucide-react'
+import { Award, Calendar, CheckCircle2, Clock, Download, GraduationCap, Languages, MapPin } from 'lucide-react'
 import { SectionTitle } from './SectionTitle'
 import { EDUCATION, UI } from '../data/portfolio'
 
@@ -9,23 +9,16 @@ export function Education() {
       <div className="container-1200 relative z-10">
         <SectionTitle
           eyebrow={UI.education.eyebrow}
-          title={
-            <>
-              <span className="text-gradient-static">{UI.education.titleStart}</span>
-              <br />
-              <span className="text-gradient">{UI.education.titleAccent}</span>
-              <span className="text-gradient-static">{UI.education.titleEnd}</span>
-            </>
-          }
+          title={`${UI.education.titleStart}${UI.education.titleAccent}${UI.education.titleEnd}`}
           description={UI.education.description}
         />
 
-        <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+        <div className="grid gap-6 lg:grid-cols-[1.05fr_1fr] lg:items-start">
           <motion.div
-            initial={{ opacity: 0, x: -28 }}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
             className="grid gap-4 sm:grid-cols-2"
           >
             <div className="relative overflow-hidden rounded-3xl glass-strong group sm:col-span-2">
@@ -39,7 +32,7 @@ export function Education() {
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
                   <div>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent-glow">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-glow">
                       {UI.education.ceremony}
                     </div>
                     <div className="mt-1 font-display text-lg font-semibold text-white drop-shadow">
@@ -64,7 +57,7 @@ export function Education() {
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/80 drop-shadow">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/80 drop-shadow">
                     {UI.education.classYear}
                   </div>
                   <div className="font-display text-sm font-semibold text-white drop-shadow">
@@ -74,63 +67,127 @@ export function Education() {
               </div>
             </div>
 
-            <div className="card p-6">
-              <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-mute">
-                {UI.education.numbers}
-              </div>
-              <div className="mt-4 grid grid-cols-2 gap-4">
+            <div className="card flex flex-col justify-between p-6">
+              <div className="flex items-center gap-2.5">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-accent/10 text-accent dark:bg-accent-neon/15 dark:text-accent-neon">
+                  <Languages size={16} />
+                </span>
                 <div>
-                  <div className="font-display text-3xl font-bold text-ink">5</div>
-                  <div className="mt-1 text-xs text-ink-dim">{UI.education.yearsFormation}</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl font-bold text-ink">∞</div>
-                  <div className="mt-1 text-xs text-ink-dim">{UI.education.linesWritten}</div>
+                  <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-mute">
+                    {UI.education.languagesLabel}
+                  </div>
+                  <div className="text-xs text-ink-dim">{UI.education.languagesSubtitle}</div>
                 </div>
               </div>
+
+              <ul className="mt-4 space-y-2.5">
+                {EDUCATION.languages.map((lang) => (
+                  <li
+                    key={lang.name}
+                    className="flex items-center justify-between gap-2 rounded-xl border border-slate-200/80 bg-white/70 px-3.5 py-2.5 dark:border-white/10 dark:bg-white/[0.04]"
+                  >
+                    <span className="font-display text-sm font-bold text-ink">{lang.name}</span>
+                    <span className="font-mono text-xs font-medium text-accent dark:text-accent-neon">
+                      {lang.level}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 28 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7 }}
-            className="card p-7 sm:p-8"
-            data-cursor="hover"
+            transition={{ duration: 0.6 }}
+            className="flex flex-col gap-5"
           >
-            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-accent/30 to-accent-cyan/20 text-accent ring-1 ring-accent/20 dark:text-white dark:ring-white/10">
-              <GraduationCap size={22} />
-            </div>
-            <h3 className="font-display text-2xl font-bold leading-tight text-ink">
-              {EDUCATION.degree}
-            </h3>
-            <p className="mt-1 font-mono text-sm text-accent-glow">{EDUCATION.institution}</p>
+            <article className="card p-6 sm:p-7" data-cursor="hover">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent dark:text-accent-neon">
+                  {UI.education.postgradEyebrow}
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/25 bg-accent/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-accent dark:border-accent-neon/30 dark:bg-accent-neon/10 dark:text-accent-neon">
+                  <Clock size={12} aria-hidden />
+                  {EDUCATION.postgrad.status}
+                </span>
+              </div>
 
-            <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-ink-dim">
-              <span className="inline-flex items-center gap-2">
-                <Calendar size={14} className="text-ink-mute" />
-                {EDUCATION.period}
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <MapPin size={14} className="text-ink-mute" />
-                {UI.education.location}
-              </span>
-            </div>
+              <h3 className="mt-3 font-display text-xl font-bold leading-snug text-ink sm:text-2xl">
+                {EDUCATION.postgrad.degree}
+              </h3>
+              <p className="mt-1 font-mono text-sm font-medium text-ink-dim">
+                {EDUCATION.postgrad.institution}
+              </p>
 
-            <p className="mt-6 text-sm leading-relaxed text-ink-dim">{EDUCATION.description}</p>
+              <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-ink-dim">
+                <span className="inline-flex items-center gap-1.5">
+                  <Calendar size={14} className="text-ink-mute" />
+                  {EDUCATION.postgrad.period}
+                </span>
+              </div>
 
-            <ul className="mt-7 space-y-3">
-              {EDUCATION.achievements.map((a) => (
-                <li
-                  key={a}
-                  className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white/70 px-4 py-3 transition-colors duration-300 hover:border-accent/30 hover:bg-white dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/15 dark:hover:bg-white/[0.05]"
-                >
-                  <Award size={16} className="mt-0.5 text-accent" />
-                  <span className="text-sm text-ink">{a}</span>
-                </li>
-              ))}
-            </ul>
+              <p className="mt-4 text-sm leading-relaxed text-ink-dim">
+                {EDUCATION.postgrad.description}
+              </p>
+
+              <ul className="mt-5 grid gap-2 sm:grid-cols-2">
+                {EDUCATION.postgrad.highlights.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2 rounded-xl border border-slate-200/80 bg-white/70 px-3 py-2.5 text-xs leading-relaxed text-ink dark:border-white/[0.08] dark:bg-white/[0.03]"
+                  >
+                    <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-accent dark:text-accent-neon" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="card p-6 sm:p-7" data-cursor="hover">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-mute">
+                  {UI.education.gradEyebrow}
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-emerald-700 dark:text-emerald-300">
+                  <GraduationCap size={12} aria-hidden />
+                  {UI.education.statusCompleted}
+                </span>
+              </div>
+
+              <h3 className="mt-3 font-display text-xl font-bold leading-snug text-ink sm:text-2xl">
+                {EDUCATION.degree}
+              </h3>
+              <p className="mt-1 font-mono text-sm font-medium text-accent dark:text-accent-neon">
+                {EDUCATION.institution}
+              </p>
+
+              <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-ink-dim">
+                <span className="inline-flex items-center gap-2">
+                  <Calendar size={14} className="text-ink-mute" />
+                  {EDUCATION.period}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <MapPin size={14} className="text-ink-mute" />
+                  {UI.education.location}
+                </span>
+              </div>
+
+              <p className="mt-4 text-sm leading-relaxed text-ink-dim">{EDUCATION.description}</p>
+
+              <ul className="mt-5 space-y-2.5">
+                {EDUCATION.achievements.map((a) => (
+                  <li
+                    key={a}
+                    className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white/70 px-4 py-2.5 transition-colors duration-200 hover:border-accent/30 hover:bg-white dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/15 dark:hover:bg-white/[0.05]"
+                  >
+                    <Award size={15} className="mt-0.5 shrink-0 text-accent dark:text-accent-neon" />
+                    <span className="text-sm text-ink">{a}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
           </motion.div>
         </div>
 

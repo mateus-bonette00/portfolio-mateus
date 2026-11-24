@@ -38,7 +38,7 @@ export function SectionTitle({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.55, delay: 0.05 }}
-        className={`section-title-display ${denseMobile ? 'mt-5 sm:mt-5' : 'mt-6 sm:mt-6'} ${
+        className={`section-title-display text-ink ${denseMobile ? 'mt-4 sm:mt-4' : 'mt-5 sm:mt-5'} ${
           align === 'center' ? '!text-center' : ''
         }`}
       >

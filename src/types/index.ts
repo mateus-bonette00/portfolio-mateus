@@ -26,6 +26,31 @@ export type Skill = {
   category: 'frontend' | 'backend' | 'devops' | 'tools' | 'data'
 }
 
+export type SkillGroupContent = {
+  id: string
+  title: string
+  summary: string
+  items: Array<{
+    id: string
+    name: string
+    description: string
+  }>
+}
+
+export type PostgradEducation = {
+  degree: string
+  institution: string
+  period: string
+  status: string
+  description: string
+  highlights: string[]
+}
+
+export type LanguageItem = {
+  name: string
+  level: string
+}
+
 export type Experience = {
   role: string
   company: string
@@ -38,6 +63,7 @@ export type Experience = {
   techTags?: string[]
   logoImage?: string
   logoAlt?: string
+  logoFit?: 'cover' | 'contain'
   /** Se true, exibe selo "Atual" e destaque na timeline. Omitido/false na experiência mais recente encerrada. */
   isCurrentRole?: boolean
 }

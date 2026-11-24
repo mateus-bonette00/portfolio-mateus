@@ -4,9 +4,10 @@ import App from './App'
 import { ProposalShareHead } from './components/proposal/ProposalShareHead'
 import './index.css'
 import { UI } from './data/portfolio'
-import { getCurrentLocale, getRouteInfo } from './i18n/routes'
+import { getCurrentLocale, getLocalizedPath, getRouteInfo } from './i18n/routes'
 
-const locale = getCurrentLocale()
+const routeInfo = getRouteInfo()
+const locale = routeInfo.locale
 document.documentElement.lang = locale === 'en' ? 'en' : 'pt-BR'
 
 const nativeReplaceState = window.history.replaceState.bind(window.history)
@@ -17,7 +18,7 @@ window.history.replaceState = (data, unused, url) => {
   return nativeReplaceState(data, unused, url)
 }
 
-const proposalSlug = getRouteInfo().internalPath.match(/^\/proposta\/([^/]+)$/)?.[1]
+const proposalSlug = routeInfo.internalPath.match(/^\/proposta\/([^/]+)$/)?.[1]
 const isProposal = Boolean(proposalSlug)
 
 if (proposalSlug) {
@@ -31,6 +32,10 @@ if (proposalSlug) {
 if (!isProposal) {
   document.title = UI.metadata.title
 
+  const canonicalUrl = `https://www.mateusbonette.com.br${getLocalizedPath(window.location.pathname, locale)}`
+  const canonicalLink = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+  const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')
+  const ogLocale = document.querySelector<HTMLMetaElement>('meta[property="og:locale"]')
   const metaDescription = document.querySelector<HTMLMetaElement>('meta[name="description"]')
   const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
   const ogDescription = document.querySelector<HTMLMetaElement>('meta[property="og:description"]')
@@ -38,6 +43,9 @@ if (!isProposal) {
   const twitterTitle = document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')
   const twitterDescription = document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')
 
+  if (canonicalLink) canonicalLink.href = canonicalUrl
+  if (ogUrl) ogUrl.content = canonicalUrl
+  if (ogLocale) ogLocale.content = locale === 'en' ? 'en_US' : 'pt_BR'
   if (metaDescription) metaDescription.content = UI.metadata.description
   if (ogTitle) ogTitle.content = UI.metadata.ogTitle
   if (ogDescription) ogDescription.content = UI.metadata.description

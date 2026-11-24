@@ -107,13 +107,7 @@ export function Projects() {
       <div className="container-1200 relative z-10">
         <SectionTitle
           eyebrow={UI.projects.eyebrow}
-          title={
-            <>
-              <span className="text-gradient-static">{UI.projects.titleStart}</span>
-              <span className="text-gradient">{UI.projects.titleAccent}</span>
-              <span className="text-gradient-static">{UI.projects.titleEnd}</span>
-            </>
-          }
+          title={`${UI.projects.titleStart}${UI.projects.titleAccent}${UI.projects.titleEnd}`}
           description={UI.projects.description}
           descriptionClassName="max-w-3xl projects-section-description"
         />

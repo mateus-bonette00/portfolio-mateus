@@ -13,13 +13,7 @@ export function About() {
           <div className="grid h-full grid-rows-[auto_auto_1fr] gap-6 2xl:sticky 2xl:top-28">
             <SectionTitle
               eyebrow={UI.about.eyebrow}
-              title={
-                <>
-                  <span className="text-gradient-static">{UI.about.titleStart}</span>
-                  <span className="text-gradient">{UI.about.titleAccent}</span>
-                  <span className="text-gradient-static">{UI.about.titleEnd}</span>
-                </>
-              }
+              title={`${UI.about.titleStart}${UI.about.titleAccent}${UI.about.titleEnd}`}
             />
 
             <motion.div

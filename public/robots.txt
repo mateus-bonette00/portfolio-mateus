@@ -1,0 +1,37 @@
+User-agent: *
+Allow: /
+Disallow: /proposta/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /proposta/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /proposta/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /proposta/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /proposta/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /proposta/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /proposta/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /proposta/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /proposta/
+
+Sitemap: https://www.mateusbonette.com.br/sitemap.xml

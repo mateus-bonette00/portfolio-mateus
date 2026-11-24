@@ -1,0 +1,64 @@
+# Mateus Bonette
+
+> AI Engineer (Applied AI Engineer) and Software Engineer based in São Paulo, Brazil. Computer Science graduate from UNIFEI and postgraduate student in Applied AI Engineering at UNIPDS. Co-founder and Software & AI Engineer at Junta Já Brasil.
+
+## Summary
+
+Mateus Bonette builds production AI systems and full stack software integrating LLMs, RAG, AI agents, tool calling, and Model Context Protocol (MCP) servers with APIs and relational/vector databases, with emphasis on reliability, deterministic validation, automated testing, observability, and cost control.
+
+- Website: https://www.mateusbonette.com.br/pt-br
+- English version: https://www.mateusbonette.com.br/en
+- LinkedIn: https://www.linkedin.com/in/mateus-bonette/
+- GitHub: https://github.com/mateus-bonette00
+- Email: mateus.bonette00@gmail.com
+- Availability: Open to remote, hybrid, and on-site opportunities in Brazil and internationally (AI Engineer, Applied AI Engineer, Generative AI Engineer, LLM Engineer, AI Agent Engineer, Software Engineer, Full Stack Software Engineer, Python Backend Engineer).
+
+## Experience
+
+### Software & AI Engineer (Co-founder) — Junta Já Brasil
+- Period: Jun 2026 – Present | Location: São Paulo, Brazil (Remote)
+- Co-founder responsible end to end for software and AI engineering of a personal financial management SaaS in production with 100+ users.
+- Automated bill and bank statement reading using OCR, Gemini, and Vertex AI: over 1,000 statements processed (average 100+/month) with >90% extraction and categorization accuracy, JSON schema extraction, normalization, deduplication, and validation before saving to PostgreSQL, cutting organization time from hours to under 1 minute.
+- Combined deterministic rules with Human-in-the-Loop (HITL) review for edge cases and quality tracking.
+- Built Ari, a WhatsApp AI assistant using Tool Calling and real system APIs with Harness Engineering controls to prevent unverified calculations.
+- Created Model Context Protocol (MCP) servers with ~80 tools for Google Cloud and Cloudflare.
+- Implemented LLM observability covering tokens, cost, latency, execution errors, document caching, model fallback, and monthly spending limits.
+- Stack: Python, FastAPI, SQLAlchemy, Celery, Cloud Tasks, PostgreSQL, Next.js, React, TypeScript, Tailwind CSS, Docker, GitHub Actions, Google Cloud Run, Cloud SQL, Secret Manager, WhatsApp API, Mercado Pago, Spec-Driven Development (SDD).
+
+### Full Stack Developer | Applied AI, RAG & LLMs — Moontech
+- Period: May 2024 – Jun 2026 (2 yrs 2 mos) | Location: Itajubá, MG, Brazil (Remote)
+- Built full stack and applied AI solutions for enterprise clients in a software factory environment.
+- Led the data platform of an urban mobility multinational for ~1 year, replacing manual spreadsheets with an API-integrated dashboard (Python, Streamlit, Node.js, Express, PostgreSQL) used by 20+ people and cutting report generation from 3–4 hours to ~1 minute.
+- Integrated a LangChain RAG agent to organize and categorize incoming data and answer natural-language queries.
+- Digitized ISO 9001 quality control for a food industry company (React, Node.js, Express, PostgreSQL) used by 10 staff across tablets and desktops, reducing query time from hours to minutes and passing the ISO 9001 audit. Implemented a RAG agent with tool calling, guardrails, and parameterized PostgreSQL queries for leadership meetings.
+- Built RAG pipelines with LangChain, LangGraph, embeddings, chunking, and pgvector integrating OpenAI, Claude, and Gemini, monitored with Langfuse for prompts, tokens, latency, and cost optimization.
+- Also built full stack applications with Angular, React, Next.js, GraphQL, Python, FastAPI, Docker, and AWS.
+
+### Full Stack Developer | Automation, Product & APIs — byron.solutions (UNIFEI Junior Enterprise)
+- Period: Apr 2020 – Nov 2021 (1 yr 8 mos) | Location: Itajubá, MG, Brazil (Remote)
+- Delivered web systems, mobile apps, e-commerce platforms, and landing pages from requirements gathering to deployment.
+- Built an e-commerce store with Mercado Pago online payments for a jewelry brand previously selling only via WhatsApp, expanding reach to other states.
+- Built an SEO-focused real estate website, increasing organic visibility, visits, and client leads.
+- Stack: React, TypeScript, JavaScript, Node.js, Flutter, Dart, REST APIs, HTML, CSS, Figma, Git, GitHub, Trello.
+
+### Volunteer Teacher — CAAI (Curso Assistencial Amigos de Itajubá)
+- Period: Mar 2019 – Feb 2021 (2 yrs) | Location: Itajubá, MG, Brazil
+- Volunteer teacher in a university prep course, developing technical communication, mentoring, leadership, and clarity in explaining complex concepts.
+
+## Education
+
+- Postgraduate Specialization in Applied AI Engineering — UNIPDS (degree issued by Anhanguera), Nov 2026 – Nov 2027 (In progress). Practical modules: neural networks, RAG with PostgreSQL, LLM backend integration, multimodal OCR, MCP servers, autonomous agents with LangGraph, Kubernetes deployment, LoRA/PEFT fine-tuning, AI DevOps, and Responsible AI.
+- Bachelor's Degree in Computer Science — Federal University of Itajubá (UNIFEI), 2020 – Dec 2025 (Completed).
+
+## Languages
+
+- Portuguese: Native
+- English: Advanced
+
+## Core Technical Stack
+
+- AI & Agents: LLMs, RAG, AI Agents, Model Context Protocol (MCP), LangChain, LangGraph, Tool Calling, Embeddings, Harness Engineering, Prompt Engineering, OpenAI, Anthropic Claude, Google Gemini, Vertex AI, Ollama, Hugging Face, Langfuse, Guardrails & Human-in-the-Loop (HITL).
+- Backend & Databases: Python, FastAPI, Node.js, Express, Django, SQLAlchemy, Celery, GraphQL, REST APIs, PostgreSQL, pgvector, Redis, MySQL, Playwright.
+- Frontend & Mobile: TypeScript, JavaScript, React, Next.js, Angular, Tailwind CSS, HTML5, CSS3, Flutter, Dart.
+- Cloud & DevOps: Docker, Google Cloud Platform (Cloud Run, Cloud SQL, Secret Manager, Cloud Tasks), AWS, Cloudflare, GitHub Actions, Kubernetes, Terraform, Linux, Git, Pytest.
+- Data & Product: Pandas, Streamlit, OCR & Structured Extraction, Data Modeling, Matplotlib, Seaborn, Figma, UX/UI Design, Spec-Driven Development (SDD), WhatsApp API, Mercado Pago, n8n, HubSpot, Scrum.

@@ -17,4 +17,4 @@ export const RESUME_PDF_PATH = resumeAsset.path
 export const RESUME_DOWNLOAD_FILENAME = resumeAsset.filename
 
 const profileBuildVersion = import.meta.env.VITE_BUILD_ID ?? '1'
-export const PROFILE_IMAGE_PATH = `/images/profile-2.jpg?v=${profileBuildVersion}`
+export const PROFILE_IMAGE_PATH = `/images/mateus-bonette-profile.jpg?v=${profileBuildVersion}`

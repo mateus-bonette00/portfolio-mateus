@@ -15,10 +15,7 @@ export function Footer() {
             aria-label={UI.footer.backToTop}
           >
             <Logo className="h-[4.75rem] w-auto opacity-90 sm:h-[5.125rem]" alt="" />
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="eyebrow-rule" aria-hidden />
-              <span className="heading-eyebrow">{PROFILE.role}</span>
-            </div>
+            <span className="heading-eyebrow">{PROFILE.role}</span>
           </a>
 
           <div className="flex w-full flex-wrap items-center justify-center gap-3">

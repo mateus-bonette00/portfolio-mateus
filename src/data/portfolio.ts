@@ -1,16 +1,23 @@
-import type { Project, Skill, Experience } from "../types";
+import type {
+  Project,
+  Skill,
+  Experience,
+  SkillGroupContent,
+  PostgradEducation,
+  LanguageItem,
+} from "../types";
 import { getCurrentLocale, type Locale } from "../i18n/routes";
 import familyMoneyCoverImage from "../../imagem-da-capa-do-projeto-familyMoney.png";
 import familyMoneyDemoVideo from "../../video-familyMoney-com-jazz.mp4";
 
 const PROFILE_PT = {
   name: "Mateus Bonette",
-  role: "Engenheiro de IA Aplicada · AI Engineer",
+  role: "AI Engineer e Software Engineer",
   tagline:
-    "Projeto e entrego sistemas de IA em produção com LLMs, RAG, agentes autônomos, LangChain, LangGraph, APIs e automações full stack para resolver problemas reais de operação e negócio.",
-  location: "Brasil",
+    "Desenvolvo software full stack e sistemas de IA em produção com LLMs, RAG, agentes e servidores MCP conectados a dados reais.",
+  location: "São Paulo, Brasil",
   email: "mateus.bonette00@gmail.com",
-  bio: "Bacharel em Ciência da Computação pela Universidade Federal de Itajubá. Viciado em Resolver Problemas.",
+  bio: "Cofundador da Junta Já, bacharel em Ciência da Computação pela UNIFEI e pós-graduando em Engenharia de IA Aplicada pela UNIPDS.",
   social: {
     github: "https://github.com/mateus-bonette00",
     linkedin: "https://www.linkedin.com/in/mateus-bonette/",
@@ -940,14 +947,34 @@ const EXPERIENCES_PT: Experience[] = [
 const EDUCATION_PT = {
   degree: "Bacharelado em Ciência da Computação",
   institution: "Universidade Federal de Itajubá (UNIFEI)",
-  period: "2020 a 2025",
+  period: "2020 - dez. de 2025",
   description:
-    "Formação completa em fundamentos de computação, engenharia de software, algoritmos, bancos de dados, redes e inteligência artificial.",
+    "Base sólida em engenharia de software, algoritmos, estruturas de dados, bancos de dados, inteligência artificial, redes de computadores e arquitetura de sistemas. Durante a graduação, desenvolvi projetos acadêmicos e práticos com foco em desenvolvimento full stack, IA aplicada, automação, análise de dados, dashboards e sistemas inteligentes.",
   achievements: [
-    "Projetos práticos com times multidisciplinares",
-    "Trabalho de conclusão na área de desenvolvimento full stack",
-    "Participação ativa em laboratórios e iniciativas acadêmicas",
+    "Professor voluntário no CAAI (2019–2021)",
+    "Desenvolvedor Full Stack na byron.solutions (Empresa Júnior)",
+    "Projetos práticos com IA Aplicada, RAG, LLMs e análise de dados",
   ],
+  postgrad: {
+    degree: "Pós-graduação Lato Sensu em Engenharia de IA Aplicada",
+    institution: "UNIPDS (diploma emitido pela Anhanguera)",
+    period: "nov. de 2026 - nov. de 2027",
+    status: "Em andamento",
+    description:
+      "Especialização prática em IA Generativa, LLMs, RAG, agentes autônomos e arquitetura de sistemas com IA em produção, com projetos em JavaScript/TypeScript e Python.",
+    highlights: [
+      "LLMs e APIs de IA: OpenAI, Anthropic, Gemini, Ollama e Prompt Engineering",
+      "RAG com PostgreSQL: embeddings, busca semântica, busca híbrida e Agentic RAG",
+      "Agentes e Multi-Agent: Function Calling, ReAct, LangChain, LangGraph, CrewAI e ADK",
+      "Servidores MCP integrados a APIs, bancos de dados e frontend",
+      "Arquitetura, observabilidade e fine-tuning: model routing, cache semântico, guardrails, HITL e LoRA/PEFT",
+      "IA para DevOps e Responsible AI: Kubernetes, Terraform, CI/CD e AIOps",
+    ],
+  } as PostgradEducation,
+  languages: [
+    { name: "Português", level: "Fluente ou nativo" },
+    { name: "Inglês", level: "Avançado" },
+  ] as LanguageItem[],
 };
 
 const NAV_LINKS_PT = [
@@ -996,6 +1023,7 @@ export type PortfolioUiContent = {
   hero: {
     downloadResume: string;
     contact: string;
+    availability: string;
     scrollDown: string;
     scrollDownAria: string;
   };
@@ -1040,19 +1068,13 @@ export type PortfolioUiContent = {
     titleEnd: string;
     description: string;
     filterLabel: string;
+    allLabel: string;
     swipeLabel: string;
     areasLabel: string;
     skillsLabel: string;
     itemsLabel: string;
     masteryLabel: string;
-    groups: Array<{
-      title: string;
-      summary: string;
-      items: Array<{
-        name: string;
-        description: string;
-      }>;
-    }>;
+    groups: SkillGroupContent[];
   };
   experience: {
     aria: string;
@@ -1148,6 +1170,11 @@ export type PortfolioUiContent = {
     location: string;
     diplomaTitle: string;
     viewDiploma: string;
+    postgradEyebrow: string;
+    gradEyebrow: string;
+    languagesLabel: string;
+    languagesSubtitle: string;
+    statusCompleted: string;
   };
   contact: {
     eyebrow: string;
@@ -1196,11 +1223,11 @@ export type PortfolioContent = {
 
 const PROFILE_EN: typeof PROFILE_PT = {
   ...PROFILE_PT,
-  role: "Applied AI Engineer",
+  role: "AI Engineer & Software Engineer",
   tagline:
-    "I design and ship production AI systems with LLMs, RAG, autonomous agents, LangChain, LangGraph, APIs, and full stack automations to solve real operational and business problems.",
-  location: "Brazil",
-  bio: "Computer Science graduate from the Federal University of Itajuba. Obsessed with solving real problems.",
+    "I build full stack software and production AI systems with LLMs, RAG, AI agents, and MCP servers connected to real data.",
+  location: "São Paulo, Brazil",
+  bio: "Co-founder at Junta Já, Computer Science graduate from UNIFEI, and postgraduate student in Applied AI Engineering at UNIPDS.",
 };
 
 const PROJECT_TRANSLATIONS_EN: Record<string, Partial<Project>> = {
@@ -1589,301 +1616,386 @@ const EDUCATION_EN: EducationContent = {
     "Final thesis in full stack development",
     "Active participation in laboratories and academic initiatives",
   ],
+  postgrad: {
+    degree: "Postgraduate Specialization in Applied AI Engineering",
+    institution: "UNIPDS (degree issued by Anhanguera)",
+    period: "Nov 2026 - Nov 2027",
+    status: "In progress",
+    description:
+      "Hands-on specialization in Generative AI, LLMs, RAG, autonomous agents, and production AI system architecture.",
+    highlights: [],
+  },
+  languages: [
+    { name: "Portuguese", level: "Native" },
+    { name: "English", level: "Advanced" },
+  ],
 };
 
 const LINKEDIN_EXPERIENCES_PT: Experience[] = [
   {
-    role: "Desenvolvedor Full Stack | IA Aplicada, RAG e LLMs",
-    company: "Moontech",
-    employmentType: "Tempo integral",
-    period: "mai de 2024 - o momento · 2 anos 2 meses",
-    location: "Remoto · Remoto",
+    role: "Software & AI Engineer (Co-founder)",
+    company: "Junta Já Brasil",
+    employmentType: "Autônomo",
+    period: "jun. de 2026 - o momento",
+    location: "São Paulo, Brasil · Remoto",
     isCurrentRole: true,
     description: [
-      "Desenvolvi automações inteligentes com LLMs integradas ao HubSpot, apoiando qualificação de leads, fluxos comerciais, suporte, automação de tarefas e economia de horas semanais.",
-      "Construí soluções full stack em produção com Angular, Next.js, GraphQL, Python, PostgreSQL, Docker e AWS, conectando engenharia, produto e operação.",
-      "Criei dashboards analíticos com Python e Streamlit para centralizar dados operacionais, melhorar a visualização das informações e apoiar decisões orientadas por dados.",
-      "Atuei com IA Aplicada, IA Generativa, RAG, LangChain, LangGraph, PostgreSQL/pgvector, OpenAI, Claude e Gemini em fluxos reais de automação e recuperação de informação.",
-      "Desenvolvi sistemas com IA, agentes, integrações com APIs e ferramentas internas focadas em produtividade, automação de processos e impacto no negócio.",
+      "Cofundador e responsável ponta a ponta pela engenharia de software e IA da Junta Já, SaaS de gestão financeira pessoal em produção com mais de 100 usuários. Cuido da arquitetura, backend, frontend, pipelines de IA, infraestrutura, operação e integrações.",
+      "Reduzi de horas para menos de 1 minuto a organização financeira ao automatizar a leitura de faturas e extratos com OCR, Gemini e Vertex AI. O pipeline já processou mais de 1.000 documentos, com média acima de 100 por mês e precisão superior a 90% na extração e categorização, passando por JSON estruturado, normalização, deduplicação e validações determinísticas antes de gravar no PostgreSQL, além de revisão humana (Human-in-the-Loop) para divergências.",
+      "Desenvolvi a Ari, assistente de IA no WhatsApp com Tool Calling e APIs do sistema para consultar dados reais, usando controles de Harness Engineering para impedir cálculos e valores não verificados. Também construí servidores MCP com cerca de 80 ferramentas para Google Cloud e Cloudflare e observabilidade de LLMs cobrindo tokens, custo, latência, erros, cache de documentos, fallback entre modelos e limite mensal.",
+      "APIs REST em Python, FastAPI e SQLAlchemy, filas assíncronas com Celery e Cloud Tasks, frontend em Next.js, React, TypeScript e Tailwind CSS, testes, CI/CD com GitHub Actions, Docker e deploy no Cloud Run, Cloud SQL e Secret Manager sob Spec-Driven Development, com integrações de WhatsApp e Mercado Pago.",
     ],
     highlights: [
-      "Automação com LLMs conectada a CRM, suporte e operação comercial.",
-      "Soluções full stack em produção com Angular, Next.js, GraphQL, Python e PostgreSQL.",
-      "Aplicações reais com RAG, LangChain, LangGraph, pgvector, OpenAI, Claude e Gemini.",
+      "Pipeline com OCR, Gemini e Vertex AI: mais de 1.000 faturas e extratos processados com precisão acima de 90% e corte de horas para menos de 1 minuto.",
+      "Ari, assistente no WhatsApp com Tool Calling, APIs reais e Harness Engineering para evitar respostas sem verificação.",
+      "Servidores MCP com cerca de 80 ferramentas (Google Cloud e Cloudflare) e observabilidade completa de tokens, custo, latência e fallback.",
     ],
     techTags: [
       "Python",
-      "RAG",
+      "FastAPI",
+      "SQLAlchemy",
+      "Celery",
       "LLMs",
       "LangChain",
       "LangGraph",
-      "OpenAI",
-      "Claude",
+      "MCP",
+      "Tool Calling",
       "Gemini",
-      "FastAPI",
-      "Angular",
-      "Next.js",
-      "GraphQL",
+      "Vertex AI",
       "PostgreSQL",
-      "pgvector",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Google Cloud",
+      "Cloudflare",
       "Docker",
-      "AWS",
-      "Streamlit",
-      "HubSpot",
+      "GitHub Actions",
+      "WhatsApp",
+      "Mercado Pago",
     ],
-    logoImage: "/images/experiences/moontech.jpeg",
-    logoAlt: "Logo da Moontech",
+    logoImage: "/images/experiences/junta-ja.png",
+    logoAlt: "Logo da Junta Já Brasil",
+    logoFit: "contain",
   },
   {
-    role: "Desenvolvedor Full Stack | Automação de Processos e IA Generativa",
-    company: "Pró-Saúde Materiais Odontomédicos",
+    role: "Desenvolvedor Full Stack | IA Aplicada, RAG e LLMs",
+    company: "Moontech",
     employmentType: "Tempo integral",
-    period: "abr de 2020 - fev de 2023 · 2 anos 11 meses",
-    location: "Itajubá, MG · No local",
+    period: "mai. de 2024 - jun. de 2026 · 2 anos 2 meses",
+    location: "Itajubá, Minas Gerais, Brasil · Remoto",
     description: [
-      "Automatizei rotinas administrativas, financeiras, comerciais e operacionais, reduzindo tarefas manuais e aumentando a organização interna do negócio.",
-      "Desenvolvi sistemas e controles internos para estoque, financeiro, operação e processos comerciais com Python, JavaScript, Google Sheets, integrações com APIs e lógica CRUD.",
-      "Criei automações com IA Generativa, APIs e bot para WhatsApp, apoiando comunicação, atendimento, presença digital e rotinas operacionais.",
-      "Implementei fluxos para organizar informações, centralizar dados e tornar processos internos mais rápidos, rastreáveis e menos dependentes de controles manuais.",
-      "Atuei com mentalidade de dono, identificando dores reais da operação e transformando demandas do dia a dia em soluções digitais simples, úteis e escaláveis.",
+      "Atuei como Desenvolvedor Full Stack com foco em IA Aplicada em fábrica de software para grandes clientes, trabalhando em frontend, backend, LLMs, agentes de IA e RAG.",
+      "Liderei tecnicamente por cerca de 1 ano a plataforma de dados de uma multinacional de mobilidade urbana, substituindo planilhas manuais por um dashboard com dados integrados via API em Python, Streamlit, Node.js, Express e PostgreSQL, usado por mais de 20 pessoas. O tempo de geração de relatórios caiu de 3–4 horas para cerca de 1 minuto, com agente RAG em LangChain para organizar dados antes da gravação e responder perguntas em linguagem natural.",
+      "Digitalizei o controle de qualidade ISO 9001 de uma indústria alimentícia com sistema responsivo em React, Node.js, Express e PostgreSQL usado por 10 funcionários em tablets e desktops, com registros por foto, não conformidades e rastreabilidade de lotes. Consultas de horas passaram a levar minutos, o sistema foi aprovado na auditoria ISO 9001 e recebeu agente de IA com RAG, tool calling, guardrails e consultas parametrizadas ao banco para reuniões da liderança.",
+      "Desenvolvi pipelines RAG com LangChain, LangGraph, embeddings, chunking e pgvector integrando OpenAI, Claude e Gemini, monitorados via Langfuse com otimização de consumo de tokens. Também atuei em aplicações full stack com Angular, React, Next.js, GraphQL, Python, FastAPI, Docker e AWS.",
     ],
     highlights: [
-      "Automação de processos administrativos, comerciais e operacionais.",
-      "Controles internos com Python, JavaScript, Google Sheets, APIs e CRUD.",
-      "Uso prático de IA Generativa e WhatsApp Bot para atendimento e operação.",
+      "Plataforma de dados para multinacional de mobilidade urbana: relatórios reduzidos de 3–4 horas para cerca de 1 minuto para mais de 20 usuários.",
+      "Sistema de qualidade aprovado na auditoria ISO 9001 em indústria alimentícia, com agente RAG, tool calling e guardrails sobre PostgreSQL.",
+      "Pipelines RAG com LangChain, LangGraph, pgvector, OpenAI, Claude e Gemini monitorados com Langfuse.",
     ],
     techTags: [
       "Python",
-      "JavaScript",
-      "Google Sheets",
-      "APIs",
-      "Automação de processos",
-      "IA Generativa",
-      "WhatsApp Bot",
-      "CRUD",
-      "Integrações",
-      "Dados operacionais",
+      "Node.js",
+      "Express",
+      "TypeScript",
+      "Angular",
+      "React",
+      "Next.js",
+      "FastAPI",
+      "GraphQL",
+      "PostgreSQL",
+      "pgvector",
+      "LLMs",
+      "RAG",
+      "LangChain",
+      "LangGraph",
+      "Langfuse",
+      "OpenAI",
+      "Claude",
+      "Gemini",
+      "Streamlit",
+      "Docker",
+      "AWS",
     ],
-    logoImage: "/images/experiences/prosaude.jpg",
-    logoAlt: "Logo da Pró-Saúde Materiais Odontomédicos",
+    logoImage: "/images/experiences/moontech.jpeg",
+    logoAlt: "Logo da Moontech",
+    logoFit: "cover",
   },
   {
     role: "Desenvolvedor Full Stack | Automação, Produto e APIs",
-    company: "(Empresa Júnior) byron.solutions",
+    company: "byron.solutions (Empresa Júnior da UNIFEI)",
     employmentType: "Tempo integral",
-    period: "abr de 2020 - nov de 2021 · 1 ano 8 meses",
+    period: "abr. de 2020 - nov. de 2021 · 1 ano 8 meses",
     location: "Itajubá, MG · Remoto",
     description: [
-      "Atuei em projetos reais para clientes, desenvolvendo sites, landing pages, sistemas web, automações e soluções digitais com foco em usabilidade, conversão e valor de negócio.",
-      "Contribuí para definição de escopo, organização de backlog, protótipos e entregas técnicas, conectando necessidades de negócio com desenvolvimento de software.",
-      "Apoiei a comunicação entre clientes e equipe técnica, melhorando o entendimento de requisitos, prioridades, prazos e validação das soluções entregues.",
-      "Desenvolvi funcionalidades backend, integrações REST, lógica CRUD, interfaces responsivas e fluxos digitais para clientes de diferentes segmentos.",
-      "Consolidei uma base forte em engenharia de software, comunicação com stakeholders, gestão de projetos e desenvolvimento full stack que hoje aplico em projetos com IA, RAG, LLMs e automações inteligentes.",
+      "Atuei no desenvolvimento de sistemas web, aplicativos móveis, e-commerces, sites institucionais e landing pages para clientes de pequeno, médio e grande porte, participando do levantamento de requisitos até a entrega.",
+      "Desenvolvi um e-commerce com pagamentos online via Mercado Pago para uma marca de semijoias que vendia apenas pelo WhatsApp, abrindo vendas para outros estados. Também criei o site de um corretor de imóveis com SEO para ampliar visitas orgânicas e contatos de clientes.",
+      "Trabalhei com interfaces responsivas em React, JavaScript, TypeScript, HTML e CSS, aplicativos móveis em Flutter para Android e iOS, APIs REST em Node.js com operações CRUD, protótipos no Figma e organização de entregas com Git, GitHub e Trello.",
     ],
     highlights: [
-      "Projetos para clientes com foco em produto, UX/UI, automação e entrega técnica.",
-      "Integrações REST, backend, CRUD e interfaces responsivas.",
-      "Base prática em escopo, backlog, prototipação, comunicação e gestão de projetos.",
+      "E-commerce com checkout via Mercado Pago que tirou marca de semijoias do atendimento manual no WhatsApp e habilitou vendas interestaduais.",
+      "Site imobiliário estruturado com práticas de SEO, aumentando visibilidade orgânica e geração de contatos.",
+      "Entregas em React, TypeScript, Node.js, Flutter, Figma e APIs REST em contato direto com clientes.",
     ],
     techTags: [
+      "React",
+      "TypeScript",
       "JavaScript",
       "Node.js",
+      "Flutter",
+      "Dart",
       "APIs REST",
       "HTML",
       "CSS",
+      "Figma",
+      "UX/UI",
+      "SEO",
       "Git",
       "GitHub",
       "Trello",
-      "Figma",
-      "UX/UI",
-      "Automação",
-      "Produto digital",
+      "Mercado Pago",
     ],
     logoImage: "/images/experiences/byron.jpeg",
     logoAlt: "Logo da byron.solutions",
+    logoFit: "cover",
   },
   {
-    role: "Professor Voluntário de Tecnologia e Computação",
+    role: "Professor Voluntário",
     company: "CAAI - Curso Assistencial Amigos de Itajubá",
     employmentType: "Voluntário",
-    period: "2019 - fev de 2021 · 2 anos",
+    period: "mar. de 2019 - fev. de 2021 · 2 anos",
     location: "Itajubá, MG",
     description: [
-      "Atuei como professor voluntário, apoiando estudantes em tecnologia, raciocínio lógico, computação e fundamentos práticos de programação.",
-      "Transformei temas técnicos em explicações simples, exercícios guiados e atividades acessíveis para diferentes níveis de conhecimento.",
-      "Essa experiência fortaleceu minha comunicação, didática e capacidade de traduzir tecnologia em aprendizado útil e aplicável.",
+      "Atuei por dois anos como professor voluntário em um curso preparatório assistencial para estudantes que buscavam ingressar no ensino superior.",
+      "Essa experiência consolidou comunicação clara, didática, escuta ativa e capacidade de traduzir conceitos complexos para públicos diversos, habilidades que aplico hoje no alinhamento com áreas não técnicas e mentoria.",
     ],
     highlights: [
-      "Ensino voluntário de tecnologia com foco em clareza, prática e inclusão.",
-      "Experiência em comunicação técnica, didática e apoio a estudantes.",
+      "Dois anos de docência voluntária na preparação de estudantes para o ensino superior.",
+      "Comunicação técnica acessível, mentoria e tradução de temas complexos em explicações práticas.",
     ],
-    techTags: ["Ensino", "Tecnologia", "Computação", "Comunicação", "Didática"],
+    techTags: ["Ensino", "Mentoria", "Comunicação", "Liderança"],
     logoImage: "/images/experiences/caai.jpeg",
     logoAlt: "Logo do CAAI",
+    logoFit: "cover",
   },
 ];
 
 const LINKEDIN_EDUCATION_PT: EducationContent = {
   degree: "Bacharelado em Ciência da Computação",
-  institution: "Universidade Federal de Itajubá",
-  period: "2020 - dez de 2025",
+  institution: "Universidade Federal de Itajubá (UNIFEI)",
+  period: "2020 - dez. de 2025",
   description:
-    "Base sólida em engenharia de software, algoritmos, estruturas de dados, bancos de dados, inteligência artificial, redes de computadores e arquitetura de sistemas. Durante a graduação, desenvolvi projetos acadêmicos e práticos com foco em desenvolvimento full stack, IA aplicada, automação, análise de dados, dashboards e sistemas inteligentes.\n\nTambém atuei como professor voluntário no CAAI e participei de empresa júnior, aplicando tecnologia para resolver problemas reais e conectando visão técnica, produto e necessidades de negócio. Essa trajetória fortaleceu minha capacidade de projetar sistemas escaláveis, entender requisitos complexos e construir soluções orientadas por IA, com foco em LLMs, arquiteturas RAG, IA Generativa, automações inteligentes e boas práticas modernas de engenharia de software.",
+    "Base sólida em engenharia de software, algoritmos, estruturas de dados, bancos de dados, inteligência artificial, redes de computadores e arquitetura de sistemas. Durante a graduação, desenvolvi projetos acadêmicos e práticos com foco em desenvolvimento full stack, IA aplicada, automação, análise de dados, dashboards e sistemas inteligentes.",
   achievements: [
-    "CAAI / Professor Voluntário",
-    "Empresa Júnior",
-    "Projetos Full Stack",
-    "IA Aplicada, RAG, LLMs e Automação",
-    "Análise de Dados e Sistemas Inteligentes",
-    "Desenvolvimento Web",
+    "Professor voluntário no CAAI (2019–2021)",
+    "Desenvolvedor Full Stack na byron.solutions (Empresa Júnior)",
+    "Projetos práticos com IA Aplicada, RAG, LLMs e análise de dados",
+  ],
+  postgrad: {
+    degree: "Pós-graduação Lato Sensu em Engenharia de IA Aplicada",
+    institution: "UNIPDS (diploma emitido pela Anhanguera)",
+    period: "nov. de 2026 - nov. de 2027",
+    status: "Em andamento",
+    description:
+      "Especialização prática em IA Generativa, LLMs, RAG, agentes autônomos e arquitetura de sistemas com IA em produção, com projetos em JavaScript/TypeScript e Python.",
+    highlights: [
+      "LLMs e APIs de IA: OpenAI, Anthropic, Gemini, Ollama e Prompt Engineering",
+      "RAG com PostgreSQL: embeddings, busca semântica, busca híbrida e Agentic RAG",
+      "Agentes e Multi-Agent: Function Calling, ReAct, LangChain, LangGraph, CrewAI e ADK",
+      "Servidores MCP integrados a APIs, bancos de dados e frontend",
+      "Arquitetura, observabilidade e fine-tuning: model routing, cache semântico, guardrails, HITL e LoRA/PEFT",
+      "IA para DevOps e Responsible AI: Kubernetes, Terraform, CI/CD e AIOps",
+    ],
+  },
+  languages: [
+    { name: "Português", level: "Fluente ou nativo" },
+    { name: "Inglês", level: "Avançado" },
   ],
 };
 
 const LINKEDIN_EXPERIENCES_EN: Experience[] = [
   {
-    role: "Full Stack Developer | Applied AI, RAG and LLMs",
-    company: "Moontech",
-    employmentType: "Full-time",
-    period: "May 2024 - Present · 2 yrs 2 mos",
-    location: "Remote · Remote",
+    role: "Software & AI Engineer (Co-founder)",
+    company: "Junta Já Brasil",
+    employmentType: "Self-employed",
+    period: "Jun 2026 - Present",
+    location: "São Paulo, Brazil · Remote",
     isCurrentRole: true,
     description: [
-      "Built intelligent automations with LLMs integrated into HubSpot, supporting lead qualification, commercial flows, support, task automation and weekly time savings.",
-      "Developed production full stack solutions with Angular, Next.js, GraphQL, Python, PostgreSQL, Docker and AWS, connecting engineering, product and operations.",
-      "Created analytical dashboards with Python and Streamlit to centralize operational data, improve visibility and support data-driven decisions.",
-      "Worked with Applied AI, Generative AI, RAG, LangChain, LangGraph, PostgreSQL/pgvector, OpenAI, Claude and Gemini in real automation and information retrieval flows.",
-      "Developed AI systems, agents, API integrations and internal tools focused on productivity, process automation and business impact.",
+      "Co-founder responsible end to end for software and AI engineering at Junta Já, a personal financial management SaaS in production with 100+ users. I own architecture, backend, frontend, AI pipelines, infrastructure, operations, and third-party integrations.",
+      "Cut financial organization time from hours to under 1 minute by automating bill and bank statement reading with OCR, Gemini, and Vertex AI. The pipeline has processed over 1,000 documents (averaging 100+/month) with >90% extraction and categorization accuracy, moving through JSON extraction, normalization, deduplication, and deterministic validation before saving to PostgreSQL, plus Human-in-the-Loop (HITL) review for edge cases.",
+      "Built Ari, a WhatsApp AI assistant using Tool Calling and system APIs to query live user data, paired with Harness Engineering controls to prevent unverified math or values. Built Model Context Protocol (MCP) servers with ~80 tools for Google Cloud and Cloudflare, plus LLM observability for tokens, cost, latency, errors, document caching, model fallback, and monthly spending caps.",
+      "REST APIs in Python, FastAPI, and SQLAlchemy; async jobs with Celery and Cloud Tasks; Next.js, React, TypeScript, and Tailwind CSS frontend; automated tests, CI/CD via GitHub Actions, Docker, Cloud Run, Cloud SQL, and Secret Manager under Spec-Driven Development, with WhatsApp and Mercado Pago integrations.",
     ],
     highlights: [
-      "LLM automation connected to CRM, support and commercial operations.",
-      "Production full stack solutions with Angular, Next.js, GraphQL, Python and PostgreSQL.",
-      "Real applications using RAG, LangChain, LangGraph, pgvector, OpenAI, Claude and Gemini.",
+      "OCR, Gemini, and Vertex AI pipeline: 1,000+ statements processed with >90% accuracy, cutting organization time from hours to under 1 minute.",
+      "Ari WhatsApp assistant with Tool Calling, live APIs, and Harness Engineering controls against unverified outputs.",
+      "MCP servers (~80 tools for Google Cloud and Cloudflare) and full LLM observability covering tokens, cost, latency, and fallback.",
     ],
     techTags: [
       "Python",
-      "RAG",
+      "FastAPI",
+      "SQLAlchemy",
+      "Celery",
       "LLMs",
       "LangChain",
       "LangGraph",
-      "OpenAI",
-      "Claude",
+      "MCP",
+      "Tool Calling",
       "Gemini",
-      "FastAPI",
-      "Angular",
-      "Next.js",
-      "GraphQL",
+      "Vertex AI",
       "PostgreSQL",
-      "pgvector",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Google Cloud",
+      "Cloudflare",
       "Docker",
-      "AWS",
-      "Streamlit",
-      "HubSpot",
+      "GitHub Actions",
+      "WhatsApp",
+      "Mercado Pago",
     ],
-    logoImage: "/images/experiences/moontech.jpeg",
-    logoAlt: "Moontech logo",
+    logoImage: "/images/experiences/junta-ja.png",
+    logoAlt: "Junta Já Brasil logo",
+    logoFit: "contain",
   },
   {
-    role: "Full Stack Developer | Process Automation and Generative AI",
-    company: "Pró-Saúde Materiais Odontomédicos",
+    role: "Full Stack Developer | Applied AI, RAG & LLMs",
+    company: "Moontech",
     employmentType: "Full-time",
-    period: "Apr 2020 - Feb 2023 · 2 yrs 11 mos",
-    location: "Itajubá, MG · On-site",
+    period: "May 2024 - Jun 2026 · 2 yrs 2 mos",
+    location: "Itajubá, MG, Brazil · Remote",
     description: [
-      "Automated administrative, financial, commercial and operational routines, reducing manual work and improving internal organization.",
-      "Developed internal systems and controls for inventory, finance, operations and commercial processes with Python, JavaScript, Google Sheets, API integrations and CRUD logic.",
-      "Created automations with Generative AI, APIs and a WhatsApp bot, supporting communication, customer service, digital presence and operational routines.",
-      "Implemented flows to organize information, centralize data and make internal processes faster, traceable and less dependent on manual controls.",
-      "Worked with an owner mindset, identifying real operational problems and turning day-to-day needs into simple, useful and scalable digital solutions.",
+      "Worked as a Full Stack Developer focused on Applied AI in a software factory serving enterprise clients across frontend, backend, LLMs, AI agents, and RAG.",
+      "Led for about 1 year the data platform of an urban mobility multinational, replacing manual spreadsheets with an API-integrated dashboard (Python, Streamlit, Node.js, Express, PostgreSQL) used by 20+ staff. Report generation dropped from 3–4 hours to about 1 minute, with a LangChain RAG agent categorizing incoming data and answering natural-language queries.",
+      "Digitized ISO 9001 quality control for a food manufacturer with a responsive React, Node.js, Express, and PostgreSQL system used by 10 employees on tablets and desktops, covering photo records, non-conformities, and batch traceability. Multi-hour lookups dropped to minutes, the system passed the ISO 9001 audit, and a RAG agent with tool calling, guardrails, and parameterized PostgreSQL queries supported leadership meetings.",
+      "Built RAG pipelines with LangChain, LangGraph, embeddings, chunking, and pgvector integrating OpenAI, Claude, and Gemini, monitored in Langfuse for prompts, tokens, latency, and cost optimization. Also shipped full stack apps with Angular, React, Next.js, GraphQL, Python, FastAPI, Docker, and AWS.",
     ],
     highlights: [
-      "Automation of administrative, commercial and operational processes.",
-      "Internal controls with Python, JavaScript, Google Sheets, APIs and CRUD.",
-      "Practical use of Generative AI and WhatsApp Bot for service and operations.",
+      "Urban mobility data platform: cut report generation from 3–4 hours to ~1 minute for 20+ users.",
+      "Quality control system passed ISO 9001 audit, featuring a RAG agent with tool calling and guardrails over PostgreSQL.",
+      "RAG pipelines with LangChain, LangGraph, pgvector, OpenAI, Claude, and Gemini monitored with Langfuse.",
     ],
     techTags: [
       "Python",
-      "JavaScript",
-      "Google Sheets",
-      "APIs",
-      "Process automation",
-      "Generative AI",
-      "WhatsApp Bot",
-      "CRUD",
-      "Integrations",
-      "Operational data",
+      "Node.js",
+      "Express",
+      "TypeScript",
+      "Angular",
+      "React",
+      "Next.js",
+      "FastAPI",
+      "GraphQL",
+      "PostgreSQL",
+      "pgvector",
+      "LLMs",
+      "RAG",
+      "LangChain",
+      "LangGraph",
+      "Langfuse",
+      "OpenAI",
+      "Claude",
+      "Gemini",
+      "Streamlit",
+      "Docker",
+      "AWS",
     ],
-    logoImage: "/images/experiences/prosaude.jpg",
-    logoAlt: "Pró-Saúde Materiais Odontomédicos logo",
+    logoImage: "/images/experiences/moontech.jpeg",
+    logoAlt: "Moontech logo",
+    logoFit: "cover",
   },
   {
-    role: "Full Stack Developer | Automation, Product and APIs",
-    company: "(Junior Enterprise) byron.solutions",
+    role: "Full Stack Developer | Automation, Product & APIs",
+    company: "byron.solutions (UNIFEI Junior Enterprise)",
     employmentType: "Full-time",
     period: "Apr 2020 - Nov 2021 · 1 yr 8 mos",
-    location: "Itajubá, MG · Remote",
+    location: "Itajubá, MG, Brazil · Remote",
     description: [
-      "Worked on real client projects, building websites, landing pages, web systems, automations and digital solutions focused on usability, conversion and business value.",
-      "Contributed to scope definition, backlog organization, prototypes and technical deliveries, connecting business needs with software development.",
-      "Supported communication between clients and the technical team, improving requirement clarity, priorities, deadlines and solution validation.",
-      "Developed backend features, REST integrations, CRUD logic, responsive interfaces and digital flows for clients from different segments.",
-      "Built a strong foundation in software engineering, stakeholder communication, project management and full stack development that I now apply to AI, RAG, LLMs and intelligent automation projects.",
+      "Built web systems, mobile apps, e-commerce stores, institutional websites, and landing pages for small, mid-sized, and enterprise clients from requirements gathering through delivery.",
+      "Built an online store with Mercado Pago checkout for a jewelry brand previously selling only via WhatsApp, expanding sales to other states. Created an SEO-structured website for a real estate broker to increase search visibility, traffic, and leads.",
+      "Worked across responsive interfaces (React, JavaScript, TypeScript, HTML, CSS), Flutter mobile apps for Android and iOS, Node.js REST APIs with CRUD workflows, Figma prototypes, and delivery tracking in Git, GitHub, and Trello.",
     ],
     highlights: [
-      "Client projects focused on product, UX/UI, automation and technical delivery.",
-      "REST integrations, backend features, CRUD logic and responsive interfaces.",
-      "Practical foundation in scope, backlog, prototyping, communication and project management.",
+      "E-commerce store with Mercado Pago integration replacing manual WhatsApp-only sales and enabling interstate orders.",
+      "Real estate website built with technical SEO, growing search visibility and client inquiries.",
+      "Shipped React, TypeScript, Node.js, Flutter, Figma, and REST APIs directly with clients.",
     ],
     techTags: [
+      "React",
+      "TypeScript",
       "JavaScript",
       "Node.js",
+      "Flutter",
+      "Dart",
       "REST APIs",
       "HTML",
       "CSS",
+      "Figma",
+      "UX/UI",
+      "SEO",
       "Git",
       "GitHub",
       "Trello",
-      "Figma",
-      "UX/UI",
-      "Automation",
-      "Digital product",
+      "Mercado Pago",
     ],
     logoImage: "/images/experiences/byron.jpeg",
     logoAlt: "byron.solutions logo",
+    logoFit: "cover",
   },
   {
-    role: "Volunteer Technology and Computing Teacher",
+    role: "Volunteer Teacher",
     company: "CAAI - Curso Assistencial Amigos de Itajubá",
     employmentType: "Volunteer",
-    period: "2019 - Feb 2021 · 2 yrs",
-    location: "Itajubá, MG",
+    period: "Mar 2019 - Feb 2021 · 2 yrs",
+    location: "Itajubá, MG, Brazil",
     description: [
-      "Worked as a volunteer teacher, supporting students in technology, logical reasoning, computing and practical programming fundamentals.",
-      "Turned technical topics into simple explanations, guided exercises and accessible activities for different knowledge levels.",
-      "This experience strengthened my communication, teaching and ability to translate technology into useful, applicable learning.",
+      "Worked for two years as a volunteer teacher at a preparatory course supporting students entering higher education.",
+      "This experience strengthened clear communication, mentoring, active listening, and explaining complex concepts to non-technical audiences.",
     ],
     highlights: [
-      "Volunteer technology teaching focused on clarity, practice and inclusion.",
-      "Experience in technical communication, teaching and student support.",
+      "Two years of volunteer teaching preparing students for university admission.",
+      "Clear technical communication, mentoring, and breaking down complex subjects.",
     ],
-    techTags: ["Teaching", "Technology", "Computing", "Communication", "Education"],
+    techTags: ["Teaching", "Mentoring", "Communication", "Leadership"],
     logoImage: "/images/experiences/caai.jpeg",
     logoAlt: "CAAI logo",
+    logoFit: "cover",
   },
 ];
 
 const LINKEDIN_EDUCATION_EN: EducationContent = {
   degree: "Bachelor's Degree in Computer Science",
-  institution: "Federal University of Itajubá",
+  institution: "Federal University of Itajubá (UNIFEI)",
   period: "2020 - Dec 2025",
   description:
-    "Solid foundation in software engineering, algorithms, data structures, databases, artificial intelligence, computer networks and systems architecture. During the degree, I developed academic and practical projects focused on full stack development, applied AI, automation, data analysis, dashboards and intelligent systems.\n\nI also worked as a volunteer teacher at CAAI and participated in a junior enterprise, applying technology to solve real problems and connecting technical vision, product thinking and business needs. This path strengthened my ability to design scalable systems, understand complex requirements and build AI-oriented solutions, with a focus on LLMs, RAG architectures, Generative AI, intelligent automations and modern software engineering practices.",
+    "Solid foundation in software engineering, algorithms, data structures, databases, artificial intelligence, computer networks, and systems architecture. Throughout the degree, I built academic and production projects focused on full stack development, applied AI, automation, data analysis, and intelligent systems.",
   achievements: [
-    "CAAI / Volunteer Teacher",
-    "Junior Enterprise",
-    "Full Stack Projects",
-    "Applied AI, RAG, LLMs and Automation",
-    "Data Analysis and Intelligent Systems",
-    "Web Development",
+    "Volunteer teacher at CAAI (2019–2021)",
+    "Full Stack Developer at byron.solutions (Junior Enterprise)",
+    "Applied AI, RAG, LLMs, and data analysis projects",
+  ],
+  postgrad: {
+    degree: "Postgraduate Specialization in Applied AI Engineering",
+    institution: "UNIPDS (degree issued by Anhanguera)",
+    period: "Nov 2026 - Nov 2027",
+    status: "In progress",
+    description:
+      "Hands-on specialization in Generative AI, LLMs, RAG, autonomous agents, and production AI system architecture using JavaScript/TypeScript and Python.",
+    highlights: [
+      "LLMs & AI APIs: OpenAI, Anthropic, Gemini, Ollama, and Prompt Engineering",
+      "RAG with PostgreSQL: embeddings, semantic search, hybrid search, and Agentic RAG",
+      "Agents & Multi-Agent systems: Function Calling, ReAct, LangChain, LangGraph, CrewAI, and ADK",
+      "Model Context Protocol (MCP) servers integrated with APIs, databases, and frontends",
+      "Architecture, observability & fine-tuning: model routing, semantic cache, guardrails, HITL, and LoRA/PEFT",
+      "AI for DevOps & Responsible AI: Kubernetes, Terraform, CI/CD, and AIOps",
+    ],
+  },
+  languages: [
+    { name: "Portuguese", level: "Native" },
+    { name: "English", level: "Advanced" },
   ],
 };
 
@@ -1898,11 +2010,11 @@ const NAV_LINKS_EN: NavLink[] = [
 
 const UI_PT: PortfolioUiContent = {
   metadata: {
-    title: "Mateus Bonette | Engenheiro de IA Aplicada & Full Stack",
+    title: "Mateus Bonette | AI Engineer & Software Engineer (LLMs, RAG, MCP)",
     description:
-      "Engenheiro de IA Aplicada e Full Stack. Python, RAG, LLMs, LangChain e Angular. Crio sistemas com IA Generativa, agentes autônomos e automações em produção. Veja projetos e cases.",
-    ogTitle: "Mateus Bonette — Engenheiro de IA Aplicada | RAG, LLMs & LangChain",
-    imageAlt: "Mateus Bonette — Engenheiro de IA Aplicada e Desenvolvedor Full Stack",
+      "AI Engineer e Software Engineer. Sistemas em produção com LLMs, RAG, agentes de IA, MCP, Python, FastAPI, TypeScript, React, Next.js e PostgreSQL.",
+    ogTitle: "Mateus Bonette | AI Engineer & Software Engineer (LLMs, RAG, MCP)",
+    imageAlt: "Mateus Bonette — AI Engineer e Software Engineer",
   },
   language: {
     label: "Idioma",
@@ -1931,327 +2043,485 @@ const UI_PT: PortfolioUiContent = {
   hero: {
     downloadResume: "Baixar currículo",
     contact: "Entrar em contato",
+    availability: "São Paulo, Brasil · Remoto, híbrido ou presencial · Brasil e exterior",
     scrollDown: "Role para baixo",
     scrollDownAria: "Rolar para baixo",
   },
   about: {
     eyebrow: "Sobre mim",
-    titleStart: "Engenharia de IA, Produto e ",
-    titleAccent: "Automação",
+    titleStart: "Engenharia de IA e ",
+    titleAccent: "software em produção",
     titleEnd: ".",
     graduationLabel: "Formação",
     graduationCaption: "Ciência da Computação · UNIFEI · 2025",
     graduationImageAlt: "Mateus Bonette na cerimônia de formatura da UNIFEI",
     pillars: [
       {
-        title: "Base Acadêmica",
-        text: "Formado em Ciência da Computação pela UNIFEI, com base sólida para aprender, construir e evoluir com consistência.",
+        title: "IA aplicada em produção",
+        text: "Experiência com LLMs, RAG, agentes de IA, Tool Calling, OCR e servidores MCP conectados a APIs, PostgreSQL e pgvector.",
       },
       {
-        title: "Engenharia de IA",
-        text: "Atuação com IA Aplicada, LLMs, RAG, agentes inteligentes, prompt engineering, automações, integração com modelos e construção de sistemas que utilizam IA para resolver problemas reais.",
+        title: "Confiabilidade e controle",
+        text: "Combino modelos de linguagem com validações determinísticas, revisão humana (HITL), guardrails, cache de documentos, fallback e controle de custos.",
       },
       {
-        title: "Produto e Negócio",
-        text: "Experiência em traduzir dores de clientes em soluções digitais, conectando visão técnica, produto, UX, automação, dados e impacto operacional para empresas e usuários finais.",
+        title: "Full stack ponta a ponta",
+        text: "Desenvolvo do banco de dados e APIs REST/GraphQL em Python e Node.js até interfaces em React, Next.js, Angular e TypeScript.",
       },
       {
-        title: "Full Stack",
-        text: "Interesse e foco na compreensão holística de produtos digitais, abrangendo design de interface, arquitetura de back-end, modelagem de dados, experiência do usuário e impacto nos negócios.",
+        title: "Infraestrutura e entrega",
+        text: "Operação com Docker, Google Cloud (Cloud Run, Cloud SQL, Vertex AI), AWS, Cloudflare, testes automatizados e CI/CD via GitHub Actions.",
       },
       {
-        title: "Empreendedorismo",
-        text: "Mentalidade de dono: análise criteriosa de problemas, oportunidades de mercado, custos de desenvolvimento, viabilidade de execução e retorno sobre o investimento antes de definir o direcionamento técnico.",
+        title: "Visão de produto e negócio",
+        text: "Como cofundador da Junta Já, participo das decisões técnicas, de produto, pagamentos e operação com mais de 100 usuários reais.",
       },
       {
-        title: "Comunicação Técnica",
-        text: "Experiência como professor voluntário e atuação com clientes, facilitando a explicação de conceitos complexos, alinhamento entre áreas técnicas e não técnicas e tomada de decisão.",
+        title: "Comunicação e mentoria",
+        text: "Dois anos como professor voluntário no CAAI e contato direto com clientes na byron.solutions e Moontech facilitam o alinhamento entre times.",
       },
     ],
     paragraphs: [
-      "Engenheiro de IA Aplicada e Desenvolvedor Full Stack com mais de 4 anos de experiência criando sistemas web, automações inteligentes e soluções orientadas por dados. Formado em Ciência da Computação pela UNIFEI, atuo na construção de aplicações com IA Generativa, LLMs, RAG, agentes de IA, dashboards, APIs e integrações voltadas para problemas reais de negócio.",
-      "Minha experiência combina engenharia de software, arquitetura full stack, automação de processos e visão de produto. Desenvolvo soluções com Python, Angular, React, Node.js, FastAPI, PostgreSQL, Docker, AWS, LangChain, LangGraph e modelos como OpenAI, Claude, Gemini e LLMs aplicados a fluxos reais de trabalho.",
-      "Além da base técnica, trago experiência em comunicação, ensino, vendas, marketing e atendimento a clientes. Essa combinação me ajuda a traduzir problemas complexos em soluções práticas, conectar tecnologia com resultado e construir produtos digitais com foco em eficiência, escalabilidade e impacto operacional.",
+      "Sou AI Engineer (Engenheiro de IA Aplicada) e Software Engineer, bacharel em Ciência da Computação pela UNIFEI e pós-graduando em Engenharia de IA Aplicada pela UNIPDS. Projeto sistemas que usam LLMs, RAG, agentes de IA e servidores MCP integrados a APIs e bancos de dados, com atenção a confiabilidade, testes e custos de operação.",
+      "Sou cofundador da Junta Já, um SaaS de gestão financeira com IA usado por mais de 100 pessoas, onde construí o pipeline de leitura de faturas com OCR, Gemini e Vertex AI, a assistente Ari no WhatsApp via Tool Calling e servidores MCP para Google Cloud e Cloudflare.",
+      "Antes da Junta Já, atuei por mais de dois anos na Moontech liderando plataformas de dados, sistemas auditados para ISO 9001 e pipelines RAG com LangChain, LangGraph, pgvector e Langfuse, além da experiência anterior na empresa júnior byron.solutions. Busco posições remotas, híbridas ou presenciais no Brasil e no exterior como AI Engineer, Applied AI Engineer, LLM Engineer, AI Agent Engineer, Python Backend ou Full Stack Software Engineer.",
     ],
   },
   value: {
-    eyebrow: "Metodologia de Trabalho",
-    titleStart: "Resolvo Problemas, ",
-    titleAccent: "Comunico Valor",
-    titleEnd: " E Automatizo Rotinas.",
+    eyebrow: "Como trabalho",
+    titleStart: "Engenharia de IA ",
+    titleAccent: "previsível, testada",
+    titleEnd: " e orientada a produto.",
     intro:
-      "Foco em integração com equipes de alto rendimento para entregas de valor: produção orientada a resultados, comunicação transparente, visão estratégica de negócios e conversão de tarefas manuais em fluxos inteligentes.",
+      "IA em produção exige mais do que chamadas de prompt: exige validação determinística, observabilidade de custos, boa arquitetura de dados e clareza para quem usa.",
     previousAria: "Ver card anterior",
     nextAria: "Ver próximo card",
     points: [
-      "Resolver Problemas Reais",
-      "Vender A Solução Certa",
-      "Automatizar Com IA",
-      "Entregar Com Clareza",
+      "Confiabilidade em IA",
+      "Engenharia ponta a ponta",
+      "Visão de produto",
+      "Comunicação direta",
     ],
     cards: [
       {
-        title: "Produtividade Com Direção",
-        text: "Capacidade de estruturar problemas complexos e convertê-los em soluções de software prontas para produção. Ampla experiência no desenvolvimento de sistemas de agendamento, plataformas de ensino com integração de pagamentos e fluxos completos de e-commerce.",
-        tag: "Produtivo",
+        title: "IA com controle determinístico",
+        text: "Separo o que depende de interpretação de LLM do que precisa de regra exata em código. Uso schemas JSON, normalização, deduplicação, guardrails e revisão humana (HITL) antes de gravar no banco.",
+        tag: "Confiabilidade",
       },
       {
-        title: "Comunicação Comercial",
-        text: "Habilidade de comunicação técnica para tomadores de decisão. Experiência de atuação em vendas, marketing e tráfego pago, comercializando sistemas e plataformas digitais para clínicas, imobiliárias e e-commerce.",
-        tag: "Comercial",
+        title: "Observabilidade e custo",
+        text: "Acompanho tokens, latência, taxa de erro, cache de documentos, fallback entre modelos e limites mensais de gasto com ferramentas como Langfuse e telemetria própria.",
+        tag: "Operação",
       },
       {
-        title: "Cabeça De Dono",
-        text: "Postura proativa e focada na resolução de problemas em vez de mera execução de tarefas. Compreensão aprofundada das dores dos usuários, mensuração de impacto e busca contínua por soluções eficientes e de alto valor agregado.",
-        tag: "Dono",
+        title: "Do banco ao deploy",
+        text: "Construo APIs tipadas em Python/FastAPI ou Node.js, consultas PostgreSQL/pgvector, interfaces em React, Next.js e Angular, e pipelines Docker + CI/CD em nuvem.",
+        tag: "Full Stack",
       },
       {
-        title: "Automação No Dia A Dia",
-        text: "Automação de processos repetitivos, desenvolvimento de APIs, web scraping, robôs e agentes de IA, com bots implantados em produção em servidores próprios.",
-        tag: "Automação",
+        title: "Produto e clareza técnica",
+        text: "A experiência como cofundador e em fábrica de software me ajuda a priorizar escopo, evitar complexidade desnecessária e explicar decisões técnicas sem ruído para lideranças e clientes.",
+        tag: "Produto",
       },
     ],
     desktopSummary:
-      "Foco em identificar necessidades reais, compreender a viabilidade técnica e comercial, propor soluções objetivas e empregar IA e automações para otimizar fluxos de trabalho.",
+      "Em cada projeto, priorizo código testado, regras de negócio verificáveis e uso racional de LLMs para entregar sistemas que funcionam bem fora do ambiente de demonstração.",
     mobileSummary:
-      "Em resumo, transformo dor real em solução útil com clareza e automação.",
+      "Priorizo código testado, regras verificáveis e uso racional de LLMs em produção.",
     readSummary: "Ler resumo",
     hideSummary: "Esconder resumo",
     mobileSummaryExpanded:
-      "Foco no desenvolvimento de soluções úteis para problemas reais, aliando clareza comercial e automação inteligente para eliminação de tarefas repetitivas.",
+      "Em cada projeto, priorizo código testado, regras de negócio verificáveis e uso racional de LLMs para entregar sistemas confiáveis em produção.",
   },
   skills: {
-    eyebrow: "Habilidades Técnicas",
-    titleStart: "Tecnologias Que ",
-    titleAccent: "Uso Para Entregar",
+    eyebrow: "Stack técnica",
+    titleStart: "Tecnologias que ",
+    titleAccent: "uso em produção",
     titleEnd: ".",
     description:
-      "Do front ao banco, da automação ao modelo de IA. Não coleciono tecnologias, uso o que resolve o problema certo na hora certa.",
-    filterLabel: "Filtrar stack",
+      "Ferramentas, frameworks e serviços que aplico no dia a dia para construir aplicações web, APIs, pipelines de dados e sistemas com IA.",
+    filterLabel: "Filtrar por área",
+    allLabel: "Todas as tecnologias",
     swipeLabel: "Deslize",
     areasLabel: "áreas",
-    skillsLabel: "habilidades",
+    skillsLabel: "tecnologias",
     itemsLabel: "itens",
-    masteryLabel: "domínio",
+    masteryLabel: "uso",
     groups: [
       {
-        title: "IA, Automação e Dev Tools",
-        summary:
-          "Uso ferramentas modernas para acelerar desenvolvimento, revisar código e automatizar tarefas.",
+        id: "ai",
+        title: "IA Aplicada, LLMs e Agentes",
+        summary: "Orquestração de modelos, recuperação de contexto, protocolos de agentes e confiabilidade.",
         items: [
           {
-            name: "Docker",
-            description:
-              "Ambientes isolados para rodar aplicações com mais previsibilidade.",
+            id: "llms",
+            name: "LLMs & IA Generativa",
+            description: "Integração de modelos de linguagem para extração estruturada, classificação e síntese.",
           },
           {
-            name: "Git",
-            description: "Versionamento, histórico e organização do trabalho.",
+            id: "rag",
+            name: "RAG (Retrieval-Augmented Generation)",
+            description: "Chunking, busca semântica e híbrida para fundamentar respostas em dados reais.",
           },
           {
-            name: "GitHub",
-            description:
-              "Repositórios, colaboração, issues e entrega de código.",
+            id: "ai-agents",
+            name: "AI Agents",
+            description: "Agentes com roteamento, memória, etapas condicionais e execução de tarefas.",
           },
           {
-            name: "GitLab",
-            description:
-              "Fluxo de repositórios, pipelines e organização de projeto.",
+            id: "mcp",
+            name: "MCP (Model Context Protocol)",
+            description: "Servidores MCP conectados a APIs, bancos de dados, Google Cloud e Cloudflare.",
           },
           {
-            name: "Automação com IA",
-            description:
-              "Redução de trabalho repetitivo usando scripts, agentes e integrações.",
+            id: "langchain",
+            name: "LangChain",
+            description: "Pipelines de ingestão, indexação, recuperação contextual e cadeias com ferramentas.",
+          },
+          {
+            id: "langgraph",
+            name: "LangGraph",
+            description: "Grafos com estado e transições explícitas para fluxos multiagente auditáveis.",
+          },
+          {
+            id: "tool-calling",
+            name: "Tool Calling",
+            description: "Execução controlada de funções e consultas parametrizadas a APIs e bancos.",
+          },
+          {
+            id: "embeddings",
+            name: "Embeddings & Vector Search",
+            description: "Vetorização de documentos e recuperação por similaridade com filtros.",
+          },
+          {
+            id: "harness-engineering",
+            name: "Harness Engineering",
+            description: "Controles de contexto, ferramentas e comportamento para evitar respostas não verificadas.",
+          },
+          {
+            id: "prompt-engineering",
+            name: "Prompt Engineering",
+            description: "Prompts versionados, saída em JSON estruturado e avaliação de consistência.",
+          },
+          {
+            id: "openai",
+            name: "OpenAI API",
+            description: "Uso de modelos GPT, embeddings e chamadas de função em produção.",
+          },
+          {
+            id: "anthropic",
+            name: "Anthropic Claude",
+            description: "Integração de modelos Claude em fluxos de análise, código e raciocínio.",
+          },
+          {
+            id: "gemini",
+            name: "Google Gemini",
+            description: "Processamento multimodal de documentos, OCR e extração estruturada.",
+          },
+          {
+            id: "vertex-ai",
+            name: "Vertex AI",
+            description: "Execução gerenciada de modelos no Google Cloud com controle de cota e segurança.",
+          },
+          {
+            id: "ollama",
+            name: "Ollama",
+            description: "Execução local de modelos open-weight para testes e ambientes privados.",
+          },
+          {
+            id: "huggingface",
+            name: "Hugging Face",
+            description: "Uso de modelos, tokenizers e datasets abertos para NLP e embeddings.",
+          },
+          {
+            id: "langfuse",
+            name: "Langfuse",
+            description: "Rastreamento de prompts, tokens, latência e custos de execução em produção.",
+          },
+          {
+            id: "guardrails-hitl",
+            name: "Guardrails & HITL",
+            description: "Validações determinísticas, limites de gasto e revisão humana para divergências.",
           },
         ],
       },
       {
+        id: "backend",
         title: "Backend, APIs e Bancos",
-        summary:
-          "Construção de serviços, integração com dados e organização de regras de negócio.",
+        summary: "Serviços assíncronos, modelagem relacional e vetorial, filas e integrações.",
         items: [
           {
-            name: "Node.js",
-            description: "APIs, serviços e integrações do lado do servidor.",
-          },
-          {
-            name: "Express",
-            description: "Rotas, middlewares e APIs simples de manter.",
-          },
-          {
+            id: "python",
             name: "Python",
-            description:
-              "Backend, automação, dados e scripts de produtividade.",
+            description: "Linguagem principal para serviços backend, pipelines de IA, dados e automações.",
           },
           {
+            id: "fastapi",
+            name: "FastAPI",
+            description: "APIs REST tipadas, assíncronas e documentadas com validação via Pydantic.",
+          },
+          {
+            id: "nodejs",
+            name: "Node.js",
+            description: "Serviços backend, integrações em tempo real, bots e automações.",
+          },
+          {
+            id: "express",
+            name: "Express",
+            description: "APIs REST, middlewares e serviços leves para sistemas corporativos.",
+          },
+          {
+            id: "django",
             name: "Django",
-            description: "Python para aplicações web com estrutura completa.",
+            description: "Aplicações web estruturadas com ORM, autenticação e painel administrativo.",
           },
           {
+            id: "sqlalchemy",
+            name: "SQLAlchemy",
+            description: "Modelagem ORM, migrações e consultas SQL seguras em Python.",
+          },
+          {
+            id: "celery",
+            name: "Celery & Filas Assíncronas",
+            description: "Processamento em segundo plano para OCR, ingestão de dados e tarefas longas.",
+          },
+          {
+            id: "graphql",
+            name: "GraphQL",
+            description: "APIs tipadas com consultas sob medida para frontends web.",
+          },
+          {
+            id: "rest-apis",
+            name: "APIs REST & Webhooks",
+            description: "Design, versionamento, tratamento de erros e consumo de serviços externos.",
+          },
+          {
+            id: "postgresql",
             name: "PostgreSQL",
-            description: "Modelagem, consultas e persistência relacional.",
+            description: "Banco relacional principal, índices, integridade e consultas analíticas.",
           },
           {
+            id: "pgvector",
+            name: "pgvector",
+            description: "Armazenamento e busca vetorial diretamente no PostgreSQL para pipelines RAG.",
+          },
+          {
+            id: "redis",
+            name: "Redis",
+            description: "Cache de respostas, controle de estado de sessões e broker de filas.",
+          },
+          {
+            id: "mysql",
             name: "MySQL",
-            description:
-              "Banco relacional para sistemas web e aplicações internas.",
+            description: "Persistência relacional para aplicações web e sistemas legados.",
           },
           {
-            name: "APIs públicas",
-            description:
-              "Consumo, tratamento de retorno e integração entre sistemas.",
-          },
-          {
-            name: "Modelagem de dados",
-            description:
-              "Organização de entidades, relações e fluxo de informação.",
-          },
-          {
-            name: "Web scraping",
-            description: "Coleta, limpeza e estruturação de dados da web.",
+            id: "playwright-scraping",
+            name: "Playwright & Web Scraping",
+            description: "Automação de navegador, coleta de dados e validação end-to-end.",
           },
         ],
       },
       {
-        title: "Dados e Visualização",
-        summary:
-          "Transformo dados em análise, dashboards simples e visualizações úteis para decisão.",
-        items: [
-          {
-            name: "Python para dados",
-            description: "Limpeza, análise e automações com dados reais.",
-          },
-          {
-            name: "Pandas",
-            description:
-              "Tratamento de tabelas, filtros, agrupamentos e indicadores.",
-          },
-          {
-            name: "Streamlit",
-            description: "Apps de dados, protótipos e painéis interativos.",
-          },
-          {
-            name: "Visualização com Streamlit",
-            description: "Interfaces para explorar dados sem complicar o uso.",
-          },
-          {
-            name: "Matplotlib",
-            description:
-              "Gráficos para análise exploratória e relatórios técnicos.",
-          },
-          {
-            name: "Seaborn",
-            description: "Visualizações estatísticas com leitura mais clara.",
-          },
-        ],
-      },
-      {
+        id: "frontend",
         title: "Frontend e Mobile",
-        summary:
-          "Interfaces bem acabadas, responsivas e com atenção forte a experiência visual.",
+        summary: "Interfaces web responsivas, tipadas e aplicações móveis multiplataforma.",
         items: [
           {
-            name: "React",
-            description: "Componentes, estados, hooks e interfaces modernas.",
-          },
-          {
+            id: "typescript",
             name: "TypeScript",
-            description:
-              "Tipagem para reduzir erro e deixar o código mais claro.",
+            description: "Tipagem estática no frontend e backend para contratos claros e manutenção segura.",
           },
           {
+            id: "javascript",
             name: "JavaScript",
-            description: "Base sólida para front, backend e automações.",
+            description: "Base sólida em ES6+, assincronismo e manipulação de DOM e APIs.",
           },
           {
-            name: "HTML",
-            description: "Estrutura semântica, acessível e bem organizada.",
+            id: "react",
+            name: "React",
+            description: "Componentes reutilizáveis, hooks e gerenciamento de estado de interface.",
           },
           {
-            name: "CSS",
-            description: "Layouts responsivos, animações e acabamento visual.",
+            id: "nextjs",
+            name: "Next.js",
+            description: "Aplicações web em produção com roteamento, SSR e otimização de entrega.",
           },
           {
+            id: "angular",
             name: "Angular",
-            description:
-              "Aplicações front com estrutura e componentes reutilizáveis.",
+            description: "Sistemas corporativos estruturados com módulos, serviços e RxJS.",
           },
           {
+            id: "tailwindcss",
+            name: "Tailwind CSS",
+            description: "Estilização consistente por utilitários com suporte a temas claro e escuro.",
+          },
+          {
+            id: "html",
+            name: "HTML5 & Semântica",
+            description: "Marcação acessível, SEO técnico e estrutura de documentos.",
+          },
+          {
+            id: "css",
+            name: "CSS3",
+            description: "Grid, Flexbox, responsividade e animações com foco em desempenho.",
+          },
+          {
+            id: "flutter",
             name: "Flutter",
-            description:
-              "Desenvolvimento mobile com telas nativas e consistentes.",
+            description: "Desenvolvimento de aplicativos móveis para Android e iOS.",
           },
           {
+            id: "dart",
             name: "Dart",
-            description: "Base para criar aplicações mobile com Flutter.",
+            description: "Linguagem base para construção de telas e regras em Flutter.",
           },
         ],
       },
       {
-        title: "Design, Produto e Conteúdo",
-        summary:
-          "Senso visual apurado para traduzir ideias e requisitos de negócio em interfaces elegantes, apresentações claras e materiais de alta qualidade.",
+        id: "cloud",
+        title: "Cloud, DevOps e Qualidade",
+        summary: "Empacotamento, deploy em nuvem, automação de entregas e testes.",
         items: [
           {
+            id: "docker",
+            name: "Docker",
+            description: "Containers reproduzíveis para desenvolvimento local e deploy em produção.",
+          },
+          {
+            id: "gcp",
+            name: "Google Cloud Platform",
+            description: "Deploy e operação com Cloud Run, Cloud SQL, Cloud Tasks e Secret Manager.",
+          },
+          {
+            id: "aws",
+            name: "AWS",
+            description: "Hospedagem de aplicações, armazenamento e serviços em nuvem.",
+          },
+          {
+            id: "cloudflare",
+            name: "Cloudflare",
+            description: "DNS, roteamento, borda e integrações gerenciadas via servidores MCP.",
+          },
+          {
+            id: "github-actions",
+            name: "GitHub Actions (CI/CD)",
+            description: "Pipelines automatizados de testes, build e deploy contínuo.",
+          },
+          {
+            id: "kubernetes",
+            name: "Kubernetes",
+            description: "Orquestração de containers, escalonamento e deploy de serviços de IA.",
+          },
+          {
+            id: "terraform",
+            name: "Terraform",
+            description: "Infraestrutura como código para provisionamento reproduzível em nuvem.",
+          },
+          {
+            id: "linux",
+            name: "Linux & systemd",
+            description: "Administração de servidores, serviços contínuos e diagnóstico em produção.",
+          },
+          {
+            id: "git",
+            name: "Git",
+            description: "Controle de versão, branches, revisão de histórico e fluxo colaborativo.",
+          },
+          {
+            id: "github-gitlab",
+            name: "GitHub & GitLab",
+            description: "Pull requests, revisão de código, issues e automações de repositório.",
+          },
+          {
+            id: "pytest",
+            name: "Pytest & Testes Automatizados",
+            description: "Testes unitários e de integração para regras de negócio e pipelines de IA.",
+          },
+        ],
+      },
+      {
+        id: "data",
+        title: "Dados, OCR e Visualização",
+        summary: "Extração de documentos, transformação de tabelas e painéis operacionais.",
+        items: [
+          {
+            id: "pandas",
+            name: "Pandas",
+            description: "Limpeza, agregação, cruzamento e validação de conjuntos de dados.",
+          },
+          {
+            id: "streamlit",
+            name: "Streamlit",
+            description: "Dashboards interativos conectados a APIs e bancos de dados.",
+          },
+          {
+            id: "ocr-extraction",
+            name: "OCR & Extração Estruturada",
+            description: "Leitura automatizada de faturas e extratos com validação em JSON.",
+          },
+          {
+            id: "data-modeling",
+            name: "Modelagem de Dados",
+            description: "Estruturação de entidades relacionais, deduplicação e rastreabilidade.",
+          },
+          {
+            id: "matplotlib",
+            name: "Matplotlib",
+            description: "Gráficos para análise exploratória e validação de séries.",
+          },
+          {
+            id: "seaborn",
+            name: "Seaborn",
+            description: "Visualizações estatísticas para relatórios técnicos.",
+          },
+        ],
+      },
+      {
+        id: "product",
+        title: "Produto, Integrações e Processo",
+        summary: "Especificação, design de interface, pagamentos e fluxos de trabalho.",
+        items: [
+          {
+            id: "figma",
             name: "Figma",
-            description:
-              "Wireframes, layout visual, protótipos e organização de interface.",
+            description: "Protótipos navegáveis, fluxos de tela e especificação de interface.",
           },
           {
+            id: "ux-ui",
             name: "Design UX/UI",
-            description:
-              "Fluxos, hierarquia visual, legibilidade e experiência de uso.",
+            description: "Hierarquia visual, responsividade, acessibilidade e clareza de uso.",
           },
           {
-            name: "Canva",
-            description:
-              "Peças visuais rápidas para comunicação e apresentação.",
+            id: "sdd",
+            name: "Spec-Driven Development",
+            description: "Desenvolvimento guiado por especificação antes da implementação e testes.",
           },
           {
-            name: "OBS Studio",
-            description: "Gravação, transmissão e produção de conteúdo visual.",
+            id: "whatsapp-api",
+            name: "WhatsApp API & Bots",
+            description: "Assistentes conversacionais e fluxos operacionais conectados a APIs reais.",
           },
           {
-            name: "Google Planilhas / Excel",
-            description:
-              "Organização de dados, fórmulas e controles operacionais.",
+            id: "mercadopago",
+            name: "Mercado Pago",
+            description: "Integração de pagamentos online, webhooks e assinaturas em produção.",
           },
           {
-            name: "Google Docs / Word",
-            description:
-              "Documentação, propostas, textos e estruturação de informação.",
+            id: "n8n",
+            name: "n8n",
+            description: "Orquestração visual de automações e webhooks entre serviços.",
           },
           {
-            name: "Google Apresentações",
-            description:
-              "Slides claros para vender ideias e explicar soluções.",
-          },
-        ],
-      },
-      {
-        title: "Gestão, Jogos e Processo",
-        summary:
-          "Também entendo ferramentas de organização, método de trabalho e criação de experiências interativas.",
-        items: [
-          {
-            name: "Trello",
-            description:
-              "Organização de tarefas, etapas, prioridade e acompanhamento.",
+            id: "hubspot",
+            name: "HubSpot",
+            description: "Integrações comerciais, qualificação de leads e sincronização de CRM.",
           },
           {
-            name: "Scrum",
-            description:
-              "Ritmo de entrega, cerimônias, backlog e colaboração em time.",
-          },
-          {
-            name: "Unity",
-            description:
-              "Base para criação de games, cenas, lógica e interação.",
-          },
-          {
-            name: "Criação de games",
-            description:
-              "Noções de gameplay, prototipação e experiência interativa.",
+            id: "scrum",
+            name: "Scrum & Gestão Ágil",
+            description: "Organização de backlog, priorização e entregas iterativas.",
           },
         ],
       },
@@ -2260,16 +2530,16 @@ const UI_PT: PortfolioUiContent = {
   experience: {
     aria: "Linha do tempo de experiências profissionais",
     eyebrow: "Experiências",
-    titleStart: "Experiências Que ",
-    titleAccent: "Me Formaram",
+    titleStart: "Experiências ",
+    titleAccent: "profissionais",
     titleEnd: ".",
     description:
-      "Experiências que conectam desenvolvimento full stack, IA aplicada, automação, dados, produto e negócio. Cada etapa contribuiu para formar uma visão prática sobre como transformar processos manuais, demandas complexas e problemas reais em sistemas, integrações, dashboards, automações e soluções digitais com impacto.",
+      "Atuação contínua construindo produtos com IA em produção, plataformas de dados, sistemas auditados e aplicações web full stack.",
     availabilityAria: "Disponibilidade profissional",
     timelineAria: "Trajetória profissional",
     current: "Atual",
     start: "Início",
-    latest: "Mais recente",
+    latest: "Recente",
     step: "Etapa",
     moontechLetterPt: "CARTA DE RECOMENDAÇÃO PT/BR",
     moontechLetterEn: "CARTA DE RECOMENDAÇÃO EM INGLÊS",
@@ -2279,10 +2549,10 @@ const UI_PT: PortfolioUiContent = {
   projects: {
     eyebrow: "Projetos",
     titleStart: "Projetos de ",
-    titleAccent: "IA e Full Stack",
-    titleEnd: " em Produção",
+    titleAccent: "IA e full stack",
+    titleEnd: " em produção",
     description:
-      "Portfólio com cases reais já entregues: agentes com LangChain, RAG e LLMs, além de sistemas web, dados, e-commerce e automações em produção. Cada projeto mostra problema, arquitetura, stack e impacto — com destaque para minha especialidade em Engenharia de IA aplicada.",
+      "Cases reais já entregues: agentes com LangChain, RAG e LLMs, sistemas web, análise de dados, e-commerce e automações em operação.",
     featuredCases: "Cases em destaque",
     featuredCasesDescription:
       "Cada capa abre uma página própria com detalhes do projeto.",
@@ -2297,7 +2567,7 @@ const UI_PT: PortfolioUiContent = {
     aboutProject: "Sobre o projeto",
     technicalHighlights: "Diferenciais técnicos",
     technologiesUsed: "Tecnologias utilizadas",
-    forRecruiters: "Impacto e Resolução de Problema",
+    forRecruiters: "Impacto e resolução de problema",
     viewProject: "Ver projeto",
     repository: "Repositório",
     underConstruction: "Conteúdo em construção",
@@ -2354,72 +2624,77 @@ const UI_PT: PortfolioUiContent = {
     videoFallback: "Seu navegador não suporta reprodução de vídeo HTML5.",
   },
   education: {
-    eyebrow: "Formação",
-    titleStart: "Bacharelado em ",
-    titleAccent: "Ciência da Computação",
+    eyebrow: "Formação e idiomas",
+    titleStart: "Base acadêmica e ",
+    titleAccent: "especialização em IA",
     titleEnd: ".",
     description:
-      "Formação concluída na Universidade Federal de Itajubá (UNIFEI), uma das principais instituições de engenharia e tecnologia do país.",
+      "Graduação concluída em Ciência da Computação na UNIFEI e especialização em andamento em Engenharia de IA Aplicada na UNIPDS.",
     mainImageAlt: "Mateus Bonette na cerimônia de formatura da UNIFEI",
     ceremony: "Cerimônia de Colação de Grau",
     graduated: "Diplomado",
     classImageAlt: "Turma de formandos da UNIFEI",
     classYear: "Turma 2025",
     degreeShort: "Ciência da Computação",
-    numbers: "Em números",
+    numbers: "Idiomas",
     yearsFormation: "anos de formação",
     linesWritten: "linhas escritas",
     location: "Itajubá, MG",
     diplomaTitle: "Ver Diploma - Bacharelado em Ciência da Computação · UNIFEI",
     viewDiploma: "Ver Diploma",
+    postgradEyebrow: "Pós-graduação Lato Sensu",
+    gradEyebrow: "Graduação",
+    languagesLabel: "Idiomas",
+    languagesSubtitle: "Comunicação profissional",
+    statusCompleted: "Concluído",
   },
   contact: {
-    eyebrow: "Vamos conversar",
-    title: "Tem uma Vaga ou Projeto em Mente?",
+    eyebrow: "Contato",
+    title: "Tem uma vaga ou projeto em mente?",
     paragraphs: [
-      "Estou disponível para oportunidades fixas, posições full-time, freelances e projetos colaborativos.",
-      "Se você procura alguém para somar ao time ou desenvolver uma solução digital bem construída, vamos conversar.",
+      "Estou disponível para posições como AI Engineer, Applied AI Engineer, LLM Engineer, Python Backend Engineer e Full Stack Software Engineer.",
+      "Aberto a oportunidades remotas, híbridas ou presenciais no Brasil e no exterior, além de projetos pontuais.",
     ],
     copyEmailAria: "Copiar e-mail",
     emailCopiedAria: "E-mail copiado",
     emailCopiedLabel: "Email Copiado",
     responseLabel: "Resposta",
     responseValue: "Em até 24 horas",
-    locationLabel: "Localização",
+    locationLabel: "Localização e atuação",
     locationValue:
-      "Brasil, Itajubá - MG, Remoto, Híbrido, Presencial, Mundo Todo",
+      "São Paulo, Brasil · Remoto, híbrido ou presencial · Brasil e exterior",
   },
   footer: {
     backToTop: "Voltar ao topo",
     top: "Topo",
-    text: "Portfólio desenvolvido para apresentação profissional e conquistas na carreira de desenvolvimento.",
+    text: "AI Engineer & Software Engineer · São Paulo, Brasil.",
   },
   linksPage: {
     backToPortfolio: "Voltar ao portfólio",
     whatsappCta: {
-      label: "Quer impulsionar seu negócio? Clique aqui!",
-      message: "Quero impulsionar o meu negócio! Como é que eu faço?",
-      aria: "Falar no WhatsApp sobre impulsionar seu negócio",
+      label: "Falar diretamente no WhatsApp",
+      message: "Olá Mateus! Vi seu portfólio e gostaria de conversar sobre uma oportunidade ou projeto.",
+      aria: "Abrir conversa no WhatsApp com Mateus Bonette",
     },
     links: [
       {
         label: "Portfólio",
-        description: "Visualização de projetos e experiências",
+        description: "Projetos, experiências profissionais e stack técnica",
         kind: "portfolio",
       },
       {
         label: "LinkedIn",
-        description: "Conexão profissional via rede social",
+        description: "Trajetória profissional, formação e publicações",
         kind: "linkedin",
       },
       {
         label: "Currículo",
-        description: "Download do currículo profissional em formato PDF",
+        description: "Download do currículo em PDF",
         kind: "resume",
       },
       {
         label: "GitHub",
-        description: "Acesso a repositórios e códigos de projetos públicos",
+        description: "Repositórios e projetos de código aberto",
         kind: "github",
       },
     ],
@@ -2432,11 +2707,11 @@ const UI_PT: PortfolioUiContent = {
 const UI_EN: PortfolioUiContent = {
   ...UI_PT,
   metadata: {
-    title: "Mateus Bonette | AI Engineer & Full Stack",
+    title: "Mateus Bonette | AI Engineer & Software Engineer (LLMs, RAG, MCP)",
     description:
-      "Applied AI Engineer and Full Stack developer. Python, RAG, LLMs, LangChain and Angular. Building Generative AI systems, autonomous agents and production automations. Explore projects and case studies.",
-    ogTitle: "Mateus Bonette — AI Engineer | RAG, LLMs & Generative AI",
-    imageAlt: "Mateus Bonette — Applied AI Engineer and Full Stack Developer",
+      "Applied AI Engineer and Software Engineer. Production systems with LLMs, RAG, AI Agents, MCP, Python, FastAPI, TypeScript, React, Next.js, and PostgreSQL.",
+    ogTitle: "Mateus Bonette | AI Engineer & Software Engineer (LLMs, RAG, MCP)",
+    imageAlt: "Mateus Bonette — AI Engineer and Software Engineer",
   },
   language: {
     label: "Language",
@@ -2465,324 +2740,485 @@ const UI_EN: PortfolioUiContent = {
   hero: {
     downloadResume: "Download resume",
     contact: "Contact me",
+    availability: "São Paulo, Brazil · Remote, hybrid or on-site · Brazil & international",
     scrollDown: "Scroll down",
     scrollDownAria: "Scroll down",
   },
   about: {
     eyebrow: "About me",
-    titleStart: "Technology, Business and ",
-    titleAccent: "Growth",
+    titleStart: "AI engineering and ",
+    titleAccent: "production software",
     titleEnd: ".",
     graduationLabel: "Education",
     graduationCaption: "Computer Science · UNIFEI · 2025",
     graduationImageAlt: "Mateus Bonette at the UNIFEI graduation ceremony",
     pillars: [
       {
-        title: "Academic Foundation",
-        text: "Computer Science graduate from UNIFEI, with a solid foundation to learn, build and evolve consistently.",
+        title: "Applied AI in production",
+        text: "Hands-on experience with LLMs, RAG, AI agents, Tool Calling, OCR, and MCP servers connected to APIs, PostgreSQL, and pgvector.",
       },
       {
-        title: "AI Direction",
-        text: "I work with applied artificial intelligence, LLM agents, intelligent automations and computer vision.",
+        title: "Reliability and controls",
+        text: "I pair language models with deterministic rules, Human-in-the-Loop (HITL) review, guardrails, document caching, fallback, and cost limits.",
       },
       {
-        title: "Commercial Vision",
-        text: "My sales and marketing experience helps me think about technology connected to customers, product and results.",
+        title: "End-to-end full stack",
+        text: "From PostgreSQL schemas and REST/GraphQL APIs in Python and Node.js to interfaces in React, Next.js, Angular, and TypeScript.",
       },
       {
-        title: "Full Stack",
-        text: "I like understanding the whole product: interface, backend, data, user, process and final impact.",
+        title: "Cloud and delivery",
+        text: "Production workflows with Docker, Google Cloud (Cloud Run, Cloud SQL, Vertex AI), AWS, Cloudflare, automated tests, and GitHub Actions CI/CD.",
       },
       {
-        title: "Entrepreneurial Mindset",
-        text: "I think like an owner: problem, opportunity, cost, execution and return come before choosing a path.",
+        title: "Product and ownership",
+        text: "As co-founder at Junta Já, I handle architecture, AI pipelines, payments, and operations for a live SaaS with 100+ users.",
       },
       {
-        title: "Practical Communication",
-        text: "My experience as a teacher helps me explain hard ideas simply and align different people.",
+        title: "Clear communication",
+        text: "Two years as a volunteer teacher at CAAI plus direct client work at byron.solutions and Moontech keep technical and business teams aligned.",
       },
     ],
     paragraphs: [
-      "I am a full stack developer and AI Engineer with 3 and a half years of experience, graduated in Computer Science from UNIFEI (Federal University of Itajuba). I build web systems, mobile apps and artificial intelligence products in practice, including LLM agents, intelligent automations and computer vision applied to industry.",
-      "What makes me different is the path that brought me here. Before programming professionally, I worked for two years as a prep course teacher and also in the commercial side of software companies, with sales and marketing. I learned early how to explain hard things simply, listen to customers before proposing solutions and think product, not only code.",
-      "Today I combine three things that rarely move together: technical command, business reading and owner mindset. I like hard problems, deliver with focus on results and think of every project as if it were my own.",
+      "I am an AI Engineer (Applied AI Engineer) and Software Engineer with a Bachelor's degree in Computer Science from UNIFEI, currently pursuing a postgraduate specialization in Applied AI Engineering at UNIPDS. I build systems powered by LLMs, RAG, AI agents, and MCP servers integrated with APIs and databases, with focus on reliability, automated testing, and operating cost.",
+      "I co-founded Junta Já, an AI personal finance SaaS with over 100 active users, where I built the OCR, Gemini, and Vertex AI statement pipeline, the Ari WhatsApp assistant using Tool Calling, and Model Context Protocol (MCP) servers for Google Cloud and Cloudflare.",
+      "Previously, I spent over two years at Moontech leading data platforms, ISO 9001-audited quality systems, and RAG pipelines with LangChain, LangGraph, pgvector, and Langfuse, following earlier client work at the UNIFEI junior enterprise byron.solutions. I am open to remote, hybrid, or on-site roles in Brazil and abroad as an AI Engineer, Applied AI Engineer, LLM Engineer, AI Agent Engineer, Python Backend Engineer, or Full Stack Software Engineer.",
     ],
   },
   value: {
-    eyebrow: "How I Work",
-    titleStart: "I Solve Problems, ",
-    titleAccent: "Communicate Value",
-    titleEnd: " And Automate Routines.",
+    eyebrow: "How I work",
+    titleStart: "Predictable, tested ",
+    titleAccent: "AI and software",
+    titleEnd: " engineering.",
     intro:
-      "I want to join a team to truly deliver: produce with focus, communicate clearly, think about the business side and turn manual work into intelligent process.",
+      "Production AI takes more than prompt calls: it requires deterministic validation, cost observability, clean data modeling, and interfaces people trust.",
     previousAria: "View previous card",
     nextAria: "View next card",
     points: [
-      "Solve Real Problems",
-      "Sell The Right Solution",
-      "Automate With AI",
-      "Deliver With Clarity",
+      "Reliable AI systems",
+      "End-to-end engineering",
+      "Product judgment",
+      "Direct communication",
     ],
     cards: [
       {
-        title: "Productivity With Direction",
-        text: "I take messy problems and turn them into delivery. I have already built scheduling systems, course platforms with payment integration and e-commerce from end to end.",
-        tag: "Productive",
+        title: "Deterministic AI controls",
+        text: "I separate LLM interpretation from code-enforced business logic. JSON schemas, normalization, deduplication, guardrails, and HITL review run before database writes.",
+        tag: "Reliability",
       },
       {
-        title: "Commercial Communication",
-        text: "I can explain technical ideas to decision makers. I have worked with sales, marketing and paid traffic, and sold systems and websites to clinics, real estate and e-commerce clients.",
-        tag: "Commercial",
+        title: "Observability and cost",
+        text: "I track token usage, latency, execution errors, document caching, model fallback, and monthly spending limits with Langfuse and custom telemetry.",
+        tag: "Operations",
       },
       {
-        title: "Owner Mindset",
-        text: "I think like the owner of the problem, not just a task executor. I understand the pain, measure impact and seek the most useful solution for the client, team and business.",
-        tag: "Owner",
+        title: "Database to deployment",
+        text: "I build typed Python/FastAPI and Node.js APIs, PostgreSQL/pgvector queries, React, Next.js, and Angular frontends, and Docker + CI/CD cloud pipelines.",
+        tag: "Full Stack",
       },
       {
-        title: "Daily Automation",
-        text: "When I see repetitive work, I automate it. I work with APIs, web scraping, bots and AI agents, and I have a bot running on my own production server.",
-        tag: "Automation",
+        title: "Product and clarity",
+        text: "Experience as a co-founder and in a software factory helps me scope pragmatically, avoid unnecessary complexity, and communicate trade-offs clearly.",
+        tag: "Product",
       },
     ],
     desktopSummary:
-      "In short, I like taking a real pain, understanding the human and commercial side, creating a simple solution and using AI and automation to remove what consumes people time.",
+      "Across every project, I prioritize tested code, verifiable business rules, and disciplined LLM usage so systems hold up beyond demos.",
     mobileSummary:
-      "In short, I turn real pain into useful solutions with clarity and automation.",
+      "I prioritize tested code, verifiable rules, and disciplined LLM usage in production.",
     readSummary: "Read summary",
     hideSummary: "Hide summary",
     mobileSummaryExpanded:
-      "I work to turn real problems into useful delivery, with commercial clarity and intelligent automation to reduce repetitive work.",
+      "Across every project, I prioritize tested code, verifiable business rules, and disciplined LLM usage so systems hold up in production.",
   },
   skills: {
-    eyebrow: "Technical Skills",
+    eyebrow: "Technical stack",
     titleStart: "Technologies I ",
-    titleAccent: "Use To Deliver",
+    titleAccent: "ship in production",
     titleEnd: ".",
     description:
-      "From frontend to database, from automation to AI models. I do not collect technologies; I use what solves the right problem at the right time.",
-    filterLabel: "Filter stack",
+      "Frameworks, databases, cloud services, and AI tooling I use to build web applications, APIs, data pipelines, and agent systems.",
+    filterLabel: "Filter by area",
+    allLabel: "All technologies",
     swipeLabel: "Swipe",
     areasLabel: "areas",
     skillsLabel: "skills",
     itemsLabel: "items",
-    masteryLabel: "mastery",
+    masteryLabel: "use",
     groups: [
       {
-        title: "AI, Automation and Dev Tools",
-        summary:
-          "I use modern tools to accelerate development, review code and automate tasks.",
+        id: "ai",
+        title: "Applied AI, LLMs & Agents",
+        summary: "Model orchestration, context retrieval, agent protocols, and production reliability.",
         items: [
           {
-            name: "Docker",
-            description:
-              "Isolated environments to run applications with more predictability.",
+            id: "llms",
+            name: "LLMs & Generative AI",
+            description: "Integrating language models for structured extraction, classification, and synthesis.",
           },
           {
-            name: "Git",
-            description: "Versioning, history and work organization.",
+            id: "rag",
+            name: "RAG (Retrieval-Augmented Generation)",
+            description: "Chunking, semantic search, and hybrid retrieval grounded in live data.",
           },
           {
-            name: "GitHub",
-            description:
-              "Repositories, collaboration, issues and code delivery.",
+            id: "ai-agents",
+            name: "AI Agents",
+            description: "Agents with routing, state, conditional branches, and task execution.",
           },
           {
-            name: "GitLab",
-            description: "Repository flow, pipelines and project organization.",
+            id: "mcp",
+            name: "MCP (Model Context Protocol)",
+            description: "MCP servers wired to APIs, databases, Google Cloud, and Cloudflare.",
           },
           {
-            name: "AI automation",
-            description:
-              "Reducing repetitive work with scripts, agents and integrations.",
+            id: "langchain",
+            name: "LangChain",
+            description: "Ingestion, indexing, contextual retrieval, and tool-enabled chains.",
+          },
+          {
+            id: "langgraph",
+            name: "LangGraph",
+            description: "Stateful graphs with explicit transitions for auditable multi-agent workflows.",
+          },
+          {
+            id: "tool-calling",
+            name: "Tool Calling",
+            description: "Controlled function execution and parameterized queries against APIs and databases.",
+          },
+          {
+            id: "embeddings",
+            name: "Embeddings & Vector Search",
+            description: "Document vectorization and filtered similarity retrieval.",
+          },
+          {
+            id: "harness-engineering",
+            name: "Harness Engineering",
+            description: "Tool, context, and behavior constraints to prevent unverified responses.",
+          },
+          {
+            id: "prompt-engineering",
+            name: "Prompt Engineering",
+            description: "Versioned prompts, strict JSON outputs, and consistency checks.",
+          },
+          {
+            id: "openai",
+            name: "OpenAI API",
+            description: "GPT models, embeddings, and function calling in production workloads.",
+          },
+          {
+            id: "anthropic",
+            name: "Anthropic Claude",
+            description: "Claude integration for analysis, code workflows, and reasoning tasks.",
+          },
+          {
+            id: "gemini",
+            name: "Google Gemini",
+            description: "Multimodal document processing, OCR, and structured extraction.",
+          },
+          {
+            id: "vertex-ai",
+            name: "Vertex AI",
+            description: "Managed model execution on Google Cloud with quota and security controls.",
+          },
+          {
+            id: "ollama",
+            name: "Ollama",
+            description: "Local execution of open-weight models for testing and private setups.",
+          },
+          {
+            id: "huggingface",
+            name: "Hugging Face",
+            description: "Open models, tokenizers, and datasets for NLP and embeddings.",
+          },
+          {
+            id: "langfuse",
+            name: "Langfuse",
+            description: "Tracing prompts, tokens, latency, and operating costs in production.",
+          },
+          {
+            id: "guardrails-hitl",
+            name: "Guardrails & HITL",
+            description: "Deterministic checks, spend caps, and Human-in-the-Loop review for edge cases.",
           },
         ],
       },
       {
-        title: "Backend, APIs and Databases",
-        summary: "Services, data integration and business-rule organization.",
+        id: "backend",
+        title: "Backend, APIs & Databases",
+        summary: "Async services, relational and vector modeling, task queues, and integrations.",
         items: [
           {
-            name: "Node.js",
-            description: "Server-side APIs, services and integrations.",
-          },
-          {
-            name: "Express",
-            description:
-              "Routes, middlewares and APIs that are simple to maintain.",
-          },
-          {
+            id: "python",
             name: "Python",
-            description: "Backend, automation, data and productivity scripts.",
+            description: "Primary language for backend services, AI pipelines, data workflows, and automation.",
           },
           {
+            id: "fastapi",
+            name: "FastAPI",
+            description: "Typed async REST APIs with automatic OpenAPI docs and Pydantic validation.",
+          },
+          {
+            id: "nodejs",
+            name: "Node.js",
+            description: "Backend services, real-time integrations, bots, and automation scripts.",
+          },
+          {
+            id: "express",
+            name: "Express",
+            description: "REST APIs, middleware pipelines, and lightweight business services.",
+          },
+          {
+            id: "django",
             name: "Django",
-            description: "Python for complete web applications.",
+            description: "Structured web applications with ORM, authentication, and admin tooling.",
           },
           {
+            id: "sqlalchemy",
+            name: "SQLAlchemy",
+            description: "ORM modeling, migrations, and safe SQL querying in Python.",
+          },
+          {
+            id: "celery",
+            name: "Celery & Async Queues",
+            description: "Background processing for OCR, data ingestion, and long-running jobs.",
+          },
+          {
+            id: "graphql",
+            name: "GraphQL",
+            description: "Typed schemas and tailored queries for web applications.",
+          },
+          {
+            id: "rest-apis",
+            name: "REST APIs & Webhooks",
+            description: "API design, versioning, error handling, and third-party integrations.",
+          },
+          {
+            id: "postgresql",
             name: "PostgreSQL",
-            description: "Relational modeling, queries and persistence.",
+            description: "Primary relational store, indexing, integrity constraints, and analytics queries.",
           },
           {
+            id: "pgvector",
+            name: "pgvector",
+            description: "Vector storage and similarity search inside PostgreSQL for RAG pipelines.",
+          },
+          {
+            id: "redis",
+            name: "Redis",
+            description: "Response caching, session state, and task queue brokering.",
+          },
+          {
+            id: "mysql",
             name: "MySQL",
-            description:
-              "Relational database for web systems and internal applications.",
+            description: "Relational persistence for web platforms and internal systems.",
           },
           {
-            name: "Public APIs",
-            description:
-              "Consuming, handling responses and integrating systems.",
-          },
-          {
-            name: "Data modeling",
-            description:
-              "Organization of entities, relations and information flow.",
-          },
-          {
-            name: "Web scraping",
-            description: "Collecting, cleaning and structuring web data.",
+            id: "playwright-scraping",
+            name: "Playwright & Web Scraping",
+            description: "Browser automation, structured web extraction, and end-to-end verification.",
           },
         ],
       },
       {
-        title: "Data and Visualization",
-        summary:
-          "I turn data into analysis, simple dashboards and useful decision-making visuals.",
+        id: "frontend",
+        title: "Frontend & Mobile",
+        summary: "Responsive, type-safe web interfaces and cross-platform mobile applications.",
         items: [
           {
-            name: "Python for data",
-            description: "Cleaning, analysis and automations with real data.",
-          },
-          {
-            name: "Pandas",
-            description: "Table handling, filters, grouping and indicators.",
-          },
-          {
-            name: "Streamlit",
-            description: "Data apps, prototypes and interactive dashboards.",
-          },
-          {
-            name: "Streamlit visualization",
-            description:
-              "Interfaces to explore data without complicating usage.",
-          },
-          {
-            name: "Matplotlib",
-            description:
-              "Charts for exploratory analysis and technical reports.",
-          },
-          {
-            name: "Seaborn",
-            description: "Statistical visualizations with clearer reading.",
-          },
-        ],
-      },
-      {
-        title: "Frontend and Mobile",
-        summary:
-          "Polished, responsive interfaces with strong attention to visual experience.",
-        items: [
-          {
-            name: "React",
-            description: "Components, state, hooks and modern interfaces.",
-          },
-          {
+            id: "typescript",
             name: "TypeScript",
-            description: "Typing to reduce errors and make code clearer.",
+            description: "Static typing across frontend and backend for clear contracts and safer refactors.",
           },
           {
+            id: "javascript",
             name: "JavaScript",
-            description:
-              "Solid foundation for frontend, backend and automations.",
+            description: "Solid foundation in modern JS, async control flow, and browser APIs.",
           },
           {
-            name: "HTML",
-            description: "Semantic, accessible and well-organized structure.",
+            id: "react",
+            name: "React",
+            description: "Reusable components, hooks, and predictable UI state management.",
           },
           {
-            name: "CSS",
-            description: "Responsive layouts, animations and visual finish.",
+            id: "nextjs",
+            name: "Next.js",
+            description: "Production web apps with routing, SSR, and optimized asset delivery.",
           },
           {
+            id: "angular",
             name: "Angular",
-            description:
-              "Frontend applications with structure and reusable components.",
+            description: "Enterprise web applications with modular architecture, services, and RxJS.",
           },
           {
+            id: "tailwindcss",
+            name: "Tailwind CSS",
+            description: "Consistent utility-first styling with light and dark theme support.",
+          },
+          {
+            id: "html",
+            name: "HTML5 & Semantics",
+            description: "Accessible markup, technical SEO, and clean document hierarchy.",
+          },
+          {
+            id: "css",
+            name: "CSS3",
+            description: "Grid, Flexbox, responsive layouts, and performance-minded motion.",
+          },
+          {
+            id: "flutter",
             name: "Flutter",
-            description:
-              "Mobile development with native and consistent screens.",
+            description: "Cross-platform mobile apps for Android and iOS.",
           },
           {
+            id: "dart",
             name: "Dart",
-            description:
-              "Foundation for building mobile applications with Flutter.",
+            description: "Core language for building Flutter interfaces and client logic.",
           },
         ],
       },
       {
-        title: "Design, Product and Content",
-        summary:
-          "I have visual judgment and can turn ideas into screens, presentations and clear material.",
+        id: "cloud",
+        title: "Cloud, DevOps & Quality",
+        summary: "Containerization, cloud deployments, delivery automation, and testing.",
         items: [
           {
+            id: "docker",
+            name: "Docker",
+            description: "Reproducible containers for local development and production deployments.",
+          },
+          {
+            id: "gcp",
+            name: "Google Cloud Platform",
+            description: "Production hosting and ops with Cloud Run, Cloud SQL, Cloud Tasks, and Secret Manager.",
+          },
+          {
+            id: "aws",
+            name: "AWS",
+            description: "Cloud compute, storage, and application deployment.",
+          },
+          {
+            id: "cloudflare",
+            name: "Cloudflare",
+            description: "DNS, edge routing, and managed integrations through MCP servers.",
+          },
+          {
+            id: "github-actions",
+            name: "GitHub Actions (CI/CD)",
+            description: "Automated test suites, builds, and continuous deployment pipelines.",
+          },
+          {
+            id: "kubernetes",
+            name: "Kubernetes",
+            description: "Container orchestration, scaling, and AI service deployments.",
+          },
+          {
+            id: "terraform",
+            name: "Terraform",
+            description: "Infrastructure as code for reproducible cloud provisioning.",
+          },
+          {
+            id: "linux",
+            name: "Linux & systemd",
+            description: "Server administration, persistent daemons, and production troubleshooting.",
+          },
+          {
+            id: "git",
+            name: "Git",
+            description: "Version control, branching workflows, and clean commit history.",
+          },
+          {
+            id: "github-gitlab",
+            name: "GitHub & GitLab",
+            description: "Code reviews, pull requests, issue tracking, and repository automation.",
+          },
+          {
+            id: "pytest",
+            name: "Pytest & Automated Testing",
+            description: "Unit and integration tests covering business rules and AI pipelines.",
+          },
+        ],
+      },
+      {
+        id: "data",
+        title: "Data, OCR & Visualization",
+        summary: "Document extraction, tabular transformations, and operational dashboards.",
+        items: [
+          {
+            id: "pandas",
+            name: "Pandas",
+            description: "Data cleaning, aggregation, joins, and dataset validation.",
+          },
+          {
+            id: "streamlit",
+            name: "Streamlit",
+            description: "Interactive dashboards connected to live APIs and databases.",
+          },
+          {
+            id: "ocr-extraction",
+            name: "OCR & Structured Extraction",
+            description: "Automated bill and statement parsing with JSON schema validation.",
+          },
+          {
+            id: "data-modeling",
+            name: "Data Modeling",
+            description: "Relational entity design, deduplication, and audit traceability.",
+          },
+          {
+            id: "matplotlib",
+            name: "Matplotlib",
+            description: "Charts for exploratory analysis and series validation.",
+          },
+          {
+            id: "seaborn",
+            name: "Seaborn",
+            description: "Statistical visualizations for technical reporting.",
+          },
+        ],
+      },
+      {
+        id: "product",
+        title: "Product, Integrations & Process",
+        summary: "Specification, interface design, payments, and delivery workflows.",
+        items: [
+          {
+            id: "figma",
             name: "Figma",
-            description:
-              "Wireframes, visual layout, prototypes and interface organization.",
+            description: "Interactive prototypes, screen flows, and interface specs.",
           },
           {
+            id: "ux-ui",
             name: "UX/UI Design",
-            description:
-              "Flows, visual hierarchy, readability and user experience.",
+            description: "Visual hierarchy, responsiveness, accessibility, and clear flows.",
           },
           {
-            name: "Canva",
-            description:
-              "Fast visual assets for communication and presentation.",
+            id: "sdd",
+            name: "Spec-Driven Development",
+            description: "Written specification before implementation and verification.",
           },
           {
-            name: "OBS Studio",
-            description: "Recording, streaming and visual content production.",
+            id: "whatsapp-api",
+            name: "WhatsApp API & Bots",
+            description: "Conversational assistants and workflows wired to live system APIs.",
           },
           {
-            name: "Google Sheets / Excel",
-            description:
-              "Data organization, formulas and operational controls.",
+            id: "mercadopago",
+            name: "Mercado Pago",
+            description: "Online checkout, webhooks, and subscription billing in production.",
           },
           {
-            name: "Google Docs / Word",
-            description:
-              "Documentation, proposals, texts and information structure.",
+            id: "n8n",
+            name: "n8n",
+            description: "Visual workflow orchestration and webhooks across services.",
           },
           {
-            name: "Google Slides",
-            description: "Clear slides to sell ideas and explain solutions.",
-          },
-        ],
-      },
-      {
-        title: "Management, Games and Process",
-        summary:
-          "I also understand organization tools, work methods and creation of interactive experiences.",
-        items: [
-          {
-            name: "Trello",
-            description: "Task organization, steps, priority and follow-up.",
+            id: "hubspot",
+            name: "HubSpot",
+            description: "CRM integrations, lead qualification, and commercial sync.",
           },
           {
-            name: "Scrum",
-            description:
-              "Delivery rhythm, ceremonies, backlog and team collaboration.",
-          },
-          {
-            name: "Unity",
-            description:
-              "Foundation for creating games, scenes, logic and interaction.",
-          },
-          {
-            name: "Game creation",
-            description:
-              "Gameplay notions, prototyping and interactive experience.",
+            id: "scrum",
+            name: "Scrum & Agile Delivery",
+            description: "Backlog organization, prioritization, and iterative releases.",
           },
         ],
       },
@@ -2791,17 +3227,17 @@ const UI_EN: PortfolioUiContent = {
   experience: {
     aria: "Professional experience timeline",
     eyebrow: "Experience",
-    titleStart: "Experiences That ",
-    titleAccent: "Shaped Me",
+    titleStart: "Professional ",
+    titleAccent: "experience",
     titleEnd: ".",
     description:
-      "Each company, each project and each sale taught me something I still carry in code, communication and problem solving.",
+      "Track record building production AI products, data platforms, audited quality systems, and full stack web applications.",
     availabilityAria: "Professional availability",
     timelineAria: "Professional journey",
     current: "Current",
     start: "Start",
-    latest: "Latest",
-    step: "Step",
+    latest: "Recent",
+    step: "Role",
     moontechLetterPt: "RECOMMENDATION LETTER PT-BR",
     moontechLetterEn: "RECOMMENDATION LETTER IN ENGLISH",
     moontechLetterPtTitle: "Download recommendation letter in Portuguese (PDF)",
@@ -2811,9 +3247,9 @@ const UI_EN: PortfolioUiContent = {
     eyebrow: "Projects",
     titleStart: "Production ",
     titleAccent: "AI & Full Stack",
-    titleEnd: " Projects",
+    titleEnd: " projects",
     description:
-      "A portfolio of real shipped work: LangChain agents, RAG, and LLMs, plus web systems, data pipelines, e-commerce, and automations in production. Each project covers the problem, architecture, stack, and impact — with a clear focus on applied AI engineering.",
+      "Shipped case studies across LangChain agents, RAG, and LLMs, plus web systems, data dashboards, e-commerce, and production automations.",
     featuredCases: "Featured cases",
     featuredCasesDescription:
       "Each cover opens its own page with project details.",
@@ -2885,67 +3321,76 @@ const UI_EN: PortfolioUiContent = {
     videoFallback: "Your browser does not support HTML5 video playback.",
   },
   education: {
-    eyebrow: "Education",
-    titleStart: "Bachelor of ",
-    titleAccent: "Computer Science",
+    eyebrow: "Education & languages",
+    titleStart: "Computer Science and ",
+    titleAccent: "Applied AI",
     titleEnd: ".",
     description:
-      "Degree completed at the Federal University of Itajuba (UNIFEI), one of Brazil major engineering and technology institutions.",
+      "Bachelor's degree in Computer Science completed at UNIFEI and ongoing postgraduate specialization in Applied AI Engineering at UNIPDS.",
     mainImageAlt: "Mateus Bonette at the UNIFEI graduation ceremony",
     ceremony: "Graduation Ceremony",
     graduated: "Graduated",
     classImageAlt: "UNIFEI graduating class",
     classYear: "Class of 2025",
     degreeShort: "Computer Science",
-    numbers: "In numbers",
+    numbers: "Languages",
     yearsFormation: "years of education",
     linesWritten: "lines written",
-    location: "Itajuba, MG",
+    location: "Itajubá, MG",
     diplomaTitle: "View Diploma - Bachelor of Computer Science · UNIFEI",
     viewDiploma: "View Diploma",
+    postgradEyebrow: "Postgraduate Specialization",
+    gradEyebrow: "Bachelor's Degree",
+    languagesLabel: "Languages",
+    languagesSubtitle: "Working proficiency",
+    statusCompleted: "Completed",
   },
   contact: {
-    eyebrow: "Let us talk",
-    title: "Have a Role or Project in Mind?",
+    eyebrow: "Contact",
+    title: "Have a role or project in mind?",
     paragraphs: [
-      "I am available for fixed opportunities, full-time roles, freelance work and collaborative projects.",
-      "If you are looking for someone to join the team or build a well-crafted digital solution, let us talk.",
+      "Open to AI Engineer, Applied AI Engineer, LLM Engineer, Python Backend Engineer, and Full Stack Software Engineer roles.",
+      "Available for remote, hybrid, or on-site positions in Brazil and internationally, as well as select consulting work.",
     ],
     copyEmailAria: "Copy email",
     emailCopiedAria: "Email copied",
     emailCopiedLabel: "Email Copied",
-    responseLabel: "Response",
+    responseLabel: "Response time",
     responseValue: "Within 24 hours",
-    locationLabel: "Location",
-    locationValue: "Brazil, Itajuba - MG, Remote, Hybrid, On-site, Worldwide",
+    locationLabel: "Location & availability",
+    locationValue: "São Paulo, Brazil · Remote, hybrid or on-site · Brazil & international",
   },
   footer: {
     backToTop: "Back to top",
     top: "Top",
-    text: "Portfolio built to get a good job and buy my bread.",
+    text: "AI Engineer & Software Engineer · São Paulo, Brazil.",
   },
   linksPage: {
     backToPortfolio: "Back to portfolio",
     whatsappCta: {
-      label: "Want to grow your business? Click here!",
-      message: "I want to grow my business! How do I do it?",
-      aria: "Open WhatsApp to talk about growing your business",
+      label: "Message me on WhatsApp",
+      message: "Hi Mateus! I saw your portfolio and would like to talk about a role or project.",
+      aria: "Open WhatsApp conversation with Mateus Bonette",
     },
     links: [
       {
         label: "Portfolio",
-        description: "See my projects and experience",
+        description: "Projects, experience, and technical stack",
         kind: "portfolio",
       },
       {
         label: "LinkedIn",
-        description: "Connect with me professionally",
+        description: "Work history, education, and profile",
         kind: "linkedin",
       },
-      { label: "Resume", description: "Download my CV in PDF", kind: "resume" },
+      {
+        label: "Resume",
+        description: "Download CV in PDF",
+        kind: "resume",
+      },
       {
         label: "GitHub",
-        description: "Check my repositories and code",
+        description: "Repositories and public code",
         kind: "github",
       },
     ],

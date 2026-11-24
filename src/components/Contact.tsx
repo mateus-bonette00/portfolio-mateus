@@ -16,9 +16,8 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 dark:border-white/10 dark:bg-bg-soft sm:p-12 lg:p-16"
         >
-          <div className="pointer-events-none absolute -top-32 left-1/2 h-[360px] w-[640px] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px] dark:bg-accent/22" />
-          <div className="pointer-events-none absolute -bottom-32 right-0 h-[320px] w-[500px] rounded-full bg-accent-cyan/8 blur-[120px] dark:bg-accent-cyan/16" />
-          <div className="pointer-events-none absolute inset-0 grid-bg opacity-[0.25] dark:opacity-30" />
+          <div className="pointer-events-none absolute -top-32 left-1/2 h-[320px] w-[560px] -translate-x-1/2 rounded-full bg-accent/6 blur-[120px] dark:bg-accent/12" />
+          <div className="pointer-events-none absolute inset-0 grid-bg opacity-[0.2] dark:opacity-25" />
 
           <div className="relative">
             <div className="flex items-center gap-4">
@@ -26,8 +25,8 @@ export function Contact() {
               <span className="heading-eyebrow">{UI.contact.eyebrow}</span>
             </div>
 
-            <h2 className="mt-4 section-title-display max-w-3xl">
-              <span className="text-gradient">{UI.contact.title}</span>
+            <h2 className="mt-4 section-title-display max-w-3xl text-ink">
+              {UI.contact.title}
             </h2>
 
             <div className="mt-5 min-w-0 space-y-4 text-lg leading-relaxed text-ink-dim sm:max-w-xl sm:text-xl">
