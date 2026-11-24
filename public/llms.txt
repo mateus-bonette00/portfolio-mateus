@@ -44,6 +44,12 @@ Mateus Bonette designs and ships production AI systems and full stack software i
 - Implemented LLM observability covering tokens, cost, latency, execution errors, document caching, model fallback, and monthly spend caps.
 - Stack: Python, FastAPI, SQLAlchemy, Celery, Cloud Tasks, PostgreSQL, Next.js, React, TypeScript, Tailwind CSS, Docker, GitHub Actions, Google Cloud Run, Cloud SQL, Secret Manager, WhatsApp API, Mercado Pago, Spec-Driven Development (SDD).
 
+### AI Response Evaluation (LLMs) — Turing (USA)
+- Period: Sep 2026 – Present | Location: United States (Remote, Freelance)
+- Evaluated and refined responses from multiple AI models (LLMs) for a US-based company partnering with frontier AI labs, focusing on clarity, accuracy, and practical usefulness for small business use cases in Portuguese (BR).
+- Created realistic business prompts covering customer interactions, day-to-day operations, data analysis, financial planning, and market research using multimodal inputs (spreadsheets, PDFs, and images) across multi-turn conversations (up to 5 turns).
+- Collaborated in English with an international team, delivering conversation transcripts and structured comparative evaluations while organizing workflows and automating tasks with Applied AI and AI agents.
+
 ### Full Stack Developer | Applied AI, RAG & LLMs — Moontech
 - Period: May 2024 – Jun 2026 (2 yrs 2 mos) | Location: Itajubá, MG, Brazil (Remote)
 - Built full stack and applied AI solutions for enterprise clients in a software factory environment.
