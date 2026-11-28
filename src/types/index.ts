@@ -1,3 +1,13 @@
+export type ProjectRule = {
+  criterion: string
+  rule: string
+}
+
+export type ProjectFaq = {
+  question: string
+  answer: string
+}
+
 export type Project = {
   id: string
   title: string
@@ -14,6 +24,16 @@ export type Project = {
   link?: string
   repo?: string
   year?: string
+  subtitle?: string
+  opening?: string
+  aboutTitle?: string
+  howItWorksTitle?: string
+  howItWorks?: string[]
+  rulesTitle?: string
+  rules?: ProjectRule[]
+  highlightsTitle?: string
+  faqTitle?: string
+  faq?: ProjectFaq[]
   descriptionFull?: string
   highlights?: string[]
   techFull?: string[]

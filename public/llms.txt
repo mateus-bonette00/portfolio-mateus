@@ -2,7 +2,7 @@
 
 > AI Engineer (Applied AI Engineer) and Software Engineer based in São Paulo, Brazil, specializing in AI Engineering, Harness Engineering, LLMs, RAG, AI Agents, Model Context Protocol (MCP), and Full Stack Software Engineering. Computer Science graduate from UNIFEI and postgraduate student in Applied AI Engineering at UNIPDS. Co-founder and Software & AI Engineer at Junta Já Brasil.
 
-Last updated: 2026-11-24
+Last updated: 2026-11-28
 
 ## Summary
 
@@ -84,3 +84,52 @@ Mateus Bonette designs and ships production AI systems and full stack software i
 - Frontend & Mobile: TypeScript, JavaScript, React, Next.js, Angular, Tailwind CSS, HTML5, CSS3, Flutter, Dart.
 - Cloud, DevOps & Quality: Docker, Google Cloud Platform (Cloud Run, Cloud SQL, Cloud Tasks, Secret Manager), AWS, Cloudflare, GitHub Actions, Kubernetes, Terraform, Linux, Git, GitHub, GitLab, Pytest.
 - Data & Product: Pandas, Streamlit, Data Modeling, Matplotlib, Seaborn, Figma, UX/UI Design, WhatsApp API, Mercado Pago, n8n, HubSpot, Scrum.
+
+## Selected Projects
+
+### Amazon FBA and FBM Supplier Finder (React, Vite, Node.js, Express, Homelab SSH)
+- PT-BR: https://www.mateusbonette.com.br/pt-br/projetos/buscador-fornecedores-amazon
+- EN: https://www.mateusbonette.com.br/en/projects/buscador-fornecedores-amazon
+- Repository: https://github.com/mateus-bonette00/buscador-fornecedores-amazon
+- Deterministic RPA web app for Amazon FBA and FBM sellers in the US. It ingests Keepa listings (CSV or API), ASINs, or Amazon links, extracts exact part numbers and pack size, queries supplier price and stock, and writes approved products to Google Sheets columns A-T with FBM and FBA profit, ROI, and margin formulas. Heavy work runs on an Ubuntu 24 homelab over SSH. Ambiguous items stay pending instead of being written. No machine learning: extraction, stock rules, supplier choice, and pricing are fully deterministic.
+
+## Project pages
+
+- PT-BR listing: https://www.mateusbonette.com.br/pt-br/projetos
+- EN listing: https://www.mateusbonette.com.br/en/projects
+- zoebot-openclaw (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/zoebot-openclaw
+- zoebot-openclaw (EN): https://www.mateusbonette.com.br/en/projects/zoebot-openclaw
+- buscador-fornecedores-amazon (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/buscador-fornecedores-amazon
+- buscador-fornecedores-amazon (EN): https://www.mateusbonette.com.br/en/projects/buscador-fornecedores-amazon
+- fba-automation (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/fba-automation
+- fba-automation (EN): https://www.mateusbonette.com.br/en/projects/fba-automation
+- qota-finance (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/qota-finance
+- qota-finance (EN): https://www.mateusbonette.com.br/en/projects/qota-finance
+- coinsight (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/coinsight
+- coinsight (EN): https://www.mateusbonette.com.br/en/projects/coinsight
+- family-money (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/family-money
+- family-money (EN): https://www.mateusbonette.com.br/en/projects/family-money
+- noara (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/noara
+- noara (EN): https://www.mateusbonette.com.br/en/projects/noara
+- gabi-xavier (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/gabi-xavier
+- gabi-xavier (EN): https://www.mateusbonette.com.br/en/projects/gabi-xavier
+- teacher-ediane (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/teacher-ediane
+- teacher-ediane (EN): https://www.mateusbonette.com.br/en/projects/teacher-ediane
+- odontoclin (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/odontoclin
+- odontoclin (EN): https://www.mateusbonette.com.br/en/projects/odontoclin
+- techouse (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/techouse
+- techouse (EN): https://www.mateusbonette.com.br/en/projects/techouse
+- clinica-uh (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/clinica-uh
+- clinica-uh (EN): https://www.mateusbonette.com.br/en/projects/clinica-uh
+- conversor-mp4 (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/conversor-mp4
+- conversor-mp4 (EN): https://www.mateusbonette.com.br/en/projects/conversor-mp4
+- eco-afodelos (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/eco-afodelos
+- eco-afodelos (EN): https://www.mateusbonette.com.br/en/projects/eco-afodelos
+- panorama-covid (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/panorama-covid
+- panorama-covid (EN): https://www.mateusbonette.com.br/en/projects/panorama-covid
+- dra-julia (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/dra-julia
+- dra-julia (EN): https://www.mateusbonette.com.br/en/projects/dra-julia
+- contatos-gabi (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/contatos-gabi
+- contatos-gabi (EN): https://www.mateusbonette.com.br/en/projects/contatos-gabi
+- twitch-analytics (PT-BR): https://www.mateusbonette.com.br/pt-br/projetos/twitch-analytics
+- twitch-analytics (EN): https://www.mateusbonette.com.br/en/projects/twitch-analytics

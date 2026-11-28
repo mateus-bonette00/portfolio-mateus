@@ -273,7 +273,7 @@ function ProjectsConsole({ projects }: { projects: Project[] }) {
                   className="ai-console__cover"
                   data-fit={isMobileShot ? 'contain' : 'cover'}
                   src={cover}
-                  alt=""
+                  alt={`${title}: ${selectedProject.description}`}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
@@ -381,7 +381,7 @@ export function ConsoleProjectCard({ project, index }: { project: Project; index
               className="console-card__cover"
               data-fit={isMobileShot ? 'contain' : 'cover'}
               src={cover}
-              alt=""
+              alt={`${title}: ${project.description}`}
               loading={index < 3 ? 'eager' : 'lazy'}
               decoding="async"
               draggable={false}

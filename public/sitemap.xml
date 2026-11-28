@@ -5,7 +5,7 @@
 >
   <url>
     <loc>https://www.mateusbonette.com.br/pt-br</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br" />
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://www.mateusbonette.com.br/en</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br" />
@@ -23,34 +23,362 @@
   </url>
   <url>
     <loc>https://www.mateusbonette.com.br/pt-br/projetos</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos" />
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.mateusbonette.com.br/en/projects</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos" />
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.mateusbonette.com.br/pt-br/links-contatos</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/links-contatos" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/links" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/links-contatos" />
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.mateusbonette.com.br/en/links</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/links-contatos" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/links" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/links-contatos" />
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/zoebot-openclaw</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/zoebot-openclaw" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/zoebot-openclaw" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/zoebot-openclaw" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/zoebot-openclaw</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/zoebot-openclaw" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/zoebot-openclaw" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/zoebot-openclaw" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/buscador-fornecedores-amazon</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/buscador-fornecedores-amazon" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/buscador-fornecedores-amazon" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/buscador-fornecedores-amazon" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/buscador-fornecedores-amazon</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/buscador-fornecedores-amazon" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/buscador-fornecedores-amazon" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/buscador-fornecedores-amazon" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/fba-automation</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/fba-automation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/fba-automation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/fba-automation" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/fba-automation</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/fba-automation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/fba-automation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/fba-automation" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/qota-finance</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/qota-finance" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/qota-finance" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/qota-finance" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/qota-finance</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/qota-finance" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/qota-finance" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/qota-finance" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/coinsight</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/coinsight" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/coinsight" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/coinsight" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/coinsight</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/coinsight" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/coinsight" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/coinsight" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/family-money</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/family-money" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/family-money" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/family-money" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/family-money</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/family-money" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/family-money" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/family-money" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/noara</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/noara" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/noara" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/noara" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/noara</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/noara" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/noara" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/noara" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/gabi-xavier</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/gabi-xavier" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/gabi-xavier" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/gabi-xavier" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/gabi-xavier</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/gabi-xavier" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/gabi-xavier" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/gabi-xavier" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/teacher-ediane</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/teacher-ediane" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/teacher-ediane" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/teacher-ediane" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/teacher-ediane</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/teacher-ediane" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/teacher-ediane" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/teacher-ediane" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/odontoclin</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/odontoclin" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/odontoclin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/odontoclin" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/odontoclin</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/odontoclin" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/odontoclin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/odontoclin" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/techouse</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/techouse" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/techouse" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/techouse" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/techouse</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/techouse" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/techouse" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/techouse" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/clinica-uh</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/clinica-uh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/clinica-uh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/clinica-uh" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/clinica-uh</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/clinica-uh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/clinica-uh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/clinica-uh" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/conversor-mp4</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/conversor-mp4" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/conversor-mp4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/conversor-mp4" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/conversor-mp4</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/conversor-mp4" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/conversor-mp4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/conversor-mp4" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/eco-afodelos</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/eco-afodelos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/eco-afodelos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/eco-afodelos" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/eco-afodelos</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/eco-afodelos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/eco-afodelos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/eco-afodelos" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/panorama-covid</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/panorama-covid" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/panorama-covid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/panorama-covid" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/panorama-covid</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/panorama-covid" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/panorama-covid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/panorama-covid" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/dra-julia</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/dra-julia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/dra-julia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/dra-julia" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/dra-julia</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/dra-julia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/dra-julia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/dra-julia" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/contatos-gabi</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/contatos-gabi" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/contatos-gabi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/contatos-gabi" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/contatos-gabi</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/contatos-gabi" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/contatos-gabi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/contatos-gabi" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/pt-br/projetos/twitch-analytics</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/twitch-analytics" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/twitch-analytics" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/twitch-analytics" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mateusbonette.com.br/en/projects/twitch-analytics</loc>
+    <lastmod>2026-11-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.mateusbonette.com.br/pt-br/projetos/twitch-analytics" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mateusbonette.com.br/en/projects/twitch-analytics" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mateusbonette.com.br/pt-br/projetos/twitch-analytics" />
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
 </urlset>

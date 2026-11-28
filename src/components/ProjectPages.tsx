@@ -5,6 +5,12 @@ import { PROJECTS, UI } from '../data/portfolio'
 import { ConsoleProjectCard, PromptBar, matchesProject } from './Projects'
 import { ProjectGallery } from './ProjectGallery'
 import { getLocalizedHref } from '../i18n/routes'
+import {
+  cleanProjectTitle,
+  isLongformProject,
+  LongformProjectBody,
+  ProjectRepoLinks,
+} from './ProjectDetailBody'
 
 export function ProjectDetailPage({ projectId }: { projectId: string }) {
   const project = PROJECTS.find((item) => item.id === projectId)
@@ -30,8 +36,16 @@ export function ProjectDetailPage({ projectId }: { projectId: string }) {
     )
   }
 
-  const title = project.title.replace(/^Em breve:\s*/i, '')
-  const hasRichContent = !!(project.descriptionFull || project.highlights?.length || project.techFull?.length || project.recruiterText)
+  const title = cleanProjectTitle(project.title)
+  const lead = project.subtitle ?? project.description
+  const isLongform = isLongformProject(project)
+  const hasRichContent = !!(
+    project.descriptionFull ||
+    project.highlights?.length ||
+    project.techFull?.length ||
+    project.recruiterText ||
+    isLongform
+  )
   const hasProjectMedia = !!project.video || !!(project.gallery && project.gallery.length > 0)
 
   return (
@@ -47,7 +61,7 @@ export function ProjectDetailPage({ projectId }: { projectId: string }) {
             <p className="font-mono text-xs font-black uppercase tracking-[0.24em] text-ink-mute">
               {UI.projects.projectEyebrow} · {project.year ?? ''}
             </p>
-            <h1 className="mt-4 font-display text-4xl font-bold leading-tight text-gradient-static sm:text-6xl">
+            <h1 className="mt-4 max-w-5xl font-display text-3xl font-bold leading-tight text-gradient-static sm:text-5xl lg:text-6xl">
               {title}
             </h1>
           </div>
@@ -64,9 +78,7 @@ export function ProjectDetailPage({ projectId }: { projectId: string }) {
           )}
 
           <div className="mt-10">
-            <p className="max-w-3xl text-lg leading-relaxed text-ink-dim">
-              {project.description}
-            </p>
+            <p className="max-w-3xl text-lg leading-relaxed text-ink-dim">{lead}</p>
 
             <ul className="mt-6 flex flex-wrap gap-2">
               {project.tags.map((tag) => (
@@ -78,86 +90,81 @@ export function ProjectDetailPage({ projectId }: { projectId: string }) {
           </div>
 
           {hasRichContent ? (
-            <div className="mt-14 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start">
+            isLongform ? (
+              <LongformProjectBody project={project} />
+            ) : (
+              <div className="mt-14 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start">
+                <div className="flex flex-col gap-8">
+                  {project.descriptionFull && (
+                    <article className="liquid-card rounded-2xl p-6 sm:p-8">
+                      <p className="font-mono text-[11px] font-black uppercase tracking-[0.22em] text-ink-mute">
+                        {UI.projects.aboutProject}
+                      </p>
+                      <div className="mt-4 flex flex-col gap-4">
+                        {project.descriptionFull.split('\n\n').map((para) => (
+                          <p key={para.slice(0, 48)} className="text-sm leading-relaxed text-ink-dim sm:text-base">
+                            {para}
+                          </p>
+                        ))}
+                      </div>
+                    </article>
+                  )}
 
-              <div className="flex flex-col gap-8">
-                {project.descriptionFull && (
-                  <article className="liquid-card rounded-2xl p-6 sm:p-8">
-                    <p className="font-mono text-[11px] font-black uppercase tracking-[0.22em] text-ink-mute">
-                      {UI.projects.aboutProject}
-                    </p>
-                    <div className="mt-4 flex flex-col gap-4">
-                      {project.descriptionFull.split('\n\n').map((para, i) => (
-                        <p key={i} className="text-sm leading-relaxed text-ink-dim sm:text-base">
-                          {para}
-                        </p>
-                      ))}
-                    </div>
-                  </article>
-                )}
+                  {project.highlights && project.highlights.length > 0 && (
+                    <article className="liquid-card rounded-2xl p-6 sm:p-8">
+                      <p className="font-mono text-[11px] font-black uppercase tracking-[0.22em] text-ink-mute">
+                        {UI.projects.technicalHighlights}
+                      </p>
+                      <ul className="mt-4 flex flex-col gap-3">
+                        {project.highlights.map((item) => (
+                          <li
+                            key={item.slice(0, 40)}
+                            className="flex items-start gap-3 text-sm leading-relaxed text-ink-dim sm:text-base"
+                          >
+                            <span className="mt-[0.35em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  )}
+                </div>
 
-                {project.highlights && project.highlights.length > 0 && (
-                  <article className="liquid-card rounded-2xl p-6 sm:p-8">
-                    <p className="font-mono text-[11px] font-black uppercase tracking-[0.22em] text-ink-mute">
-                      {UI.projects.technicalHighlights}
-                    </p>
-                    <ul className="mt-4 flex flex-col gap-3">
-                      {project.highlights.map((item, i) => (
-                        <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-ink-dim sm:text-base">
-                          <span className="mt-[0.35em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                )}
+                <div className="flex flex-col gap-8">
+                  {project.techFull && project.techFull.length > 0 && (
+                    <article className="liquid-card rounded-2xl p-6 sm:p-8">
+                      <p className="font-mono text-[11px] font-black uppercase tracking-[0.22em] text-ink-mute">
+                        {UI.projects.technologiesUsed}
+                      </p>
+                      <ul className="mt-4 flex flex-wrap gap-2">
+                        {project.techFull.map((tech) => (
+                          <li key={tech} className="tag">
+                            {tech}
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  )}
+
+                  {project.recruiterText && (
+                    <article className="liquid-card rounded-2xl p-6 sm:p-8">
+                      <p className="font-mono text-[11px] font-black uppercase tracking-[0.22em] text-ink-mute">
+                        {UI.projects.forRecruiters}
+                      </p>
+                      <div className="mt-4 flex flex-col gap-4">
+                        {project.recruiterText.split('\n\n').map((para) => (
+                          <p key={para.slice(0, 48)} className="text-sm leading-relaxed text-ink-dim sm:text-base">
+                            {para}
+                          </p>
+                        ))}
+                      </div>
+                    </article>
+                  )}
+
+                  <ProjectRepoLinks project={project} />
+                </div>
               </div>
-
-              <div className="flex flex-col gap-8">
-                {project.techFull && project.techFull.length > 0 && (
-                  <article className="liquid-card rounded-2xl p-6 sm:p-8">
-                    <p className="font-mono text-[11px] font-black uppercase tracking-[0.22em] text-ink-mute">
-                      {UI.projects.technologiesUsed}
-                    </p>
-                    <ul className="mt-4 flex flex-wrap gap-2">
-                      {project.techFull.map((tech) => (
-                        <li key={tech} className="tag">
-                          {tech}
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                )}
-
-                {project.recruiterText && (
-                  <article className="liquid-card rounded-2xl p-6 sm:p-8">
-                    <p className="font-mono text-[11px] font-black uppercase tracking-[0.22em] text-ink-mute">
-                      {UI.projects.forRecruiters}
-                    </p>
-                    <p className="mt-4 text-sm leading-relaxed text-ink-dim sm:text-base">
-                      {project.recruiterText}
-                    </p>
-                  </article>
-                )}
-
-                {(project.link || project.repo) && (
-                  <div className="flex flex-wrap gap-3">
-                    {project.link && (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                        {UI.projects.viewProject}
-                        <ArrowUpRight size={16} />
-                      </a>
-                    )}
-                    {project.repo && (
-                      <a href={project.repo} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-                        {UI.projects.repository}
-                        <ArrowUpRight size={16} />
-                      </a>
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
+            )
           ) : (
             <div className="mt-14 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
               <div />
@@ -216,6 +223,7 @@ export function ProjectsArchivePage() {
             </div>
           </motion.div>
 
+          <h2 className="sr-only">{UI.projects.allProjects}</h2>
           <ArchiveConsole />
         </div>
       </section>

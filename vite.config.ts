@@ -3,12 +3,14 @@ import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { proposalOgPlugin } from './vite.proposal-og'
+import { seoPrerenderPlugin } from './vite.seo'
 
 const projectRoot = path.dirname(fileURLToPath(import.meta.url))
 
-export default defineConfig({
+export default defineConfig(({ command, isPreview }) => ({
   root: 'app',
-  plugins: [react(), proposalOgPlugin()],
+  appType: command === 'serve' && !isPreview ? 'spa' : 'mpa',
+  plugins: [react(), proposalOgPlugin(), ...seoPrerenderPlugin()],
   publicDir: '../public',
   resolve: {
     alias: {
@@ -41,5 +43,9 @@ export default defineConfig({
         }
       }
     }
-  }
-})
+  },
+  preview: {
+    host: true,
+    port: 4173,
+  },
+}))

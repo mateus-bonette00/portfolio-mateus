@@ -4,7 +4,7 @@ import type { Plugin } from 'vite'
 import { PROPOSALS } from './src/data/proposals'
 import type { Proposal } from './src/types/proposal'
 
-const SITE = 'https://mateusbonette.com.br'
+const SITE = 'https://www.mateusbonette.com.br'
 const PATH_PREFIXES = ['', '/pt-br']
 
 function escapeAttr(value: string) {
@@ -33,6 +33,7 @@ function applyShareTags(html: string, title: string, description: string, url: s
   next = replaceMeta(next, 'property', 'og:url', url)
   next = replaceMeta(next, 'name', 'twitter:title', title)
   next = replaceMeta(next, 'name', 'twitter:description', description)
+  next = replaceMeta(next, 'name', 'robots', 'noindex, nofollow')
   return next
 }
 

@@ -3622,6 +3622,108 @@
   }
 }
 
+.project-opening {
+  margin: 0;
+  padding-left: 1rem;
+  border-left: 3px solid rgb(59 130 246 / 0.7);
+}
+
+.project-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.project-steps__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.project-steps__index {
+  font-family: theme('fontFamily.mono');
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgb(59 130 246);
+  padding-top: 0.15rem;
+}
+
+.project-rules-wrap {
+  overflow-x: auto;
+}
+
+.project-rules {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.project-rules th,
+.project-rules td {
+  padding: 0.7rem 0.75rem;
+  vertical-align: top;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.project-rules thead th {
+  font-family: theme('fontFamily.mono');
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--ink-mute));
+  border-bottom: 1px solid rgb(var(--line) / 0.35);
+}
+
+.dark .project-rules thead th {
+  border-bottom-color: rgb(var(--line) / 0.12);
+}
+
+.project-rules tbody th {
+  width: 32%;
+  font-weight: 700;
+  color: rgb(var(--ink));
+  border-bottom: 1px solid rgb(var(--line) / 0.22);
+}
+
+.project-rules tbody td {
+  color: rgb(var(--ink-dim));
+  border-bottom: 1px solid rgb(var(--line) / 0.22);
+}
+
+.dark .project-rules tbody th,
+.dark .project-rules tbody td {
+  border-bottom-color: rgb(var(--line) / 0.08);
+}
+
+.project-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin: 0;
+}
+
+.project-faq__item dt {
+  font-weight: 700;
+  color: rgb(var(--ink));
+  line-height: 1.45;
+}
+
+.project-faq__item dd {
+  margin: 0.4rem 0 0;
+  color: rgb(var(--ink-dim));
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
 /* Força a borda em camada do btn-hero-contact no light (vence utilities Tailwind) */
 html:not(.dark) .proposal-card {
   border: 1px solid rgb(96 165 250 / 0.42);
@@ -5288,6 +5390,10 @@ html:not(.dark) .proposal-page [data-proposal-chip] {
 }
 
 .console-card__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-family: theme('fontFamily.display');
   font-size: 1.12rem;
   font-weight: 700;

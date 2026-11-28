@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import { ProposalShareHead } from './components/proposal/ProposalShareHead'
 import './index.css'
-import { UI } from './data/portfolio'
-import { getCurrentLocale, getLocalizedPath, getRouteInfo } from './i18n/routes'
+import { getRouteInfo } from './i18n/routes'
+import { applyDocumentHead, resolveSeoPage } from './seo'
 
 const routeInfo = getRouteInfo()
 const locale = routeInfo.locale
@@ -30,28 +30,7 @@ if (proposalSlug) {
 }
 
 if (!isProposal) {
-  document.title = UI.metadata.title
-
-  const canonicalUrl = `https://www.mateusbonette.com.br${getLocalizedPath(window.location.pathname, locale)}`
-  const canonicalLink = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
-  const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')
-  const ogLocale = document.querySelector<HTMLMetaElement>('meta[property="og:locale"]')
-  const metaDescription = document.querySelector<HTMLMetaElement>('meta[name="description"]')
-  const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
-  const ogDescription = document.querySelector<HTMLMetaElement>('meta[property="og:description"]')
-  const ogImageAlt = document.querySelector<HTMLMetaElement>('meta[property="og:image:alt"]')
-  const twitterTitle = document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')
-  const twitterDescription = document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')
-
-  if (canonicalLink) canonicalLink.href = canonicalUrl
-  if (ogUrl) ogUrl.content = canonicalUrl
-  if (ogLocale) ogLocale.content = locale === 'en' ? 'en_US' : 'pt_BR'
-  if (metaDescription) metaDescription.content = UI.metadata.description
-  if (ogTitle) ogTitle.content = UI.metadata.ogTitle
-  if (ogDescription) ogDescription.content = UI.metadata.description
-  if (ogImageAlt) ogImageAlt.content = UI.metadata.imageAlt
-  if (twitterTitle) twitterTitle.content = UI.metadata.ogTitle
-  if (twitterDescription) twitterDescription.content = UI.metadata.description
+  applyDocumentHead(resolveSeoPage(window.location.pathname))
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

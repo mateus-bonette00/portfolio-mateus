@@ -9,6 +9,7 @@ import type {
 import { getCurrentLocale, type Locale } from "../i18n/routes";
 import familyMoneyCoverImage from "../../imagem-da-capa-do-projeto-familyMoney.png";
 import familyMoneyDemoVideo from "../../video-familyMoney-com-jazz.mp4";
+import buscadorFornecedoresDemoVideo from "../../automacao-react-vite-nodejs-express-google-sheets.mp4";
 
 const PROFILE_PT = {
   name: "Mateus Bonette",
@@ -93,6 +94,171 @@ A arquitetura roda em home lab próprio, com Evolution API v2.3.6, PostgreSQL, R
     recruiterText:
       "Neste projeto eu desenhei uma arquitetura real de IA aplicada, conectando WhatsApp, múltiplos LLMs, agentes Node.js, RAG e automações operacionais em ambiente próprio 24/7. O resultado foi um sistema pessoal funcional, resiliente e evolutivo, com decisões técnicas proporcionais, foco em previsibilidade e integração ponta a ponta.",
     repo: "https://github.com/mateus-bonette00/config-open-claw",
+  },
+  {
+    id: "buscador-fornecedores-amazon",
+    title:
+      "Buscador de Fornecedores para Amazon FBA e FBM em React, Vite, Node.js, Express e Homelab SSH.",
+    subtitle:
+      "Aplicação web em React, Vite, Node.js e Express que automatiza a pesquisa de fornecedores nos EUA via Keepa, calcula lucro FBM e FBA no Google Sheets e roda em servidor homelab Ubuntu 24 via SSH.",
+    description:
+      "Robô com painel em React e Vite e backend Node.js e Express para sellers de Amazon FBA e FBM. Consulta fornecedores via Keepa, calcula preço de venda e grava lucro, ROI e margem no Google Sheets, rodando em homelab Ubuntu 24 por SSH.",
+    tags: [
+      "React",
+      "Vite",
+      "Node.js",
+      "Express",
+      "Google Sheets",
+      "Keepa",
+      "SSH",
+      "Amazon FBA",
+    ],
+    year: "2026",
+    deviceType: "desktop",
+    image: "/images/projects/cover/project-buscador-fornecedores-amazon-preview.png",
+    video: buscadorFornecedoresDemoVideo,
+    videoPoster:
+      "/images/projects/cover/project-buscador-fornecedores-amazon-preview.png",
+    opening:
+      "O Buscador de Fornecedores Amazon é uma aplicação web de automação (RPA) desenvolvida em React, Vite, Node.js e Express para sellers de Amazon FBA e Amazon FBM nos Estados Unidos. A ferramenta substitui a pesquisa manual de revenda: recebe anúncios pelo Keepa (CSV ou API), por lista de ASINs ou por links da Amazon, extrai o código exato da peça (part number) e o tamanho do pack, consulta preço e estoque em fornecedores e calcula o preço de venda ideal. Na saída, grava cada produto aprovado nas colunas A até T do Google Sheets com fórmulas automáticas de lucro, ROI e margem para FBM (meta de 24%, comissão de 15% e preparo de US$ 7) e FBA (taxa padrão de US$ 6 editável por linha). Todo o processamento pesado roda em um servidor homelab com Linux Ubuntu 24 via SSH, mantendo o notebook de trabalho livre.",
+    aboutTitle: "O que é e qual problema o projeto resolve?",
+    descriptionFull:
+      "Quem trabalha com revenda na Amazon dos EUA como seller FBA ou FBM repete diariamente uma rotina manual longa e sujeita a erro: exportar ou consultar anúncios no Keepa, abrir cada página para encontrar o part number da peça, identificar se o anúncio vende unidade ou pack, buscar o código exato em sites de fornecedores, validar se há estoque disponível, calcular comissão, frete, preparo e taxa FBA e preencher tudo em uma planilha.\n\nO Buscador de Fornecedores Amazon automatiza esse fluxo de ponta a ponta com uma regra central: na dúvida, não grava. Se um título da Amazon contém mais de um código possível, se o fornecedor não confirma o part number exato ou se o estoque não atinge o mínimo exigido, o produto fica retido como pendente no painel com o motivo explícito. Isso evita que ofertas incompletas ou margens distorcidas cheguem à planilha de precificação.\n\nA arquitetura separa interface e processamento. O painel em React 18 e Vite roda no notebook de trabalho (Linux Ubuntu 24), enquanto o backend em Node.js 20 e Express executa os lotes no meu servidor homelab (também Linux Ubuntu 24) por SSH, com suporte a execução contínua como serviço systemd atrás de túnel SSH.",
+    howItWorksTitle: "Como funciona o fluxo de ponta a ponta?",
+    howItWorks: [
+      "Entrada dos anúncios: o usuário informa a marca, o limite do lote e escolhe a origem entre Simulação, Consulta na API do Keepa, importação de CSV do Keepa ou lista de ASINs e links da Amazon.",
+      "Cadastro e teste de fornecedores: no painel, é possível cadastrar até 8 sites (10 links por site) com frete e prazo próprios. Antes de disparar um lote, o botão Testar valida um part number real, mostra preço e estoque lidos e converte URLs de busca no padrão {part}.",
+      "Extração e consulta: o backend em Node.js extrai o part number e o pack do título, executa até 3 consultas em paralelo usando leitores dedicados (Motion e SMC via extensão Chrome Manifest V3) ou leitor genérico por link (HTML e JSON-LD) e verifica a VPN dos EUA pelo nmcli quando necessário.",
+      "Escolha e cálculo: as ofertas válidas passam pelas regras de estoque mínimo e preferência entre fornecedores. O preço de venda é calculado com aritmética exata em centavos (BigInt) para atingir cerca de 24% de margem FBM.",
+      "Gravação e auditoria na planilha: os produtos aprovados são gravados nas colunas A até T do Google Sheets via API REST v4. Em seguida, o backend relê cada linha gravada e só marca o produto como confirmado se o preço e as margens FBM e FBA baterem.",
+    ],
+    rulesTitle:
+      "Quais regras de precificação FBM e FBA o sistema aplica?",
+    rules: [
+      {
+        criterion: "Código da peça (Part Number)",
+        rule: "Correspondência exata; códigos parecidos ou variações são recusados",
+      },
+      {
+        criterion: "Estoque mínimo",
+        rule: "Maior valor entre 11 unidades e o tamanho do pack do anúncio",
+      },
+      {
+        criterion: "Escolha entre lojas dedicadas",
+        rule: "Prioridade para Motion, salvo quando a SMC tem estoque 2,4 vezes maior",
+      },
+      {
+        criterion: "Prazo de envio",
+        rule: "5 dias na Motion; 6 dias (mesmo dia) ou 7 dias (dia seguinte) na SMC",
+      },
+      {
+        criterion: "Frete de compra",
+        rule: "US$ 40 na Motion e US$ 70 na SMC (editável por fornecedor no painel)",
+      },
+      {
+        criterion: "Cálculo Amazon FBM",
+        rule: "Meta de margem de ~24%, comissão Amazon de 15% e preparo padrão de US$ 7",
+      },
+      {
+        criterion: "Cálculo Amazon FBA",
+        rule: "Mesma base do FBM descontando a taxa FBA padrão de US$ 6 (editável por linha)",
+      },
+      {
+        criterion: "Validação pós-gravação",
+        rule: "Releitura automática das colunas A até T confirmando preço e margens FBM e FBA",
+      },
+    ],
+    highlightsTitle: "Diferenciais técnicos e decisões de engenharia",
+    highlights: [
+      "Execução remota em homelab Ubuntu 24 via SSH: lotes e testes de fornecedor são disparados por SSH com autenticação por chave e conferência de known_hosts, ou com o serviço completo rodando em systemd acessado por túnel SSH. Chrome, VPN e credenciais ficam isolados no servidor sem abrir portas na rede.",
+      "Painel React 18 e Vite com foco operacional: barra de status das integrações (Keepa API, Google Sheets, VPN SMC EUA ou Servidor homelab), tema claro e escuro com persistência, filtros rápidos (Todos, Confirmados e Pendentes), coluna comparativa Lucro FBM / FBA, histórico em SQLite sincronizado na URL (?job=<id>) e botão de reconexão em caso de queda do servidor local.",
+      "Google Sheets API v4 sem SDK externo: autenticação via conta de serviço assinando o JWT RS256 diretamente com o módulo nativo node:crypto, preservando células e anotações do usuário fora do intervalo controlado.",
+      "Extensão Chrome Manifest V3 sob demanda: comunicação entre o backend Node.js e o navegador por Native Messaging e socket Unix (/run/user/<uid>) restrita aos domínios dedicados, com limite de concorrência e fechamento automático de abas.",
+      "Leitor genérico seguro contra falsos positivos e SSRF: valida schema.org (JSON-LD), meta dados e rótulos explícitos de Part Number, exige preço único em dólar e quantidade isolada em estoque, bloqueia redirecionamento entre domínios e rejeita IPs privados ou internos após resolução DNS.",
+      "Segurança local e cobertura de testes: servidor Express restrito a 127.0.0.1 com validação de Host e Origin, Content Security Policy estrita e 20 testes automatizados com node:test, build do Vite e checagem da extensão Chrome executados a cada push no GitHub Actions.",
+    ],
+    recruiterText:
+      "Na operação de sellers Amazon FBA e FBM, o maior custo de uma planilha montada à mão não é apenas o tempo gasto abrindo dezenas de abas, mas o risco de aprovar um item sem estoque real ou com margem negativa por erro de cálculo entre FBM e FBA.\n\nO sistema resolve os dois gargalos ao mesmo tempo. Primeiro, concentra busca, validação de part number, comparação de fornecedores e gravação conferida em um único fluxo rastreável com histórico em SQLite. Segundo, adota validação conservadora: itens ambíguos ficam pendentes com o motivo visível no painel em vez de contaminar a planilha. Por fim, deslocar o navegador, a VPN e a coleta para um servidor homelab Linux Ubuntu 24 via SSH permite executar lotes em segundo plano sem travar o notebook de trabalho. Os testes automatizados e o vídeo de demonstração utilizam dados de exemplo.",
+    faqTitle:
+      "Perguntas frequentes sobre o Buscador de Fornecedores Amazon",
+    faq: [
+      {
+        question:
+          "Este projeto usa inteligência artificial ou machine learning?",
+        answer:
+          "Não. Toda a lógica de extração de part number, identificação de pack, validação de estoque, escolha de fornecedor e cálculo de preço FBM e FBA é 100% determinística, garantindo previsibilidade e auditoria completa em cada linha gravada.",
+      },
+      {
+        question: "Por que rodar os lotes em um homelab Ubuntu 24 via SSH?",
+        answer:
+          "Porque a consulta a determinados fornecedores exige sessão ativa do Google Chrome e VPN conectada nos EUA. Isolar esse ambiente no servidor homelab deixa o notebook de trabalho livre, evita expor portas na rede local e permite manter lotes rodando mesmo com o notebook desligado (no modo serviço systemd).",
+      },
+      {
+        question:
+          "Como o sistema evita gravar lucros ou ofertas erradas no Google Sheets?",
+        answer:
+          "Além de recusar páginas sem part number exato, preço único em dólar ou estoque numérico confirmado, o backend relê as colunas A até T logo após o batchUpdate na Google Sheets API v4 e só confirma o item quando o preço e as margens calculadas para FBM e FBA conferem.",
+      },
+      {
+        question:
+          "É possível testar o sistema sem chaves do Keepa ou credenciais do Google?",
+        answer:
+          "Sim. O painel possui o modo Simulação, que executa um lote com dados de exemplo localmente em http://127.0.0.1:8746 para demonstrar as regras de estoque, a regra 2,4x entre Motion e SMC, os filtros e a estimativa lado a lado de lucro FBM e FBA.",
+      },
+    ],
+    techFull: [
+      "React",
+      "React 18",
+      "Vite",
+      "Vite 6",
+      "Node.js",
+      "Node.js 20",
+      "Express",
+      "Express 4",
+      "JavaScript",
+      "ES Modules (ESM)",
+      "JSX",
+      "HTML5",
+      "CSS3",
+      "SQLite",
+      "Better-SQLite3",
+      "REST API",
+      "Google Sheets API v4",
+      "Keepa API",
+      "JWT (RS256)",
+      "Node Crypto",
+      "Chrome Extension",
+      "Manifest V3",
+      "Chrome Native Messaging",
+      "Unix Domain Sockets",
+      "HTMLParser2",
+      "JSON-LD / Schema.org",
+      "CSV Parser",
+      "BigInt Arithmetic",
+      "Web Scraping",
+      "RPA",
+      "Amazon FBA",
+      "Amazon FBM",
+      "Linux",
+      "Ubuntu 24",
+      "Homelab",
+      "SSH",
+      "SSH Tunneling",
+      "Systemd",
+      "Proton VPN",
+      "NetworkManager (nmcli)",
+      "Content Security Policy (CSP)",
+      "SSRF Protection",
+      "Node Test Runner (node:test)",
+      "Playwright",
+      "GitHub Actions",
+      "CI/CD",
+      "Git",
+      "npm",
+      "Responsive Design",
+      "Accessibility (ARIA)",
+    ],
+    repo: "https://github.com/mateus-bonette00/buscador-fornecedores-amazon",
   },
   {
     id: "coinsight",
@@ -741,6 +907,7 @@ A arquitetura roda em home lab próprio, com Evolution API v2.3.6, PostgreSQL, R
 
 const FEATURED_PROJECT_ORDER = [
   "zoebot-openclaw",
+  "buscador-fornecedores-amazon",
   "fba-automation",
   "qota-finance",
   "coinsight",
@@ -1117,6 +1284,9 @@ export type PortfolioUiContent = {
     technicalHighlights: string;
     technologiesUsed: string;
     forRecruiters: string;
+    openingLabel: string;
+    ruleCriterion: string;
+    ruleImplemented: string;
     viewProject: string;
     repository: string;
     underConstruction: string;
@@ -1248,6 +1418,98 @@ The architecture runs in a self-hosted home lab with Evolution API v2.3.6, Postg
     ],
     recruiterText:
       "In this project I designed a real applied AI architecture that connects WhatsApp, multiple LLMs, Node.js agents, RAG, and operational automations in a self-hosted 24/7 environment. The result was a resilient and evolving personal system, built with proportional technical decisions, predictable logic, and end-to-end integration.",
+  },
+  "buscador-fornecedores-amazon": {
+    title:
+      "Amazon FBA and FBM Supplier Finder in React, Vite, Node.js, Express, and Homelab SSH.",
+    subtitle:
+      "Web app in React, Vite, Node.js, and Express that automates US supplier research via Keepa, calculates FBM and FBA profit in Google Sheets, and runs on an Ubuntu 24 homelab server over SSH.",
+    description:
+      "Robot with a React and Vite dashboard and a Node.js and Express backend for Amazon FBA and FBM sellers. It looks up suppliers via Keepa, calculates selling price, and writes profit, ROI, and margin to Google Sheets, running on an Ubuntu 24 homelab over SSH.",
+    opening:
+      "The Amazon Supplier Finder is a web automation (RPA) application built with React, Vite, Node.js, and Express for Amazon FBA and Amazon FBM sellers in the United States. The tool replaces manual resale research: it receives listings from Keepa (CSV or API), from an ASIN list, or from Amazon links, extracts the exact part number and pack size, queries supplier price and stock, and calculates the ideal selling price. On output, it writes each approved product to Google Sheets columns A through T with automatic formulas for profit, ROI, and margin for FBM (24% target, 15% referral fee, and US$ 7 prep) and FBA (default US$ 6 fee, editable per row). All heavy processing runs on a homelab server with Linux Ubuntu 24 over SSH, keeping the work laptop free.",
+    aboutTitle: "What is it, and which problem does the project solve?",
+    descriptionFull:
+      "Anyone reselling on Amazon US as an FBA or FBM seller repeats a long, error-prone manual routine every day: export or query listings in Keepa, open each page to find the part number, tell whether the listing sells a single unit or a pack, search the exact code on supplier sites, confirm stock, calculate referral fee, shipping, prep, and FBA fees, then fill it all into a spreadsheet.\n\nThe Amazon Supplier Finder automates that flow end to end with one central rule: when in doubt, do not write. If an Amazon title contains more than one possible code, if the supplier does not confirm the exact part number, or if stock is below the required minimum, the product stays pending in the dashboard with an explicit reason. That keeps incomplete offers and distorted margins out of the pricing sheet.\n\nThe architecture splits interface and processing. The React 18 and Vite dashboard runs on the work laptop (Linux Ubuntu 24), while the Node.js 20 and Express backend runs batches on my homelab server (also Linux Ubuntu 24) over SSH, with support for continuous execution as a systemd service behind an SSH tunnel.",
+    howItWorksTitle: "How does the end-to-end flow work?",
+    howItWorks: [
+      "Listing intake: the user sets the brand, the batch limit, and the source among Simulation, Keepa API query, Keepa CSV import, or a list of ASINs and Amazon links.",
+      "Supplier setup and test: the dashboard can register up to 8 sites (10 links per site) with their own shipping cost and lead time. Before a batch runs, Test validates a real part number, shows the price and stock that were read, and converts search URLs to the {part} pattern.",
+      "Extraction and lookup: the Node.js backend extracts the part number and pack from the title, runs up to 3 queries in parallel using dedicated readers (Motion and SMC via a Chrome Manifest V3 extension) or a generic link reader (HTML and JSON-LD), and checks the US VPN with nmcli when needed.",
+      "Selection and pricing: valid offers go through minimum-stock rules and supplier preference. Selling price is computed with exact cent arithmetic (BigInt) to reach about 24% FBM margin.",
+      "Spreadsheet write and audit: approved products are written to Google Sheets columns A through T via REST API v4. The backend then rereads each written row and only marks the product as confirmed if the price and the FBM and FBA margins match.",
+    ],
+    rulesTitle: "Which FBM and FBA pricing rules does the system apply?",
+    rules: [
+      {
+        criterion: "Part number",
+        rule: "Exact match; similar codes or variations are rejected",
+      },
+      {
+        criterion: "Minimum stock",
+        rule: "The greater of 11 units and the listing pack size",
+      },
+      {
+        criterion: "Dedicated store choice",
+        rule: "Prefer Motion, unless SMC has 2.4 times more stock",
+      },
+      {
+        criterion: "Shipping lead time",
+        rule: "5 days at Motion; 6 days (same day) or 7 days (next day) at SMC",
+      },
+      {
+        criterion: "Inbound shipping",
+        rule: "US$ 40 at Motion and US$ 70 at SMC (editable per supplier in the dashboard)",
+      },
+      {
+        criterion: "Amazon FBM pricing",
+        rule: "~24% margin target, 15% Amazon referral fee, and US$ 7 default prep",
+      },
+      {
+        criterion: "Amazon FBA pricing",
+        rule: "Same FBM base minus the default US$ 6 FBA fee (editable per row)",
+      },
+      {
+        criterion: "Post-write validation",
+        rule: "Automatic reread of columns A through T confirming price and FBM and FBA margins",
+      },
+    ],
+    highlightsTitle: "Technical differentiators and engineering decisions",
+    highlights: [
+      "Remote execution on an Ubuntu 24 homelab over SSH: batches and supplier tests are triggered over SSH with key authentication and known_hosts checks, or with the full service running under systemd reached through an SSH tunnel. Chrome, VPN, and credentials stay isolated on the server without opening ports on the network.",
+      "Operational React 18 and Vite dashboard: integration status bar (Keepa API, Google Sheets, US SMC VPN or homelab server), light and dark theme with persistence, quick filters (All, Confirmed, and Pending), side-by-side FBM / FBA profit column, SQLite history synced in the URL (?job=<id>), and a reconnect button if the local server drops.",
+      "Google Sheets API v4 without an external SDK: service-account auth signs the RS256 JWT directly with the native node:crypto module, leaving user cells and notes outside the controlled range untouched.",
+      "On-demand Chrome Manifest V3 extension: Node.js backend talks to the browser through Native Messaging and a Unix socket (/run/user/<uid>) restricted to dedicated domains, with concurrency limits and automatic tab closing.",
+      "Generic reader hardened against false positives and SSRF: validates schema.org (JSON-LD), meta data, and explicit Part Number labels, requires a single USD price and an isolated stock quantity, blocks cross-domain redirects, and rejects private or internal IPs after DNS resolution.",
+      "Local security and test coverage: Express server bound to 127.0.0.1 with Host and Origin validation, a strict Content Security Policy, and 20 automated tests with node:test, the Vite build, and Chrome extension checks on every GitHub Actions push.",
+    ],
+    recruiterText:
+      "For Amazon FBA and FBM sellers, the highest cost of a handmade spreadsheet is not only the time spent opening dozens of tabs. It is the risk of approving an item with no real stock or a negative margin from an FBM vs FBA calculation error.\n\nThe system closes both gaps at once. First, it concentrates search, part-number validation, supplier comparison, and a verified write into a single traceable flow with SQLite history. Second, it stays conservative: ambiguous items stay pending with a visible reason in the dashboard instead of contaminating the sheet. Finally, moving the browser, VPN, and collection onto a Linux Ubuntu 24 homelab over SSH lets batches run in the background without freezing the work laptop. Automated tests and the demo video use sample data.",
+    faqTitle: "Frequently asked questions about the Amazon Supplier Finder",
+    faq: [
+      {
+        question: "Does this project use artificial intelligence or machine learning?",
+        answer:
+          "No. All logic for part-number extraction, pack detection, stock validation, supplier choice, and FBM and FBA price calculation is 100% deterministic, which keeps every written row predictable and fully auditable.",
+      },
+      {
+        question: "Why run batches on an Ubuntu 24 homelab over SSH?",
+        answer:
+          "Because some supplier lookups need an active Google Chrome session and a US VPN. Isolating that environment on the homelab keeps the work laptop free, avoids exposing ports on the local network, and lets batches keep running even if the laptop is off (systemd service mode).",
+      },
+      {
+        question:
+          "How does the system avoid writing wrong profits or offers to Google Sheets?",
+        answer:
+          "Besides rejecting pages without an exact part number, a single USD price, or a confirmed numeric stock, the backend rereads columns A through T right after the Google Sheets API v4 batchUpdate and only confirms the item when the computed FBM and FBA price and margins match.",
+      },
+      {
+        question:
+          "Can the system be tested without Keepa keys or Google credentials?",
+        answer:
+          "Yes. The dashboard has a Simulation mode that runs a sample batch locally at http://127.0.0.1:8746 to demonstrate stock rules, the 2.4x Motion vs SMC rule, filters, and side-by-side FBM and FBA profit estimates.",
+      },
+    ],
   },
   coinsight: {
     title: "CoinSight Thesis",
@@ -2075,10 +2337,10 @@ const NAV_LINKS_EN: NavLink[] = [
 
 const UI_PT: PortfolioUiContent = {
   metadata: {
-    title: "Mateus Bonette | AI Engineer & Software Engineer — AI Engineering, Harness Engineering, LLMs & RAG",
+    title: "Mateus Bonette | AI Engineer e Software Engineer, SP",
     description:
-      "Mateus Bonette — AI Engineer e Software Engineer especialista em AI Engineering, Harness Engineering, LLMs, RAG, AI Agents, MCP, Python, FastAPI, TypeScript, React e PostgreSQL.",
-    ogTitle: "Mateus Bonette | AI Engineer & Software Engineer — AI Engineering, Harness Engineering, LLMs & RAG",
+      "Mateus Bonette — AI Engineer e Software Engineer em São Paulo. AI Engineering, Harness Engineering, LLMs, RAG, agentes, MCP, Python, FastAPI, React e PostgreSQL.",
+    ogTitle: "Mateus Bonette | AI Engineer e Software Engineer, SP",
     imageAlt: "Mateus Bonette — AI Engineer e Software Engineer",
   },
   language: {
@@ -2824,6 +3086,9 @@ const UI_PT: PortfolioUiContent = {
     technicalHighlights: "Diferenciais técnicos",
     technologiesUsed: "Tecnologias utilizadas",
     forRecruiters: "Impacto e resolução de problema",
+    openingLabel: "Resumo",
+    ruleCriterion: "Critério",
+    ruleImplemented: "Regra implementada no backend",
     viewProject: "Ver projeto",
     repository: "Repositório",
     underConstruction: "Conteúdo em construção",
@@ -2856,6 +3121,8 @@ const UI_PT: PortfolioUiContent = {
         "agentes de IA",
         "RAG & LLMs",
         "automação",
+        "Amazon FBA",
+        "Keepa",
         "Amazon SP-API",
         "Python & dados",
         "Machine Learning",
@@ -2963,10 +3230,10 @@ const UI_PT: PortfolioUiContent = {
 const UI_EN: PortfolioUiContent = {
   ...UI_PT,
   metadata: {
-    title: "Mateus Bonette | AI Engineer & Software Engineer — AI Engineering, Harness Engineering, LLMs & RAG",
+    title: "Mateus Bonette | AI Engineer and Software Engineer",
     description:
-      "Mateus Bonette — Applied AI Engineer and Software Engineer specializing in AI Engineering, Harness Engineering, LLMs, RAG, AI Agents, MCP, Python, FastAPI, TypeScript, React, and PostgreSQL.",
-    ogTitle: "Mateus Bonette | AI Engineer & Software Engineer — AI Engineering, Harness Engineering, LLMs & RAG",
+      "Mateus Bonette — Applied AI Engineer and Software Engineer in São Paulo. AI Engineering, Harness Engineering, LLMs, RAG, agents, MCP, Python, FastAPI, React, and PostgreSQL.",
+    ogTitle: "Mateus Bonette | AI Engineer and Software Engineer",
     imageAlt: "Mateus Bonette — AI Engineer and Software Engineer",
   },
   language: {
@@ -3712,6 +3979,9 @@ const UI_EN: PortfolioUiContent = {
     technicalHighlights: "Technical highlights",
     technologiesUsed: "Technologies used",
     forRecruiters: "Impact & Value Delivered",
+    openingLabel: "Overview",
+    ruleCriterion: "Criterion",
+    ruleImplemented: "Rule implemented in the backend",
     viewProject: "View project",
     repository: "Repository",
     underConstruction: "Content under construction",
@@ -3744,6 +4014,8 @@ const UI_EN: PortfolioUiContent = {
         "AI agents",
         "RAG & LLMs",
         "automation",
+        "Amazon FBA",
+        "Keepa",
         "Amazon SP-API",
         "Python & data",
         "Machine Learning",
